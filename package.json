@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0-beta.0",
+  "private": true,
+  "engines": {
+    "node": "^10.13.0",
+    "yarn": "^1.10.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0",
+    "typescript": "^3.3.3333"
+  },
+  "scripts": {
+    "build": "./build.sh",
+    "check": "tslint --project . && tsc --noEmit --pretty",
+    "clean": "polkadot-dev-clean-build",
+    "postinstall": "polkadot-dev-yarn-only",
+    "test": "./test.sh"
+  },
+  "devDependencies": {
+    "@polkadot/dev": "^0.26.1",
+    "gh-pages": "^2.0.1"
+  }
+}

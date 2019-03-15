@@ -1,0 +1,11 @@
+{
+  "name": "@polkadot/wasm-schnorrkel",
+  "private": true,
+  "collaborators": [
+    "kianenigma <Kian.peymani@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "devDependencies": {
+    "@polkadot/util": "^0.38.0-beta.1"
+  }
+}
