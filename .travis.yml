@@ -1,8 +1,5 @@
-language: node_js
-node_js:
-  - "10"
 env:
-  - GH_PAGES_SRC="build-docs"
+# - GH_PAGES_SRC="build-docs"
 # compiler & addons are both used for RocksDb
 # compiler:
 #   - clang
@@ -26,18 +23,15 @@ cache:
   yarn: true
   directories:
     - node_modules
-install:
-  # - export ROCKSDB=$HOME/rocksdb-master
-  # - pushd $HOME
-  # - curl -sLO https://github.com/facebook/rocksdb/archive/master.zip
-  # - unzip -q master.zip
-  # - cd rocksdb-master
-  # - make shared_lib
-  # - popd
-  # - export CFLAGS="-I${ROCKSDB}/include/"
-  # - export CXXFLAGS="-I${ROCKSDB}/include/"
-  # - export LDFLAGS="-L${ROCKSDB} -lrocksdb -lstdc++ -lm -lz"
-  # - export LD_LIBRARY_PATH="${ROCKSDB}:/usr/local/lib"
-  - yarn
-script:
-  - ./build.sh
+matrix:
+  include:
+    - language: rust
+    script:
+      - ./build.sh
+      - ./test-rust.sh
+  include:
+    - language: node_js
+    node_js:
+      - "10"
+    script:
+      - ./test-js.sh
