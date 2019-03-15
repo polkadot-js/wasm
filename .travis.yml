@@ -1,0 +1,19 @@
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
+cache:
+  yarn: true
+  directories:
+    - node_modules
+matrix:
+  include:
+    - language: rust
+    script:
+      - ./build.sh
+      - ./test-rust.sh
+  include:
+    - language: node_js
+    node_js:
+      - "10"
+    script:
+      - ./test-js.sh
