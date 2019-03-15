@@ -13,8 +13,8 @@ crate-type = ["cdylib"]
 [dependencies]
 wasm-bindgen = { version = "0.2" }
 wee_alloc = { version = "0.4.3" }
-sha2 = { version = "0.8"}
-schnorrkel = { version = "0.0", features = ["nightly"]}
+# schnorrkel = { version = "0.0", features = ["nightly"]}
+schnorrkel = { git = "https://github.com/w3f/schnorrkel", rev="0a0de429", features = ["nightly"] }
 
 [dev-dependencies]
 hex-literal = { version = "0.1.4" }

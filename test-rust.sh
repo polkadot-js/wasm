@@ -4,5 +4,6 @@
 echo "*** Testing Rust packages"
 cd packages
 cd wasm-schnorrkel
+cargo test -- --nocapture
 cd ..
 cd ..

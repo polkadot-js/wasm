@@ -2,7 +2,4 @@
 
 # test packages
 echo "*** Testing JS packages"
-cd packages
-cd wasm-schnorrkel
-cd ..
-cd ..
+node packages/wasm-schnorrkel/test/wasm.js

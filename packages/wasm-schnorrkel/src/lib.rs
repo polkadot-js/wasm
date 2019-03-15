@@ -9,10 +9,9 @@ extern crate schnorrkel;
 extern crate wasm_bindgen;
 extern crate wee_alloc;
 
-use sha2::Sha512;
 use schnorrkel::{
 	Keypair, MiniSecretKey, PublicKey, SecretKey, signing_context,
-	derive::{Derrivation, ChainCode, CHAIN_CODE_LENGTH},
+	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
 	sign::{Signature},
 };
 use wasm_bindgen::prelude::*;
@@ -23,6 +22,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 // We must make sure that this is the same as declared in the substrate source code.
 const SIGNING_CTX: &[u8] = b"substrate";
+const DERIVE_CTX: &[u8] = b"SchnorrRistrettoHDKD";
 
 /// ChainCode construction helper
 fn create_cc(cc: &[u8]) -> ChainCode {
@@ -44,7 +44,7 @@ fn create_from_pair(pair: &[u8]) -> Keypair {
 /// Keypair constructor (via seed)
 fn create_from_seed(seed: &[u8]) -> Keypair {
 	match MiniSecretKey::from_bytes(seed) {
-		Ok(result) => return result.expand_to_keypair::<Sha512>(),
+		Ok(result) => return result.expand_to_keypair(),
 		Err(_) => panic!("Provided seed is invalid.")
 	}
 }
@@ -65,7 +65,7 @@ fn create_secret(secret: &[u8]) -> SecretKey {
 	}
 }
 
-/// Generate a key pair. .
+/// Generate a key pair.
 ///
 /// * seed: UIntArray with 32 element
 ///
@@ -78,60 +78,17 @@ pub fn keypair_from_seed(seed: &[u8]) -> Vec<u8> {
 		.to_vec()
 }
 
-/// Perform a derivation on a secret
+/// Perform a hard derivation on a keypair
 ///
-/// * secret: UIntArray with 64 bytes
+/// * pair: UIntArray with 96 bytes
 /// * cc: UIntArray with 32 bytes
 ///
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
-pub fn soft_derive_keypair(pair: &[u8], cc: &[u8]) -> Vec<u8> {
+pub fn hard_derive_keypair(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 	create_from_pair(pair)
-		.derived_key_simple(create_cc(cc), &[])
-		.0
-		.to_bytes()
-		.to_vec()
-}
-
-/// Perform a derivation on a publicKey
-///
-/// * public: UIntArray with 32 bytes
-/// * cc: UIntArray with 32 bytes
-///
-/// returned vector is the derived publicKey as a array of 32 bytes
-#[wasm_bindgen]
-pub fn soft_derive_public(public: &[u8], cc: &[u8]) -> Vec<u8> {
-	create_public(public)
-		.derived_key_simple(create_cc(cc), &[])
-		.0
-		.to_bytes()
-		.to_vec()
-}
-
-/// Perform a derivation on a secret
-///
-/// * secret: UIntArray with 64 bytes
-/// * junction: UIntArray with 32 bytes
-///
-/// returned vector the derived secret as a array of 64 bytes
-#[wasm_bindgen]
-pub fn soft_derive_secret(secret: &[u8], cc: &[u8]) -> Vec<u8> {
-	create_secret(secret)
-		.derived_key_simple(create_cc(cc), &[])
-		.0
-		.to_bytes()
-		.to_vec()
-}
-
-/// Generate a secret key (aka. private key) from a seed phrase.
-///
-/// * seed: UIntArray with 32 element
-///
-/// returned vector is the private key consisting of 64 bytes.
-#[wasm_bindgen]
-pub fn secret_from_seed(seed: &[u8]) -> Vec<u8> {
-	create_from_seed(seed)
-		.secret
+		.hard_derive_mini_secret_key(signing_context(DERIVE_CTX).bytes(&cc[..]))
+		.expand_to_keypair()
 		.to_bytes()
 		.to_vec()
 }
@@ -156,6 +113,21 @@ pub fn sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 		.to_vec()
 }
 
+/// Perform a soft derivation on a keypair
+///
+/// * pair: UIntArray with 96 bytes
+/// * cc: UIntArray with 32 bytes
+///
+/// returned vector the derived keypair as a array of 96 bytes
+#[wasm_bindgen]
+pub fn soft_derive_keypair(pair: &[u8], cc: &[u8]) -> Vec<u8> {
+	create_from_pair(pair)
+		.derived_key_simple(create_cc(cc), &[])
+		.0
+		.to_bytes()
+		.to_vec()
+}
+
 /// Verify a message and its corresponding against a public key;
 ///
 /// * signature: UIntArray with 64 element
@@ -171,34 +143,23 @@ pub fn verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
 
 #[cfg(test)]
 pub mod tests {
-	// extern crate wasm_bindgen_test;
 	extern crate rand;
 	extern crate schnorrkel;
 
 	use hex_literal::{hex, hex_impl};
 	use schnorrkel::{SIGNATURE_LENGTH, KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
-	// use wasm_bindgen_test::*;
 	use super::*;
 
 	fn generate_random_seed() -> Vec<u8> {
 		(0..32).map(|_| rand::random::<u8>() ).collect()
 	}
 
-	// #[wasm_bindgen_test]
 	#[test]
 	fn can_create_keypair() {
 		let seed = generate_random_seed();
 		let keypair = keypair_from_seed(seed.as_slice());
 
 		assert!(keypair.len() == KEYPAIR_LENGTH);
-	}
-
-	#[test]
-	fn can_create_secret() {
-		let seed = generate_random_seed();
-		let secret = secret_from_seed(seed.as_slice());
-
-		assert!(secret.len() == SECRET_KEY_LENGTH);
 	}
 
 	#[test]
@@ -226,16 +187,6 @@ pub mod tests {
 	}
 
 	#[test]
-	fn soft_derives_public_keys() {
-		// "foo" with compact length added
-		let cc = hex!("0c666f6f00000000000000000000000000000000000000000000000000000000");
-		let public = hex!("46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a");
-		let expected = hex!("40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a");
-
-		assert_eq!(soft_derive_public(&public, &cc), expected);
-	}
-
-	#[test]
 	fn soft_derives_pairs() {
 		// "foo" with compact length added
 		let cc = hex!("0c666f6f00000000000000000000000000000000000000000000000000000000");
@@ -243,6 +194,19 @@ pub mod tests {
 		let keypair = keypair_from_seed(&seed);
 		let expected = hex!("40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a");
 		let derived = soft_derive_keypair(&keypair, &cc);
+		let public = &derived[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+
+		assert_eq!(public, expected);
+	}
+
+	#[test]
+	fn hard_derives_pairs() {
+		// Alice with prefix
+		let cc = [20, 65, 108, 105, 99, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+		let seed = hex!("fac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e");
+		let keypair = keypair_from_seed(&seed);
+		let expected = hex!("56443a3a9173a22315838b38410cfe9d67feadfcea71e4894e3f9fd15ec1117f");
+		let derived = hard_derive_keypair(&keypair, &cc);
 		let public = &derived[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 
 		assert_eq!(public, expected);
