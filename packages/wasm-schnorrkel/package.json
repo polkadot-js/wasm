@@ -1,0 +1,28 @@
+{
+  "name": "@polkadot/wasm-schnorrkel",
+  "collaborators": [
+    "Jaco Greeff <jacogr@gamil.com>",
+    "kianenigma <Kian.peymani@gmail.com>"
+  ],
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "crypto-polyfill.js",
+    "wasm_schnorrkel_wasm.js",
+    "wasm_schnorrkel.js",
+    "wasm_schnorrkel_bg.js",
+    "wasm_schnorrkel.d.ts"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "./test.sh"
+  },
+  "version": "0.1.0-beta.0",
+  "peerDependencies": {
+    "@polkadot/util": "*"
+  },
+  "devDependencies": {
+    "jest": "*"
+  }
+}

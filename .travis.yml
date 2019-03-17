@@ -1,19 +1,22 @@
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
+language: node_js
+node_js:
+  - "10"
+addons:
+  apt:
+    sources: ['ubuntu-toolchain-r-test']
+    packages: ['cmake', 'g++-5']
 cache:
+  cargo: true
   yarn: true
   directories:
     - node_modules
-matrix:
-  include:
-    - language: rust
-      script:
-        - ./build.sh
-        - ./test-rust.sh
-  include:
-    - language: node_js
-      node_js:
-        - "10"
-      script:
-        - ./test-js.sh
+compiler:
+  - clang
+before_install:
+  - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$HOME/.cargo/bin:$(yarn global bin):$PATH
+install:
+  - yarn
+script:
+  - yarn polkadot-dev-build-travis
