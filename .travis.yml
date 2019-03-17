@@ -1,5 +1,4 @@
 env:
-  - ISOLATED=true
   - ISOLATED=false
 matrix:
   include:
