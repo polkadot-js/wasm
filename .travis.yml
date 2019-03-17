@@ -20,6 +20,4 @@ before_install:
 install:
   - yarn
 script:
-  - ./build.sh
-  - ./test-rust.sh
-  - ./test-js.sh
+  - yarn polkadot-dev-build-travis
