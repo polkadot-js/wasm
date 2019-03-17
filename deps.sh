@@ -34,18 +34,3 @@ if [ ! -f "binaryen/bin/wasm-opt" ]; then
   make wasm-opt
   cd ..
 fi
-
-# build packages
-echo "*** Building packages"
-cd packages
-
-for PKG in "${PACKAGES[@]}"; do
-  cd wasm-$PKG
-
-  ./build.sh
-  ls -al build
-
-  cd ..
-done
-
-cd ..

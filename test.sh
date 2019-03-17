@@ -2,7 +2,7 @@
 
 set -e
 
-./build.sh
+./deps.sh
 
 PACKAGES=( "schnorrkel" )
 
