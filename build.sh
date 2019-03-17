@@ -33,9 +33,6 @@ if [ ! -f "binaryen/bin/wasm-opt" ]; then
   cd ..
 fi
 
-# install deps
-echo "*** Installing JS dependencies"
-yarn
 
 # build packages
 echo "*** Building packages"
