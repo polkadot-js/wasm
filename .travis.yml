@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "10"
+addons:
+  apt:
+    sources: ['ubuntu-toolchain-r-test']
+    packages: ['cmake', 'g++-5']
 cache:
   cargo: true
   yarn: true
@@ -9,7 +13,6 @@ cache:
     - node_modules
 compiler:
   - clang
-  - gcc
 before_install:
   - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y
   - curl -o- -L https://yarnpkg.com/install.sh | bash
