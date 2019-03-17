@@ -2,6 +2,8 @@
 
 set -e
 
+./build.sh
+
 PACKAGES=( "schnorrkel" )
 
 echo "*** Testing packages"

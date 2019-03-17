@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # cleanup old
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
