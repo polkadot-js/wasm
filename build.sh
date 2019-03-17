@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # install wasm-pack as required
 if ! [ -x "$(command -v wasm-pack)" ]; then
   echo "*** Installing wasm-pack"
