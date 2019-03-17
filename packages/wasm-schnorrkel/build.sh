@@ -4,6 +4,7 @@ set -e
 
 echo "*** Building package"
 ../../scripts/build-package.sh
+./adjust.sh
 
 echo "*** Running cargo tests"
 cargo test --release -- --nocapture
