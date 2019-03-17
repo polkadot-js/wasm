@@ -117,3 +117,5 @@ rm -rf build/*-e
 # echo "*** Optimising asm.js output"
 # yarn run uglifyjs $TMP --compress --mangle --timings --output $ASM
 # mv $TMP $ASM
+
+ls -al build
