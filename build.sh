@@ -2,6 +2,9 @@
 
 set -e
 
+
+rm -rf binaryen
+
 # install wasm-pack as required
 if ! [ -x "$(command -v wasm-pack)" ]; then
   echo "*** Installing wasm-pack"
@@ -12,6 +15,7 @@ fi
 if [ ! -d "binaryen" ]; then
   echo "*** Installing binaryen"
   git clone --recursive https://github.com/WebAssembly/binaryen.git
+  ls -al binaryen
   rm -rf binaryen/test
 fi
 
