@@ -1,4 +1,7 @@
 language: rust
+rust:
+  - stable
+  - nightly
 cache:
   cargo: true
   yarn: true
@@ -8,6 +11,7 @@ cache:
 before_install:
     - curl -o- -L https://yarnpkg.com/install.sh | bash
     - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+    - nvm install node
     - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH  
 script:
     - ./build.sh
