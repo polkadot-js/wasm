@@ -1,4 +1,4 @@
-# @polkadot/schnorrkel-js
+# @polkadot/wasm-schnorrkel
 
 A fork of [@parity/schnorrkel-js](https://github.com/polkadot-js/schnorrkel-js/tree/b1a1bf25be7397d3c21bba5ddde14286a58b269c) that allows proper operation against all the environments that the `@polkadot/api` supports. Changes from the base repo -
 
