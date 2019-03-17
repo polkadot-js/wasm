@@ -8,12 +8,12 @@ cache:
 matrix:
   include:
     - language: rust
-    script:
-      - ./build.sh
-      - ./test-rust.sh
+      script:
+        - ./build.sh
+        - ./test-rust.sh
   include:
     - language: node_js
-    node_js:
-      - "10"
-    script:
-      - ./test-js.sh
+      node_js:
+        - "10"
+      script:
+        - ./test-js.sh
