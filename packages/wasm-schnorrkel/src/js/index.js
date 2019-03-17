@@ -3,7 +3,7 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
 
-const stubbed = require('./wasm_schnorrkel');
+const stubbed = require('./wasm');
 
 module.exports.deriveKeypairHard = stubbed.derive_keypair_hard;
 module.exports.deriveKeypairSoft = stubbed.derive_keypair_soft;

@@ -1,6 +1,8 @@
+# name & version is only used internally, doesn't need to be adjusted. In the case of
+# name keep it consistent at "wasm" since the scripts (for re-use purposes) expect that
 [package]
-name = "wasm-schnorrkel"
-version = "0.1.0"
+name = "wasm"
+version = "0.0.0"
 authors = ["Jaco Greeff <jacogr@gmail.com>", "kianenigma <Kian.peymani@gmail.com>"]
 edition = "2018"
 

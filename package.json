@@ -13,11 +13,11 @@
     "typescript": "^3.3.3333"
   },
   "scripts": {
-    "build": "echo \"Build via ./test.sh\"",
+    "build": "./scripts/build.sh",
     "check": "tslint --project . && tsc --noEmit --pretty",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "./test.sh"
+    "test": "echo \"Tests included in build\""
   },
   "devDependencies": {
     "@polkadot/dev": "^0.27.1",
