@@ -9,7 +9,6 @@ cache:
   cargo: true
   yarn: true
   directories:
-    #- binaryen
     - node_modules
 compiler:
   - clang

@@ -19,7 +19,7 @@ echo "*** Optimising WASM output"
 
 # convert wasm to base64 structure
 echo "*** Packing WASM into base64"
-./pack-node.sh
+node ./build.js
 
 # copy our package interfaces
 echo "*** Copying package sources"
@@ -36,9 +36,9 @@ PKG=build/package.json
 
 # update the files (new addition)
 # excluded: "wasm_schnorrkel_asm\.js",
-sed -i -e 's/wasm_schnorrkel_bg\.wasm/wasm_schnorrkel_wasm\.js", "index\.js", "index\.d\.ts/g' $PKG
-sed -i -e 's/"main": "wasm_schnorrkel\.js"/"main": "index\.js"/g' $PKG
-sed -i -e 's/"types": "wasm_schnorrkel\.d\.ts"/"types": "index\.d\.ts"/g' $PKG
+# sed -i -e 's/wasm_schnorrkel_bg\.wasm/wasm_schnorrkel_wasm\.js", "index\.js", "index\.d\.ts/g' $PKG
+# sed -i -e 's/"main": "wasm_schnorrkel\.js"/"main": "index\.js"/g' $PKG
+# sed -i -e 's/"types": "wasm_schnorrkel\.d\.ts"/"types": "index\.d\.ts"/g' $PKG
 
 # cleanup asm
 # sed -i -e 's/import {/\/\/ import {/g' $TMP

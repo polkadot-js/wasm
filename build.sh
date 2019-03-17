@@ -2,6 +2,8 @@
 
 set -e
 
+PACKAGES=( "schnorrkel" )
+
 # install wasm-pack as required
 if ! [ -x "$(command -v wasm-pack)" ]; then
   echo "*** Installing wasm-pack"
@@ -33,12 +35,17 @@ if [ ! -f "binaryen/bin/wasm-opt" ]; then
   cd ..
 fi
 
-
 # build packages
 echo "*** Building packages"
 cd packages
-cd wasm-schnorrkel
-./build.sh
-ls -al build
-cd ..
+
+for PKG in "${PACKAGES[@]}"; do
+  cd wasm-$PKG
+
+  ./build.sh
+  ls -al build
+
+  cd ..
+done
+
 cd ..

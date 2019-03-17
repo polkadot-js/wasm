@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
 const buffer = fs.readFileSync('./build/wasm_schnorrkel_opt.wasm');
 
