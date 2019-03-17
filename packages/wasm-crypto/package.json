@@ -1,11 +1,7 @@
 {
   "name": "@polkadot/wasm-crypto",
-  "collaborators": [
-    "Jaco Greeff <jacogr@gamil.com>",
-    "kianenigma <Kian.peymani@gmail.com>"
-  ],
+  "author": "Jaco Greeff <jacogr@gamil.com>",
   "files": [
-    "crypto-polyfill.js",
     "index.d.ts",
     "index.js",
     "wasm.d.ts",

@@ -4,7 +4,7 @@ set -e
 
 ./scripts/install-build-deps.sh
 
-PACKAGES=( "schnorrkel" )
+PACKAGES=( "crypto" "schnorrkel" )
 
 echo "*** Building packages"
 cd packages
