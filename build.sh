@@ -39,5 +39,6 @@ echo "*** Building packages"
 cd packages
 cd wasm-schnorrkel
 ./build.sh
+ls -al build
 cd ..
 cd ..
