@@ -2,7 +2,8 @@
 
 set -e
 
-PACKAGES=( "schnorrkel" )
+# wasm2js for wasm -> asm.js
+BINARYEN=( "wasm-opt" )
 
 # install wasm-pack as required
 if ! [ -x "$(command -v wasm-pack)" ]; then
@@ -17,20 +18,11 @@ if [ ! -d "binaryen" ]; then
   rm -rf binaryen/test
 fi
 
-# build wasm2js as required
-# if [ ! -f "binaryen/bin/wasm2js" ]; then
-#   echo "*** Building wasm2js"
-#   cd binaryen
-#   cmake .
-#   make wasm2js
-#   cd ..
-# fi
-
-# build wasm-opt as required
-if [ ! -f "binaryen/bin/wasm-opt" ]; then
-  echo "*** Building wasm-opt"
-  cd binaryen
-  cmake .
-  make wasm-opt
-  cd ..
-fi
+for BIN in "${BINARYEN[@]}"; do
+  if [ ! -f "binaryen/bin/$BIN" ]; then
+    echo "*** Building $BIN"
+    cd binaryen
+    cmake . && make $BIN
+    cd ..
+  fi
+done
