@@ -11,8 +11,8 @@ compiler:
   - clang
   - gcc
 before_install:
-  - curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y
-  #- curl -sSf https://build.travis-ci.com/files/rustup-init.sh | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
+  #- curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly -y
+  - curl -sSf https://build.travis-ci.com/files/rustup-init.sh | sh -s -- --default-toolchain=$TRAVIS_RUST_VERSION -y
   #- rustup install nightly
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$(yarn global bin):$PATH
