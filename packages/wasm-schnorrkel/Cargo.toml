@@ -1,21 +1,23 @@
 # name & version is only used internally, doesn't need to be adjusted. In the case of
 # name keep it consistent at "wasm" since the scripts (for re-use purposes) expect that
+
 [package]
-name = "wasm"
-version = "0.0.0"
 authors = ["Jaco Greeff <jacogr@gmail.com>", "kianenigma <Kian.peymani@gmail.com>"]
 edition = "2018"
+name = "wasm"
+publish = false
+version = "0.0.0"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-schnorrkel = { git = "https://github.com/w3f/schnorrkel", rev = "d3289df76b8ae6dfb68e733204c5c009df5343a9", features = ["nightly"] }
-wasm-bindgen = { version = "0.2" }
-wee_alloc = { version = "0.4.3" }
+schnorrkel = { version = "0.1.0", features = ["nightly"] }
+wasm-bindgen = "0.2"
+wee_alloc = "0.4.3"
 
 [dev-dependencies]
-hex-literal = { version = "0.1.4" }
+hex-literal = "0.1.4"
 rand = { version = "0.6.5", features = ["wasm-bindgen"] }
 
 [profile.release]
