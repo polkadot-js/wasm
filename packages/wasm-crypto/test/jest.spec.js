@@ -6,15 +6,9 @@
 const { beforeAll, tests } = require('./all.js');
 
 describe('schnorrkel-js', () => {
-  beforeEach(async () => {
-    await beforeAll();
-  });
+  beforeEach(beforeAll);
 
   Object.keys(tests).forEach((name) => {
-    const test = tests[name];
-
-    it(name, () => {
-      test();
-    });
+    it(name, tests[name]);
   });
 });

@@ -38,6 +38,12 @@ fn create_twox_hash(data: &[u8], seed: u64) -> [u8; 8] {
 }
 
 /// blake2b hash for the specified input
+///
+/// * data: Arbitrary data to be hashed
+/// * key: Key to add to the hashing (normally empty)
+/// * size: Size in bytes of the resulting output
+///
+/// Returns a vecor with the hash result
 #[wasm_bindgen]
 pub fn blake2b_hash(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
@@ -47,6 +53,12 @@ pub fn blake2b_hash(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 }
 
 /// pbkdf2 hash from an input, salt for the number of specified rounds
+///
+/// * data: Arbitrary data to be hashed
+/// * salt: Salt for this hash
+/// * rounds: The number of rounds to perform
+///
+/// Returns a vecor with the hash result
 #[wasm_bindgen]
 pub fn pbkdf2_hash(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 	let mut result = [0u8; 64];
@@ -58,6 +70,10 @@ pub fn pbkdf2_hash(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 }
 
 /// sha512 hash for the specified input
+///
+/// * data: Arbitrary data to be hashed
+///
+/// Returns a vecor with the hash result
 #[wasm_bindgen]
 pub fn sha512_hash(data: &[u8]) -> Vec<u8> {
 	let mut hasher = Sha512::new();
@@ -70,6 +86,11 @@ pub fn sha512_hash(data: &[u8]) -> Vec<u8> {
 }
 
 /// twox hash for the specified input and rounds
+///
+/// * data: Arbitrary data to be hashed
+/// * rounds: Number of 8-byte rounds to add to the output
+///
+/// Returns a vecor with the hash result
 #[wasm_bindgen]
 pub fn twox_hash(data: &[u8], rounds: u32) -> Vec<u8> {
 	let mut vec = vec![];
