@@ -14,7 +14,7 @@ function blake2bHash () {
   const DATA = stringToU8a('abc');
   const EXPECTED = '0xba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923';
 
-  const hash = u8aToHex(crypto.blake2bHash(DATA, new Uint8Array(), 64));
+  const hash = u8aToHex(crypto.blake2b(DATA, new Uint8Array(), 64));
 
   console.log('\tRES', hash);
 
@@ -26,7 +26,7 @@ function pbkdf2Hash () {
   const DATA = stringToU8a('hello world');
   const EXPECTED = '0x5fcbe04f05300a3ecc5c35d18ea0b78f3f6853d2ae5f3fca374f69a7d1f78b5def5c60dae1a568026c7492511e0c53521e8bb6e03a650e1263265fee92722270';
 
-  const hash = u8aToHex(crypto.pbkdf2Hash(DATA, SALT, 2048));
+  const hash = u8aToHex(crypto.pbkdf2(DATA, SALT, 2048));
 
   console.log('\tRES', hash);
 
@@ -37,7 +37,7 @@ function sha512Hash () {
   const DATA = stringToU8a('hello world');
   const EXPECTED = '0x309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f';
 
-  const hash = u8aToHex(crypto.sha512Hash(DATA));
+  const hash = u8aToHex(crypto.sha512(DATA));
 
   console.log('\tRES', hash);
 
@@ -49,8 +49,8 @@ function twoxHash () {
   const EXPECTED_64 = '0x990977adf52cbc44';
   const EXPECTED_256 = '0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b';
 
-  const hash64 = u8aToHex(crypto.twoxHash(DATA, 1));
-  const hash256 = u8aToHex(crypto.twoxHash(DATA, 4));
+  const hash64 = u8aToHex(crypto.twox(DATA, 1));
+  const hash256 = u8aToHex(crypto.twox(DATA, 4));
 
   console.log('\t64 ', hash64);
   console.log('\t256', hash256);
