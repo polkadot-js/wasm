@@ -44,10 +44,22 @@ async function sha512Hash () {
   assert(hash === EXPECTED, 'ERROR: sha512Hash does not match');
 }
 
+async function twoxHash () {
+  const DATA = stringToU8a('abcd');
+  const EXPECTED = '0xf76dc9b8f8709fe2';
+
+  const hash = u8aToHex(crypto.twoxHash(DATA, 0xabcd));
+
+  console.log('\tRES', hash);
+
+  assert(hash === EXPECTED, 'ERROR: twoxHash does not match');
+}
+
 const tests = {
   blake2bHash,
   pbkdf2Hash,
-  sha512Hash
+  sha512Hash,
+  twoxHash
 };
 
 async function runAll () {

@@ -6,13 +6,17 @@ extern crate blake2_rfc;
 extern crate hmac;
 extern crate pbkdf2;
 extern crate sha2;
+extern crate twox_hash;
 extern crate wasm_bindgen;
 extern crate wee_alloc;
 
 use blake2_rfc::blake2b::blake2b;
+use byteorder::{ByteOrder, LittleEndian};
 use hmac::Hmac;
 use pbkdf2::pbkdf2;
 use sha2::{Digest, Sha512};
+use std::hash::Hasher;
+use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
 
 // Use `wee_alloc` as the global allocator.
@@ -21,16 +25,20 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 /// blake2b hash for the specified input
 #[wasm_bindgen]
-pub fn blake2b_hash(data: &[u8], key: &[u8], size: usize) -> Vec<u8> {
-	blake2b(size, key, data).as_bytes().to_vec()
+pub fn blake2b_hash(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
+	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
+	blake2b(size as usize, key, data)
+		.as_bytes()
+		.to_vec()
 }
 
 /// pbkdf2 hash from an input, salt for the number of specified rounds
 #[wasm_bindgen]
-pub fn pbkdf2_hash(data: &[u8], salt: &[u8], rounds: usize) -> Vec<u8> {
+pub fn pbkdf2_hash(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 	let mut result = [0u8; 64];
 
-	pbkdf2::<Hmac<Sha512>>(data, salt, rounds, &mut result);
+	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
+	pbkdf2::<Hmac<Sha512>>(data, salt, rounds as usize, &mut result);
 
 	result.to_vec()
 }
@@ -45,6 +53,22 @@ pub fn sha512_hash(data: &[u8]) -> Vec<u8> {
 	hasher
 		.result()
 		.to_vec()
+}
+
+/// twox hash for the specified input and seed
+#[wasm_bindgen]
+pub fn twox_hash(data: &[u8], seed: u32) -> Vec<u8> {
+	// we cast to u64 here - due to the WASM, we'd rather have u32 inputs
+	let mut hasher = XxHash::with_seed(seed as u64);
+
+	hasher.write(data);
+
+	let hash64 = hasher.finish();
+	let mut result = [0u8; 8];
+
+	LittleEndian::write_u64(&mut result, hash64);
+
+	result.to_vec()
 }
 
 #[cfg(test)]
@@ -77,5 +101,13 @@ pub mod tests {
 		let expected = hex!("309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f");
 
 		assert_eq!(sha512_hash(data)[..], expected[..]);
+	}
+
+	#[test]
+	fn can_twox_hash() {
+		let data = b"abcd";
+		let expected = hex!("f76dc9b8f8709fe2");
+
+		assert_eq!(twox_hash(data, 0xabcd)[..], expected[..]);
 	}
 }
