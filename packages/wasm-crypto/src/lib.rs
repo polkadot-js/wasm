@@ -23,6 +23,20 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
+/// helper function for a single twox round with a seed
+fn create_twox_hash(data: &[u8], seed: u64) -> [u8; 8] {
+	let mut hasher = XxHash::with_seed(seed);
+
+	hasher.write(data);
+
+	let hash64 = hasher.finish();
+	let mut result = [0u8; 8];
+
+	LittleEndian::write_u64(&mut result, hash64);
+
+	result
+}
+
 /// blake2b hash for the specified input
 #[wasm_bindgen]
 pub fn blake2b_hash(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
@@ -55,20 +69,17 @@ pub fn sha512_hash(data: &[u8]) -> Vec<u8> {
 		.to_vec()
 }
 
-/// twox hash for the specified input and seed
+/// twox hash for the specified input and rounds
 #[wasm_bindgen]
-pub fn twox_hash(data: &[u8], seed: u32) -> Vec<u8> {
-	// we cast to u64 here - due to the WASM, we'd rather have u32 inputs
-	let mut hasher = XxHash::with_seed(seed as u64);
+pub fn twox_hash(data: &[u8], rounds: u32) -> Vec<u8> {
+	let mut vec = vec![];
 
-	hasher.write(data);
+	for round in 0..rounds {
+		// we cast to u64 here - due to the WASM, we'd rather have u32 inputs
+		vec.extend_from_slice(&create_twox_hash(data, round as u64));
+	}
 
-	let hash64 = hasher.finish();
-	let mut result = [0u8; 8];
-
-	LittleEndian::write_u64(&mut result, hash64);
-
-	result.to_vec()
+	vec
 }
 
 #[cfg(test)]
@@ -105,9 +116,11 @@ pub mod tests {
 
 	#[test]
 	fn can_twox_hash() {
-		let data = b"abcd";
-		let expected = hex!("f76dc9b8f8709fe2");
+		let data = b"abc";
+		let expected_64 = hex!("990977adf52cbc44");
+		let expected_256 = hex!("990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b");
 
-		assert_eq!(twox_hash(data, 0xabcd)[..], expected[..]);
+		assert_eq!(twox_hash(data, 1)[..], expected_64[..]);
+		assert_eq!(twox_hash(data, 4)[..], expected_256[..]);
 	}
 }

@@ -1,7 +1,7 @@
 {
   "name": "@polkadot/wasm-schnorrkel",
   "collaborators": [
-    "Jaco Greeff <jacogr@gamil.com>",
+    "Jaco Greeff <jacogr@gmail.com>",
     "kianenigma <Kian.peymani@gmail.com>"
   ],
   "files": [
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "./build.sh"
   },
-  "version": "0.1.0",
+  "version": "0.2.0-beta.0",
   "peerDependencies": {
     "@polkadot/util": "*"
   },

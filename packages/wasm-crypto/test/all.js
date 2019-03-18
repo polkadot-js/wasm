@@ -45,14 +45,17 @@ async function sha512Hash () {
 }
 
 async function twoxHash () {
-  const DATA = stringToU8a('abcd');
-  const EXPECTED = '0xf76dc9b8f8709fe2';
+  const DATA = stringToU8a('abc');
+  const EXPECTED_64 = '0x990977adf52cbc44';
+  const EXPECTED_256 = '0x990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b';
 
-  const hash = u8aToHex(crypto.twoxHash(DATA, 0xabcd));
+  const hash64 = u8aToHex(crypto.twoxHash(DATA, 1));
+  const hash256 = u8aToHex(crypto.twoxHash(DATA, 4));
 
-  console.log('\tRES', hash);
+  console.log('\t64 ', hash64);
+  console.log('\t256', hash256);
 
-  assert(hash === EXPECTED, 'ERROR: twoxHash does not match');
+  assert(hash64 === EXPECTED_64 && hash256 === EXPECTED_256, 'ERROR: twoxHash does not match');
 }
 
 const tests = {
