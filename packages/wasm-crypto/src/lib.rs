@@ -2,12 +2,14 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+extern crate blake2_rfc;
 extern crate hmac;
 extern crate pbkdf2;
+extern crate sha2;
 extern crate wasm_bindgen;
 extern crate wee_alloc;
-extern crate sha2;
 
+use blake2_rfc::blake2b::blake2b;
 use hmac::Hmac;
 use pbkdf2::pbkdf2;
 use sha2::{Digest, Sha512};
@@ -16,6 +18,12 @@ use wasm_bindgen::prelude::*;
 // Use `wee_alloc` as the global allocator.
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
+/// blake2b hash for the specified input
+#[wasm_bindgen]
+pub fn blake2b_hash(data: &[u8], key: &[u8], size: usize) -> Vec<u8> {
+	blake2b(size, key, data).as_bytes().to_vec()
+}
 
 /// pbkdf2 hash from an input, salt for the number of specified rounds
 #[wasm_bindgen]
@@ -43,6 +51,16 @@ pub fn sha512_hash(data: &[u8]) -> Vec<u8> {
 pub mod tests {
 	use hex_literal::{hex, hex_impl};
 	use super::*;
+
+	#[test]
+	fn can_blake2b_hash() {
+		let data = b"abc";
+		let expected_32 = hex!("bddd813c634239723171ef3fee98579b94964e3bb1cb3e427262c8c068d52319");
+		let expected_64 = hex!("ba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923");
+
+		assert_eq!(blake2b_hash(data, &[], 32)[..], expected_32[..]);
+		assert_eq!(blake2b_hash(data, &[], 64)[..], expected_64[..]);
+	}
 
 	#[test]
 	fn can_pbkdf2_hash() {

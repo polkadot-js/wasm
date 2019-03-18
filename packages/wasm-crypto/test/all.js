@@ -10,6 +10,17 @@ async function beforeAll () {
   return crypto.waitReady();
 }
 
+async function blake2bHash () {
+  const DATA = stringToU8a('abc');
+  const EXPECTED = '0xba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923';
+
+  const hash = u8aToHex(crypto.blake2bHash(DATA, new Uint8Array(), 64));
+
+  console.log('\tRES', hash);
+
+  assert(hash === EXPECTED, 'ERROR: blake2bHash does not match');
+}
+
 async function pbkdf2Hash () {
   const SALT = stringToU8a('this is a salt');
   const DATA = stringToU8a('hello world');
@@ -30,10 +41,11 @@ async function sha512Hash () {
 
   console.log('\tRES', hash);
 
-  assert(hash === EXPECTED, 'ERROR: pbkdf2Hash does not match');
+  assert(hash === EXPECTED, 'ERROR: sha512Hash does not match');
 }
 
 const tests = {
+  blake2bHash,
   pbkdf2Hash,
   sha512Hash
 };

@@ -4,6 +4,7 @@
 
 const stubbed = require('./wasm');
 
+module.exports.blake2bHash = stubbed.blake2b_hash
 module.exports.pbkdf2Hash = stubbed.pbkdf2_hash;
 module.exports.sha512Hash = stubbed.sha512_hash;
 

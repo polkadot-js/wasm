@@ -10,9 +10,9 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+schnorrkel = { git = "https://github.com/w3f/schnorrkel", rev = "d3289df76b8ae6dfb68e733204c5c009df5343a9", features = ["nightly"] }
 wasm-bindgen = { version = "0.2" }
 wee_alloc = { version = "0.4.3" }
-schnorrkel = { git = "https://github.com/w3f/schnorrkel", rev = "d3289df76b8ae6dfb68e733204c5c009df5343a9", features = ["nightly"] }
 
 [dev-dependencies]
 hex-literal = { version = "0.1.4" }

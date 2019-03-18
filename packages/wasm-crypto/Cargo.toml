@@ -10,11 +10,12 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-wasm-bindgen = { version = "0.2" }
-wee_alloc = { version = "0.4.3" }
+blake2-rfc = "0.2.18"
+hmac = "0.7.0"
 pbkdf2 = { version = "0.3.0", default-features = false }
 sha2 = "0.8.0"
-hmac = "0.7.0"
+wasm-bindgen = { version = "0.2" }
+wee_alloc = { version = "0.4.3" }
 
 [dev-dependencies]
 hex-literal = { version = "0.1.4" }
