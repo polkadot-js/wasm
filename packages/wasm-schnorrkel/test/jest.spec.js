@@ -15,8 +15,8 @@ describe('schnorrkel-js', () => {
   Object.keys(tests).forEach((name) => {
     const test = tests[name];
 
-    it(name, async () => {
-      await test();
+    it(name, () => {
+      test();
     });
   });
 });

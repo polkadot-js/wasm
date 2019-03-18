@@ -27,7 +27,7 @@ async function beforeAll () {
   return schnorrkel.waitReady();
 }
 
-async function pairFromSeed () {
+function pairFromSeed () {
   const SEED = stringToU8a('12345678901234567890123456789012');
   const PAIR = hexToU8a(
     '0x' +
@@ -44,7 +44,7 @@ async function pairFromSeed () {
   assert(u8aToHex(pair) === u8aToHex(PAIR), 'ERROR: pairFromSeed() does not match');
 }
 
-async function devFromSeed () {
+function devFromSeed () {
   const SEED = hexToU8a('0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e');
   const PAIR = hexToU8a(
     '0x' +
@@ -61,7 +61,7 @@ async function devFromSeed () {
   assert(u8aToHex(pair) === u8aToHex(PAIR), 'ERROR: devFromSeed() does not match');
 }
 
-async function verifyExisting () {
+function verifyExisting () {
   const PK = hexToU8a('0x741c08a06f41c596608f6774259bd9043304adfa5d3eea62760bd9be97634d63');
   const MESSAGE = stringToU8a('this is a message');
   const SIGNATURE = hexToU8a(
@@ -77,7 +77,7 @@ async function verifyExisting () {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
-async function signAndVerify () {
+function signAndVerify () {
   const MESSAGE = stringToU8a('this is a message');
 
   const [, pk, sk] = randomPair();
@@ -90,7 +90,7 @@ async function signAndVerify () {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
-async function deriveHard () {
+function deriveHard () {
   const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
   const [pair] = randomPair();
   const derived = schnorrkel.deriveKeypairHard(pair, CC);
@@ -99,7 +99,7 @@ async function deriveHard () {
   console.log('\tPUB', u8aToHex(derived.slice(64)));
 }
 
-async function deriveHardKnown () {
+function deriveHardKnown () {
   const CC = hexToU8a('0x14416c6963650000000000000000000000000000000000000000000000000000');
   const PAIR = hexToU8a(
     '0x' +
@@ -118,7 +118,7 @@ async function deriveHardKnown () {
   assert(publicKey === PUBLIC, 'Unmatched resulting public keys');
 }
 
-async function deriveSoft () {
+function deriveSoft () {
   const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
 
   const [pair] = randomPair();
@@ -128,15 +128,10 @@ async function deriveSoft () {
   console.log('\tPUB', u8aToHex(derived.slice(64)));
 }
 
-async function deriveSoftKnown () {
+function deriveSoftKnown () {
   const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
   const PUBLIC = '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a';
-  const PAIR = hexToU8a(
-    '0x' +
-    '28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51' +
-    'fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca34' +
-    '46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'
-  );
+  const PAIR = hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a');
 
   const derived = schnorrkel.deriveKeypairSoft(PAIR, CC);
   const publicKey = u8aToHex(derived.slice(64));
@@ -147,7 +142,7 @@ async function deriveSoftKnown () {
   assert(publicKey === PUBLIC, 'Unmatched resulting public keys');
 }
 
-async function deriveSoftPubkey () {
+function deriveSoftPubkey () {
   const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
   const PUBLIC = hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a');
   const DERIVED = '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a';
@@ -159,7 +154,7 @@ async function deriveSoftPubkey () {
   assert(derived === DERIVED, 'Unmatched resulting public keys');
 }
 
-async function benchmark () {
+function benchmark () {
   const MESSAGE = stringToU8a('this is a message');
 
   for (let i = 0; i < 256; i++) {
@@ -185,13 +180,13 @@ const tests = {
   benchmark
 };
 
-async function runAll () {
-  Object.keys(tests).forEach(async (name) => {
+function runAll () {
+  Object.keys(tests).forEach((name) => {
     console.time(name);
     console.log();
     console.log(name);
 
-    await tests[name]();
+    tests[name]();
 
     console.timeEnd(name);
   });
