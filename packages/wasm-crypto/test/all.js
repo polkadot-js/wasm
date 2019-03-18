@@ -22,20 +22,20 @@ async function pbkdf2Hash () {
   assert(hash === EXPECTED, 'ERROR: pbkdf2Hash does not match');
 }
 
-async function pbkdf2Benchmark () {
-  const SALT = stringToU8a('this is a salt');
-  let dataWasm = stringToU8a('hello world');
+async function sha512Hash () {
+  const DATA = stringToU8a('hello world');
+  const EXPECTED = '0x309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f';
 
-  for (let i = 0; i < 50; i++) {
-    dataWasm = crypto.pbkdf2Hash(dataWasm, SALT, 2048)
-  }
+  const hash = u8aToHex(crypto.sha512Hash(DATA));
 
-  console.log('\tWM', u8aToHex(dataWasm));
+  console.log('\tRES', hash);
+
+  assert(hash === EXPECTED, 'ERROR: pbkdf2Hash does not match');
 }
 
 const tests = {
   pbkdf2Hash,
-  pbkdf2Benchmark
+  sha512Hash
 };
 
 async function runAll () {
