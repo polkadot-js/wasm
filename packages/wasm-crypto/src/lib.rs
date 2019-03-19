@@ -2,6 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
+extern crate bip39;
 extern crate blake2_rfc;
 extern crate hmac;
 extern crate pbkdf2;
@@ -10,6 +11,7 @@ extern crate twox_hash;
 extern crate wasm_bindgen;
 extern crate wee_alloc;
 
+use bip39::{Mnemonic, MnemonicType, Language};
 use blake2_rfc::blake2b::blake2b as blake2b_rfc;
 use byteorder::{ByteOrder, LittleEndian};
 use hmac::Hmac;
@@ -35,6 +37,54 @@ fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
 	LittleEndian::write_u64(&mut result, hash64);
 
 	result
+}
+
+/// Generate a bip39 phrase
+///
+/// words: number of words, either 12, 15, 18 21 or 24
+///
+/// Returns the bip 39 phrase
+#[wasm_bindgen]
+pub fn bip39_generate(words: u8) -> Vec<u8> {
+	let mtype = match words {
+		12 => MnemonicType::Words12,
+		15 => MnemonicType::Words15,
+		18 => MnemonicType::Words18,
+		21 => MnemonicType::Words21,
+		24 => MnemonicType::Words24,
+		_ => panic!("Invalid number of words specified")
+	};
+
+	Mnemonic::new(mtype, Language::English)
+		.phrase()
+		.as_bytes()
+		.to_vec()
+}
+
+/// Create entropy from a bip39 phrase
+///
+/// * phrase: mnemonic phrase
+///
+/// Returns the entropy
+#[wasm_bindgen]
+pub fn bip39_to_entropy(phrase: &str) -> Vec<u8> {
+	Mnemonic::from_phrase(phrase, Language::English)
+		.unwrap()
+		.entropy()
+		.to_vec()
+}
+
+/// Validates a bip39 phrase
+///
+/// * phrase: mnemonic phrase
+///
+/// Returns the true/false
+#[wasm_bindgen]
+pub fn bip39_validate(phrase: &str) -> bool {
+	match Mnemonic::validate(phrase, Language::English) {
+		Err(_) => false,
+		_ => true
+	}
 }
 
 /// blake2b hash for the specified input
@@ -107,6 +157,28 @@ pub fn twox(data: &[u8], rounds: u32) -> Vec<u8> {
 pub mod tests {
 	use hex_literal::{hex, hex_impl};
 	use super::*;
+
+	#[test]
+	fn can_bip39_validate() {
+		assert_eq!(bip39_validate("seed sock milk update focus rotate barely fade car face mechanic mercy"), true);
+		assert_eq!(bip39_validate("wine photo extra cushion basket dwarf humor cloud truck job boat submit"), false);
+	}
+
+	#[test]
+	fn can_bip39_entropy() {
+		let phrase = "legal winner thank year wave sausage worth useful legal winner thank yellow";
+		let entropy = hex!("7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f");
+
+		assert_eq!(bip39_to_entropy(phrase), entropy);
+	}
+
+	#[test]
+	fn can_bip39_generate() {
+		let phrase = bip39_generate(12);
+		let phrases = std::str::from_utf8(&phrase[..]).unwrap();
+
+		assert!(bip39_validate(&phrases));
+	}
 
 	#[test]
 	fn can_blake2b() {
