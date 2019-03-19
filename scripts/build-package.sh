@@ -13,7 +13,8 @@ mv pkg build
 
 # optimise
 echo "*** Optimising WASM output"
-../../binaryen/bin/wasm-opt build/wasm_bg.wasm -Os -o build/wasm_opt.wasm
+# ../../binaryen/bin/wasm-opt build/wasm_bg.wasm -Os -o build/wasm_opt.wasm
+cp -f build/wasm_bg.wasm build/wasm_opt.wasm
 
 # build asmjs version from the input (optimised) WASM
 # echo "*** Building asm.js version"

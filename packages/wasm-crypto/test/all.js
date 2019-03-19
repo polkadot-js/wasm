@@ -10,6 +10,30 @@ async function beforeAll () {
   return crypto.waitReady();
 }
 
+function bip39Generate () {
+  const RESULT = crypto.bip39Generate(21);
+
+  console.log('\tPHR', RESULT);
+
+  assert(RESULT.split(' ').length === 21, 'ERROR: Invalid bip39 Phase length');
+}
+
+function bip39Validate () {
+  const RESULT = crypto.bip39Validate(crypto.bip39Generate(12));
+
+  console.log('\tVAL', RESULT);
+
+  assert(RESULT, 'ERROR: Invalid bip39 validation');
+}
+
+function bip39ToEntropy () {
+  const RESULT = u8aToHex(crypto.bip39ToEntropy('legal winner thank year wave sausage worth useful legal winner thank yellow'));
+
+  console.log('\tENT', RESULT);
+
+  assert(RESULT === '0x7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f', 'ERROR: Invalid bip39 validation');
+}
+
 function blake2bHash () {
   const DATA = stringToU8a('abc');
   const EXPECTED = '0xba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923';
@@ -59,6 +83,9 @@ function twoxHash () {
 }
 
 const tests = {
+  bip39Generate,
+  bip39Validate,
+  bip39ToEntropy,
   blake2bHash,
   pbkdf2Hash,
   sha512Hash,

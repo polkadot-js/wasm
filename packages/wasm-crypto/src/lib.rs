@@ -45,20 +45,9 @@ fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
 ///
 /// Returns the bip 39 phrase
 #[wasm_bindgen]
-pub fn ext_bip39_generate(words: u8) -> Vec<u8> {
-	let mtype = match words {
-		12 => MnemonicType::Words12,
-		15 => MnemonicType::Words15,
-		18 => MnemonicType::Words18,
-		21 => MnemonicType::Words21,
-		24 => MnemonicType::Words24,
-		_ => panic!("Invalid number of words specified")
-	};
-
-	Mnemonic::new(mtype, Language::English)
-		.phrase()
-		.as_bytes()
-		.to_vec()
+pub fn ext_bip39_generate(words: u32) -> String {
+	Mnemonic::new(MnemonicType::for_word_count(words as usize).unwrap(), Language::English)
+		.into_phrase()
 }
 
 /// Create entropy from a bip39 phrase
@@ -174,10 +163,7 @@ pub mod tests {
 
 	#[test]
 	fn can_bip39_generate() {
-		let phrase = ext_bip39_generate(12);
-		let phrases = std::str::from_utf8(&phrase[..]).unwrap();
-
-		assert!(ext_bip39_validate(&phrases));
+		assert!(ext_bip39_validate(&ext_bip39_generate(12)));
 	}
 
 	#[test]
