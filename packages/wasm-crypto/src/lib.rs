@@ -12,10 +12,10 @@ extern crate wasm_bindgen;
 extern crate wee_alloc;
 
 use bip39::{Mnemonic, MnemonicType, Language};
-use blake2_rfc::blake2b::blake2b as blake2b_rfc;
+use blake2_rfc::blake2b::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
 use hmac::Hmac;
-use pbkdf2::pbkdf2 as pbkdf2_hash;
+use pbkdf2::pbkdf2;
 use sha2::{Digest, Sha512};
 use std::hash::Hasher;
 use twox_hash::XxHash;
@@ -45,7 +45,7 @@ fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
 ///
 /// Returns the bip 39 phrase
 #[wasm_bindgen]
-pub fn bip39_generate(words: u8) -> Vec<u8> {
+pub fn ext_bip39_generate(words: u8) -> Vec<u8> {
 	let mtype = match words {
 		12 => MnemonicType::Words12,
 		15 => MnemonicType::Words15,
@@ -67,7 +67,7 @@ pub fn bip39_generate(words: u8) -> Vec<u8> {
 ///
 /// Returns the entropy
 #[wasm_bindgen]
-pub fn bip39_to_entropy(phrase: &str) -> Vec<u8> {
+pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 	Mnemonic::from_phrase(phrase, Language::English)
 		.unwrap()
 		.entropy()
@@ -80,7 +80,7 @@ pub fn bip39_to_entropy(phrase: &str) -> Vec<u8> {
 ///
 /// Returns the true/false
 #[wasm_bindgen]
-pub fn bip39_validate(phrase: &str) -> bool {
+pub fn ext_bip39_validate(phrase: &str) -> bool {
 	match Mnemonic::validate(phrase, Language::English) {
 		Err(_) => false,
 		_ => true
@@ -95,9 +95,9 @@ pub fn bip39_validate(phrase: &str) -> bool {
 ///
 /// Returns a vecor with the hash result
 #[wasm_bindgen]
-pub fn blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
+pub fn ext_blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
-	blake2b_rfc(size as usize, key, data)
+	blake2b(size as usize, key, data)
 		.as_bytes()
 		.to_vec()
 }
@@ -110,11 +110,11 @@ pub fn blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 ///
 /// Returns a vecor with the hash result
 #[wasm_bindgen]
-pub fn pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
+pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 	let mut result = [0u8; 64];
 
 	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
-	pbkdf2_hash::<Hmac<Sha512>>(data, salt, rounds as usize, &mut result);
+	pbkdf2::<Hmac<Sha512>>(data, salt, rounds as usize, &mut result);
 
 	result.to_vec()
 }
@@ -125,7 +125,7 @@ pub fn pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 ///
 /// Returns a vecor with the hash result
 #[wasm_bindgen]
-pub fn sha512(data: &[u8]) -> Vec<u8> {
+pub fn ext_sha512(data: &[u8]) -> Vec<u8> {
 	let mut hasher = Sha512::new();
 
 	hasher.input(data);
@@ -142,7 +142,7 @@ pub fn sha512(data: &[u8]) -> Vec<u8> {
 ///
 /// Returns a vecor with the hash result
 #[wasm_bindgen]
-pub fn twox(data: &[u8], rounds: u32) -> Vec<u8> {
+pub fn ext_twox(data: &[u8], rounds: u32) -> Vec<u8> {
 	let mut vec = vec![];
 
 	for round in 0..rounds {
@@ -160,8 +160,8 @@ pub mod tests {
 
 	#[test]
 	fn can_bip39_validate() {
-		assert_eq!(bip39_validate("seed sock milk update focus rotate barely fade car face mechanic mercy"), true);
-		assert_eq!(bip39_validate("wine photo extra cushion basket dwarf humor cloud truck job boat submit"), false);
+		assert_eq!(ext_bip39_validate("seed sock milk update focus rotate barely fade car face mechanic mercy"), true);
+		assert_eq!(ext_bip39_validate("wine photo extra cushion basket dwarf humor cloud truck job boat submit"), false);
 	}
 
 	#[test]
@@ -169,15 +169,15 @@ pub mod tests {
 		let phrase = "legal winner thank year wave sausage worth useful legal winner thank yellow";
 		let entropy = hex!("7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f");
 
-		assert_eq!(bip39_to_entropy(phrase), entropy);
+		assert_eq!(ext_bip39_to_entropy(phrase), entropy);
 	}
 
 	#[test]
 	fn can_bip39_generate() {
-		let phrase = bip39_generate(12);
+		let phrase = ext_bip39_generate(12);
 		let phrases = std::str::from_utf8(&phrase[..]).unwrap();
 
-		assert!(bip39_validate(&phrases));
+		assert!(ext_bip39_validate(&phrases));
 	}
 
 	#[test]
@@ -186,8 +186,8 @@ pub mod tests {
 		let expected_32 = hex!("bddd813c634239723171ef3fee98579b94964e3bb1cb3e427262c8c068d52319");
 		let expected_64 = hex!("ba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923");
 
-		assert_eq!(blake2b(data, &[], 32)[..], expected_32[..]);
-		assert_eq!(blake2b(data, &[], 64)[..], expected_64[..]);
+		assert_eq!(ext_blake2b(data, &[], 32)[..], expected_32[..]);
+		assert_eq!(ext_blake2b(data, &[], 64)[..], expected_64[..]);
 	}
 
 	#[test]
@@ -196,7 +196,7 @@ pub mod tests {
 		let data = b"hello world";
 		let expected = hex!("5fcbe04f05300a3ecc5c35d18ea0b78f3f6853d2ae5f3fca374f69a7d1f78b5def5c60dae1a568026c7492511e0c53521e8bb6e03a650e1263265fee92722270");
 
-		assert_eq!(pbkdf2(data, salt, 2048)[..], expected[..]);
+		assert_eq!(ext_pbkdf2(data, salt, 2048)[..], expected[..]);
 	}
 
 	#[test]
@@ -204,7 +204,7 @@ pub mod tests {
 		let data = b"hello world";
 		let expected = hex!("309ecc489c12d6eb4cc40f50c902f2b4d0ed77ee511a7c7a9bcd3ca86d4cd86f989dd35bc5ff499670da34255b45b0cfd830e81f605dcf7dc5542e93ae9cd76f");
 
-		assert_eq!(sha512(data)[..], expected[..]);
+		assert_eq!(ext_sha512(data)[..], expected[..]);
 	}
 
 	#[test]
@@ -213,7 +213,7 @@ pub mod tests {
 		let expected_64 = hex!("990977adf52cbc44");
 		let expected_256 = hex!("990977adf52cbc440889329981caa9bef7da5770b2b8a05303b75d95360dd62b");
 
-		assert_eq!(twox(data, 1)[..], expected_64[..]);
-		assert_eq!(twox(data, 4)[..], expected_256[..]);
+		assert_eq!(ext_twox(data, 1)[..], expected_64[..]);
+		assert_eq!(ext_twox(data, 4)[..], expected_256[..]);
 	}
 }
