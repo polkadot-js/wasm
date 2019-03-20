@@ -14,11 +14,9 @@ sed -i -e 's/var wasm;/const crypto = require('\''crypto'\''); let wasm; const r
 sed -i -e 's/return addHeapObject(require(varg0));/return addHeapObject(requires[varg0]);/g' $SRC
 
 # this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e 's/const TextEncoder = require('\''util'\'')\.TextEncoder;/const { stringToU8a } = require('\''@polkadot\/util'\'');/g' $SRC
-sed -i -e 's/let cachedTextEncoder = new /\/\/ let cachedTextEncoder = new /g' $SRC
-sed -i -e 's/cachedTextEncoder\.encode/stringToU8a/g' $SRC
+sed -i -e 's/const TextDecoder = require('\''util'\'')\.TextDecoder;/const { u8aToString } = require('\''@polkadot\/util'\'');/g' $SRC
+sed -i -e 's/let cachedTextDecoder = new /\/\/ let cachedTextDecoder = new /g' $SRC
+sed -i -e 's/cachedTextDecoder\.decode/u8aToString/g' $SRC
 
 echo "*** Testing package"
-cargo test -- --nocapture
-node ./test/wasm.js
-yarn jest ./test/jest.spec.js
+../../scripts/test-package.sh

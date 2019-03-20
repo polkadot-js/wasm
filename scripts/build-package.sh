@@ -2,6 +2,8 @@
 
 set -e
 
+echo "*** Building package"
+
 # cleanup old
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
