@@ -9,10 +9,6 @@ echo "*** Building package"
 echo "*** Adjusting output"
 SRC=build/wasm.js
 
-# shortcuts for files
-echo "*** Adjusting output"
-SRC=build/wasm.js
-
 # We don't want inline requires
 sed -i -e 's/var wasm;/const crypto = require('\''crypto'\''); let wasm; const requires = { crypto };/g' $SRC
 sed -i -e 's/return addHeapObject(require(varg0));/return addHeapObject(requires[varg0]);/g' $SRC
