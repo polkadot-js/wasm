@@ -1,3 +1,7 @@
+// Copyright 2019 Paritytech, @polkadot/wasm-schnorrkel authors & contributors
+// This software may be modified and distributed under the terms
+// of the Apache-2.0 license. See the LICENSE file for details.
+
 // Originally developed (as a fork) in https://github.com/polkadot-js/schnorrkel-js/
 // which was adpated from the initial https://github.com/paritytech/schnorrkel-js/
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f

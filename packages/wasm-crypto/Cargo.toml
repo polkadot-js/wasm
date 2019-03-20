@@ -2,7 +2,7 @@
 # name keep it consistent at "wasm" since the scripts (for re-use purposes) expect that
 
 [package]
-authors = ["Jaco Greeff <jacogr@gmail.com>", "kianenigma <Kian.peymani@gmail.com>"]
+authors = ["Jaco Greeff <jacogr@gmail.com>"]
 edition = "2018"
 name = "wasm"
 publish = false
@@ -12,7 +12,13 @@ version = "0.0.0"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-schnorrkel = { version = "0.1.0", features = ["nightly"] }
+blake2-rfc = "0.2.18"
+byteorder = "1.3.1"
+hmac = "0.7.0"
+pbkdf2 = { version = "0.3.0", default-features = false }
+sha2 = "0.8.0"
+tiny-bip39 = { version = "0.6.1", default-features = false }
+twox-hash = "1.1.2"
 wasm-bindgen = "0.2"
 wee_alloc = "0.4.3"
 

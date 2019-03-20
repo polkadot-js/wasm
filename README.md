@@ -14,6 +14,7 @@ Various WASM wrappers around Rust crates
 
 It is split up into a number of internal packages, namely utilities -
 
+- [wasm-crypto](packages/wasm-crypto/) Various hashing functions
 - [wasm-schnorrkel](packages/wasm-schnorrkel/) sr25519
 
 ## development
