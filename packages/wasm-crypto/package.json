@@ -1,5 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto",
+  "version": "0.2.0-beta.3",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "crypto-polyfill.js",
@@ -12,7 +13,6 @@
   ],
   "main": "index.js",
   "types": "index.d.ts",
-  "version": "0.2.0-beta.2",
   "peerDependencies": {
     "@polkadot/util": "*"
   },
