@@ -20,7 +20,7 @@
     "test": "echo \"Tests included in build\""
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.27.1",
-    "@polkadot/util": "^0.38.1"
+    "@polkadot/dev": "^0.28.0-beta.0",
+    "@polkadot/util": "^0.39.0-beta.0"
   }
 }
