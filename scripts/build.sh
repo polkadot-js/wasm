@@ -14,9 +14,13 @@ for PKG in "${PACKAGES[@]}"; do
     echo "*** Building $PKG"
     cd $PKG
 
-    ./build.sh
+    ../../scripts/build-package.sh
+    ./adjust.sh
+
     rm -rf build/*-e build/package.json build/README.md
     ls -al build
+
+    ../../scripts/test-package.sh
 
     cd ..
   fi

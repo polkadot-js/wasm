@@ -15,10 +15,7 @@
   ],
   "main": "index.js",
   "types": "index.d.ts",
-  "scripts": {
-    "build": "./build.sh"
-  },
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "peerDependencies": {
     "@polkadot/util": "*"
   },
