@@ -31,7 +31,15 @@ function bip39ToEntropy () {
 
   console.log('\tENT', RESULT);
 
-  assert(RESULT === '0x7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f', 'ERROR: Invalid bip39 validation');
+  assert(RESULT === '0x7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f', 'ERROR: Invalid bip39 entropy');
+}
+
+function bip39ToMiniSecret () {
+  const RESULT = u8aToHex(crypto.bip39ToMiniSecret('legal winner thank year wave sausage worth useful legal winner thank yellow', 'Substrate'));
+
+  console.log('\tMIN', RESULT);
+
+  assert(RESULT === '0x4313249608fe8ac10fd5886c92c4579007272cb77c21551ee5b8d60b78041685', 'ERROR: Invalid bip39 mini secret');
 }
 
 function blake2bHash () {
@@ -86,6 +94,7 @@ const tests = {
   bip39Generate,
   bip39Validate,
   bip39ToEntropy,
+  bip39ToMiniSecret,
   blake2bHash,
   pbkdf2Hash,
   sha512Hash,

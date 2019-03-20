@@ -63,6 +63,22 @@ pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 		.to_vec()
 }
 
+/// Create a mini-secret from a bip39 phrase
+///
+/// * phrase: mnemonic phrase
+///
+/// Returns the 32-byte mini-secret via entropy
+#[wasm_bindgen]
+pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
+	let salt = format!("mnemonic{}", password);
+	let mnemonic = Mnemonic::from_phrase(phrase, Language::English);
+	let mut result = [0u8; 64];
+
+	pbkdf2::<Hmac<Sha512>>(mnemonic.unwrap().entropy(), salt.as_bytes(), 2048, &mut result);
+
+	result[..32].to_vec()
+}
+
 /// Validates a bip39 phrase
 ///
 /// * phrase: mnemonic phrase
@@ -148,12 +164,6 @@ pub mod tests {
 	use super::*;
 
 	#[test]
-	fn can_bip39_validate() {
-		assert_eq!(ext_bip39_validate("seed sock milk update focus rotate barely fade car face mechanic mercy"), true);
-		assert_eq!(ext_bip39_validate("wine photo extra cushion basket dwarf humor cloud truck job boat submit"), false);
-	}
-
-	#[test]
 	fn can_bip39_entropy() {
 		let phrase = "legal winner thank year wave sausage worth useful legal winner thank yellow";
 		let entropy = hex!("7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f");
@@ -162,8 +172,23 @@ pub mod tests {
 	}
 
 	#[test]
+	fn can_bip39_mini_secret() {
+		let phrase = "legal winner thank year wave sausage worth useful legal winner thank yellow";
+		let password = "Substrate";
+		let mini = hex!("4313249608fe8ac10fd5886c92c4579007272cb77c21551ee5b8d60b78041685");
+
+		assert_eq!(ext_bip39_to_mini_secret(phrase, password)[..], mini[..]);
+	}
+
+	#[test]
 	fn can_bip39_generate() {
 		assert!(ext_bip39_validate(&ext_bip39_generate(12)));
+	}
+
+	#[test]
+	fn can_bip39_validate() {
+		assert_eq!(ext_bip39_validate("seed sock milk update focus rotate barely fade car face mechanic mercy"), true);
+		assert_eq!(ext_bip39_validate("wine photo extra cushion basket dwarf humor cloud truck job boat submit"), false);
 	}
 
 	#[test]

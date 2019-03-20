@@ -6,6 +6,7 @@ const stubbed = require('./wasm');
 
 module.exports.bip39Generate = stubbed.ext_bip39_generate;
 module.exports.bip39ToEntropy = stubbed.ext_bip39_to_entropy;
+module.exports.bip39ToMiniSecret = stubbed.ext_bip39_to_mini_secret;
 module.exports.bip39Validate = stubbed.ext_bip39_validate
 module.exports.blake2b = stubbed.ext_blake2b;
 module.exports.pbkdf2 = stubbed.ext_pbkdf2;
