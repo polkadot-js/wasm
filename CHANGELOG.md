@@ -1,5 +1,6 @@
 # 0.3.1
 
+- Add wasm-dalek-ed25519
 - Add keccak256
 - Try secp256k1 (bloating code, not used atm)
 
