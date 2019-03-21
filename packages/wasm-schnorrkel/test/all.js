@@ -15,10 +15,6 @@ function randomPair () {
   return extractKeys(schnorrkel.keypairFromSeed(crypto.randomBytes(32)));
 }
 
-async function beforeAll () {
-  return schnorrkel.waitReady();
-}
-
 function pairFromSeed () {
   const pair = schnorrkel.keypairFromSeed(stringToU8a('12345678901234567890123456789012'));
 
@@ -128,7 +124,11 @@ const tests = {
   benchmark
 };
 
-function runAll () {
+module.exports.beforeAll = async function beforeAll () {
+  return schnorrkel.waitReady();
+}
+
+module.exports.runAll = function runAll () {
   Object.keys(tests).forEach((name) => {
     console.time(name);
     console.log();
@@ -140,6 +140,4 @@ function runAll () {
   });
 }
 
-module.exports.beforeAll = beforeAll;
-module.exports.runAll = runAll;
 module.exports.tests = tests;

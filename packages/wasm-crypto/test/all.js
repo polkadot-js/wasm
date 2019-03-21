@@ -3,12 +3,8 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
 
-const { assert, hexToU8a, stringToU8a, u8aToHex } = require('@polkadot/util');
+const { assert, stringToU8a, u8aToHex } = require('@polkadot/util');
 const crypto = require('../build/index');
-
-async function beforeAll () {
-  return crypto.waitReady();
-}
 
 function bip39Generate () {
   const RESULT = crypto.bip39Generate(21);
@@ -108,7 +104,11 @@ const tests = {
   twoxHash
 };
 
-function runAll () {
+module.exports.beforeAll = async function beforeAll () {
+  return crypto.waitReady();
+}
+
+module.exports.runAll = function runAll () {
   Object.keys(tests).forEach((name) => {
     console.time(name);
     console.log();
@@ -120,6 +120,4 @@ function runAll () {
   });
 }
 
-module.exports.beforeAll = beforeAll;
-module.exports.runAll = runAll;
 module.exports.tests = tests;
