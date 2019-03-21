@@ -3,9 +3,12 @@
 
 [package]
 authors = ["Jaco Greeff <jacogr@gmail.com>", "kianenigma <Kian.peymani@gmail.com>"]
+description = "WASM bindings to w3f/schnorrkel."
 edition = "2018"
+license = "Apache-2.0"
 name = "wasm"
 publish = false
+repository = "https://github.com/polkadot-js/wasm/"
 version = "0.0.0"
 
 [lib]

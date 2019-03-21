@@ -20,27 +20,21 @@ async function beforeAll () {
 }
 
 function pairFromSeed () {
-  const SEED = stringToU8a('12345678901234567890123456789012');
-  const PAIR = hexToU8a('0xf0106660c3dda23f16daa9ac5b811b963077f5bc0af89f85804f0de8e424f050f98d66f39442506ff947fd911f18c7a7a5da639a63e8d3b4e233f74143d951c1741c08a06f41c596608f6774259bd9043304adfa5d3eea62760bd9be97634d63');
-
-  const pair = schnorrkel.keypairFromSeed(SEED);
+  const pair = schnorrkel.keypairFromSeed(stringToU8a('12345678901234567890123456789012'));
 
   console.log('\tSEC', u8aToHex(pair.slice(0, 64)));
   console.log('\tPUB', u8aToHex(pair.slice(64)));
 
-  assert(u8aToHex(pair) === u8aToHex(PAIR), 'ERROR: pairFromSeed() does not match');
+  assert(u8aToHex(pair) === '0xf0106660c3dda23f16daa9ac5b811b963077f5bc0af89f85804f0de8e424f050f98d66f39442506ff947fd911f18c7a7a5da639a63e8d3b4e233f74143d951c1741c08a06f41c596608f6774259bd9043304adfa5d3eea62760bd9be97634d63', 'ERROR: pairFromSeed() does not match');
 }
 
 function devFromSeed () {
-  const SEED = hexToU8a('0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e');
-  const PAIR = hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a');
-
-  const pair = schnorrkel.keypairFromSeed(SEED);
+  const pair = schnorrkel.keypairFromSeed(hexToU8a('0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e'));
 
   console.log('\tSEC', u8aToHex(pair.slice(0, 64)));
   console.log('\tPUB', u8aToHex(pair.slice(64)));
 
-  assert(u8aToHex(pair) === u8aToHex(PAIR), 'ERROR: devFromSeed() does not match');
+  assert(u8aToHex(pair) === '0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a', 'ERROR: devFromSeed() does not match');
 }
 
 function verifyExisting () {
@@ -57,11 +51,9 @@ function verifyExisting () {
 }
 
 function signAndVerify () {
-  const MESSAGE = stringToU8a('this is a message');
-
   const [, pk, sk] = randomPair();
-  const signature = schnorrkel.sign(pk, sk, MESSAGE);
-  const isValid = schnorrkel.verify(signature, MESSAGE, pk);
+  const signature = schnorrkel.sign(pk, sk, stringToU8a('this is a message'));
+  const isValid = schnorrkel.verify(signature, stringToU8a('this is a message'), pk);
 
   console.log('\tSIG', u8aToHex(signature));
   console.log('\tRES', isValid);
@@ -70,62 +62,47 @@ function signAndVerify () {
 }
 
 function deriveHard () {
-  const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
   const [pair] = randomPair();
-  const derived = schnorrkel.deriveKeypairHard(pair, CC);
+  const derived = schnorrkel.deriveKeypairHard(pair, hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
 
   console.log('\tSEC', u8aToHex(derived.slice(0, 64)));
   console.log('\tPUB', u8aToHex(derived.slice(64)));
 }
 
 function deriveHardKnown () {
-  const CC = hexToU8a('0x14416c6963650000000000000000000000000000000000000000000000000000');
-  const PAIR = hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a');
-  const PUBLIC = '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d';
-
-  const derived = schnorrkel.deriveKeypairHard(PAIR, CC);
+  const derived = schnorrkel.deriveKeypairHard(hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x14416c6963650000000000000000000000000000000000000000000000000000'));
   const publicKey = u8aToHex(derived.slice(64));
 
   console.log('\tSEC', u8aToHex(derived.slice(0, 64)));
   console.log('\tPUB', publicKey);
 
-  assert(publicKey === PUBLIC, 'Unmatched resulting public keys');
+  assert(publicKey === '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d', 'Unmatched resulting public keys');
 }
 
 function deriveSoft () {
-  const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
-
   const [pair] = randomPair();
-  const derived = schnorrkel.deriveKeypairSoft(pair, CC);
+  const derived = schnorrkel.deriveKeypairSoft(pair, hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
 
   console.log('\tSEC', u8aToHex(derived.slice(0, 64)));
   console.log('\tPUB', u8aToHex(derived.slice(64)));
 }
 
 function deriveSoftKnown () {
-  const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
-  const PUBLIC = '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a';
-  const PAIR = hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a');
-
-  const derived = schnorrkel.deriveKeypairSoft(PAIR, CC);
+  const derived = schnorrkel.deriveKeypairSoft(hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
   const publicKey = u8aToHex(derived.slice(64));
 
   console.log('\tSEC', u8aToHex(derived.slice(0, 64)));
   console.log('\tPUB', publicKey);
 
-  assert(publicKey === PUBLIC, 'Unmatched resulting public keys');
+  assert(publicKey === '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a', 'Unmatched resulting public keys');
 }
 
 function deriveSoftPubkey () {
-  const CC = hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000');
-  const PUBLIC = hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a');
-  const DERIVED = '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a';
-
-  const derived = u8aToHex(schnorrkel.derivePublicSoft(PUBLIC, CC));
+  const derived = u8aToHex(schnorrkel.derivePublicSoft( hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000')));
 
   console.log('\tPUB', derived);
 
-  assert(derived === DERIVED, 'Unmatched resulting public keys');
+  assert(derived === '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a', 'Unmatched resulting public keys');
 }
 
 function benchmark () {

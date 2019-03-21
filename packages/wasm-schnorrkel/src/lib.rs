@@ -6,10 +6,6 @@
 // which was adpated from the initial https://github.com/paritytech/schnorrkel-js/
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
-extern crate wasm_bindgen;
-extern crate wee_alloc;
-extern crate schnorrkel;
-
 use schnorrkel::{
 	Keypair, MiniSecretKey, PublicKey, SecretKey, Signature,
 	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
@@ -204,8 +200,9 @@ pub mod tests {
 		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 		let message = b"this is a message";
 		let signature = sign(public, private, message);
+		let is_valid = verify(&signature[..], message, public);
 
-		assert!(verify(&signature[..], message, public));
+		assert!(is_valid);
 	}
 
 	#[test]
@@ -225,8 +222,9 @@ pub mod tests {
 		let cc = hex!("0c666f6f00000000000000000000000000000000000000000000000000000000"); // foo
 		let public = hex!("46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a");
 		let expected = hex!("40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a");
+		let derived = derive_public_soft(&public, &cc);
 
-		assert_eq!(derive_public_soft(&public, &cc), expected);
+		assert_eq!(derived, expected);
 	}
 
 	#[test]
