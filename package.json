@@ -15,13 +15,13 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "check": "tslint --project . && tsc --noEmit --pretty",
-    "clean": "polkadot-dev-clean-build",
+    "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "echo \"Tests included in build\""
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@polkadot/dev": "^0.28.1",
-    "@polkadot/util": "^0.39.0-beta.2"
+    "@polkadot/util": "^0.40.0-beta.1"
   }
 }

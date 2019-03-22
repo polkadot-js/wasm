@@ -5,7 +5,7 @@ set -e
 echo "*** Testing package"
 
 echo "*** Testing Rust"
-cargo test -- --nocapture
+cargo test --release
 
 echo "*** Testing WASM"
 node ./test/wasm.js

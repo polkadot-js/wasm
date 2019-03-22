@@ -4,12 +4,12 @@
 
 const stubbed = require('./wasm');
 
-module.exports.deriveKeypairHard = stubbed.derive_keypair_hard;
-module.exports.deriveKeypairSoft = stubbed.derive_keypair_soft;
-module.exports.derivePublicSoft = stubbed.derive_public_soft;
-module.exports.keypairFromSeed = stubbed.keypair_from_seed;
-module.exports.sign = stubbed.sign;
-module.exports.verify = stubbed.verify;
+module.exports.deriveKeypairHard = stubbed.ext_sr_derive_keypair_hard;
+module.exports.deriveKeypairSoft = stubbed.ext_sr_derive_keypair_soft;
+module.exports.derivePublicSoft = stubbed.ext_sr_derive_public_soft;
+module.exports.keypairFromSeed = stubbed.ext_sr_from_seed;
+module.exports.sign = stubbed.ext_sr_sign;
+module.exports.verify = stubbed.ext_sr_verify;
 
 module.exports.isReady = stubbed.isReady;
 module.exports.waitReady = stubbed.waitReady;

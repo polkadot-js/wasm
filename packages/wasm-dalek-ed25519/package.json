@@ -1,10 +1,7 @@
 {
-  "name": "@polkadot/wasm-schnorrkel",
+  "name": "@polkadot/wasm-dalek-ed25519",
   "version": "0.2.1",
-  "collaborators": [
-    "Jaco Greeff <jacogr@gmail.com>",
-    "kianenigma <Kian.peymani@gmail.com>"
-  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "index.d.ts",
     "index.js",
