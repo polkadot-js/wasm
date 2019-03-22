@@ -15,7 +15,7 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "check": "tslint --project . && tsc --noEmit --pretty",
-    "clean": "polkadot-dev-clean-build",
+    "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "echo \"Tests included in build\""
   },
