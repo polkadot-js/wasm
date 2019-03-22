@@ -50,7 +50,7 @@ fn create_public(public: &[u8]) -> PublicKey {
 /// returned vector is the concatenation of first the private key (64 bytes)
 /// followed by the public key (32) bytes.
 #[wasm_bindgen]
-pub fn keypair_from_seed(seed: &[u8]) -> Vec<u8> {
+pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
 	create_from_seed(seed)
 		.to_bytes()
 		.to_vec()
@@ -67,7 +67,7 @@ pub fn keypair_from_seed(seed: &[u8]) -> Vec<u8> {
 ///
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
-pub fn sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
+pub fn ext_ed_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 	create_from_parts(public, secret)
 		.sign(message)
 		.to_bytes()
@@ -80,7 +80,7 @@ pub fn sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * message: Arbitrary length UIntArray
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
-pub fn verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
+pub fn ext_ed_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
 	let signature = match Signature::from_bytes(signature) {
 		Ok(signature) => signature,
 		Err(_) => return false
@@ -106,7 +106,7 @@ pub mod tests {
 	#[test]
 	fn can_create_keypair() {
 		let seed = generate_random_seed();
-		let keypair = keypair_from_seed(seed.as_slice());
+		let keypair = ext_ed_from_seed(seed.as_slice());
 
 		assert!(keypair.len() == KEYPAIR_LENGTH);
 	}
@@ -115,7 +115,7 @@ pub mod tests {
 	fn creates_pair_from_known() {
 		let seed = b"12345678901234567890123456789012";
 		let expected = hex!("2f8c6129d816cf51c374bc7f08c3e63ed156cf78aefb4a6550d97b87997977ee");
-		let keypair = keypair_from_seed(seed);
+		let keypair = ext_ed_from_seed(seed);
 		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 
 		assert_eq!(public, expected);
@@ -124,11 +124,11 @@ pub mod tests {
 	#[test]
 	fn can_sign_message() {
 		let seed = generate_random_seed();
-		let keypair = keypair_from_seed(seed.as_slice());
+		let keypair = ext_ed_from_seed(seed.as_slice());
 		let private = &keypair[0..SECRET_KEY_LENGTH];
 		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 		let message = b"this is a message";
-		let signature = sign(public, private, message);
+		let signature = ext_ed_sign(public, private, message);
 
 		assert!(signature.len() == SIGNATURE_LENGTH);
 	}
@@ -136,12 +136,12 @@ pub mod tests {
 	#[test]
 	fn can_verify_message() {
 		let seed = generate_random_seed();
-		let keypair = keypair_from_seed(seed.as_slice());
+		let keypair = ext_ed_from_seed(seed.as_slice());
 		let private = &keypair[0..SECRET_KEY_LENGTH];
 		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 		let message = b"this is a message";
-		let signature = sign(public, private, message);
-		let is_valid = verify(&signature[..], message, public);
+		let signature = ext_ed_sign(public, private, message);
+		let is_valid = ext_ed_verify(&signature[..], message, public);
 
 		assert!(is_valid);
 	}
@@ -151,7 +151,7 @@ pub mod tests {
 		let public = hex!("2f8c6129d816cf51c374bc7f08c3e63ed156cf78aefb4a6550d97b87997977ee");
 		let message = b"this is a message";
 		let signature = hex!("90588f3f512496f2dd40571d162e8182860081c74e2085316e7c4396918f07da412ee029978e4dd714057fe973bd9e7d645148bf7b66680d67c93227cde95202");
-		let is_valid = verify(&signature, message, &public);
+		let is_valid = ext_ed_verify(&signature, message, &public);
 
 		assert!(is_valid);
 	}
@@ -161,7 +161,7 @@ pub mod tests {
 		let public = hex!("2f8c6129d816cf51c374bc7f08c3e63ed156cf78aefb4a6550d97b87997977ee");
 		let message = b"this is a message";
 		let signature = &[0u8; 64];
-		let is_valid = verify(signature, message, &public);
+		let is_valid = ext_ed_verify(signature, message, &public);
 
 		assert_eq!(is_valid, false);
 	}

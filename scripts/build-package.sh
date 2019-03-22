@@ -24,8 +24,8 @@ ASM=build/wasm_asm.js
 
 # optimise
 echo "*** Optimising WASM output"
-# ../../binaryen/bin/wasm-opt $WSM -Os -o $OPT
-cp -f build/wasm_bg.wasm build/wasm_opt.wasm
+../../binaryen/bin/wasm-opt $WSM -Os -o $OPT
+# cp -f build/wasm_bg.wasm build/wasm_opt.wasm
 
 # build asmjs version from the input (optimised) WASM
 # echo "*** Building asm.js version"

@@ -4,9 +4,9 @@
 
 const stubbed = require('./wasm');
 
-module.exports.keypairFromSeed = stubbed.keypair_from_seed;
-module.exports.sign = stubbed.sign;
-module.exports.verify = stubbed.verify;
+module.exports.keypairFromSeed = stubbed.ext_ed_from_seed;
+module.exports.sign = stubbed.ext_ed_sign;
+module.exports.verify = stubbed.ext_ed_verify;
 
 module.exports.isReady = stubbed.isReady;
 module.exports.waitReady = stubbed.waitReady;

@@ -17,7 +17,7 @@ compiler:
 before_install:
   - curl -sSf https://sh.rustup.rs | sh -s -- --default-toolchain=nightly -y
   - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - rm -rf binaryen
+  # - rm -rf binaryen
   # - mkdir -p binaryen/bin && curl -o- -L https://github.com/WebAssembly/binaryen/releases/download/version_73/binaryen-version_73-x86-linux.tar.gz | tar -xz -C binaryen/bin --strip-components=1
   - export PATH=$HOME/.yarn/bin:$HOME/.cargo/bin:$(yarn global bin):$PATH
 install:
