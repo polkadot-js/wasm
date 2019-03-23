@@ -1579,10 +1579,10 @@
     typescript "^3.3.4000"
     vuepress "^1.0.0-alpha.44"
 
-"@polkadot/util@^0.40.0-beta.1":
-  version "0.40.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-0.40.0-beta.1.tgz#3b439cace02b07f7e32abd81b6c958335459c229"
-  integrity sha512-oJhWnQGfYo9B4B1hqrTexrmUg7WEfym35F8816u9bZLFA3T7JChGS1enbPkzs5CgOyZmFugb2DeRwnlC84KH7w==
+"@polkadot/util@^0.39.1":
+  version "0.39.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-0.39.1.tgz#553155a0610e879abf51210a4f99af9c1e3ce25b"
+  integrity sha512-Ks6uR6J8CBmbp/aSgM5OnfUR76tft2yTNMHNV/05BRzZN8BONG211REnNFlvy+/BU2igUNvTIhDo9GnHoR6Hhw==
   dependencies:
     "@babel/runtime" "^7.4.0"
     "@types/bn.js" "^4.11.4"

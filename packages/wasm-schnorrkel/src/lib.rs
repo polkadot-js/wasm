@@ -1,4 +1,5 @@
-// Copyright 2019 Paritytech, @polkadot/wasm-schnorrkel authors & contributors
+// Copyright 2019 Paritytech via https://github.com/polkadot-js/schnorrkel-js/
+// Copyright 2019 @polkadot/wasm-schnorrkel authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
