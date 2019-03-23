@@ -1,3 +1,7 @@
+# 0.5.1
+
+- Add password argument to bip39ToSeed
+
 # 0.4.1
 
 - Add bip39ToSeed

@@ -78,9 +78,10 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 ///
 /// Returns a 32-byte seed
 #[wasm_bindgen]
-pub fn ext_bip39_to_seed(phrase: &str) -> Vec<u8> {
+pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
 	let mnemonic = Mnemonic::from_phrase(phrase, Language::English).unwrap();
-	Seed::new(&mnemonic, "")
+
+	Seed::new(&mnemonic, password)
 		.as_bytes()[..32]
 		.to_vec()
 }
@@ -273,7 +274,7 @@ pub mod tests {
 	fn can_bip39_seed() {
 		let phrase = "seed sock milk update focus rotate barely fade car face mechanic mercy";
 		let seed = hex!("3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027");
-		let result = ext_bip39_to_seed(phrase);
+		let result = ext_bip39_to_seed(phrase, "");
 
 		assert_eq!(result[..], seed[..]);
 	}

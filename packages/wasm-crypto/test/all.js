@@ -39,7 +39,7 @@ function bip39ToMiniSecret () {
 }
 
 function bip39ToSeed () {
-  const RESULT = u8aToHex(crypto.bip39ToSeed('seed sock milk update focus rotate barely fade car face mechanic mercy'));
+  const RESULT = u8aToHex(crypto.bip39ToSeed('seed sock milk update focus rotate barely fade car face mechanic mercy', ''));
 
   console.log('\SEE', RESULT);
 

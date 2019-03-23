@@ -5,7 +5,7 @@
 export function bip39Generate (words: 12 | 15 | 18 | 21 | 24): string;
 export function bip39ToEntropy (phrase: string): Uint8Array;
 export function bip39ToMiniSecret (phrase: string, password: string): Uint8Array;
-export function bip39ToSeed (phrase: string): Uint8Array;
+export function bip39ToSeed (phrase: string, password: string): Uint8Array;
 export function bip39Validate (phrase: string): boolean;
 export function blake2b (data: Uint8Array, key: Uint8Array, byteSize: number): Uint8Array;
 export function keccak256 (data: Uint8Array): Uint8Array;
