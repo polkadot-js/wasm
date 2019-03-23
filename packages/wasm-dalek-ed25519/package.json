@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-dalek-ed25519",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "index.d.ts",
