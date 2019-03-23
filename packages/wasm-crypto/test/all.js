@@ -38,6 +38,14 @@ function bip39ToMiniSecret () {
   assert(RESULT === '0x4313249608fe8ac10fd5886c92c4579007272cb77c21551ee5b8d60b78041685', 'ERROR: Invalid bip39 mini secret');
 }
 
+function bip39ToSeed () {
+  const RESULT = u8aToHex(crypto.bip39ToSeed('seed sock milk update focus rotate barely fade car face mechanic mercy'));
+
+  console.log('\SEE', RESULT);
+
+  assert(RESULT === '0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027', 'ERROR: Invalid bip39 mini secret');
+}
+
 function blake2bHash () {
   const hash = u8aToHex(crypto.blake2b(stringToU8a('abc'), new Uint8Array(), 64));
 
@@ -96,6 +104,7 @@ const tests = {
   bip39Validate,
   bip39ToEntropy,
   bip39ToMiniSecret,
+  bip39ToSeed,
   blake2bHash,
   keccak256,
   pbkdf2Hash,
