@@ -13,6 +13,35 @@ A fork of [@parity/schnorrkel-js](https://github.com/polkadot-js/schnorrkel-js/t
 - TextDecoder is polyfilled by using the version from `@polkadot/util` (consistent support, also on React Native)
 - Polyfill for crypto functions that are not available in some environments (e.g. Jest & React Native)
 
+## Usage
+
+Install the package (also requires `@polkadot/util` for `TextEncoder` polyfills - not included here as a dependency to keep the tree lean)
+
+`yarn add @polkadot/wasm-schnorrkel @polkadot/util`
+
+Use it -
+
+```js
+const { u8aToHex } = require('@polkadot/util');
+const { waitReady, keypairFromSeed } = require('@polkadot/wasm-schnorrkel');
+
+async function main () {
+  // first wait until the WASM has been loaded (async init)
+  await waitReady();
+
+  // generate keypair via all-0 seed
+  const pair = keypairFromSeed(new Uint8Array(32));
+
+  // extract the parts
+  const secretKey = pair.subarray(0, 64);
+  const publicKey = pair.subarray(64, 96);
+
+  // display
+  console.log('publicKey:', u8aToHex(publicKey));
+  console.log('secretKey:', u8aToHex(secretKey));
+}
+```
+
 ## future work
 
 Support asm.js for environments (like React Native) that doesn't have WASM support. Initial attempts made at this, but not active.
