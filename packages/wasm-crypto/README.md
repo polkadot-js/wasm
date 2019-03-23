@@ -22,7 +22,7 @@ async function main () {
   const phrase = bip39Generate();
 
   // get ed25519 seed from phrase
-  const seed = bip39ToSeed(phrase);
+  const seed = bip39ToSeed(phrase, '');
 
   // display
   console.log('phrase:', phrase);
