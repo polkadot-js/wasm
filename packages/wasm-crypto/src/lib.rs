@@ -2,7 +2,7 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-use bip39::{Mnemonic, MnemonicType, Language};
+use bip39::{Mnemonic, MnemonicType, Language, Seed};
 use blake2_rfc::blake2b::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
 use hmac::Hmac;
@@ -64,12 +64,25 @@ pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 	let salt = format!("mnemonic{}", password);
-	let mnemonic = Mnemonic::from_phrase(phrase, Language::English);
+	let mnemonic = Mnemonic::from_phrase(phrase, Language::English).unwrap();
 	let mut result = [0u8; 64];
 
-	pbkdf2::<Hmac<Sha512>>(mnemonic.unwrap().entropy(), salt.as_bytes(), 2048, &mut result);
+	pbkdf2::<Hmac<Sha512>>(mnemonic.entropy(), salt.as_bytes(), 2048, &mut result);
 
 	result[..32].to_vec()
+}
+
+/// Creates a see from a bip-39 phrase
+///
+/// @phrase: mnemonic phrase
+///
+/// Returns a 32-byte seed
+#[wasm_bindgen]
+pub fn ext_bip39_to_seed(phrase: &str) -> Vec<u8> {
+	let mnemonic = Mnemonic::from_phrase(phrase, Language::English).unwrap();
+	Seed::new(&mnemonic, "")
+		.as_bytes()[..32]
+		.to_vec()
 }
 
 /// Validates a bip39 phrase
@@ -254,6 +267,15 @@ pub mod tests {
 		let result = ext_bip39_to_mini_secret(phrase, password);
 
 		assert_eq!(result[..], mini[..]);
+	}
+
+	#[test]
+	fn can_bip39_seed() {
+		let phrase = "seed sock milk update focus rotate barely fade car face mechanic mercy";
+		let seed = hex!("3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027");
+		let result = ext_bip39_to_seed(phrase);
+
+		assert_eq!(result[..], seed[..]);
 	}
 
 	#[test]

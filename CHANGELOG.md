@@ -1,3 +1,7 @@
+# 0.4.1
+
+- Add bip39ToSeed
+
 # 0.3.1
 
 - Add wasm-dalek-ed25519 for all used crypto there
