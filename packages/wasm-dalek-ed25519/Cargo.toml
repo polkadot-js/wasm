@@ -2,8 +2,8 @@
 # name keep it consistent at "wasm" since the scripts (for re-use purposes) expect that
 
 [package]
-authors = ["Jaco Greeff <jacogr@gmail.com>", "kianenigma <Kian.peymani@gmail.com>"]
-description = "WASM bindings to w3f/schnorrkel."
+authors = ["Jaco Greeff <jacogr@gmail.com>"]
+description = "WASM bindings to dalek-ed25519."
 edition = "2018"
 license = "Apache-2.0"
 name = "wasm"
