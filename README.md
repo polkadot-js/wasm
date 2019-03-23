@@ -3,7 +3,6 @@
 [![style](https://img.shields.io/badge/code%20style-semistandard-lightgrey.svg?style=flat-square)](https://github.com/Flet/semistandard)
 [![travis](https://img.shields.io/travis/polkadot-js/wasm.svg?style=flat-square)](https://travis-ci.com/polkadot-js/wasm)
 [![maintainability](https://img.shields.io/codeclimate/maintainability/polkadot-js/wasm.svg?style=flat-square)](https://codeclimate.com/github/polkadot-js/wasm/maintainability)
-[![coverage](https://img.shields.io/coveralls/polkadot-js/wasm.svg?style=flat-square)](https://coveralls.io/github/polkadot-js/wasm?branch=master)
 [![greenkeeper](https://img.shields.io/badge/greenkeeper-enabled-brightgreen.svg?style=flat-square)](https://greenkeeper.io/)
 
 # @polkadot/wasm
@@ -17,6 +16,8 @@ It is split up into a number of internal packages, namely utilities -
 - [wasm-crypto](packages/wasm-crypto/) Various hashing functions
 - [wasm-dalek-ed25519](packages/wasm-dalek-ed25519/) ed25519
 - [wasm-schnorrkel](packages/wasm-schnorrkel/) sr25519
+
+These are split the `polkadot-js/util` repo where it is heavily used as part of `@polkadot/util-crypto`. (There JS fallbacks are available for some interfaces, e.g. hashing, but for sr25519 WASM is the only interface)
 
 ## development
 
