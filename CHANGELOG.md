@@ -1,3 +1,7 @@
+# 0.6.1
+
+- Log init errors for both non-WebAssembly usage as well as WebAssembly errors
+
 # 0.5.1
 
 - Add password argument to bip39ToSeed

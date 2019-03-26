@@ -16,11 +16,10 @@ for PKG in "${PACKAGES[@]}"; do
 
     ../../scripts/build-package.sh
     ./adjust.sh
+    ../../scripts/test-package.sh
 
     rm -rf build/*-e build/package.json build/README.md
     ls -al build
-
-    ../../scripts/test-package.sh
 
     cd ..
   fi

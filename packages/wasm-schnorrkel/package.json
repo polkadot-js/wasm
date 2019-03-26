@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-schnorrkel",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "collaborators": [
     "Jaco Greeff <jacogr@gmail.com>",
     "kianenigma <Kian.peymani@gmail.com>"
