@@ -165,4 +165,15 @@ pub mod tests {
 
 		assert_eq!(is_valid, false);
 	}
+
+	// #[test]
+	// fn can_verify_actual() {
+	// 	let public = hex!("b890bf93d08ada475e2443dae5d38606e169153115c81e54ea83e3de7916576c");
+	// 	let message = hex!("000300ff44a5e524d449abe93698f79d7510d054f86f896b0f65dfbc69d9bc6130638c5e0f0080c6a47e8d0300dcd1346701ca8396496e52aa2785b1748deb6db09551b72159dcb3e08991025b");
+	// 	let signature = hex!("0efac8446181c66b0b6a54754c6b5af002e6b936df84e46386a0210b825c4456f2d568dee919b2759ffbf425a4b3d763f6bedd355ac543b810dafc4c31c8f30b");
+
+	// 	let is_valid = ext_ed_verify(&signature, &message, &public);
+
+	// 	assert_eq!(is_valid, false);
+	// }
 }
