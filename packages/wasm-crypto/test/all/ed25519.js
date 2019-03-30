@@ -16,7 +16,7 @@ function randomPair () {
   return extractKeys(wasm.ed25519KeypairFromSeed(crypto.randomBytes(32)));
 }
 
-function ed_pairFromSeed () {
+function ed25519_pairFromSeed () {
   const [pair, pk, sk] = extractKeys(wasm.ed25519KeypairFromSeed(stringToU8a('12345678901234567890123456789012')));
 
   console.log('\tSEC', u8aToHex(sk));
@@ -25,7 +25,7 @@ function ed_pairFromSeed () {
   assert(u8aToHex(pair) === '0x31323334353637383930313233343536373839303132333435363738393031322f8c6129d816cf51c374bc7f08c3e63ed156cf78aefb4a6550d97b87997977ee', 'ERROR: pairFromSeed() does not match');
 }
 
-function ed_signAndVerify () {
+function ed25519_signAndVerify () {
   const [, pk, sk] = randomPair();
   const signature = wasm.ed25519Sign(pk, sk, stringToU8a('this is a message'));
   const isValid = wasm.ed25519Verify(signature, stringToU8a('this is a message'), pk);
@@ -36,7 +36,7 @@ function ed_signAndVerify () {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
-function ed_verifyExisting () {
+function ed25519_verifyExisting () {
   const isValid = wasm.ed25519Verify(hexToU8a('0x90588f3f512496f2dd40571d162e8182860081c74e2085316e7c4396918f07da412ee029978e4dd714057fe973bd9e7d645148bf7b66680d67c93227cde95202'), stringToU8a('this is a message'), hexToU8a('0x2f8c6129d816cf51c374bc7f08c3e63ed156cf78aefb4a6550d97b87997977ee'));
 
   console.log('\tRES', isValid);
@@ -44,7 +44,7 @@ function ed_verifyExisting () {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
-function ed_benchmark () {
+function ed25519_benchmark () {
   const MESSAGE = stringToU8a('this is a message');
 
   for (let i = 0; i < 256; i++) {
@@ -55,8 +55,8 @@ function ed_benchmark () {
 }
 
 module.exports = {
-  ed_pairFromSeed,
-  ed_signAndVerify,
-  ed_verifyExisting,
-  ed_benchmark
+  ed25519_pairFromSeed,
+  ed25519_signAndVerify,
+  ed25519_verifyExisting,
+  ed25519_benchmark
 };
