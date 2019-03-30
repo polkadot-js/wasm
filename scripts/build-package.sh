@@ -79,7 +79,7 @@ module.exports = async function createExportPromise () {
   };
 
   if (!WebAssembly) {
-    console.error(`ERROR: Unable to initialize ${pkg.name}, WebAssembly is not available in this environment`);
+    console.error(\`ERROR: Unable to initialize \${pkg.name}, WebAssembly is not available in this environment\`);
 
     // TODO: Return asm version when not detected
     return null;
@@ -90,7 +90,7 @@ module.exports = async function createExportPromise () {
 
     return instance.exports;
   } catch (error) {
-    console.error(`ERROR: Unable to initialize ${pkg.name}:: ${error.message}`);
+    console.error(\`ERROR: Unable to initialize \${pkg.name}:: \${error.message}\`);
 
     // TODO: Return asm version here as a fallback
     return null;
