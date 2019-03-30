@@ -7,6 +7,18 @@ export function bip39ToEntropy (phrase: string): Uint8Array;
 export function bip39ToMiniSecret (phrase: string, password: string): Uint8Array;
 export function bip39ToSeed (phrase: string, password: string): Uint8Array;
 export function bip39Validate (phrase: string): boolean;
+
+export function ed25519KeypairFromSeed (seed: Uint8Array): Uint8Array;
+export function ed25519Sign (publicKey: Uint8Array, secretKey: Uint8Array, message: Uint8Array): Uint8Array;
+export function ed25519Verify (signature: Uint8Array, message: Uint8Array, publicKey: Uint8Array): boolean;
+
+export function sr25519DeriveKeypairHard (pair: Uint8Array, chainCode: Uint8Array): Uint8Array;
+export function sr25519DeriveKeypairSoft (pair: Uint8Array, chainCode: Uint8Array): Uint8Array;
+export function sr25519DerivePublicSoft (publicKey: Uint8Array, chainCode: Uint8Array): Uint8Array;
+export function sr25519KeypairFromSeed (seed: Uint8Array): Uint8Array;
+export function sr25519Sign (publicKey: Uint8Array, secretKey: Uint8Array, message: Uint8Array): Uint8Array;
+export function sr25519Verify (signature: Uint8Array, message: Uint8Array, publicKey: Uint8Array): boolean;
+
 export function blake2b (data: Uint8Array, key: Uint8Array, byteSize: number): Uint8Array;
 export function keccak256 (data: Uint8Array): Uint8Array;
 export function pbkdf2 (data: Uint8Array, salt: Uint8Array, rounds: number): Uint8Array;

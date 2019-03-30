@@ -9,6 +9,18 @@ module.exports.bip39ToEntropy = stubbed.ext_bip39_to_entropy;
 module.exports.bip39ToMiniSecret = stubbed.ext_bip39_to_mini_secret;
 module.exports.bip39ToSeed = stubbed.ext_bip39_to_seed;
 module.exports.bip39Validate = stubbed.ext_bip39_validate
+
+module.exports.ed25519KeypairFromSeed = stubbed.ext_ed_from_seed;
+module.exports.ed25519Sign = stubbed.ext_ed_sign;
+module.exports.ed25519Verify = stubbed.ext_ed_verify;
+
+module.exports.sr25519DeriveKeypairHard = stubbed.ext_sr_derive_keypair_hard;
+module.exports.sr25519DeriveKeypairSoft = stubbed.ext_sr_derive_keypair_soft;
+module.exports.sr25519DerivePublicSoft = stubbed.ext_sr_derive_public_soft;
+module.exports.sr25519KeypairFromSeed = stubbed.ext_sr_from_seed;
+module.exports.sr25519Sign = stubbed.ext_sr_sign;
+module.exports.sr25519Verify = stubbed.ext_sr_verify;
+
 module.exports.blake2b = stubbed.ext_blake2b;
 module.exports.keccak256 = stubbed.ext_keccak256;
 module.exports.pbkdf2 = stubbed.ext_pbkdf2;

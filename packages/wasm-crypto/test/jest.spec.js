@@ -5,7 +5,7 @@
 
 require('../build/crypto-polyfill');
 
-const { beforeAll, tests } = require('./all.js');
+const { beforeAll, tests } = require('./all');
 
 describe('schnorrkel-js', () => {
   beforeEach(beforeAll);
