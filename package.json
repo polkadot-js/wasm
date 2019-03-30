@@ -10,18 +10,19 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.4.1"
   },
   "scripts": {
     "build": "./scripts/build.sh",
-    "check": "tslint --project . && tsc --noEmit --pretty",
+    "check": "yarn lint",
+    "lint": "tslint --project . && tsc --noEmit --pretty",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "echo \"Tests included in build\""
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
-    "@polkadot/dev": "^0.29.0-beta.0",
-    "@polkadot/util": "^0.76.0-beta.0"
+    "@polkadot/dev": "^0.29.0-beta.1",
+    "@polkadot/util": "^0.76.0-beta.2"
   }
 }

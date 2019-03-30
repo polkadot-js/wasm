@@ -5,9 +5,11 @@
 const { assert } = require('@polkadot/util');
 const stubbed = require('./wasm');
 
+const INIT_ERRROR = '@polkadot/wasm-crypto has not been initialized';
+
 const wrapReady = (fn) =>
   (...params) => {
-    assert(stubbed.isReady(), 'ERROR: @polkadot/wasm-crypto has not been initialized');
+    assert(stubbed.isReady(), INIT_ERRROR);
 
     return fn(...params);
   };
