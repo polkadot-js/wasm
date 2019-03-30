@@ -1,3 +1,7 @@
+# 0.7.1
+
+- Fix build scripts to properly attach errors in the log (dropped in 0.6.1)
+
 # 0.6.1
 
 - Log init errors for both non-WebAssembly usage as well as WebAssembly errors
