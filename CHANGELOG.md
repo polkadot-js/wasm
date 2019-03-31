@@ -1,7 +1,7 @@
 # 0.8.1
 
-- Pull ed25519 & sr25519 into wasm-crypto as well (smaller final size)
-- Disable build/publish of `wasm-dalek-ed25519` & `wasm-schnorrkel` (single package)
+- Pull ed25519 & sr25519 into `@polkadot/wasm-crypto` as well (smaller final size)
+- Disable build/publish of `wasm-dalek-ed25519` & `wasm-schnorrkel`
 - Improve error messaging, instead of `__wasm_malloc of null`
 
 # 0.7.1

@@ -739,7 +739,7 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.4.0":
+"@babel/runtime@^7.0.0":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.0.tgz#d523416573f19aa12784639e631257c7fc58c0aa"
   integrity sha512-/eftZ45kD0OfOFHAmN02WP6N1NVphY+lBf8c2Q/P9VW3tj+N5NlBBAWfqOLOl96YDGMqpIBO5O/hQNx4A/lAng==
@@ -1608,10 +1608,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.29.0-beta.1":
-  version "0.29.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.29.0-beta.1.tgz#a87f8cdfb480d3b9fc09c76152df2e0a1ef9b900"
-  integrity sha512-4niAaZpnQeq7KBDfLxvXr2DcHO50E96JjbOZkJ4yXhuMdAKRKQjpxIKqIQ6OfX3V17yvzk+AwJRwmk960FidXA==
+"@polkadot/dev@^0.29.1":
+  version "0.29.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.29.1.tgz#919c7b6b8e76dbdb4f59abe5f6d7f812d2b1e99d"
+  integrity sha512-Z3L2lvMQ/KAkIjP3MTgbjZGmX4WWXAR6S+mhQZ6srdFF+Y8uhmNIrC9QW+KQGGN7o1O8XglitRbQJKtsRkjdlg==
   dependencies:
     "@babel/cli" "^7.2.3"
     "@babel/core" "^7.4.0"
@@ -1646,12 +1646,12 @@
     typescript "^3.4.1"
     vuepress "^1.0.0-alpha.44"
 
-"@polkadot/util@^0.76.0-beta.2":
-  version "0.76.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-0.76.0-beta.2.tgz#f9d0dafa40fd14a49ff48c264909d3d8f11914da"
-  integrity sha512-7Z/N709zxtk/cdraw8txOA3Tabeebg83X9tUakEW/nu2pg5q69W/lttalC3ECf/rvGHjLbrfOy4eNYvy4lS8PQ==
+"@polkadot/util@^0.76.0-beta.3":
+  version "0.76.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-0.76.0-beta.3.tgz#23d67645a58b9992bff3312371d1dadf831190da"
+  integrity sha512-6jz2LN6GrkOkzmaRVdYjGjZ9p644FFTq+MLTeydjqE/9cK5+5VwWbXzsUoS4S7GazfzknpIvH+xeZkDhwSrdmw==
   dependencies:
-    "@babel/runtime" "^7.4.0"
+    "@babel/runtime" "^7.4.2"
     "@types/bn.js" "^4.11.4"
     "@types/deasync" "^0.1.0"
     "@types/ip-regex" "^3.0.0"
