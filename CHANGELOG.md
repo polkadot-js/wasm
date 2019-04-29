@@ -1,3 +1,7 @@
+# 0.9.1
+
+- Dependency bumps
+
 # 0.8.1
 
 - Pull ed25519 & sr25519 into `@polkadot/wasm-crypto` as well (smaller final size)
