@@ -1,3 +1,8 @@
+# 0.10.1
+
+- w3f/schnorrkel updated to 0.1.1 as per substrate
+- Added known subkey signature test (Rust & JS)
+
 # 0.9.1
 
 - Dependency bumps

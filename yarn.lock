@@ -1625,10 +1625,10 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@polkadot/dev@^0.30.0-beta.3":
-  version "0.30.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.30.0-beta.3.tgz#22ed6cfa735520f75e43020cf6673ec4d376ee48"
-  integrity sha512-mb4d+OJfWRx/pmsOKH29rRUq0Htoxl8MdIufnbikIW9aTROK5yULhkeB7SUKuYglVFhr+z1HGDx7MYBzDqjrhA==
+"@polkadot/dev@^0.30.0-beta.4":
+  version "0.30.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.30.0-beta.4.tgz#10403838cba964a21d2cc6740fdb74c9b9244038"
+  integrity sha512-ugJkBxvGOebSQQSL+zhIPAHUdnNxy5qGSUPnSh+7ss5g2rYzf6zIpUIlAJ78heF+vmTebD+6VmjwW9jQ7XbnCA==
   dependencies:
     "@babel/cli" "^7.4.4"
     "@babel/core" "^7.4.4"
@@ -1662,10 +1662,10 @@
     typescript "^3.4.5"
     vuepress "^1.0.0-alpha.47"
 
-"@polkadot/util@^0.90.0-beta.1":
-  version "0.90.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-0.90.0-beta.1.tgz#e70c5120f1fb20e9c78983598dc6e17030ab7550"
-  integrity sha512-gRF6DWq/PVtD4EnVxyta8tuiAG2j3mvP88xcyMcWDqENZfw43Rnor+bT9YhsZ0AkLuad4KbPOw3cWbVnBPIoIg==
+"@polkadot/util@^0.90.1":
+  version "0.90.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-0.90.1.tgz#25f4f1bd1702cb12f10b8f94de5b79d4eda98ed9"
+  integrity sha512-vquT0fnBycm1jCG9gpLkJruLmA1J4P1nJvmvoLfZn5lDI4IChgwoK2rv9aDDfEfO/sYIRUqyiuMiT9TwzL2udA==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@types/bn.js" "^4.11.5"

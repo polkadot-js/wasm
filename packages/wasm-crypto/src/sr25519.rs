@@ -203,6 +203,16 @@ pub mod tests {
 	}
 
 	#[test]
+	fn can_verify_known_message() {
+		let message = b"Verifying that I am the owner of 5G9hQLdsKQswNPgB499DeA5PkFBbgkLPJWkkS6FAM6xGQ8xD. Hash: 221455a3\n";
+		let public = hex!("b4bfa1f7a5166695eb75299fd1c4c03ea212871c342f2c5dfea0902b2c246918");
+		let signature = hex!("5a9755f069939f45d96aaf125cf5ce7ba1db998686f87f2fb3cbdea922078741a73891ba265f70c31436e18a9acd14d189d73c12317ab6c313285cd938453202");
+		let is_valid = ext_sr_verify(&signature, message, &public);
+
+		assert!(is_valid);
+	}
+
+	#[test]
 	fn soft_derives_pair() {
 		let cc = hex!("0c666f6f00000000000000000000000000000000000000000000000000000000"); // foo
 		let seed = hex!("fac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e");
