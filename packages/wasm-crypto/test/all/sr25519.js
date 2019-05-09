@@ -35,10 +35,9 @@ function sr25519_devFromSeed () {
 }
 
 function sr25519_verifyExisting () {
-  const PK = hexToU8a('0x741c08a06f41c596608f6774259bd9043304adfa5d3eea62760bd9be97634d63');
-  const MESSAGE = stringToU8a('this is a message');
-  const SIGNATURE = hexToU8a('0xdecef12cf20443e7c7a9d406c237e90bcfcf145860722622f92ebfd5eb4b5b3990b6443934b5cba8f925a0ae75b3a77d35b8490cbb358dd850806e58eaf72904'
-);
+  const PK = hexToU8a('0xb4bfa1f7a5166695eb75299fd1c4c03ea212871c342f2c5dfea0902b2c246918');
+  const MESSAGE = stringToU8a('Verifying that I am the owner of 5G9hQLdsKQswNPgB499DeA5PkFBbgkLPJWkkS6FAM6xGQ8xD. Hash: 221455a3\n');
+  const SIGNATURE = hexToU8a('0x5a9755f069939f45d96aaf125cf5ce7ba1db998686f87f2fb3cbdea922078741a73891ba265f70c31436e18a9acd14d189d73c12317ab6c313285cd938453202');
 
   const isValid = wasm.sr25519Verify(SIGNATURE, MESSAGE, PK);
 
