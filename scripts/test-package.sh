@@ -5,7 +5,7 @@ set -e
 echo "*** Testing package"
 
 echo "*** Testing Rust"
-cargo test --release
+RUST_BACKTRACE=full rustup run nightly cargo test --release -- --nocapture
 
 echo "*** Testing WASM"
 node ./test/wasm.js

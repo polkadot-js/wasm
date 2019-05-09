@@ -21,7 +21,7 @@ ed25519-dalek = { version = "1.0.0-pre.1", features = ["nightly"] }
 hmac = "0.7.0"
 # libsecp256k1 = "0.2.2"
 pbkdf2 = { version = "0.3.0", default-features = false }
-schnorrkel = { version = "0.1.0", features = ["nightly"] }
+schnorrkel = { version = "0.1.1", features = ["nightly"] }
 sha2 = "0.8.0"
 tiny-bip39 = { version = "0.6.1", default-features = false }
 tiny-keccak = "1.4.2"
