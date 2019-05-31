@@ -2,7 +2,6 @@
   "version": "0.10.1",
   "private": true,
   "engines": {
-    "node": "^10.13.0",
     "yarn": "^1.10.1"
   },
   "workspaces": [
@@ -10,7 +9,7 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.1"
   },
   "scripts": {
     "build": "./scripts/build.sh",
@@ -21,8 +20,8 @@
     "test": "echo \"Tests included in build\""
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@polkadot/dev": "^0.30.0-beta.4",
-    "@polkadot/util": "^0.90.1"
+    "@babel/core": "^7.4.5",
+    "@polkadot/dev": "^0.30.0-beta.8",
+    "@polkadot/util": "^0.92.0-beta.2"
   }
 }
