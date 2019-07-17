@@ -1,3 +1,13 @@
+# 0.12.1
+
+- Remove deprecated `@polkadot/wasm-schnorrkel` & `@polkadot/wasm-dalek-ed25519` source (all combined in `@polkadot/wasm-crypto`, was kept for historical purposes)
+- Security dependency bumps
+- Updated Rust `hex-literal` for recent versions of the compiler (used in tests only)
+
+# 0.11.1
+
+- Security dependency bumps
+
 # 0.10.1
 
 - w3f/schnorrkel updated to 0.1.1 as per substrate

@@ -91,7 +91,7 @@ pub fn ext_ed_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
 pub mod tests {
 	extern crate rand;
 
-	use hex_literal::{hex, hex_impl};
+	use hex_literal::hex;
 	use super::*;
 	use ed25519_dalek::{SIGNATURE_LENGTH, KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
 

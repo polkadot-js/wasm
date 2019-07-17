@@ -151,7 +151,7 @@ pub mod tests {
 	extern crate rand;
 	extern crate schnorrkel;
 
-	use hex_literal::{hex, hex_impl};
+	use hex_literal::hex;
 	use super::*;
 	use schnorrkel::{SIGNATURE_LENGTH, KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
 

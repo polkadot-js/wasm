@@ -158,7 +158,7 @@ pub fn ext_twox(data: &[u8], rounds: u32) -> Vec<u8> {
 
 #[cfg(test)]
 pub mod tests {
-	use hex_literal::{hex, hex_impl};
+	use hex_literal::hex;
 	use super::*;
 
 	// // Constructs the message that Ethereum RPC's `personal_sign` and `eth_sign` would sign.

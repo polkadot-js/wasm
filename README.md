@@ -13,9 +13,7 @@ Various WASM wrappers around Rust crates
 
 It is split up into a number of internal packages, namely utilities -
 
-- [wasm-crypto](packages/wasm-crypto/) Various hashing functions
-- [wasm-dalek-ed25519](packages/wasm-dalek-ed25519/) ed25519
-- [wasm-schnorrkel](packages/wasm-schnorrkel/) sr25519
+- [wasm-crypto](packages/wasm-crypto/) Various hashing functions, sr25519 & ed25519 crypto
 
 These are split from the `polkadot-js/util` repo where it is heavily used as part of `@polkadot/util-crypto`. (There JS fallbacks are available for some interfaces, e.g. hashing, but for sr25519 WASM is the only interface). Since these don't undergo massive changes on a daily basis and has a build overhead (WASM compilation & optimisation), it is better managed as a seperate repo with a specific CI configuration.
 

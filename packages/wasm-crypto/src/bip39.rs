@@ -77,7 +77,7 @@ pub fn ext_bip39_validate(phrase: &str) -> bool {
 
 #[cfg(test)]
 pub mod tests {
-	use hex_literal::{hex, hex_impl};
+	use hex_literal::hex;
 	use super::*;
 
 	#[test]

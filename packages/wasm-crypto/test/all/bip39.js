@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-var-requires */
 // Copyright 2019 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
@@ -5,6 +7,7 @@
 
 const { assert, u8aToHex } = require('@polkadot/util');
 
+// @ts-ignore
 const wasm = require('../../build/index');
 
 function bip39_generate () {
@@ -42,7 +45,7 @@ function bip39_toMiniSecret () {
 function bip39_toSeed () {
   const RESULT = u8aToHex(wasm.bip39ToSeed('seed sock milk update focus rotate barely fade car face mechanic mercy', ''));
 
-  console.log('\SEE', RESULT);
+  console.log('\tSEE', RESULT);
 
   assert(RESULT === '0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027', 'ERROR: Invalid bip39 mini secret');
 }
