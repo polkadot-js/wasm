@@ -1,3 +1,12 @@
+# 0.12.x
+
+- Security dependency bumps
+- Remove deprecated `@polkadot/wasm-schnorrkel` & `@polkadot/wasm-dalek-ed25519` source (all combined in `@polkadot/wasm-crypto`, was kept for historical purposes)
+
+# 0.11.1
+
+- Security dependency bumps
+
 # 0.10.1
 
 - w3f/schnorrkel updated to 0.1.1 as per substrate

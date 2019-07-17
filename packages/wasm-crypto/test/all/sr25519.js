@@ -1,4 +1,6 @@
-// Copyright 2019 @polkadot/wasm-schnorrkel authors & contributors
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-var-requires */
+// Copyright 2019 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
@@ -6,6 +8,7 @@
 const crypto = require('crypto');
 const { assert, hexToU8a, stringToU8a, u8aToHex } = require('@polkadot/util');
 
+// @ts-ignore
 const wasm = require('../../build/index');
 
 function extractKeys (pair) {
@@ -94,7 +97,7 @@ function sr25519_deriveSoftKnown () {
 }
 
 function sr25519_deriveSoftPubkey () {
-  const derived = u8aToHex(wasm.sr25519DerivePublicSoft( hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000')));
+  const derived = u8aToHex(wasm.sr25519DerivePublicSoft(hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000')));
 
   console.log('\tPUB', derived);
 
