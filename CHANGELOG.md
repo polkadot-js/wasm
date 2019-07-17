@@ -1,7 +1,8 @@
-# 0.12.x
+# 0.12.1
 
-- Security dependency bumps
 - Remove deprecated `@polkadot/wasm-schnorrkel` & `@polkadot/wasm-dalek-ed25519` source (all combined in `@polkadot/wasm-crypto`, was kept for historical purposes)
+- Security dependency bumps
+- Updated Rust `hex-literal` for recent versions of the compiler (used in tests only)
 
 # 0.11.1
 
