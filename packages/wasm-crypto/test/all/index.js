@@ -22,9 +22,12 @@ module.exports = function (wasm) {
       return wasm.waitReady();
     },
     runAll: function runAll () {
-      let failed = 0;
+      const failed = [];
+      let count = 0;
 
       Object.keys(tests).forEach((name) => {
+        count++;
+
         try {
           console.time(name);
           console.log();
@@ -35,11 +38,13 @@ module.exports = function (wasm) {
           console.timeEnd(name);
         } catch (error) {
           console.error(error);
-          failed++;
+          failed.push(name);
         }
       });
 
-      console.error(`Failed: ${failed}`);
+      if (failed.length) {
+        throw new Error(`Failed: ${failed.length} of ${count}: ${failed.concat(', ')}`);
+      }
     },
     tests
   };

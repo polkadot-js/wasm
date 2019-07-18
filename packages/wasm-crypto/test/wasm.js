@@ -10,5 +10,10 @@ const { beforeAll, runAll } = require('./all')(wasm);
 
 (async () => {
   await beforeAll();
+
   runAll();
-})();
+})().catch((error) => {
+  console.error(error);
+
+  process.exit(-1);
+});

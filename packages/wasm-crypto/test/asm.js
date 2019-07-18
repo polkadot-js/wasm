@@ -13,5 +13,10 @@ const { beforeAll, runAll } = require('./all')(asm);
 
 (async () => {
   await beforeAll();
+
   runAll();
-})();
+})().catch((error) => {
+  console.error(error);
+
+  process.exit(-1);
+});
