@@ -32,16 +32,14 @@ echo "*** Optimising WASM output"
 # build asmjs version from the input (optimised) WASM
 # echo "*** Building asm.js version"
 echo "*** Building asm.js version"
-../../binaryen/bin/wasm2js --no-validation --output $ASM $OPT
+../../binaryen/bin/wasm2js --no-validation --output $TMP $OPT
 
 # cleanup asm
-sed -i -e 's/import {/\/\/ import {/g' $ASM
-sed -i -e 's/function asmFunc/var schnorrkel = require('\''\.\/asm'\''); function asmFunc/g' $ASM
-sed -i -e 's/export const /module\.exports\./g' $ASM
-sed -i -e 's/{abort.*},memasmFunc/schnorrkel, memasmFunc/g' $ASM
+sed -i -e 's/\.\/wasm/\.\/asm/g' $TMP
 
-# NODE_OPTIONS=--max_old_space_size=8192 yarn babel $TMP --presets @babel/preset-env --out-file=$ASM
-# rm -rf $TMP
+# get babel to take care of making it sane
+NODE_OPTIONS=--max_old_space_size=8192 yarn babel $TMP --presets @babel/preset-env --out-file=$ASM
+rm -rf $TMP
 
 # convert wasm to base64 structure
 echo "*** Packing WASM into base64"
