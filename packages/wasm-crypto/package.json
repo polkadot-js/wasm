@@ -4,6 +4,7 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "crypto-polyfill.js",
+    "exports.js",
     "index.d.ts",
     "index.js",
     "wasm.d.ts",
