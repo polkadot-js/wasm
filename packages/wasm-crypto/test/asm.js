@@ -8,7 +8,7 @@
 global.WebAssembly = null;
 
 // @ts-ignore
-const asm = require('../build/index-asm');
+const asm = require('../build/index');
 const { beforeAll, runAll } = require('./all')(asm);
 
 (async () => {

@@ -112,9 +112,12 @@ module.exports = async function createExportPromise () {
   };
 
   if (!WebAssembly) {
-    console.error(\`ERROR: Unable to initialize \${pkg.name}, WebAssembly is not available in this environment\`);
+    if (process.env.CRYPTO_ASM) {
+      return require('./wasm_asm');
+    }
 
-    // TODO: Return asm version when not detected
+    console.error(\`ERROR: Unable to initialize \${pkg.name}, WebAssembly is not available in this environment. If you requires an asm.js fallback, specify it with the 'CRYPTO_ASM' environment flag.\`);
+
     return null;
   }
 
