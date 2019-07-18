@@ -17,5 +17,6 @@ cc-test-reporter
 lerna-debug.log*
 npm-debug.log*
 package-lock.json
+report.*.json
 yarn-debug.log*
 yarn-error.log*

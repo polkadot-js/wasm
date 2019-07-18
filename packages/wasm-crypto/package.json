@@ -8,6 +8,7 @@
     "index.js",
     "wasm.d.ts",
     "wasm.js",
+    "wasm_asm.js",
     "wasm_bg.js",
     "wasm_wasm.js"
   ],

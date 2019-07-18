@@ -1,3 +1,7 @@
+# 0.13.x
+
+- Added a build-time optional asm.js fallback for the WASM libraries when WebAssembly is not available, i.e. on React Native. To enable this, add `CRYPTO_ASM=1` to your environment config. (i.e. `CRYPTO_ASM=1 yarn build`)
+
 # 0.12.1
 
 - Remove deprecated `@polkadot/wasm-schnorrkel` & `@polkadot/wasm-dalek-ed25519` source (all combined in `@polkadot/wasm-crypto`, was kept for historical purposes)
