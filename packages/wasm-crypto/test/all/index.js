@@ -4,29 +4,43 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
 
-// @ts-ignore
-const wasm = require('../../build/index');
 const bip39 = require('./bip39');
 const ed25519 = require('./ed25519');
 const hashing = require('./hashing');
 const sr25519 = require('./sr25519');
 
-const tests = { ...bip39, ...ed25519, ...hashing, ...sr25519 };
+module.exports = function (wasm) {
+  const tests = {
+    ...bip39(wasm),
+    ...ed25519(wasm),
+    ...hashing(wasm),
+    ...sr25519(wasm)
+  };
 
-module.exports.beforeAll = async function beforeAll () {
-  return wasm.waitReady();
+  return {
+    beforeAll: async function beforeAll () {
+      return wasm.waitReady();
+    },
+    runAll: function runAll () {
+      let failed = 0;
+
+      Object.keys(tests).forEach((name) => {
+        try {
+          console.time(name);
+          console.log();
+          console.log(name);
+
+          tests[name]();
+
+          console.timeEnd(name);
+        } catch (error) {
+          console.error(error);
+          failed++;
+        }
+      });
+
+      console.error(`Failed: ${failed}`);
+    },
+    tests
+  };
 };
-
-module.exports.runAll = function runAll () {
-  Object.keys(tests).forEach((name) => {
-    console.time(name);
-    console.log();
-    console.log(name);
-
-    tests[name]();
-
-    console.timeEnd(name);
-  });
-};
-
-module.exports.tests = tests;

@@ -2,16 +2,7 @@
 // Copyright 2019 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
-// @ts-check
 
-// @ts-ignore
-global.WebAssembly = null;
+const stubbed = require('./asm');
 
-// @ts-ignore
-const asm = require('../build/index-asm');
-const { beforeAll, runAll } = require('./all')(asm);
-
-(async () => {
-  await beforeAll();
-  runAll();
-})();
+module.exports = require('./exports')(stubbed);

@@ -4,7 +4,9 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
 
-const { beforeAll, runAll } = require('./all');
+// @ts-ignore
+const wasm = require('../build/index');
+const { beforeAll, runAll } = require('./all')(wasm);
 
 (async () => {
   await beforeAll();

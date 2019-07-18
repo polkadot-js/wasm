@@ -7,7 +7,9 @@
 // @ts-ignore
 require('../build/crypto-polyfill');
 
-const { beforeAll, tests } = require('./all');
+// @ts-ignore
+const wasm = require('../build/index');
+const { beforeAll, tests } = require('./all')(wasm);
 
 describe('schnorrkel-js', () => {
   beforeEach(beforeAll);

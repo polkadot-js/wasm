@@ -15,7 +15,6 @@ for PKG in "${PACKAGES[@]}"; do
     cd $PKG
 
     ../../scripts/build-package.sh
-    ./adjust.sh
     ../../scripts/test-package.sh
 
     rm -rf build/*-e build/package.json build/README.md
