@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
-    "@polkadot/dev": "^0.30.0-beta.22",
-    "@polkadot/util": "^0.94.0-beta.15"
+    "@polkadot/dev": "^0.30.0-beta.23",
+    "@polkadot/util": "^0.94.0-beta.16"
   }
 }
