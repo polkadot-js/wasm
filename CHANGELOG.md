@@ -1,6 +1,6 @@
-# 0.13.x
+# 0.13.1
 
-- Added a build-time optional asm.js fallback for the WASM libraries when WebAssembly is not available, i.e. on React Native. To enable this, add `CRYPTO_ASM=1` to your environment config. (i.e. `CRYPTO_ASM=1 yarn build`)
+- Added an asm.js fallback which is active for React Native via the `"react-native"` entry in `package.json`. Ensure that you run the build step with the `NODE_OPTIONS=--max_old_space_size=8192` flags, since the asm.js bundle is large. (For RN the full command would therefore be `NODE_OPTIONS=--max_old_space_size=8192 npm start`)
 
 # 0.12.1
 
