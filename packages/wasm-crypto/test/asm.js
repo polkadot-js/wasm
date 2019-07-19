@@ -7,9 +7,15 @@
 // @ts-ignore
 global.WebAssembly = null;
 
+require('override-require')(
+  (request) => request === './wasm_asm_stub',
+  // @ts-ignore
+  () => require('../build/wasm_asm')
+);
+
 // @ts-ignore
-const asm = require('../build/index');
-const { beforeAll, runAll } = require('./all')(asm);
+const wasm = require('../build/index');
+const { beforeAll, runAll } = require('./all')(wasm);
 
 (async () => {
   await beforeAll();
