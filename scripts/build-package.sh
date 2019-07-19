@@ -84,6 +84,7 @@ export function waitReady(): Promise<boolean>;
 # create the init promise handler
 echo "
 const pkg = require('./package.json');
+const asm = require('./wasm_asm');
 const bytes = require('./wasm_wasm');
 const js = require('./wasm');
 
@@ -92,25 +93,16 @@ module.exports = async function createExportPromise () {
     './wasm': js
   };
 
-  if (!WebAssembly) {
-    if (process.env.CRYPTO_ASM) {
-      return require('./wasm_asm');
+  if (WebAssembly) {
+    try {
+      const { instance } = await WebAssembly.instantiate(bytes, imports);
+
+      return instance.exports;
+    } catch (error) {
+      console.error(error);
     }
-
-    console.error(\`ERROR: Unable to initialize \${pkg.name}, WebAssembly is not available in this environment. If you requires an asm.js fallback, specify it with the 'CRYPTO_ASM' environment flag.\`);
-
-    return null;
   }
 
-  try {
-    const { instance } = await WebAssembly.instantiate(bytes, imports);
-
-    return instance.exports;
-  } catch (error) {
-    console.error(\`ERROR: Unable to initialize \${pkg.name}:: \${error.message}\`);
-
-    // TODO: Return asm version here as a fallback
-    return null;
-  }
+  return asm;
 }
 " > $BGJ

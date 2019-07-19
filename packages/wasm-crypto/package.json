@@ -4,6 +4,7 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "crypto-polyfill.js",
+    "empty.js",
     "exports.js",
     "index.d.ts",
     "index.js",
@@ -13,6 +14,9 @@
     "wasm_bg.js",
     "wasm_wasm.js"
   ],
+  "browser": {
+    "./wasm_asm.js": "./empty.js"
+  },
   "main": "index.js",
   "types": "index.d.ts",
   "peerDependencies": {
