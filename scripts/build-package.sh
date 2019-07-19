@@ -66,7 +66,7 @@ sed -i -e 's/cachedTextDecoder\.decode/u8aToString/g' $SRC_WASM
 echo "
 module.exports.abort = function () { throw new Error('abort'); };
 
-const createPromise = require('./wasm_bg');
+const createPromise = require('./wasm_promise');
 const wasmPromise = createPromise().catch(() => null);
 
 module.exports.isReady = function () { return !!wasm; }
@@ -80,29 +80,3 @@ echo "
 export function isReady(): boolean;
 export function waitReady(): Promise<boolean>;
 " >> $DEF
-
-# create the init promise handler
-echo "
-const pkg = require('./package.json');
-const asm = require('./wasm_asm');
-const bytes = require('./wasm_wasm');
-const js = require('./wasm');
-
-module.exports = async function createExportPromise () {
-  const imports = {
-    './wasm': js
-  };
-
-  if (WebAssembly) {
-    try {
-      const { instance } = await WebAssembly.instantiate(bytes, imports);
-
-      return instance.exports;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  return asm;
-}
-" > $BGJ

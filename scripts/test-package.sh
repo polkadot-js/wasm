@@ -11,7 +11,7 @@ echo "*** Testing WASM"
 node ./test/wasm.js
 
 echo "*** Testing ASM.js"
-CRYPTO_ASM=1 node ./test/asm.js
+node ./test/asm.js
 
 echo "*** Testing via Jest"
 yarn jest ./test/jest.spec.js

@@ -4,18 +4,18 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "crypto-polyfill.js",
-    "empty.js",
     "exports.js",
     "index.d.ts",
     "index.js",
     "wasm.d.ts",
     "wasm.js",
     "wasm_asm.js",
-    "wasm_bg.js",
+    "wasm_asm_stub.js",
+    "wasm_promise.js",
     "wasm_wasm.js"
   ],
-  "browser": {
-    "./wasm_asm.js": "./empty.js"
+  "react-native": {
+    "./wasm_asm_stub.js": "./wasm_asm.js"
   },
   "main": "index.js",
   "types": "index.d.ts",
