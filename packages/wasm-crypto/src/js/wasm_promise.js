@@ -10,11 +10,9 @@ const imports = require('./wasm');
 
 module.exports = async function createExportPromise () {
   try {
-    if (WebAssembly) {
-      const { instance } = await WebAssembly.instantiate(bytes, { './wasm': imports });
+    const { instance } = await WebAssembly.instantiate(bytes, { './wasm': imports });
 
-      return instance.exports;
-    }
+    return instance.exports;
   } catch (error) {
     // if we have a valid supplied asm.js, return that
     if (asm && asm.ext_blake2b) {
