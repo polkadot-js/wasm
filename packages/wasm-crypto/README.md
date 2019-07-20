@@ -19,7 +19,7 @@ async function main () {
   await waitReady();
 
   // generate phrase
-  const phrase = bip39Generate();
+  const phrase = bip39Generate(12);
 
   // get ed25519 seed from phrase
   const seed = bip39ToSeed(phrase, '');
