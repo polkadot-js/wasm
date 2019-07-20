@@ -6,23 +6,22 @@
 const pkg = require('./package.json');
 const asm = require('./wasm_asm_stub');
 const bytes = require('./wasm_wasm');
-const js = require('./wasm');
+const imports = require('./wasm');
 
 module.exports = async function createExportPromise () {
-  const imports = {
-    './wasm': js
-  };
+  try {
+    const { instance } = await WebAssembly.instantiate(bytes, { './wasm': imports });
 
-  if (WebAssembly) {
-    try {
-      const { instance } = await WebAssembly.instantiate(bytes, imports);
-
-      return instance.exports;
-    } catch (error) {
-      console.error(`ERROR: Unable to initialize WebAssembly for ${pkg.name} ${pkg.version}`);
-      console.error(error);
+    return instance.exports;
+  } catch (error) {
+    // if we have a valid supplied asm.js, return that
+    if (asm && asm.ext_blake2b) {
+      return asm;
     }
-  }
 
-  return asm;
+    console.error(`ERROR: Unable to initialize ${pkg.name} ${pkg.version}`);
+    console.error(error);
+
+    return null;
+  }
 };
