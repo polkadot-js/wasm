@@ -142,8 +142,10 @@ pub fn ext_sr_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
 		Err(_) => return false
 	};
 
-	create_public(public)
-		.verify_simple(SIGNING_CTX, message, &signature)
+	match create_public(public).verify_simple(SIGNING_CTX, message, &signature) {
+		Ok(_) => true,
+		Err(_) =>false
+	}
 }
 
 #[cfg(test)]
