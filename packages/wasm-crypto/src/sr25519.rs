@@ -28,7 +28,7 @@ fn create_cc(data: &[u8]) -> ChainCode {
 /// Keypair helper function.
 fn create_from_seed(seed: &[u8]) -> Keypair {
 	match MiniSecretKey::from_bytes(seed) {
-		Ok(mini) => return mini.expand_to_keypair(),
+		Ok(mini) => mini.expand_ed25519_to_keypair(),
 		Err(_) => panic!("Provided seed is invalid.")
 	}
 }
@@ -36,7 +36,7 @@ fn create_from_seed(seed: &[u8]) -> Keypair {
 /// Keypair helper function.
 fn create_from_pair(pair: &[u8]) -> Keypair {
 	match Keypair::from_bytes(pair) {
-		Ok(pair) => return pair,
+		Ok(pair) => pair,
 		Err(_) => panic!("Provided pair is invalid.")
 	}
 }
@@ -44,7 +44,7 @@ fn create_from_pair(pair: &[u8]) -> Keypair {
 /// PublicKey helper
 fn create_public(public: &[u8]) -> PublicKey {
 	match PublicKey::from_bytes(public) {
-		Ok(public) => return public,
+		Ok(public) => public,
 		Err(_) => panic!("Provided public key is invalid.")
 	}
 }
@@ -52,7 +52,7 @@ fn create_public(public: &[u8]) -> PublicKey {
 /// SecretKey helper
 fn create_secret(secret: &[u8]) -> SecretKey {
 	match SecretKey::from_bytes(secret) {
-		Ok(secret) => return secret,
+		Ok(secret) => secret,
 		Err(_) => panic!("Provided private key is invalid.")
 	}
 }
@@ -67,7 +67,7 @@ fn create_secret(secret: &[u8]) -> SecretKey {
 pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 	create_from_pair(pair).secret
 		.hard_derive_mini_secret_key(Some(create_cc(cc)), &[]).0
-		.expand_to_keypair()
+		.expand_ed25519_to_keypair()
 		.to_bytes()
 		.to_vec()
 }
@@ -96,7 +96,8 @@ pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 pub fn ext_sr_derive_public_soft(public: &[u8], cc: &[u8]) -> Vec<u8> {
 	create_public(public)
 		.derived_key_simple(create_cc(cc), &[]).0
-		.to_bytes().to_vec()
+		.to_bytes()
+		.to_vec()
 }
 
 /// Generate a key pair.
@@ -144,6 +145,7 @@ pub fn ext_sr_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
 
 	create_public(public)
 		.verify_simple(SIGNING_CTX, message, &signature)
+		.is_ok()
 }
 
 #[cfg(test)]
