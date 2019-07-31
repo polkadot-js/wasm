@@ -28,7 +28,7 @@ fn create_cc(data: &[u8]) -> ChainCode {
 /// Keypair helper function.
 fn create_from_seed(seed: &[u8]) -> Keypair {
 	match MiniSecretKey::from_bytes(seed) {
-		Ok(mini) => mini.expand_ed25519_to_keypair(),
+		Ok(mini) => return mini.expand_ed25519_to_keypair(),
 		Err(_) => panic!("Provided seed is invalid.")
 	}
 }
@@ -36,7 +36,7 @@ fn create_from_seed(seed: &[u8]) -> Keypair {
 /// Keypair helper function.
 fn create_from_pair(pair: &[u8]) -> Keypair {
 	match Keypair::from_bytes(pair) {
-		Ok(pair) => pair,
+		Ok(pair) => return pair,
 		Err(_) => panic!("Provided pair is invalid.")
 	}
 }
@@ -44,7 +44,7 @@ fn create_from_pair(pair: &[u8]) -> Keypair {
 /// PublicKey helper
 fn create_public(public: &[u8]) -> PublicKey {
 	match PublicKey::from_bytes(public) {
-		Ok(public) => public,
+		Ok(public) => return public,
 		Err(_) => panic!("Provided public key is invalid.")
 	}
 }
@@ -52,7 +52,7 @@ fn create_public(public: &[u8]) -> PublicKey {
 /// SecretKey helper
 fn create_secret(secret: &[u8]) -> SecretKey {
 	match SecretKey::from_bytes(secret) {
-		Ok(secret) => secret,
+		Ok(secret) => return secret,
 		Err(_) => panic!("Provided private key is invalid.")
 	}
 }
