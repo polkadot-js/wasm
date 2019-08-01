@@ -65,11 +65,14 @@ fn create_secret(secret: &[u8]) -> SecretKey {
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
-	create_from_pair(pair).secret
-		.hard_derive_mini_secret_key(Some(create_cc(cc)), &[]).0
-		.expand_to_keypair(ExpansionMode::Ed25519)
-		.to_bytes()
-		.to_vec()
+	match Keypair::from_bytes(pair) {
+		Ok(pair) => pair.secret
+			.hard_derive_mini_secret_key(Some(create_cc(cc)), &[]).0
+			.expand_to_keypair(ExpansionMode::Ed25519)
+			.to_bytes()
+			.to_vec(),
+		Err(_) => panic!("Provided pair is invalid.")
+	}
 }
 
 /// Perform a derivation on a secret
@@ -80,10 +83,13 @@ pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
-	create_from_pair(pair)
-		.derived_key_simple(create_cc(cc), &[]).0
-		.to_bytes()
-		.to_vec()
+	match Keypair::from_bytes(pair) {
+		Ok(pair) => pair
+			.derived_key_simple(create_cc(cc), &[]).0
+			.to_bytes()
+			.to_vec(),
+		Err(_) => panic!("Provided pair is invalid.")
+	}
 }
 
 /// Perform a derivation on a publicKey
