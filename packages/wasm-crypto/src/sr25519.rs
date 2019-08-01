@@ -33,12 +33,12 @@ fn create_cc(data: &[u8]) -> ChainCode {
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
-	Keypair::from_bytes(pair)
+	Keypair::from_half_ed25519_bytes(pair)
 		.unwrap()
 		.secret
 		.hard_derive_mini_secret_key(Some(create_cc(cc)), &[]).0
 		.expand_to_keypair(ExpansionMode::Ed25519)
-		.to_bytes()
+		.to_half_ed25519_bytes()
 		.to_vec()
 }
 
@@ -50,10 +50,10 @@ pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
-	Keypair::from_bytes(pair)
+	Keypair::from_half_ed25519_bytes(pair)
 		.unwrap()
 		.derived_key_simple(create_cc(cc), &[]).0
-		.to_bytes()
+		.to_half_ed25519_bytes()
 		.to_vec()
 }
 
@@ -83,7 +83,7 @@ pub fn ext_sr_from_seed(seed: &[u8]) -> Vec<u8> {
 	MiniSecretKey::from_bytes(seed)
 		.unwrap()
 		.expand_to_keypair(ExpansionMode::Ed25519)
-		.to_bytes()
+		.to_half_ed25519_bytes()
 		.to_vec()
 }
 
@@ -94,9 +94,9 @@ pub fn ext_sr_from_seed(seed: &[u8]) -> Vec<u8> {
 /// returned vector is the concatenation of first the private key (64 bytes)
 /// followed by the public key (32) bytes.
 pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
-	Keypair::from_bytes(pair)
+	Keypair::from_half_ed25519_bytes(pair)
 		.unwrap()
-		.to_bytes()
+		.to_half_ed25519_bytes()
 		.to_vec()
 }
 
@@ -112,7 +112,7 @@ pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
 pub fn ext_sr_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
-	SecretKey::from_bytes(secret)
+	SecretKey::from_ed25519_bytes(secret)
 		.unwrap()
 		.sign_simple(SIGNING_CTX, message, &PublicKey::from_bytes(public).unwrap())
 		.to_bytes()
