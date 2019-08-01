@@ -8,7 +8,7 @@
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
 use schnorrkel::{
-	Keypair, MiniSecretKey, PublicKey, SecretKey,
+	ExpansionMode, Keypair, MiniSecretKey, PublicKey, SecretKey,
 	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
 };
 use wasm_bindgen::prelude::*;
@@ -28,7 +28,7 @@ fn create_cc(data: &[u8]) -> ChainCode {
 /// Keypair helper function.
 fn create_from_seed(seed: &[u8]) -> Keypair {
 	match MiniSecretKey::from_bytes(seed) {
-		Ok(mini) => return mini.expand_ed25519_to_keypair(),
+		Ok(mini) => return mini.expand_to_keypair(ExpansionMode::Ed25519),
 		Err(_) => panic!("Provided seed is invalid.")
 	}
 }
@@ -67,7 +67,7 @@ fn create_secret(secret: &[u8]) -> SecretKey {
 pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 	create_from_pair(pair).secret
 		.hard_derive_mini_secret_key(Some(create_cc(cc)), &[]).0
-		.expand_ed25519_to_keypair()
+		.expand_to_keypair(ExpansionMode::Ed25519)
 		.to_bytes()
 		.to_vec()
 }
