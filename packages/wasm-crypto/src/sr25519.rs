@@ -8,7 +8,7 @@
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
 use schnorrkel::{
-	Keypair, MiniSecretKey, PublicKey, SecretKey, Signature,
+	Keypair, MiniSecretKey, PublicKey, SecretKey,
 	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
 };
 use wasm_bindgen::prelude::*;
@@ -138,13 +138,17 @@ pub fn ext_sr_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_sr_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
-	let signature = match Signature::from_bytes(signature) {
-		Ok(signature) => signature,
-		Err(_) => return false
-	};
+	// This is where we only verify 0.8.2 signatures, replacing the code below
+	//
+	// match Signature::from_bytes(signature) {
+	// 	Ok(signature) => create_public(public)
+	// 		.verify_simple(SIGNING_CTX, message, &signature)
+	// 		.is_ok(),
+	// 	Err(_) => false
+	// };
 
 	create_public(public)
-		.verify_simple(SIGNING_CTX, message, &signature)
+		.verify_simple_preaudit_deprecated(SIGNING_CTX, message, &signature)
 		.is_ok()
 }
 
