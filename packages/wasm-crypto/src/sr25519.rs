@@ -87,6 +87,19 @@ pub fn ext_sr_from_seed(seed: &[u8]) -> Vec<u8> {
 		.to_vec()
 }
 
+/// Generate a key pair from a known pair. (This is not exposed via WASM)
+///
+/// * seed: UIntArray with 96 element
+///
+/// returned vector is the concatenation of first the private key (64 bytes)
+/// followed by the public key (32) bytes.
+pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
+	Keypair::from_bytes(pair)
+		.unwrap()
+		.to_bytes()
+		.to_vec()
+}
+
 /// Sign a message
 ///
 /// The combination of both public and private key must be provided.
@@ -150,10 +163,20 @@ pub mod tests {
 	}
 
 	#[test]
-	fn creates_pair_from_known() {
+	fn creates_pair_from_known_seed() {
 		let seed = hex!("fac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e");
 		let expected = hex!("46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a");
 		let keypair = ext_sr_from_seed(&seed);
+		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+
+		assert_eq!(public, expected);
+	}
+
+	#[test]
+	fn create_pair_from_known_pair() {
+		let input = hex!("28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a");
+		let keypair = ext_sr_from_pair(&input);
+		let expected = hex!("46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a");
 		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 
 		assert_eq!(public, expected);
