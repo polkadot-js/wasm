@@ -4,16 +4,6 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
 
-// @ts-ignore
-const wasm = require('../build/index');
-const { beforeAll, runAll } = require('./all')(wasm);
+const { runUnassisted } = require('./all');
 
-(async () => {
-  await beforeAll();
-
-  runAll();
-})().catch((error) => {
-  console.error(error);
-
-  process.exit(-1);
-});
+runUnassisted();

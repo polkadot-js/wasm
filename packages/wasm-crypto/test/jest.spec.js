@@ -8,13 +8,12 @@
 require('../build/crypto-polyfill');
 
 // @ts-ignore
-const wasm = require('../build/index');
-const { beforeAll, tests } = require('./all')(wasm);
+const { beforeAll, tests, wasm } = require('./all');
 
 describe('schnorrkel-js', () => {
-  beforeEach(beforeAll);
+  beforeEach(async () => beforeAll());
 
   Object.keys(tests).forEach((name) => {
-    it(name, tests[name]);
+    it(name, () => tests[name](wasm));
   });
 });

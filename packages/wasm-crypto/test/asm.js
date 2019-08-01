@@ -13,16 +13,6 @@ require('override-require')(
   () => require('../build/wasm_asm')
 );
 
-// @ts-ignore
-const wasm = require('../build/index');
-const { beforeAll, runAll } = require('./all')(wasm);
+const { runUnassisted } = require('./all');
 
-(async () => {
-  await beforeAll();
-
-  runAll();
-})().catch((error) => {
-  console.error(error);
-
-  process.exit(-1);
-});
+runUnassisted();
