@@ -21,7 +21,7 @@ ed25519-dalek = { version = "1.0.0-pre.1", features = ["nightly"] }
 hmac = "0.7.0"
 # libsecp256k1 = "0.2.2"
 pbkdf2 = { version = "0.3.0", default-features = false }
-schnorrkel = { git = "https://github.com/w3f/schnorrkel", rev="0645b98ff5e8b49a3dccc1146407897afddbffa5", features = ["nightly", "preaudit_deprecated"] }
+schnorrkel = { version = "0.8.4", features = ["nightly", "preaudit_deprecated"] }
 sha2 = "0.8.0"
 tiny-bip39 = { version = "0.6.1", default-features = false }
 tiny-keccak = "1.4.2"
