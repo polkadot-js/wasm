@@ -20,9 +20,9 @@
     "test": "echo \"Tests included in build\""
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@polkadot/dev": "^0.30.0-beta.23",
-    "@polkadot/util": "^0.94.0-beta.19",
+    "@babel/core": "^7.5.5",
+    "@polkadot/dev": "^0.31.0-beta.4",
+    "@polkadot/util": "^1.2.0-beta.1",
     "override-require": "^1.1.1"
   }
 }
