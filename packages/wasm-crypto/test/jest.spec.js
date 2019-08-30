@@ -8,7 +8,9 @@ require('../build/crypto-polyfill');
 const { beforeAll, tests, wasm } = require('./all');
 
 describe('schnorrkel-js', () => {
-  beforeEach(() => beforeAll());
+  beforeEach(async () => {
+    await beforeAll();
+  });
 
   Object.keys(tests).forEach((name) => {
     it(name, () => tests[name](wasm));

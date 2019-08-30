@@ -16,7 +16,7 @@ const tests = {
   ...sr25519
 };
 
-async function beforeAll () {
+function beforeAll () {
   return wasm.waitReady();
 }
 
