@@ -1,3 +1,7 @@
+# 0.14.1
+
+- No functionality changes at all, everything done is "under the hood" to give the codebase better maintainability
+
 # 0.13.1
 
 - Added an asm.js fallback which is active for React Native via the `"react-native"` entry in `package.json`. Ensure that you run the build step with the `NODE_OPTIONS=--max_old_space_size=8192` flags, since the asm.js bundle is large. (For RN the full command would therefore be `NODE_OPTIONS=--max_old_space_size=8192 npm start`)
