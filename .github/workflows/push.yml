@@ -33,7 +33,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: test
       run: |
-        rustup toolchain install nightly
+        rustup toolchain install nightly-2019-08-15
         yarn install --frozen-lockfile
         yarn test
 
@@ -51,6 +51,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: build
       run: |
-        rustup toolchain install nightly
+        rustup toolchain install nightly-2019-08-15
         yarn install --frozen-lockfile
         yarn build
