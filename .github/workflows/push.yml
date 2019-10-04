@@ -52,6 +52,5 @@ jobs:
     - name: build
       run: |
         rustup toolchain install nightly
-        rustup toolchain install nightly-2019-08-16
         yarn install --frozen-lockfile
         yarn build
