@@ -17,7 +17,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx . && tsc --noEmit --pretty",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "echo \"Tests included in build\""
+    "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
