@@ -17,12 +17,12 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx . && tsc --noEmit --pretty",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "echo \"Tests included in build\""
+    "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "@polkadot/dev": "^0.31.0-beta.8",
-    "@polkadot/util": "^1.3.1",
+    "@polkadot/dev": "^0.32.0-beta.4",
+    "@polkadot/util": "^1.6.0-beta.3",
     "override-require": "^1.1.1"
   }
 }
