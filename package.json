@@ -1,5 +1,5 @@
 {
-  "version": "0.14.0-beta.0",
+  "version": "0.15.0-beta.1",
   "private": true,
   "engines": {
     "yarn": "^1.10.1"
@@ -9,7 +9,7 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "build": "./scripts/build.sh",
@@ -17,12 +17,12 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx . && tsc --noEmit --pretty",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "echo \"Tests included in build\""
+    "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@polkadot/dev": "^0.30.0-beta.23",
-    "@polkadot/util": "^0.95.0-beta.3",
+    "@babel/core": "^7.6.0",
+    "@polkadot/dev": "^0.32.0-beta.4",
+    "@polkadot/util": "^1.6.0-beta.3",
     "override-require": "^1.1.1"
   }
 }
