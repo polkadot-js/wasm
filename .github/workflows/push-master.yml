@@ -5,8 +5,8 @@ on:
       - master
 
 jobs:
-  merge:
-    name: Merge
+  build_code:
+    name: Build Code
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,4 +27,3 @@ jobs:
         rustup toolchain install nightly
         yarn install --frozen-lockfile
         yarn polkadot-dev-ghact-build
-        yarn polkadot-dev-ghact-deploy
