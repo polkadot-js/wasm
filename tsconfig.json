@@ -5,6 +5,7 @@
     "paths": {
       "@polkadot/wasm-schnorrkel": [ "packages/wasm-schnorrkel/src" ]
     },
+    "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"
