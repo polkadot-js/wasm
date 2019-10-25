@@ -1,10 +1,15 @@
 {
   "extends": "./node_modules/@polkadot/dev/config/tsconfig",
+  "exclude": [
+    "build/**/*",
+    "**/build/**/*"
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@polkadot/wasm-schnorrkel": [ "packages/wasm-schnorrkel/src" ]
     },
+    "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"

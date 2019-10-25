@@ -5,8 +5,9 @@ on:
       - master
 
 jobs:
-  merge:
-    name: Merge
+  build_code:
+    name: Build Code
+    if: "! contains(github.event.head_commit.message, '[CI Skip]')"
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,7 +19,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: build
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
         rustup toolchain install nightly
         yarn install --frozen-lockfile
-        yarn build
+        yarn polkadot-dev-ghact-build
