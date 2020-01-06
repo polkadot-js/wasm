@@ -9,7 +9,7 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.4"
   },
   "scripts": {
     "build": "./scripts/build.sh",
@@ -19,8 +19,8 @@
     "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@polkadot/dev": "^0.32.0-beta.17",
+    "@babel/core": "^7.7.7",
+    "@polkadot/dev": "^0.32.14",
     "@polkadot/util": "^1.7.1",
     "override-require": "^1.1.1"
   }
