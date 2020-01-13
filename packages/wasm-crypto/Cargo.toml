@@ -25,7 +25,7 @@ pbkdf2 = { version = "0.3.0", default-features = false }
 schnorrkel = { version = "0.8.5", features = ["nightly", "preaudit_deprecated", "u64_backend"] }
 sha2 = "0.8.0"
 tiny-bip39 = { version = "0.6.2", default-features = false }
-tiny-keccak = "2.0.1"
+tiny-keccak = { version = "2.0.1", features = ["keccak"] }
 twox-hash = "1.5.0"
 wasm-bindgen = "0.2"
 wee_alloc = "0.4.3"
