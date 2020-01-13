@@ -9,7 +9,7 @@ use pbkdf2::pbkdf2;
 use sha2::{Digest, Sha512};
 // use secp256k1;
 use std::hash::Hasher;
-use tiny_keccak::keccak256;
+use tiny_keccak::Keccak;
 use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
 
@@ -49,8 +49,13 @@ pub fn ext_blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 /// Returns the hash as a vector
 #[wasm_bindgen]
 pub fn ext_keccak256(data: &[u8]) -> Vec<u8> {
-	keccak256(data)
-		.to_vec()
+	let mut keccak = Keccak::v256();
+	let mut result = [0u8; 32];
+
+	keccak.update(data);
+	keccak.finalize(&mut result);
+
+	result.to_vec()
 }
 
 /// pbkdf2 hash from an input, salt for the number of specified rounds
