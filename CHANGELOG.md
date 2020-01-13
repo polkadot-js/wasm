@@ -1,3 +1,7 @@
+# 0.20.1
+
+- Pull in schnorrkel 0.8.5 for full Substrate 2.x compatibility
+
 # 0.14.1
 
 - No functionality changes at all, everything done is "under the hood" to give the codebase better maintainability
