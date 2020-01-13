@@ -8,13 +8,13 @@ use hmac::Hmac;
 use pbkdf2::pbkdf2;
 use sha2::{Digest, Sha512};
 // use secp256k1;
-use std::hash::Hasher;
-use tiny_keccak::Keccak;
+use tiny_keccak::{Hasher, Keccak};
 use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
 
 /// helper function for a single twox round with a seed
 fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
+	use ::std::hash::Hasher;
 	let mut hasher = XxHash::with_seed(seed);
 
 	hasher.write(data);
