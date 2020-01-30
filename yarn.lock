@@ -1942,10 +1942,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@polkadot/dev@^0.33.1":
-  version "0.33.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.33.1.tgz#843488aafa5ced312e7b79f7d09556d803266975"
-  integrity sha512-qX+vGZM+M2gPais2E1hUSg4BM8J2e2t0DeoyJpiwYqrK3Yp8eMUaCV08s9+l4G1l+5W3MgJdd6iH4JkvvQhhvg==
+"@polkadot/dev@^0.33.3":
+  version "0.33.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.33.3.tgz#a5ee8990ea240c655b0b1c065a53518d0fab3c86"
+  integrity sha512-AruWNAIAjbweoDUJAX4SSSgzbtsxZkociPAitcXBFul6XSU4eMJiyc68o0ZiQOXt/T9TWUjuVMSLEkcuNh536Q==
   dependencies:
     "@babel/cli" "^7.8.3"
     "@babel/core" "^7.8.3"
@@ -1992,10 +1992,10 @@
     typescript "^3.7.5"
     vuepress "^1.2.0"
 
-"@polkadot/util@^2.0.0-beta.9":
-  version "2.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-2.0.0-beta.9.tgz#48e712f0c39bef49b4f4302c321a902e91d07426"
-  integrity sha512-7SH+rE3dmdQYENbFQDTE8G4EbZ5zmQ+iDhrwmp6Hht/Voc+viNounv7p3yUcGh1cB1a9NoiqBWCahFl6Lc6esQ==
+"@polkadot/util@^2.0.0-beta.10":
+  version "2.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-2.0.0-beta.10.tgz#0e4f37d0a8e46521c4087cf2e67fdb7ec05d0908"
+  integrity sha512-QWnT0Qj6qAKaPPFubJy6o9s0JsBbmBkufu04/n5sNm8x0azVD0a2xiHA19B/A5nHglNuyoiOLixqJm3W14z5dw==
   dependencies:
     "@babel/runtime" "^7.8.3"
     "@types/bn.js" "^4.11.6"
