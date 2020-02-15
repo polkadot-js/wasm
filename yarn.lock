@@ -2144,13 +2144,12 @@
     webpack-cli "^3.3.11"
     yargs "^15.1.0"
 
-"@polkadot/util@^2.3.0-beta.5":
-  version "2.3.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-2.3.0-beta.5.tgz#32b097a75dc64ed6b003093fab275a066c08eb86"
-  integrity sha512-9VOjeaoeWjfqLGvWZvW2UW4yVl6S+87Zec1H1Uj6+Ucc2Szv1AMgkNhuCkgsfILZ05D5aCS/mNPeAl7z6bGPpg==
+"@polkadot/util@^2.3.0-beta.6":
+  version "2.3.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-2.3.0-beta.6.tgz#a1ac033990ac4fdc1049697411879b9f9ca1489e"
+  integrity sha512-mEFyEou98vBrNHKMUvHmNcHG9PK+4CWYzKAyu9nM6BidM9J82vYILIfyN8SvESUKPH7Xa+ILVD1v0/7o4PZmkg==
   dependencies:
     "@babel/runtime" "^7.8.4"
-    "@types/bn.js" "^4.11.6"
     bn.js "^5.1.1"
     camelcase "^5.3.1"
     chalk "^3.0.0"
@@ -2208,13 +2207,6 @@
   integrity sha512-yGeB2dHEdvxjP0y4UbRtQaSkXJ9649fYCmIdRoul5kfAoGCwxuCbMhag0k3RPfnuh9kPGm8x89btcfDEXdVWGw==
   dependencies:
     "@babel/types" "^7.3.0"
-
-"@types/bn.js@^4.11.6":
-  version "4.11.6"
-  resolved "https://registry.yarnpkg.com/@types/bn.js/-/bn.js-4.11.6.tgz#c306c70d9358aaea33cd4eda092a742b9505967c"
-  integrity sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==
-  dependencies:
-    "@types/node" "*"
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
