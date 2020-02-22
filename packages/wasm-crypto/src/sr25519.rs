@@ -8,7 +8,7 @@
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
 use schnorrkel::{
-	ExpansionMode, Keypair, MiniSecretKey, PublicKey, SecretKey,
+	ExpansionMode, Keypair, MiniSecretKey, PublicKey, SecretKey, Signature,
 	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
 };
 use wasm_bindgen::prelude::*;
