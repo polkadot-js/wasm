@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/no-var-requires */
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-var-requires */
 // @ts-check
 
 const crypto = require('crypto');
@@ -35,9 +35,9 @@ function sr25519_devFromSeed (wasm) {
 }
 
 function sr25519_verifyExisting (wasm) {
-  const PK = hexToU8a('0xb4bfa1f7a5166695eb75299fd1c4c03ea212871c342f2c5dfea0902b2c246918');
-  const MESSAGE = stringToU8a('Verifying that I am the owner of 5G9hQLdsKQswNPgB499DeA5PkFBbgkLPJWkkS6FAM6xGQ8xD. Hash: 221455a3\n');
-  const SIGNATURE = hexToU8a('0x5a9755f069939f45d96aaf125cf5ce7ba1db998686f87f2fb3cbdea922078741a73891ba265f70c31436e18a9acd14d189d73c12317ab6c313285cd938453202');
+  const PK = hexToU8a('0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d');
+  const MESSAGE = stringToU8a('I hereby verify that I control 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
+  const SIGNATURE = hexToU8a('0xb83881d3bd7302981ee1c504fe5b7b394682927131fc0846fd616bb40fa14d02640fd2aca785b4cb57904765c2e4e75f59a7dd30154c209964369912091f6981');
 
   const isValid = wasm.sr25519Verify(SIGNATURE, MESSAGE, PK);
 
