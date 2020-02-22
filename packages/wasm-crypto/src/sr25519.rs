@@ -126,19 +126,12 @@ pub fn ext_sr_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_sr_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
-	// This is where we only verify 0.8.0+ signatures, replacing the code below
-	//
-	// match Signature::from_bytes(signature) {
-	// 	Ok(signature) => PublicKey::from_bytes(public).unwrap()
-	// 		.verify_simple(SIGNING_CTX, message, &signature)
-	// 		.is_ok(),
-	// 	Err(_) => false
-	// };
-
-	PublicKey::from_bytes(public)
-		.unwrap()
-		.verify_simple_preaudit_deprecated(SIGNING_CTX, message, &signature)
-		.is_ok()
+	match Signature::from_bytes(signature) {
+		Ok(signature) => PublicKey::from_bytes(public).unwrap()
+			.verify_simple(SIGNING_CTX, message, &signature)
+			.is_ok(),
+		Err(_) => false
+	}
 }
 
 #[cfg(test)]
