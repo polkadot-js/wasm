@@ -8,7 +8,7 @@
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
 use schnorrkel::{
-	ExpansionMode, Keypair, MiniSecretKey, PublicKey, SecretKey,
+	ExpansionMode, Keypair, MiniSecretKey, PublicKey, SecretKey, Signature,
 	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
 };
 use wasm_bindgen::prelude::*;
@@ -126,19 +126,12 @@ pub fn ext_sr_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_sr_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
-	// This is where we only verify 0.8.0+ signatures, replacing the code below
-	//
-	// match Signature::from_bytes(signature) {
-	// 	Ok(signature) => PublicKey::from_bytes(public).unwrap()
-	// 		.verify_simple(SIGNING_CTX, message, &signature)
-	// 		.is_ok(),
-	// 	Err(_) => false
-	// };
-
-	PublicKey::from_bytes(public)
-		.unwrap()
-		.verify_simple_preaudit_deprecated(SIGNING_CTX, message, &signature)
-		.is_ok()
+	match Signature::from_bytes(signature) {
+		Ok(signature) => PublicKey::from_bytes(public).unwrap()
+			.verify_simple(SIGNING_CTX, message, &signature)
+			.is_ok(),
+		Err(_) => false
+	}
 }
 
 #[cfg(test)]
@@ -209,9 +202,9 @@ pub mod tests {
 
 	#[test]
 	fn can_verify_known_message() {
-		let message = b"Verifying that I am the owner of 5G9hQLdsKQswNPgB499DeA5PkFBbgkLPJWkkS6FAM6xGQ8xD. Hash: 221455a3\n";
-		let public = hex!("b4bfa1f7a5166695eb75299fd1c4c03ea212871c342f2c5dfea0902b2c246918");
-		let signature = hex!("5a9755f069939f45d96aaf125cf5ce7ba1db998686f87f2fb3cbdea922078741a73891ba265f70c31436e18a9acd14d189d73c12317ab6c313285cd938453202");
+		let message = b"I hereby verify that I control 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
+		let public = hex!("d43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d");
+		let signature = hex!("1037eb7e51613d0dcf5930ae518819c87d655056605764840d9280984e1b7063c4566b55bf292fcab07b369d01095879b50517beca4d26e6a65866e25fec0d83");
 		let is_valid = ext_sr_verify(&signature, message, &public);
 
 		assert!(is_valid);

@@ -16,7 +16,7 @@ for PKG in "${PACKAGES[@]}"; do
     cd $PKG
 
     echo "*** Testing Rust"
-    RUST_BACKTRACE=full rustup run nightly cargo test --release -- --nocapture
+    RUST_BACKTRACE=full rustup run nightly-2020-02-17 cargo test --release -- --nocapture
 
     cd ..
   fi
