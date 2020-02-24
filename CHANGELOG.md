@@ -1,6 +1,6 @@
 # 1.1.0-beta.x
 
-- **Important** The sr25519 interface dropped the use of `verify_simple_preaudit_deprecated` for signature verification, instead it now uses `.verify_simple`. Only schnorrkel 0.8+ signatures will now pass verification. This is a follow-up of the 0.1 signing support that was dropped in a previous version.
+- **Important** The sr25519 interface dropped the use of `verify_simple_preaudit_deprecated` for signature verification, instead it now uses `verify_simple`. Only schnorrkel 0.8+ signatures will now pass verification. This is a follow-up of the 0.1 signing support that was dropped in a previous version.
 - Update all test vectors to only cater for schnorrkel 0.8+ era signatures based on the above change
 - Pin Rust nightly to last-known-working nightly-2020-02-17 on CI (compiler issues, should to be reverted in a future release)
 
