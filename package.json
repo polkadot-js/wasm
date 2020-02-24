@@ -19,9 +19,9 @@
     "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@polkadot/dev": "^0.41.1",
-    "@polkadot/util": "^2.4.1",
+    "@babel/core": "^7.8.4",
+    "@polkadot/dev": "^0.41.3",
+    "@polkadot/util": "^2.5.1",
     "override-require": "^1.1.1"
   }
 }
