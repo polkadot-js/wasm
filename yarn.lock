@@ -34,7 +34,7 @@
     invariant "^2.2.4"
     semver "^5.5.0"
 
-"@babel/core@^7.1.0", "@babel/core@^7.7.5", "@babel/core@^7.8.3":
+"@babel/core@^7.1.0", "@babel/core@^7.7.5":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.8.3.tgz#30b0ebb4dd1585de6923a0b4d179e0b9f5d82941"
   integrity sha512-4XFkf8AwyrEG7Ziu3L2L0Cv+WyY47Tcsp70JFmpftbAA1K7YL/sgE9jh9HyNj08Y/U50ItUchpN0w6HxAoX1rA==
@@ -2011,10 +2011,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@polkadot/dev@^0.41.1":
-  version "0.41.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.41.1.tgz#00585db9d4a78b143c7a9572636fb404dbe9de27"
-  integrity sha512-DWmXD1WDDX/xUfLoF1r/dP9E2158iPHSOEURfnyZrvBgMNYh5FqFZ7dO4sMPebZlHeg5jaK/GzhR0kKr78s8SA==
+"@polkadot/dev@^0.41.3":
+  version "0.41.3"
+  resolved "https://registry.yarnpkg.com/@polkadot/dev/-/dev-0.41.3.tgz#5a20234772efd269e4230835df9c9f90eab03e8d"
+  integrity sha512-tEdQIHBUrFJprFCSi/rJWcZ/6AIe3KUNRp3gieA8jg+9WPPY/F6YwgW2EpYg4W4fMH6dGJCNGSSiSPI7HZoOhg==
   dependencies:
     "@babel/cli" "^7.8.4"
     "@babel/core" "^7.8.4"
@@ -2049,7 +2049,6 @@
     coveralls "^3.0.9"
     cpx "^1.5.0"
     eslint "^6.8.0"
-    eslint-config-semistandard "^15.0.0"
     eslint-config-standard "^14.1.0"
     eslint-plugin-import "^2.20.1"
     eslint-plugin-node "^11.0.0"
@@ -2077,10 +2076,10 @@
     webpack-cli "^3.3.11"
     yargs "^15.1.0"
 
-"@polkadot/util@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-2.4.1.tgz#7c0d0619af6ced647e99d6bc8ccc24bc3202a2a7"
-  integrity sha512-60yBpgYgowx/TVuJyrjYYIJJpw4aCNzay8imy5L2Fug2y3lvgrHyTxPAgrykOmuFeZ3jq9ayjXk5bpAJ179vFg==
+"@polkadot/util@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@polkadot/util/-/util-2.5.1.tgz#8b4be9f7418a2872f6ccb1a0d18e426b4e8779a9"
+  integrity sha512-MVQPyxkhfERvV1uGyne0b7iekX9h7v892144bNB5VYZ7C2rTuJ5XpaWgx0V9DANeaEv+cqfjeW+8ngYQwYhQKw==
   dependencies:
     "@babel/runtime" "^7.8.4"
     "@types/bn.js" "^4.11.6"
@@ -5400,11 +5399,6 @@ escodegen@^1.11.1, escodegen@^1.8.0:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
-
-eslint-config-semistandard@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-semistandard/-/eslint-config-semistandard-15.0.0.tgz#d8eefccfac4ca9cbc508d38de6cb8fd5e7a72fa9"
-  integrity sha512-volIMnosUvzyxGkYUA5QvwkahZZLeUx7wcS0+7QumPn+MMEBbV6P7BY1yukamMst0w3Et3QZlCjQEwQ8tQ6nug==
 
 eslint-config-standard@^14.1.0:
   version "14.1.0"
