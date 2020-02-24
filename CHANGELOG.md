@@ -1,4 +1,10 @@
-# 1.0.1  Feb 15, 2020
+# 1.1.0-beta.x
+
+- Drop the sr25519 use of `.verify_simple_preaudit_deprecated`, instead now use `.verify_simple` (Only schnorrkel 0.8+ signatures will now pass verification, a follow-up of the 0.1 signing support that was dropped in 0.20.1)
+- Update all test vectors to only cater for schnorrkel 0.8+ era signatures based on the above change
+- Pin Rust nightly to nightly-2020-02-17 on CI (compiler issues, needs to be reverted in a future release)
+
+# 1.0.1 Feb 15, 2020
 
 - No functionality changes from 0.20.1. The interfaces here are stable in the current iteration.
 

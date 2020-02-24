@@ -53,7 +53,8 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: test
       run: |
-        rustup toolchain install nightly-2020-02-17
+        rustup toolchain install nightly
+        rustup install nightly-2020-02-17
         yarn install --frozen-lockfile
         yarn test
 
@@ -81,6 +82,7 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: build
       run: |
-        rustup toolchain install nightly-2020-02-17
+        rustup toolchain install nightly
+        rustup install nightly-2020-02-17
         yarn install --frozen-lockfile
         yarn build
