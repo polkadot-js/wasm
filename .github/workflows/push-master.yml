@@ -37,7 +37,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        rustup toolchain install nightly-2020-02-17
+        rustup toolchain install nightly
         yarn install --frozen-lockfile
         yarn polkadot-ci-ghact-build
 

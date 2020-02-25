@@ -1,3 +1,7 @@
+# 1.2.0-beta.x
+
+- Unpin nightly from nightly-2020-02-17 version
+
 # 1.1.1 Feb 24, 2020
 
 - **Important** The sr25519 interface dropped the use of `verify_simple_preaudit_deprecated` for signature verification, instead it now uses `verify_simple`. Only schnorrkel 0.8+ signatures will now pass verification. This is a follow-up of the 0.1 signing support that was dropped in a previous version.
