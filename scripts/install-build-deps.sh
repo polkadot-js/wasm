@@ -8,24 +8,39 @@ set -e
 # wasm2js for wasm -> asm.js
 BINARYEN=( "wasm-opt" "wasm2js" )
 
+unamestr=`uname`
+
 # install wasm-pack as required
 if ! [ -x "$(command -v wasm-pack)" ]; then
   echo "*** Installing wasm-pack"
   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 fi
 
-# install binaryen as required
-if [ ! -d "binaryen" ]; then
-  echo "*** Installing binaryen"
-  git clone --recursive https://github.com/WebAssembly/binaryen.git
-  rm -rf binaryen/test
+# CI, Linux
+if [[ "$unamestr" == 'Linux' ]]; then
+  if [ ! -d "binaryen" ]; then
+    curl -L https://github.com/WebAssembly/binaryen/releases/download/version_91/binaryen-version_91-x86-linux.tar.gz | tar xz
+    mkdir -p binaryen/bin
+
+    for BIN in "${BINARYEN[@]}"; do
+      mv binaryen-version_91/$BIN binaryen/bin
+    done
+  fi
+else
+  # install binaryen as required
+  if [ ! -d "binaryen" ]; then
+    echo "*** Installing binaryen"
+    git clone --recursive https://github.com/WebAssembly/binaryen.git
+    rm -rf binaryen/test
+  fi
+
+  for BIN in "${BINARYEN[@]}"; do
+    if [ ! -f "binaryen/bin/$BIN" ]; then
+      echo "*** Building $BIN"
+      cd binaryen
+      cmake . && make $BIN
+      cd ..
+    fi
+  done
 fi
 
-for BIN in "${BINARYEN[@]}"; do
-  if [ ! -f "binaryen/bin/$BIN" ]; then
-    echo "*** Building $BIN"
-    cd binaryen
-    cmake . && make $BIN
-    cd ..
-  fi
-done
