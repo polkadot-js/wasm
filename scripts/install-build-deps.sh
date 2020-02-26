@@ -19,6 +19,7 @@ fi
 # CI, Linux
 if [[ "$unamestr" == 'Linux' ]]; then
   if [ ! -d "binaryen" ]; then
+    echo "*** Downloading binaryen"
     curl -L https://github.com/WebAssembly/binaryen/releases/download/version_91/binaryen-version_91-x86-linux.tar.gz | tar xz
     mkdir -p binaryen/bin
 
@@ -29,7 +30,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
 else
   # install binaryen as required
   if [ ! -d "binaryen" ]; then
-    echo "*** Installing binaryen"
+    echo "*** Cloning binaryen"
     git clone --recursive https://github.com/WebAssembly/binaryen.git
     rm -rf binaryen/test
   fi
