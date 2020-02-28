@@ -5,8 +5,6 @@
 
 set -e
 
-echo "*** Testing package"
-
 echo "*** Testing WASM"
 node ./test/wasm.js
 
@@ -14,4 +12,6 @@ echo "*** Testing ASM.js"
 node ./test/asm.js
 
 echo "*** Testing via Jest"
-yarn polkadot-dev-run-test ./test/jest.spec.js
+# FIXME :(
+# yarn polkadot-dev-run-test ./test/jest.spec.js
+node_modules/@polkadot/dev/scripts/polkadot-dev-run-test.js ./test/jest.spec.js
