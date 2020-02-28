@@ -14,4 +14,4 @@ echo "*** Testing ASM.js"
 node ./test/asm.js
 
 echo "*** Testing via Jest"
-yarn jest ./test/jest.spec.js
+yarn polkadot-dev-run-test ./test/jest.spec.js
