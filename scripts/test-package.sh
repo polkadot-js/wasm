@@ -12,6 +12,6 @@ echo "*** Testing ASM.js"
 node ./test/asm.js
 
 echo "*** Testing via Jest"
-# FIXME :(
-# yarn polkadot-dev-run-test ./test/jest.spec.js
-node_modules/@polkadot/dev/scripts/polkadot-dev-run-test.js ./test/jest.spec.js
+yarn polkadot-dev-run-test ./test/jest.spec.js
+# FIXME, this should be via yarn
+# ../../node_modules/@polkadot/dev/scripts/polkadot-dev-run-test.js ./test/jest.spec.js

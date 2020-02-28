@@ -2662,6 +2662,8 @@ __metadata:
 "@polkadot/wasm-crypto@workspace:packages/wasm-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
+  dependencies:
+    "@polkadot/dev": ^0.50.8
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
