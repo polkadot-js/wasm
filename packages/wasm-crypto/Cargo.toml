@@ -36,3 +36,4 @@ rand = { version = "0.6.5", features = ["wasm-bindgen"] }
 
 [profile.release]
 lto = true
+opt-level = "s"
