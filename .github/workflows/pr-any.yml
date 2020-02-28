@@ -26,7 +26,7 @@ jobs:
           ${{ runner.os }}-yarn-
     - name: lint
       run: |
-        yarn install --frozen-lockfile
+        yarn install | grep -v 'YN0013'
         yarn lint
 
   test:
@@ -54,7 +54,7 @@ jobs:
     - name: test
       run: |
         rustup toolchain install nightly
-        yarn install --frozen-lockfile
+        yarn install | grep -v 'YN0013'
         yarn test
 
   build_code:
@@ -82,5 +82,5 @@ jobs:
     - name: build
       run: |
         rustup toolchain install nightly
-        yarn install --frozen-lockfile
+        yarn install | grep -v 'YN0013'
         yarn build

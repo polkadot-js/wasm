@@ -19,6 +19,9 @@
   },
   "main": "index.js",
   "types": "index.d.ts",
+  "devDependencies": {
+    "@polkadot/dev": "^0.50.8"
+  },
   "peerDependencies": {
     "@polkadot/util": "*"
   }
