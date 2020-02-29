@@ -1,7 +1,8 @@
-# 1.2.0-beta.x
+# 1.2.1 Feb 29, 2020
 
 - Adjust build process for smaller wasm bundle outputs (~50K dropped from base bundle)
 - Unpin nightly from nightly-2020-02-17 version
+- Swap to yarn 2 and add support for use by yarn 2 projects
 
 # 1.1.1 Feb 24, 2020
 
