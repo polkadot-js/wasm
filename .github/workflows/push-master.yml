@@ -38,7 +38,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
         rustup toolchain install nightly
-        yarn install | grep -v 'YN0013'
+        yarn install --immutable | grep -v 'YN0013'
         yarn polkadot-ci-ghact-build
 
   dummy:
