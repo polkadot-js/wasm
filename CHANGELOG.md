@@ -1,5 +1,6 @@
 # 1.2.0-beta.x
 
+- Adjust build process for smaller wasm bundle outputs (~50K dropped from base bundle)
 - Unpin nightly from nightly-2020-02-17 version
 
 # 1.1.1 Feb 24, 2020
