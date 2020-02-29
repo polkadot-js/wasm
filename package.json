@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "resolutions": {
+    "@polkadot/dev": "^0.50.14",
     "babel-core": "^7.0.0-bridge.0",
     "typescript": "^3.8.2"
   },
@@ -20,7 +21,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@polkadot/dev": "^0.50.8",
+    "@polkadot/dev": "^0.50.14",
     "@polkadot/util": "^2.5.1",
     "override-require": "^1.1.1"
   }
