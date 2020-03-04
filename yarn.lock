@@ -2887,6 +2887,7 @@ __metadata:
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
     "@polkadot/util": ^2.6.1
+    override-require: ^1.1.1
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -15175,7 +15176,6 @@ resolve@^1.14.2:
   dependencies:
     "@babel/core": ^7.8.4
     "@polkadot/dev": ^0.50.19
-    override-require: ^1.1.1
   languageName: unknown
   linkType: soft
 
