@@ -1,3 +1,6 @@
+.github/**
+.vscode/**
+.yarn/**
 **/binaryen/*
 **/build/*
 **/coverage/*
