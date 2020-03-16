@@ -5,6 +5,8 @@
 
 set -e
 
+rustup toolchain install nightly
+
 cd packages
 
 PACKAGES=( $(ls -1d *) )
