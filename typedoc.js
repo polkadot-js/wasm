@@ -1,16 +1,16 @@
 module.exports = {
-  name: 'Polkadot JS WASM',
   exclude: '**/*+(index|e2e|spec).ts',
   excludeExternals: true,
   excludeNotExported: true,
-  excludeProtected: true,
   excludePrivate: true,
+  excludeProtected: true,
   hideGenerator: true,
   includeDeclarations: false,
-  out: 'docs',
+  mdEngine: 'gitbook',
   module: 'commonjs',
   moduleResolution: 'node',
-  mdEngine: 'gitbook',
+  name: 'Polkadot JS WASM',
+  out: 'docs',
   stripInternal: 'true',
   theme: 'markdown'
 };

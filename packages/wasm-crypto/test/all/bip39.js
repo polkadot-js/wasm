@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/no-var-requires */
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 // @ts-check
+
+/* eslint-disable @typescript-eslint/camelcase */
 
 const { assert, u8aToHex } = require('@polkadot/util');
 
@@ -49,8 +49,8 @@ function bip39_toSeed (wasm) {
 
 module.exports = {
   bip39_generate,
-  bip39_validate,
   bip39_toEntropy,
   bip39_toMiniSecret,
-  bip39_toSeed
+  bip39_toSeed,
+  bip39_validate
 };
