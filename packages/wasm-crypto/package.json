@@ -20,7 +20,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "@polkadot/dev": "^0.52.5",
+    "@polkadot/dev": "^0.52.6",
     "@polkadot/util": "^2.7.1",
     "override-require": "^1.1.1"
   },
