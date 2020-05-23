@@ -9,7 +9,7 @@ const imports = require('./wasm');
 
 module.exports = async function createExportPromise () {
   try {
-    const { instance } = await WebAssembly.instantiate(bytes, { './wasm': imports });
+    const { instance } = await WebAssembly.instantiate(bytes, { __wbindgen_placeholder__: imports });
 
     return instance.exports;
   } catch (error) {
