@@ -20,7 +20,7 @@ rm -rf ./build ./pkg
 
 # build new via nightly & wasm-pack
 echo "*** Building WASM output"
-rustup run nightly wasm-pack build --release --scope polkadot --target nodejs
+rustup run nightly-2020-05-15 wasm-pack build --release --scope polkadot --target nodejs
 mv pkg build
 
 # optimise
