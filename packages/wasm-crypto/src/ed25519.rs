@@ -14,27 +14,27 @@ fn create_from_pair(pair: &[u8]) -> Keypair {
 }
 
 /// Keypair helper function
-fn create_from_parts(public: &[u8], secret: &[u8]) -> Keypair {
+fn create_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 	let mut pair = vec![];
 
-	pair.extend_from_slice(secret);
-	pair.extend_from_slice(public);
+	pair.extend_from_slice(seckey);
+	pair.extend_from_slice(pubkey);
 
 	create_from_pair(&pair)
 }
 
 /// Keypair helper function.
 fn create_from_seed(seed: &[u8]) -> Keypair {
-	let secret = SecretKey::from_bytes(seed).unwrap();
-	let public: PublicKey = (&secret).into();
+	let seckey = SecretKey::from_bytes(seed).unwrap();
+	let pubkey: PublicKey = (&seckey).into();
 
-	create_from_parts(public.as_bytes(), seed)
+	create_from_parts(pubkey.as_bytes(), seed)
 }
 
 /// PublicKey helper
-fn create_public(public: &[u8]) -> PublicKey {
-	match PublicKey::from_bytes(public) {
-		Ok(public) => return public,
+fn create_public(pubkey: &[u8]) -> PublicKey {
+	match PublicKey::from_bytes(pubkey) {
+		Ok(pubkey) => return pubkey,
 		Err(_) => panic!("Provided public key is invalid.")
 	}
 }
@@ -57,14 +57,14 @@ pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
 /// The combination of both public and private key must be provided.
 /// This is effectively equivalent to a keypair.
 ///
-/// * public: UIntArray with 32 element
+/// * pubkey: UIntArray with 32 element
 /// * private: UIntArray with 64 element
 /// * message: Arbitrary length UIntArray
 ///
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
-pub fn ext_ed_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
-	create_from_parts(public, secret)
+pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
+	create_from_parts(pubkey, seckey)
 		.sign(message)
 		.to_bytes()
 		.to_vec()
@@ -76,13 +76,13 @@ pub fn ext_ed_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * message: Arbitrary length UIntArray
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
-pub fn ext_ed_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
+pub fn ext_ed_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 	let signature = match Signature::from_bytes(signature) {
 		Ok(signature) => signature,
 		Err(_) => return false
 	};
 
-	create_public(public)
+	create_public(pubkey)
 		.verify(message, &signature)
 		.is_ok()
 }

@@ -20,7 +20,7 @@ rm -rf ./build ./pkg
 
 # build new via nightly & wasm-pack
 echo "*** Building WASM output"
-rustup run nightly wasm-pack build --release --scope polkadot --target nodejs
+rustup run nightly-2020-05-15 wasm-pack build --release --scope polkadot --target nodejs
 mv pkg build
 
 # optimise
@@ -53,14 +53,21 @@ sed -i -e 's/var wasm;/const crypto = require('\''crypto'\''); let wasm; const r
 sed -i -e 's/return addHeapObject(require(varg0));/return addHeapObject(requires[varg0]);/g' $SRC_WASM
 
 # this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e 's/const TextEncoder = require('\''util'\'')\.TextEncoder;/const { stringToU8a } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
+sed -i -e 's/const { TextEncoder } = require(String.raw`util`);/const { stringToU8a } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
 sed -i -e 's/let cachedTextEncoder = new /\/\/ let cachedTextEncoder = new /g' $SRC_WASM
 sed -i -e 's/cachedTextEncoder\.encode/stringToU8a/g' $SRC_WASM
 
 # this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e 's/const TextDecoder = require('\''util'\'')\.TextDecoder;/const { u8aToString } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
+sed -i -e 's/const { TextDecoder } = require(String.raw`util`);/const { u8aToString } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
 sed -i -e 's/let cachedTextDecoder = new /\/\/ let cachedTextDecoder = new /g' $SRC_WASM
 sed -i -e 's/cachedTextDecoder\.decode/u8aToString/g' $SRC_WASM
+
+# this is where we get the actual bg file
+sed -i -e 's/const path = require/\/\/ const path = require/g' $SRC_WASM
+sed -i -e 's/const bytes = require/\/\/ const bytes = require/g' $SRC_WASM
+sed -i -e 's/const wasmModule =/\/\/ const wasmModule =/g' $SRC_WASM
+sed -i -e 's/const wasmInstance =/\/\/ const wasmInstance =/g' $SRC_WASM
+sed -i -e 's/wasm = wasmInstance/\/\/ wasm = wasmInstance/g' $SRC_WASM
 
 # construct our promise and add ready helpers (WASM)
 echo "

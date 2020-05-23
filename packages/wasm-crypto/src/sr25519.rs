@@ -64,8 +64,8 @@ pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 ///
 /// returned vector is the derived publicKey as a array of 32 bytes
 #[wasm_bindgen]
-pub fn ext_sr_derive_public_soft(public: &[u8], cc: &[u8]) -> Vec<u8> {
-	PublicKey::from_bytes(public)
+pub fn ext_sr_derive_public_soft(pubkey: &[u8], cc: &[u8]) -> Vec<u8> {
+	PublicKey::from_bytes(pubkey)
 		.unwrap()
 		.derived_key_simple(create_cc(cc), &[]).0
 		.to_bytes()
@@ -105,16 +105,16 @@ pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
 /// The combination of both public and private key must be provided.
 /// This is effectively equivalent to a keypair.
 ///
-/// * public: UIntArray with 32 element
+/// * pubkey: UIntArray with 32 element
 /// * private: UIntArray with 64 element
 /// * message: Arbitrary length UIntArray
 ///
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
-pub fn ext_sr_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
+pub fn ext_sr_sign(pubkey: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 	SecretKey::from_ed25519_bytes(secret)
 		.unwrap()
-		.sign_simple(SIGNING_CTX, message, &PublicKey::from_bytes(public).unwrap())
+		.sign_simple(SIGNING_CTX, message, &PublicKey::from_bytes(pubkey).unwrap())
 		.to_bytes()
 		.to_vec()
 }
@@ -125,9 +125,9 @@ pub fn ext_sr_sign(public: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * message: Arbitrary length UIntArray
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
-pub fn ext_sr_verify(signature: &[u8], message: &[u8], public: &[u8]) -> bool {
+pub fn ext_sr_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 	match Signature::from_bytes(signature) {
-		Ok(signature) => PublicKey::from_bytes(public).unwrap()
+		Ok(signature) => PublicKey::from_bytes(pubkey).unwrap()
 			.verify_simple(SIGNING_CTX, message, &signature)
 			.is_ok(),
 		Err(_) => false

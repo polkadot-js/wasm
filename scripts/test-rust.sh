@@ -5,7 +5,7 @@
 
 set -e
 
-rustup toolchain install nightly
+rustup toolchain install nightly-2020-05-15
 
 cd packages
 
@@ -16,7 +16,7 @@ for PKG in "${PACKAGES[@]}"; do
     cd $PKG
     echo "*** Testing Rust $PKG"
 
-    RUST_BACKTRACE=full rustup run nightly cargo test --release -- --nocapture
+    RUST_BACKTRACE=full rustup run nightly-2020-05-15 cargo test --release -- --nocapture
 
     cd ..
   fi

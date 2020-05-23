@@ -5,7 +5,7 @@
 
 set -e
 
-rustup toolchain install nightly
+rustup toolchain install nightly-2020-05-15
 ./scripts/install-build-deps.sh
 
 echo "*** Building packages"
