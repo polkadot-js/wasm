@@ -5,7 +5,6 @@
 export function bip39Generate (words: 12 | 15 | 18 | 21 | 24): string;
 export function bip39ToEntropy (phrase: string): Uint8Array;
 export function bip39ToMiniSecret (phrase: string, password: string): Uint8Array;
-export function bip39ToSeed (phrase: string, password: string): Uint8Array;
 export function bip39Validate (phrase: string): boolean;
 
 export function ed25519KeypairFromSeed (seed: Uint8Array): Uint8Array;

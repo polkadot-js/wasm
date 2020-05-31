@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.3.0-beta.x
+
+- Remove `bip39ToSeed`, we only use the `bip39ToMiniSecret` variant in Substrate
+
 ## 1.2.1 Feb 29, 2020
 
 - Adjust build process for smaller wasm bundle outputs (~50K dropped from base bundle)
