@@ -5,11 +5,5 @@
 
 set -e
 
-echo "*** Testing WASM"
-node ./test/wasm.js
-
-echo "*** Testing ASM.js"
-node ./test/asm.js
-
-echo "*** Testing via Jest"
-yarn polkadot-dev-run-test ./test/jest.spec.js
+rustup toolchain install nightly-2020-05-15
+yarn polkadot-ci-ghact-build

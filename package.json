@@ -7,21 +7,18 @@
     "packages/*"
   ],
   "resolutions": {
-    "@polkadot/dev": "^0.55.6",
-    "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^3.8.3"
+    "babel-core": "^7.0.0-bridge.0"
   },
   "scripts": {
     "build": "./scripts/build.sh",
+    "build:release": "./scripts/build-release.sh",
     "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@polkadot/dev": "^0.55.6",
-    "@polkadot/util": "^2.11.1",
-    "override-require": "^1.1.1"
+    "@babel/core": "^7.9.6",
+    "@polkadot/dev": "^0.55.6"
   }
 }

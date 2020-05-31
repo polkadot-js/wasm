@@ -5,31 +5,17 @@ on:
       - master
 
 jobs:
-  build_code:
-    name: Build Code
-    if: "! startsWith(github.event.head_commit.message, '[CI Skip]')"
-    runs-on: ubuntu-latest
+  master:
     strategy:
       matrix:
-        node-version: [12.x]
+        step: ['build:release']
+    name: ${{ matrix.step }}
+    if: "! startsWith(github.event.head_commit.message, '[CI Skip]') && github.repository == 'polkadot-js/wasm'"
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
       with:
         token: ${{ secrets.GH_PAT }}
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Config yarn cache
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - uses: actions/cache@v1
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - name: build
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
@@ -37,9 +23,8 @@ jobs:
         GH_RELEASE_GITHUB_API_TOKEN: ${{ secrets.GH_PAT }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
-        rustup toolchain install nightly
         yarn install --immutable | grep -v 'YN0013'
-        yarn polkadot-ci-ghact-build
+        yarn ${{ matrix.step }}
 
   dummy:
     runs-on: ubuntu-latest

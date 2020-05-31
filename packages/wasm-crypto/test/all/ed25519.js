@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/no-var-requires */
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
-// @ts-check
+
+/* eslint-disable camelcase */
 
 const crypto = require('crypto');
 const { assert, hexToU8a, stringToU8a, u8aToHex } = require('@polkadot/util');
@@ -55,8 +54,8 @@ function ed25519_benchmark (wasm) {
 }
 
 module.exports = {
+  ed25519_benchmark,
   ed25519_pairFromSeed,
   ed25519_signAndVerify,
-  ed25519_verifyExisting,
-  ed25519_benchmark
+  ed25519_verifyExisting
 };

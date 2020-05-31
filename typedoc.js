@@ -1,16 +1,20 @@
+// Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
+// This software may be modified and distributed under the terms
+// of the Apache-2.0 license. See the LICENSE file for details.
+
 module.exports = {
-  name: 'Polkadot JS WASM',
   exclude: '**/*+(index|e2e|spec).ts',
   excludeExternals: true,
   excludeNotExported: true,
-  excludeProtected: true,
   excludePrivate: true,
+  excludeProtected: true,
   hideGenerator: true,
   includeDeclarations: false,
-  out: 'docs',
+  mdEngine: 'gitbook',
   module: 'commonjs',
   moduleResolution: 'node',
-  mdEngine: 'gitbook',
+  name: 'Polkadot JS WASM',
+  out: 'docs',
   stripInternal: 'true',
   theme: 'markdown'
 };

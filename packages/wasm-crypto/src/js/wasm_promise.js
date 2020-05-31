@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
@@ -10,7 +9,7 @@ const imports = require('./wasm');
 
 module.exports = async function createExportPromise () {
   try {
-    const { instance } = await WebAssembly.instantiate(bytes, { './wasm': imports });
+    const { instance } = await WebAssembly.instantiate(bytes, { __wbindgen_placeholder__: imports });
 
     return instance.exports;
   } catch (error) {
