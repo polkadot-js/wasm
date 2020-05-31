@@ -39,18 +39,9 @@ function bip39_toMiniSecret (wasm) {
   assert(RESULT === '0x4313249608fe8ac10fd5886c92c4579007272cb77c21551ee5b8d60b78041685', 'ERROR: Invalid bip39 mini secret');
 }
 
-function bip39_toSeed (wasm) {
-  const RESULT = u8aToHex(wasm.bip39ToSeed('seed sock milk update focus rotate barely fade car face mechanic mercy', ''));
-
-  console.log('\tSEE', RESULT);
-
-  assert(RESULT === '0x3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027', 'ERROR: Invalid bip39 mini secret');
-}
-
 module.exports = {
   bip39_generate,
   bip39_toEntropy,
   bip39_toMiniSecret,
-  bip39_toSeed,
   bip39_validate
 };
