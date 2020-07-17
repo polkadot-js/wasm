@@ -2,7 +2,8 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-use ed25519_dalek::{Keypair, PublicKey, SecretKey, Signature};
+use std::convert::TryFrom;
+use ed25519_dalek::{Keypair, PublicKey, SecretKey, Signature, Signer as _, Verifier as _};
 use wasm_bindgen::prelude::*;
 
 /// Keypair helper function.
@@ -77,7 +78,7 @@ pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_ed_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
-	let signature = match Signature::from_bytes(signature) {
+	let signature = match Signature::try_from(signature) {
 		Ok(signature) => signature,
 		Err(_) => return false
 	};
