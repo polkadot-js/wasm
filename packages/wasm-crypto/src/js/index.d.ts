@@ -21,6 +21,7 @@ export function sr25519Verify (signature: Uint8Array, message: Uint8Array, publi
 export function blake2b (data: Uint8Array, key: Uint8Array, byteSize: number): Uint8Array;
 export function keccak256 (data: Uint8Array): Uint8Array;
 export function pbkdf2 (data: Uint8Array, salt: Uint8Array, rounds: number): Uint8Array;
+export function scrypt (password: Uint8Array, salt: Uint8Array, log2N: number, r: number, p: number): Uint8Array;
 // export function secp256k1IsRecoverable (message: Uint8Array, signature: Uint8Array): number;
 // export function secp256k1Recover (message: Uint8Array, signature: Uint8Array): Uint8Array;
 export function sha512 (data: Uint8Array): Uint8Array;

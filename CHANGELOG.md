@@ -2,6 +2,7 @@
 
 ## 1.3.0-beta.x
 
+- Add `scrypt` function for KDF generation
 - Remove `bip39ToSeed`, we only use the `bip39ToMiniSecret` variant in Substrate
 - Update ed25519-dalek to 1.0.0-pre.4
 
