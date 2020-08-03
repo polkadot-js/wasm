@@ -1401,7 +1401,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.5, @babel/runtime@npm:^7.11.0, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.6":
+"@babel/runtime@npm:^7.11.0, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.6":
   version: 7.11.0
   resolution: "@babel/runtime@npm:7.11.0"
   dependencies:
@@ -2807,17 +2807,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@polkadot/util@npm:3.0.1"
+"@polkadot/util@npm:^3.1.0-beta.2":
+  version: 3.1.0-beta.2
+  resolution: "@polkadot/util@npm:3.1.0-beta.2"
   dependencies:
-    "@babel/runtime": ^7.10.5
+    "@babel/runtime": ^7.11.0
     "@types/bn.js": ^4.11.6
     bn.js: ^5.1.2
     camelcase: ^5.3.1
     chalk: ^4.1.0
     ip-regex: ^4.1.0
-  checksum: 3/2b2577733a6d493ab6a814b4c4038b9fb921687c5e9d66ab012aec0b984b44a3b8c793c416e1ffced92f28dcee8449a4738de6cd7c8c3f65230d26625c0348f6
+  checksum: 3/1a154498bd690330cc7e0b2da845034ba7338415440d6103a60b4e0ac2a1df7a6d431677b07b338587651669a0c5568979e9a86d4b523c590d75282c39c9eae5
   languageName: node
   linkType: hard
 
@@ -2826,7 +2826,7 @@ __metadata:
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
     "@polkadot/dev": ^0.55.31
-    "@polkadot/util": ^3.0.1
+    "@polkadot/util": ^3.1.0-beta.2
     override-require: ^1.1.1
   peerDependencies:
     "@polkadot/util": "*"
@@ -3755,11 +3755,11 @@ __metadata:
   linkType: hard
 
 "acorn@npm:^7.1.1, acorn@npm:^7.3.1":
-  version: 7.3.1
-  resolution: "acorn@npm:7.3.1"
+  version: 7.4.0
+  resolution: "acorn@npm:7.4.0"
   bin:
     acorn: bin/acorn
-  checksum: 3/3fa70393843c3fd4af691f449563e983e064c5c3f655fd943f5f77fb767257623f8afc0a2454b0037aa0c4dd95374c75a9e0e6c54a5f497fc63e63449ad6327c
+  checksum: 3/a25b12d9e803df49593e983f05abd8084be883df23f78a3ceb49bfb9c453fdc43d51b3ce268b6acd7694c34d9cde1707acb1cdcbc5303bde47bee43ffc131491
   languageName: node
   linkType: hard
 
