@@ -45,33 +45,44 @@ sed -i -e 's/export var /module\.exports\./g' $ASM
 echo "*** Copying package sources"
 cp src/js/* build/
 
+echo "const crypto = require('crypto');
+const { stringToU8a, u8aToString } = require('@polkadot/util');
+
+const requires = { crypto };
+
+$(cat $SRC_WASM)
+" > $SRC_WASM
+
+# whack comments
+sed -i -e '/^\/\*\*/d' $SRC_WASM
+sed -i -e '/^\*/d' $SRC_WASM
+sed -i -e '/^\*\//d' $SRC_WASM
+
 # we are swapping to a async interface for webpack support (wasm limits)
-sed -i -e 's/wasm = require/\/\/ wasm = require/g' $SRC_WASM
+sed -i -e '/^wasm = require/d' $SRC_WASM
 
 # We don't want inline requires
-sed -i -e 's/let wasm;/const crypto = require('\''crypto'\''); let wasm; const requires = { crypto };/g' $SRC_WASM
 sed -i -e 's/ret = require(getStringFromWasm0(arg0, arg1));/ret = requires[getStringFromWasm0(arg0, arg1)];/g' $SRC_WASM
 
 # this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e 's/const { TextEncoder } = require(String.raw`util`);/const { stringToU8a } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
-sed -i -e 's/let cachedTextEncoder = new /\/\/ let cachedTextEncoder = new /g' $SRC_WASM
+sed -i -e '/^const { TextEncoder } = require/d' $SRC_WASM
+sed -i -e '/^let cachedTextEncoder = new /d' $SRC_WASM
 sed -i -e 's/cachedTextEncoder\.encode/stringToU8a/g' $SRC_WASM
 
 # this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e 's/const { TextDecoder } = require(String.raw`util`);/const { u8aToString } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
-sed -i -e 's/let cachedTextDecoder = new /\/\/ let cachedTextDecoder = new /g' $SRC_WASM
+sed -i -e '/^const { TextDecoder } = require/d' $SRC_WASM
+sed -i -e '/^let cachedTextDecoder = new/d' $SRC_WASM
 sed -i -e 's/cachedTextDecoder\.decode/u8aToString/g' $SRC_WASM
 
 # this is where we get the actual bg file
-sed -i -e 's/const path = require/\/\/ const path = require/g' $SRC_WASM
-sed -i -e 's/const bytes = require/\/\/ const bytes = require/g' $SRC_WASM
-sed -i -e 's/const wasmModule =/\/\/ const wasmModule =/g' $SRC_WASM
-sed -i -e 's/const wasmInstance =/\/\/ const wasmInstance =/g' $SRC_WASM
-sed -i -e 's/wasm = wasmInstance/\/\/ wasm = wasmInstance/g' $SRC_WASM
+sed -i -e '/^const path = require/d' $SRC_WASM
+sed -i -e '/^const bytes = require/d' $SRC_WASM
+sed -i -e '/^const wasmModule =/d' $SRC_WASM
+sed -i -e '/^const wasmInstance =/d' $SRC_WASM
+sed -i -e '/^wasm = wasmInstance/d' $SRC_WASM
 
 # construct our promise and add ready helpers (WASM)
-echo "
-module.exports.abort = function () { throw new Error('abort'); };
+echo "module.exports.abort = function () { throw new Error('abort'); };
 
 const createPromise = require('./wasm_promise');
 const wasmPromise = createPromise().catch(() => null);
