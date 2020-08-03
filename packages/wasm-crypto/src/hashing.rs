@@ -6,6 +6,7 @@ use blake2_rfc::blake2b::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
 use hmac::Hmac;
 use pbkdf2::pbkdf2;
+use scrypt::{ScryptParams, scrypt};
 use sha2::{Digest, Sha512};
 // use secp256k1;
 use tiny_keccak::{Hasher, Keccak};
@@ -58,13 +59,13 @@ pub fn ext_keccak256(data: &[u8]) -> Vec<u8> {
 	result.to_vec()
 }
 
-/// pbkdf2 hash from an input, salt for the number of specified rounds
+/// pbkdf2 kdf from an input, salt for the number of specified rounds
 ///
 /// * data: Arbitrary data to be hashed
 /// * salt: Salt for this hash
 /// * rounds: The number of rounds to perform
 ///
-/// Returns a vecor with the hash result
+/// Returns a vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 	let mut result = [0u8; 64];
@@ -73,6 +74,26 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 	pbkdf2::<Hmac<Sha512>>(data, salt, rounds as usize, &mut result);
 
 	result.to_vec()
+}
+
+/// scrypt kdf from input, salt and config
+///
+/// * password: Password to hash
+/// * salt: Salt for this hash
+/// * log2_n: log2(n)
+/// * r: r
+/// * p: p
+///
+/// Returns vector with the hashed result
+#[wasm_bindgen]
+pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
+	let params = ScryptParams::new(log2_n, r, p).unwrap();
+	let mut result = [0u8; 64];
+
+	match scrypt(password, salt, &params, &mut result) {
+		Ok(_) => return result.to_vec(),
+		Err(_) => panic!("Invalid scrypt hash.")
+	}
 }
 
 // /// Checks for the recoverability of a signature from message
@@ -211,6 +232,16 @@ pub mod tests {
 		let data = b"hello world";
 		let expected = hex!("5fcbe04f05300a3ecc5c35d18ea0b78f3f6853d2ae5f3fca374f69a7d1f78b5def5c60dae1a568026c7492511e0c53521e8bb6e03a650e1263265fee92722270");
 		let hash = ext_pbkdf2(data, salt, 2048);
+
+		assert_eq!(hash[..], expected[..]);
+	}
+
+	#[test]
+	fn can_scrypt() {
+		let password = b"password";
+		let salt = b"salt";
+		let expected = hex!("745731af4484f323968969eda289aeee005b5903ac561e64a5aca121797bf7734ef9fd58422e2e22183bcacba9ec87ba0c83b7a2e788f03ce0da06463433cda6");
+		let hash = ext_scrypt(password, salt, 14, 8, 1);
 
 		assert_eq!(hash[..], expected[..]);
 	}

@@ -37,6 +37,7 @@ module.exports = function (stubbed) {
     blake2b: wrapReady(stubbed.ext_blake2b),
     keccak256: wrapReady(stubbed.ext_keccak256),
     pbkdf2: wrapReady(stubbed.ext_pbkdf2),
+    scrypt: wrapReady(stubbed.ext_scrypt),
 
     // secp256k1IsRecoverable: wrapReady(stubbed.ext_secp256k1_is_recoverable);
     // secp256k1Recover: wrapReady(stubbed.ext_secp256k1_recover);
