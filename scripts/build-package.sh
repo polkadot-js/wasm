@@ -49,8 +49,8 @@ cp src/js/* build/
 sed -i -e 's/wasm = require/\/\/ wasm = require/g' $SRC_WASM
 
 # We don't want inline requires
-sed -i -e 's/var wasm;/const crypto = require('\''crypto'\''); let wasm; const requires = { crypto };/g' $SRC_WASM
-sed -i -e 's/return addHeapObject(require(varg0));/return addHeapObject(requires[varg0]);/g' $SRC_WASM
+sed -i -e 's/let wasm;/const crypto = require('\''crypto'\''); let wasm; const requires = { crypto };/g' $SRC_WASM
+sed -i -e 's/ret = require(getStringFromWasm0(arg0, arg1));/ret = requires[getStringFromWasm0(arg0, arg1)];/g' $SRC_WASM
 
 # this creates issues in both the browser and RN (@polkadot/util has a polyfill)
 sed -i -e 's/const { TextEncoder } = require(String.raw`util`);/const { stringToU8a } = require('\''@polkadot\/util'\'');/g' $SRC_WASM
