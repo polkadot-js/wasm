@@ -38,3 +38,6 @@ rand = { version = "0.7.3", features = ["wasm-bindgen"] }
 [profile.release]
 lto = true
 opt-level = "z"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
