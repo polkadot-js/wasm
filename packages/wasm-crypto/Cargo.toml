@@ -25,11 +25,10 @@ pbkdf2 = { version = "0.3.0", default-features = false }
 schnorrkel = { version = "0.9.1", features = ["nightly", "preaudit_deprecated", "u64_backend"] }
 scrypt = { version = "0.2", default-features = false }
 sha2 = "0.8.1"
-subtle = "2.2.3"
 tiny-bip39 = { version = "0.7", default-features = false }
 tiny-keccak = { version = "2.0.1", features = ["keccak"] }
 twox-hash = "1.5.0"
-wasm-bindgen = "0.2.65"
+wasm-bindgen = "=0.2.65"
 wee_alloc = "0.4.3"
 
 [dev-dependencies]
@@ -39,3 +38,6 @@ rand = { version = "0.7.3", features = ["wasm-bindgen"] }
 [profile.release]
 lto = true
 opt-level = "z"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
