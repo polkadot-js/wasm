@@ -35,10 +35,11 @@ node ../../scripts/pack-wasm-base64.js
 echo "*** Building asm.js version"
 ../../binaryen/bin/wasm2js --output $ASM $OPT
 
-# cleanup the generated output, sadly there are no node-js outputs above
-sed -i -e 's/import {/\/\/ import {/g' $ASM
-sed -i -e 's/function asmFunc/var schnorrkel = require('\''\.\/wasm'\''); function asmFunc/g' $ASM
-sed -i -e 's/{abort.*},memasmFunc/schnorrkel, memasmFunc/g' $ASM
+# cleanup the generated asm, converting to cjs
+sed -i -e '/import {/d' $ASM
+echo "const imported = require('./wasm');
+$(cat $ASM)" > $ASM
+sed -i -e 's/{abort.*},memasmFunc/imported, memasmFunc/g' $ASM
 sed -i -e 's/export var /module\.exports\./g' $ASM
 
 # copy our package interfaces
