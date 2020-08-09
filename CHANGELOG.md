@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.3.0-beta.x
+## 1.3.1 Aug 9, 2020
 
 - Add `scrypt` function for KDF generation
 - Remove `bip39ToSeed`, we only use the `bip39ToMiniSecret` variant in Substrate
