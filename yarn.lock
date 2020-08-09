@@ -2719,9 +2719,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.55.35":
-  version: 0.55.35
-  resolution: "@polkadot/dev@npm:0.55.35"
+"@polkadot/dev@npm:^0.55.36":
+  version: 0.55.36
+  resolution: "@polkadot/dev@npm:0.55.36"
   dependencies:
     "@babel/cli": ^7.10.5
     "@babel/core": ^7.11.1
@@ -2751,6 +2751,7 @@ __metadata:
     babel-plugin-module-resolver: ^4.0.0
     babel-plugin-styled-components: ^1.11.1
     browserslist: ^4.14.0
+    chalk: ^4.1.0
     coveralls: ^3.1.0
     cpx: ^1.5.0
     eslint: ^7.6.0
@@ -2807,7 +2808,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: 40fa651d13d69d6852e969c25c6adac6fc920ed43c87d88b23171f679fe2219bdb3d00ec9f6c6c14279cc79324f7edff291cf42cefa3ffef20fea4b925607ff4
+  checksum: d651ef83ef38cabd7f40e3afe2d696d5bb01d5ce6d7ac6a0f5840e6f3795840412136bf48e8e57035b64acdff67699617523a97ec348b882af930128a056d28f
   languageName: node
   linkType: hard
 
@@ -2829,7 +2830,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
-    "@polkadot/dev": ^0.55.35
+    "@polkadot/dev": ^0.55.36
     "@polkadot/util": ^3.0.1
     override-require: ^1.1.1
   peerDependencies:
@@ -8844,21 +8845,21 @@ __metadata:
   linkType: hard
 
 "git-up@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "git-up@npm:4.0.1"
+  version: 4.0.2
+  resolution: "git-up@npm:4.0.2"
   dependencies:
     is-ssh: ^1.3.0
     parse-url: ^5.0.0
-  checksum: a8e6f85274461d696a316b73d74ac395d7f20e964ff0948ed874c7d2124dec54bbbc793149f413b557244dd27c37e9a0ec6ecf8de06d2b8ff29a6e6a785055c8
+  checksum: 1ccbc336df7c0c6cc9937f9bf90739f6546a23d89bbb81b276c664ef95d0c2d3310896744107fc18b289d35950a2b15f8f695d1212a4bd402604b049d6518713
   languageName: node
   linkType: hard
 
 "git-url-parse@npm:^11.1.2":
-  version: 11.1.2
-  resolution: "git-url-parse@npm:11.1.2"
+  version: 11.1.3
+  resolution: "git-url-parse@npm:11.1.3"
   dependencies:
     git-up: ^4.0.0
-  checksum: 01d5ab08c08103878905f919a71ecc6c0cc6321b833b92f9cb3acbd034b9a67e4b503163f966bc0dbab05a9d07077845586034b751b4d22cd491b0e56813be8d
+  checksum: c9f06eeb3fc4a5a89e1045fb9d26be314863f5025d7c6ccbd6aa3d8c6ddcb6fa43e7f1f67d05fb4cfaa0a89fd7c54a65bcd55098f474304ac7708648a9b848af
   languageName: node
   linkType: hard
 
@@ -10509,11 +10510,11 @@ __metadata:
   linkType: hard
 
 "is-ssh@npm:^1.3.0":
-  version: 1.3.1
-  resolution: "is-ssh@npm:1.3.1"
+  version: 1.3.2
+  resolution: "is-ssh@npm:1.3.2"
   dependencies:
     protocols: ^1.1.0
-  checksum: 499fe96dc5ccaf82f7f5df642d4869270092bcc763786234cbd86823a7b565dba8d1fb9d02553cff6ec05974ca888a9af5056e2611bbb68dc869046cb71804a3
+  checksum: a0dca2d8635505958cca01fd813a14aa53583717c64abbb1ae65a87715d5f5e57d9a8ab7f65d6ba3772badf7fe0e11a18fae67c01ecb957b847b972b007f4da3
   languageName: node
   linkType: hard
 
@@ -15672,7 +15673,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.11.1
-    "@polkadot/dev": ^0.55.35
+    "@polkadot/dev": ^0.55.36
   languageName: unknown
   linkType: soft
 
