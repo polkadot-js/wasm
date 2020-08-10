@@ -17,6 +17,7 @@ tmp/
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+!.yarn/sdks
 cc-test-reporter
 lerna-debug.log*
 npm-debug.log*
