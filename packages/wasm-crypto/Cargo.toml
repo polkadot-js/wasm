@@ -36,8 +36,10 @@ hex-literal = "0.2.0"
 rand = { version = "0.7.3", features = ["wasm-bindgen"] }
 
 [profile.release]
+codegen-units = 1
 lto = true
 opt-level = "z"
+panic = "abort"
 
 [package.metadata.wasm-pack.profile.release]
 wasm-opt = false
