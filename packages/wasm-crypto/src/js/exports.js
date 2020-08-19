@@ -6,7 +6,7 @@
 
 const { assert } = require('@polkadot/util');
 
-const INIT_ERRROR = '@polkadot/wasm-crypto has not been initialized';
+const INIT_ERRROR = 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.';
 
 module.exports = function (stubbed) {
   const wrapReady = (fn) =>
