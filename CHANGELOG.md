@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.4.0-beta.x
+
+- Rea-add the BTC/ETH compatible `bip39ToSeed` dropped in the previous version (ETH-compatible pairs)
+
 ## 1.3.1 Aug 9, 2020
 
 - Add `scrypt` function for KDF generation
