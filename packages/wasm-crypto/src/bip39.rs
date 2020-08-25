@@ -48,6 +48,20 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 	result[..32].to_vec()
 }
 
+/// Creates a BTC/ETH compatible seed from a bip-39 phrase
+///
+/// @phrase: mnemonic phrase
+///
+/// Returns a 32-byte seed
+#[wasm_bindgen]
+pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
+	let mnemonic = Mnemonic::from_phrase(phrase, Language::English).unwrap();
+
+	Seed::new(&mnemonic, password)
+		.as_bytes()[..32]
+		.to_vec()
+}
+
 /// Validates a bip39 phrase
 ///
 /// * phrase: mnemonic phrase
@@ -83,6 +97,15 @@ pub mod tests {
 		let result = ext_bip39_to_mini_secret(phrase, password);
 
 		assert_eq!(result[..], mini[..]);
+	}
+
+	#[test]
+	fn can_bip39_seed() {
+		let phrase = "seed sock milk update focus rotate barely fade car face mechanic mercy";
+		let seed = hex!("3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027");
+		let result = ext_bip39_to_seed(phrase, "");
+
+		assert_eq!(result[..], seed[..]);
 	}
 
 	#[test]
