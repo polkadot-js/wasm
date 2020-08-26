@@ -18,8 +18,8 @@
     "test": "./scripts/test-rust.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@polkadot/dev": "^0.55.39"
+    "@babel/core": "^7.11.4",
+    "@polkadot/dev": "^0.55.41"
   },
   "version": "1.4.0-beta.6"
 }
