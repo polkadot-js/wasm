@@ -22,5 +22,5 @@
     "@babel/core": "^7.11.6",
     "@polkadot/dev": "^0.55.46"
   },
-  "version": "1.5.0-beta.0"
+  "version": "1.5.0-beta.1"
 }
