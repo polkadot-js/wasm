@@ -1,6 +1,5 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
 use std::convert::TryFrom;
 use ed25519_dalek::{Keypair, PublicKey, SecretKey, Signature, Signer as _, Verifier as _};

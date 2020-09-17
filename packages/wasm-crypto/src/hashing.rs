@@ -1,6 +1,5 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
 use blake2_rfc::blake2b::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
