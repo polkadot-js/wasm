@@ -31,6 +31,10 @@ twox-hash = "1.5.0"
 wasm-bindgen = "=0.2.65"
 wee_alloc = "0.4.3"
 
+[patch.crates-io]
+# override mmx feature on nightly as per https://github.com/rust-lang/packed_simd
+packed_simd = { git = "https://github.com/rust-lang/packed_simd", rev = "be67180ce71ffece16fdacbe65ba6badaa79cb6e" }
+
 [dev-dependencies]
 hex-literal = "0.2.0"
 rand = { version = "0.7.3", features = ["wasm-bindgen"] }
@@ -40,6 +44,3 @@ codegen-units = 1
 lto = true
 opt-level = "z"
 panic = "abort"
-
-[package.metadata.wasm-pack.profile.release]
-wasm-opt = false
