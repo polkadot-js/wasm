@@ -22,7 +22,7 @@ ed25519-dalek = { version = "1.0.0-pre.4", features = ["nightly"] }
 hmac = "0.7.0"
 # libsecp256k1 = "0.2.2"
 pbkdf2 = { version = "0.3.0", default-features = false }
-schnorrkel = { version = "0.9.1", features = ["nightly", "preaudit_deprecated"] }
+schnorrkel = { version = "0.9.1", features = ["nightly", "preaudit_deprecated", "u64_backend"] }
 scrypt = { version = "0.2", default-features = false }
 sha2 = "0.8.1"
 tiny-bip39 = { version = "0.7", default-features = false }
@@ -37,7 +37,7 @@ packed_simd = { git = "https://github.com/rust-lang/packed_simd", rev = "be67180
 
 [dev-dependencies]
 hex-literal = "0.2.0"
-rand = { version = "0.7.3", features = ["wasm-bindgen"] }
+rand = { version = "0.7.3", default-features = false, features = ["nightly", "wasm-bindgen"], optional = false }
 
 [profile.release]
 codegen-units = 1
