@@ -5,7 +5,7 @@
 
 set -e
 
-rustup toolchain install stable
+# rustup toolchain install stable
 cd packages
 
 PACKAGES=( $(ls -1d *) )
