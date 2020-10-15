@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.5.0-x
+
+- Move to building via stable, not nightly
+
+
 ## 1.4.1 Aug 27, 2020
 
 - Rea-add the BTC/ETH compatible `bip39ToSeed` dropped in the previous version (ETH-compatible pairs)

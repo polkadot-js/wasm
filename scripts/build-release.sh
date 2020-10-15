@@ -5,5 +5,5 @@
 
 set -e
 
-rustup toolchain install nightly$NIGHTLY
+rustup toolchain install stable
 yarn polkadot-ci-ghact-build

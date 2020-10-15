@@ -5,8 +5,7 @@
 
 set -e
 
-rustup toolchain install nightly$NIGHTLY
-
+rustup toolchain install stable
 cd packages
 
 PACKAGES=( $(ls -1d *) )
@@ -16,7 +15,7 @@ for PKG in "${PACKAGES[@]}"; do
     cd $PKG
     echo "*** Testing Rust $PKG"
 
-    RUST_BACKTRACE=full rustup run nightly$NIGHTLY cargo test --release -- --nocapture
+    RUST_BACKTRACE=full rustup run cargo test --release -- --nocapture
 
     cd ..
   fi
