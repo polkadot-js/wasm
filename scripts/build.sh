@@ -5,7 +5,7 @@
 
 set -e
 
-# rustup toolchain install stable
+rustup toolchain install stable
 ./scripts/install-build-deps.sh
 
 echo "*** Building packages"
