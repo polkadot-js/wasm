@@ -18,9 +18,9 @@ echo "*** Building package"
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
 
-# build new via nightly & wasm-pack
+# build new via wasm-pack
 echo "*** Building WASM output"
-rustup run nightly$NIGHTLY wasm-pack build --release --scope polkadot --target nodejs
+wasm-pack build --release --scope polkadot --target nodejs
 mv pkg build
 
 # optimise
