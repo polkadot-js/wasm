@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto",
-  "version": "1.5.0-beta.4",
+  "version": "1.5.0-beta.5",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "files": [
     "crypto-polyfill.js",
