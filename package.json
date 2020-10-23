@@ -11,8 +11,8 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "build": "NIGHTLY= ./scripts/build.sh",
-    "build:release": "NIGHTLY= ./scripts/build-release.sh",
+    "build": "./scripts/build.sh",
+    "build:release": "./scripts/build-release.sh",
     "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
