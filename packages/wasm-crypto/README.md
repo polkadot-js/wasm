@@ -12,7 +12,7 @@ Use it -
 
 ```js
 const { u8aToHex } = require('@polkadot/util');
-const { bio39Generate, bip39ToSeed, waitReady } = require('@polkadot/wasm-crypto');
+const { bip39Generate, bip39ToSeed, waitReady } = require('@polkadot/wasm-crypto');
 
 async function main () {
   // first wait until the WASM has been loaded (async init)

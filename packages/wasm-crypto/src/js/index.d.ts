@@ -1,6 +1,5 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
 export function bip39Generate (words: 12 | 15 | 18 | 21 | 24): string;
 export function bip39ToEntropy (phrase: string): Uint8Array;

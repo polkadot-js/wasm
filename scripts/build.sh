@@ -5,7 +5,7 @@
 
 set -e
 
-rustup toolchain install nightly$NIGHTLY
+rustup toolchain install stable
 ./scripts/install-build-deps.sh
 
 echo "*** Building packages"
