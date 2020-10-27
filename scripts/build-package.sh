@@ -28,8 +28,8 @@ echo "*** Optimising WASM output"
 ../../binaryen/bin/wasm-opt $WSM -Os -o $OPT
 
 # convert wasm to base64 structure
-echo "*** Packing WASM into base64"
-node ../../scripts/pack-wasm-base64.js
+echo "*** Packing WASM into baseX"
+node ../../scripts/pack-wasm-base.js
 
 # build asmjs version from the input (optimised) WASM
 echo "*** Building asm.js version"
