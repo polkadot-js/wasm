@@ -1,7 +1,7 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const { assert, isFunction } = require('@polkadot/util');
+const { assert } = require('@polkadot/util');
 
 const pkg = require('./package.json');
 const asm = require('./wasm_asm_stub');
@@ -9,7 +9,7 @@ const bytes = require('./wasm_wasm');
 const imports = require('./wasm');
 
 module.exports = async function createExportPromise () {
-  assert(typeof crypto !== 'undefined' && isFunction(crypto.getRandomValues), 'Global crypto.getRandomValues is not available. Provide the proper polyfills for this function in your environment.');
+  assert(typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function', 'Global crypto.getRandomValues is not available. Provide the proper polyfills for this function in your environment.');
 
   try {
     const { instance } = await WebAssembly.instantiate(bytes, { __wbindgen_placeholder__: imports });
