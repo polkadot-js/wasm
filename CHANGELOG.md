@@ -2,7 +2,10 @@
 
 ## 1.5.0-x
 
+Changes:
+
 - Move to building via stable, not nightly
+- Adjust application of `getRandomValues` polyfill. Generally these should be supplied by the user.
 
 
 ## 1.4.1 Aug 27, 2020

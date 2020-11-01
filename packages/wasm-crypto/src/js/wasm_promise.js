@@ -1,6 +1,8 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+require('./crypto-polyfill');
+
 const pkg = require('./package.json');
 const asm = require('./wasm_asm_stub');
 const bytes = require('./wasm_wasm');
