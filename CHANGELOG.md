@@ -2,12 +2,10 @@
 
 ## 1.5.0-x
 
-- **Breaking change** The built-in polyfill for `getRandomValues` has been removed. This means on environments such as Jest, it should be supplied (See eg https://stackoverflow.com/questions/52612122/how-to-use-jest-to-test-functions-using-crypto-or-window-mscrypto)
-
 Changes:
 
 - Move to building via stable, not nightly
-- Remove built-in `getRandomValues` polyfill, these should be supplied by the user in all cases for their environments
+- Adjust application of `getRandomValues` polyfill. Generally these should be supplied by the user.
 
 
 ## 1.4.1 Aug 27, 2020
