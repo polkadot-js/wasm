@@ -4,6 +4,10 @@
 const config = require('@polkadot/dev/config/jest');
 
 module.exports = Object.assign({}, config, {
+  globals: {
+    ...(config.globals || {}),
+    crypto: require('crypto')
+  },
   moduleNameMapper: {
     '@polkadot/wasm-(schnorrkel)(.*)$': '<rootDir>/packages/wasm-$1/src/$2'
   },

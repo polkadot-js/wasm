@@ -2,7 +2,12 @@
 
 ## 1.5.0-x
 
+- **Breaking change** The built-in polyfill for `getRandomValues` has been removed. This means on environments such as Jest, it should be supplied (See the [jest.config.js](./jest.config.js) file for an example of use)
+
+Changes:
+
 - Move to building via stable, not nightly
+- Remove built-in `getRandomValues` polyfill, these should be supplied by the user in all cases for their environments
 
 
 ## 1.4.1 Aug 27, 2020
