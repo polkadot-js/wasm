@@ -73,9 +73,7 @@ module.exports.__wbindgen_is_undefined = function (arg0) {
   return getObject(arg0) === undefined;
 };
 
-module.exports.__wbg_self_1b7a39e3a92c949c = handleError(function () {
-  return addObject(self.self);
-});
+module.exports.__wbg_self_1b7a39e3a92c949c = handleError(() => addObject(self.self));
 
 module.exports.__wbg_require_604837428532a733 = function (arg0, arg1) {
   return addObject(requires[getString(arg0, arg1)]);

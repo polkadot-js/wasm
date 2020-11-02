@@ -29,6 +29,18 @@ async function initWasm (wasmBytes, asmFallback, wbg) {
   }
 }
 
+function withWasm (fn) {
+  return (...params) => {
+    assert(wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
+
+    return fn(wasm, ...params);
+  };
+}
+
+function getWasm () {
+  return wasm;
+}
+
 function getInt32 () {
   if (cachegetInt32 === null || cachegetInt32.buffer !== wasm.memory.buffer) {
     cachegetInt32 = new Int32Array(wasm.memory.buffer);
@@ -70,10 +82,6 @@ function passU8a (arg) {
   return [ptr, arg.length];
 }
 
-function getWasm () {
-  return wasm;
-}
-
 module.exports = {
   getInt32,
   getString,
@@ -81,5 +89,6 @@ module.exports = {
   getWasm,
   initWasm,
   passString,
-  passU8a
+  passU8a,
+  withWasm
 };
