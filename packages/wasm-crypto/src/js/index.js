@@ -18,22 +18,22 @@ function wrapReady (fn) {
 }
 
 module.exports = {
-  bip39Generate: wrapReady(wasm.bip39_generate),
-  bip39ToEntropy: wrapReady(wasm.bip39_to_entropy),
-  bip39ToMiniSecret: wrapReady(wasm.bip39_to_mini_secret),
-  bip39ToSeed: wrapReady(wasm.bip39_to_seed),
-  bip39Validate: wrapReady(wasm.bip39_validate),
+  bip39Generate: wrapReady(wasm.bip39Generate),
+  bip39ToEntropy: wrapReady(wasm.bip39ToEntropy),
+  bip39ToMiniSecret: wrapReady(wasm.bip39ToMiniSecret),
+  bip39ToSeed: wrapReady(wasm.bip39ToSeed),
+  bip39Validate: wrapReady(wasm.bip39Validate),
 
-  ed25519KeypairFromSeed: wrapReady(wasm.ed_from_seed),
-  ed25519Sign: wrapReady(wasm.ed_sign),
-  ed25519Verify: wrapReady(wasm.ed_verify),
+  ed25519KeypairFromSeed: wrapReady(wasm.edFromSeed),
+  ed25519Sign: wrapReady(wasm.edSign),
+  ed25519Verify: wrapReady(wasm.edVerify),
 
-  sr25519DeriveKeypairHard: wrapReady(wasm.sr_derive_keypair_hard),
-  sr25519DeriveKeypairSoft: wrapReady(wasm.sr_derive_keypair_soft),
-  sr25519DerivePublicSoft: wrapReady(wasm.sr_derive_public_soft),
-  sr25519KeypairFromSeed: wrapReady(wasm.sr_from_seed),
-  sr25519Sign: wrapReady(wasm.sr_sign),
-  sr25519Verify: wrapReady(wasm.sr_verify),
+  sr25519DeriveKeypairHard: wrapReady(wasm.srDeriveKeypairHard),
+  sr25519DeriveKeypairSoft: wrapReady(wasm.srDeriveKeypairSoft),
+  sr25519DerivePublicSoft: wrapReady(wasm.srDerivePublicSoft),
+  sr25519KeypairFromSeed: wrapReady(wasm.srFromSeed),
+  sr25519Sign: wrapReady(wasm.srSign),
+  sr25519Verify: wrapReady(wasm.srVerify),
 
   blake2b: wrapReady(wasm.blake2b),
   keccak256: wrapReady(wasm.keccak256),
