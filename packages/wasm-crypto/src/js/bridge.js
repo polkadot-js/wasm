@@ -62,16 +62,7 @@ function getU8a (ptr, len) {
 }
 
 function getString (ptr, len) {
-  return u8aToString(getUint8().subarray(ptr, ptr + len));
-}
-
-function allocString (arg) {
-  const buf = stringToU8a(arg);
-  const ptr = wasm.__wbindgen_malloc(buf.length);
-
-  getUint8().subarray(ptr, ptr + buf.length).set(buf);
-
-  return [ptr, buf.length];
+  return u8aToString(getU8a(ptr, len));
 }
 
 function allocU8a (arg) {
@@ -82,6 +73,24 @@ function allocU8a (arg) {
   return [ptr, arg.length];
 }
 
+function allocString (arg) {
+  return allocU8a(stringToU8a(arg));
+}
+
+function resultU8a () {
+  const r0 = getInt32()[8 / 4 + 0];
+  const r1 = getInt32()[8 / 4 + 1];
+  const ret = getU8a(r0, r1).slice();
+
+  wasm.__wbindgen_free(r0, r1 * 1);
+
+  return ret;
+}
+
+function resultString () {
+  return u8aToString(resultU8a());
+}
+
 module.exports = {
   allocString,
   allocU8a,
@@ -90,5 +99,7 @@ module.exports = {
   getU8a,
   getWasm,
   initWasm,
+  resultString,
+  resultU8a,
   withWasm
 };
