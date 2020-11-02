@@ -24,6 +24,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
         yarn install --immutable | grep -v 'YN0013'
+        ./scripts/install-build-deps.sh
         yarn ${{ matrix.step }}
 
   dummy:

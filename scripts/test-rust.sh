@@ -5,20 +5,8 @@
 
 set -e
 
-rustup toolchain install stable
-cd packages
+cd packages/wasm-crypto
 
-PACKAGES=( $(ls -1d *) )
+RUST_BACKTRACE=full cargo test --release -- --nocapture
 
-for PKG in "${PACKAGES[@]}"; do
-  if [ -f "$PKG/package.json" ]; then
-    cd $PKG
-    echo "*** Testing Rust $PKG"
-
-    RUST_BACKTRACE=full cargo test --release -- --nocapture
-
-    cd ..
-  fi
-done
-
-cd ..
+cd ../..

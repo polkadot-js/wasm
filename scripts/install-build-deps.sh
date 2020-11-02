@@ -10,6 +10,8 @@ BINARYEN=( "wasm-opt" "wasm2js" )
 
 unamestr=`uname`
 
+rustup toolchain install stable
+
 # install wasm-pack as required
 if ! [ -x "$(command -v wasm-pack)" ]; then
   echo "*** Installing wasm-pack"
