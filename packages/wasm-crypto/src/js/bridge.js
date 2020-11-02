@@ -3,7 +3,7 @@
 
 const { assert, stringToU8a, u8aToString } = require('@polkadot/util');
 
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 
 let wasm;
 let cachegetInt32 = null;

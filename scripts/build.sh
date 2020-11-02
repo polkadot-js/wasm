@@ -12,6 +12,6 @@ cd packages/wasm-crypto
 ../../scripts/test-package.sh
 
 rm -rf build/*-e build/package.json build/README.md
-ls -al build
+ls -alR build
 
 cd ../..

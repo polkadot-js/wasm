@@ -7,14 +7,21 @@ set -e
 
 WSM=pkg/wasm_bg.wasm
 OPT=pkg/wasm_opt.wasm
-ASM=build/wasm_asm.js
+ASM=build/wasm/asm.js
 
 echo "*** Building package"
 
 # cleanup old
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
-mkdir -p build
+mkdir -p build/js build/wasm
+
+# copy our package interfaces
+echo "*** Copying package sources"
+cp package.json build/
+cp src/index.d.ts src/index.js build/
+cp src/js/* build/js/
+cp src/wasm/* build/wasm/
 
 # build new via wasm-pack
 echo "*** Building WASM output"
@@ -34,12 +41,8 @@ echo "*** Building asm.js version"
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
-echo "const imports = require('./imports');
+echo "const imports = require('../js/imports');
 $(cat $ASM)" > $ASM
 sed -i -e 's/{abort.*},memasmFunc/imports, memasmFunc/g' $ASM
 sed -i -e 's/export var /module\.exports\./g' $ASM
-
-# copy our package interfaces
-echo "*** Copying package sources"
-cp package.json build/
-cp src/js/* build/
+rm -rf build/wasm/*-e

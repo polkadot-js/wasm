@@ -4,8 +4,8 @@
 global.WebAssembly = null;
 
 require('override-require')(
-  (request) => request === './wasm_asm_stub',
-  () => require('../build/wasm_asm')
+  (request) => request.endsWith('wasm/stub'),
+  () => require('../build/wasm/asm')
 );
 
 const { runUnassisted } = require('./all');

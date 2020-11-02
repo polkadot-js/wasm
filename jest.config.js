@@ -10,5 +10,5 @@ module.exports = Object.assign({}, config, {
   modulePathIgnorePatterns: [
     '<rootDir>/packages/wasm-schnorrkel/build'
   ],
-  resolver: './jest.resolver.js'
+  resolver: '@polkadot/dev/config/jest-resolver'
 });

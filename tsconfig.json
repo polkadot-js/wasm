@@ -7,7 +7,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/wasm-schnorrkel": [ "packages/wasm-schnorrkel/src" ]
+      "@polkadot/wasm-crypto": [ "packages/wasm-crypto/src" ]
     },
     "skipLibCheck": true,
     "typeRoots": [
