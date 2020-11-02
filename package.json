@@ -16,7 +16,8 @@
     "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "./scripts/test-rust.sh"
+    "test:wasm:js": "polkadot-dev-run-test ./test/jest.spec.js && cd packages/wasm-crypto && node ./test/wasm.js && node ./test/asm.js",
+    "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
