@@ -34,9 +34,9 @@ echo "*** Building asm.js version"
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
-echo "const wbindgenEnv = require('./wbindgen-env');
+echo "const imports = require('./imports');
 $(cat $ASM)" > $ASM
-sed -i -e 's/{abort.*},memasmFunc/wbindgenEnv, memasmFunc/g' $ASM
+sed -i -e 's/{abort.*},memasmFunc/imports, memasmFunc/g' $ASM
 sed -i -e 's/export var /module\.exports\./g' $ASM
 
 # copy our package interfaces

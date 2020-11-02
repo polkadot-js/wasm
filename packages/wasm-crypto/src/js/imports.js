@@ -3,11 +3,27 @@
 
 const crypto = require('crypto');
 
-const { getArrayU8FromWasm0, getStringFromWasm0, getWasm } = require('./wbindgen-util');
+const { getString, getU8a, getWasm } = require('./bridge');
 
 const requires = { crypto };
 const heap = new Array(32).fill(undefined).concat(undefined, null, true, false);
 let heapNext = heap.length;
+
+// FIXME We really want to get rid of this polyfill completely
+
+if (!global.crypto) {
+  global.crypto = {};
+}
+
+if (!global.crypto.getRandomValues) {
+  global.crypto.getRandomValues = function (arr) {
+    return crypto.randomBytes(arr.length).reduce((arr, value, index) => {
+      arr[index] = value;
+
+      return arr;
+    }, arr);
+  };
+}
 
 function getObject (idx) {
   return heap[idx];
@@ -62,7 +78,7 @@ module.exports.__wbg_self_1b7a39e3a92c949c = handleError(function () {
 });
 
 module.exports.__wbg_require_604837428532a733 = function (arg0, arg1) {
-  return addObject(requires[getStringFromWasm0(arg0, arg1)]);
+  return addObject(requires[getString(arg0, arg1)]);
 };
 
 module.exports.__wbg_crypto_968f1772287e2df0 = function (arg0) {
@@ -74,11 +90,11 @@ module.exports.__wbg_getRandomValues_a3d34b4fee3c2869 = function (arg0) {
 };
 
 module.exports.__wbg_getRandomValues_f5e14ab7ac8e995d = function (arg0, arg1, arg2) {
-  getObject(arg0).getRandomValues(getArrayU8FromWasm0(arg1, arg2));
+  getObject(arg0).getRandomValues(getU8a(arg1, arg2));
 };
 
 module.exports.__wbg_randomFillSync_d5bd2d655fdf256a = function (arg0, arg1, arg2) {
-  getObject(arg0).randomFillSync(getArrayU8FromWasm0(arg1, arg2));
+  getObject(arg0).randomFillSync(getU8a(arg1, arg2));
 };
 
 module.exports.__wbindgen_object_drop_ref = function (arg0) {
