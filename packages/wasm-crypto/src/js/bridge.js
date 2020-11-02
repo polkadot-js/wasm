@@ -65,7 +65,7 @@ function getString (ptr, len) {
   return u8aToString(getUint8().subarray(ptr, ptr + len));
 }
 
-function passString (arg) {
+function allocString (arg) {
   const buf = stringToU8a(arg);
   const ptr = wasm.__wbindgen_malloc(buf.length);
 
@@ -74,7 +74,7 @@ function passString (arg) {
   return [ptr, buf.length];
 }
 
-function passU8a (arg) {
+function allocU8a (arg) {
   const ptr = wasm.__wbindgen_malloc(arg.length * 1);
 
   getUint8().set(arg, ptr / 1);
@@ -83,12 +83,12 @@ function passU8a (arg) {
 }
 
 module.exports = {
+  allocString,
+  allocU8a,
   getInt32,
   getString,
   getU8a,
   getWasm,
   initWasm,
-  passString,
-  passU8a,
   withWasm
 };
