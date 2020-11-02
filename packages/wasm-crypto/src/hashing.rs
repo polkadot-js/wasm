@@ -151,7 +151,7 @@ pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> V
 ///
 /// * data: Arbitrary data to be hashed
 ///
-/// Returns a vecor with the hash result
+/// Returns a vector with the hash result
 #[wasm_bindgen]
 pub fn ext_sha512(data: &[u8]) -> Vec<u8> {
 	let mut hasher = Sha512::new();
@@ -168,7 +168,7 @@ pub fn ext_sha512(data: &[u8]) -> Vec<u8> {
 /// * data: Arbitrary data to be hashed
 /// * rounds: Number of 8-byte rounds to add to the output
 ///
-/// Returns a vecor with the hash result
+/// Returns a vector with the hash result
 #[wasm_bindgen]
 pub fn ext_twox(data: &[u8], rounds: u32) -> Vec<u8> {
 	let mut vec = vec![];
@@ -186,7 +186,7 @@ pub mod tests {
 	use hex_literal::hex;
 	use super::*;
 
-	// // Constructs the message that Ethereum RPC's `personal_sign` and `eth_sign` would sign.
+	// // Constructs the message that Ethereum RPCs `personal_sign` and `eth_sign` would sign.
 	// fn ethereum_signable_message(data: &[u8]) -> Vec<u8> {
 	// 	let prefix = b"Pay DOTs to the Polkadot account:";
 	// 	let mut l = prefix.len() + data.len();

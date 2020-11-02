@@ -5,27 +5,13 @@
 
 set -e
 
-rustup toolchain install stable
-./scripts/install-build-deps.sh
-
 echo "*** Building packages"
-cd packages
+cd packages/wasm-crypto
 
-PACKAGES=( $(ls -1d *) )
+../../scripts/build-package.sh
+../../scripts/test-package.sh
 
-for PKG in "${PACKAGES[@]}"; do
-  if [ -f "$PKG/package.json" ]; then
-    echo "*** Building $PKG"
-    cd $PKG
+rm -rf build/*-e build/package.json build/README.md
+ls -al build
 
-    ../../scripts/build-package.sh
-    ../../scripts/test-package.sh
-
-    rm -rf build/*-e build/package.json build/README.md
-    ls -al build
-
-    cd ..
-  fi
-done
-
-cd ..
+cd ../..

@@ -5,11 +5,8 @@
 
 set -e
 
-BGJ=build/wasm_bg.js
-SRC_WASM=build/wasm.js
-DEF=build/wasm.d.ts
-WSM=build/wasm_bg.wasm
-OPT=build/wasm_opt.wasm
+WSM=pkg/wasm_bg.wasm
+OPT=pkg/wasm_opt.wasm
 ASM=build/wasm_asm.js
 
 echo "*** Building package"
@@ -17,11 +14,11 @@ echo "*** Building package"
 # cleanup old
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
+mkdir -p build
 
 # build new via wasm-pack
 echo "*** Building WASM output"
-wasm-pack build --release --scope polkadot --target nodejs
-mv pkg build
+wasm-pack build --release --scope polkadot --target web
 
 # optimise
 echo "*** Optimising WASM output"
@@ -37,65 +34,12 @@ echo "*** Building asm.js version"
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
-echo "const imported = require('./wasm');
+echo "const imports = require('./imports');
 $(cat $ASM)" > $ASM
-sed -i -e 's/{abort.*},memasmFunc/imported, memasmFunc/g' $ASM
+sed -i -e 's/{abort.*},memasmFunc/imports, memasmFunc/g' $ASM
 sed -i -e 's/export var /module\.exports\./g' $ASM
 
 # copy our package interfaces
 echo "*** Copying package sources"
+cp package.json build/
 cp src/js/* build/
-
-echo "const crypto = require('crypto');
-const { stringToU8a, u8aToString } = require('@polkadot/util');
-
-const requires = { crypto };
-
-$(cat $SRC_WASM)
-" > $SRC_WASM
-
-# whack comments
-sed -i -e '/^\/\*\*/d' $SRC_WASM
-sed -i -e '/^\*/d' $SRC_WASM
-sed -i -e '/^\*\//d' $SRC_WASM
-
-# we are swapping to a async interface for webpack support (wasm limits)
-sed -i -e '/^wasm = require/d' $SRC_WASM
-
-# We don't want inline requires
-sed -i -e 's/ret = require(getStringFromWasm0(arg0, arg1));/ret = requires[getStringFromWasm0(arg0, arg1)];/g' $SRC_WASM
-
-# this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e '/^const { TextEncoder } = require/d' $SRC_WASM
-sed -i -e '/^let cachedTextEncoder = new /d' $SRC_WASM
-sed -i -e 's/cachedTextEncoder\.encode/stringToU8a/g' $SRC_WASM
-
-# this creates issues in both the browser and RN (@polkadot/util has a polyfill)
-sed -i -e '/^const { TextDecoder } = require/d' $SRC_WASM
-sed -i -e '/^let cachedTextDecoder = new/d' $SRC_WASM
-sed -i -e 's/cachedTextDecoder\.decode/u8aToString/g' $SRC_WASM
-
-# this is where we get the actual bg file
-sed -i -e '/^const path = require/d' $SRC_WASM
-sed -i -e '/^const bytes = require/d' $SRC_WASM
-sed -i -e '/^const wasmModule =/d' $SRC_WASM
-sed -i -e '/^const wasmInstance =/d' $SRC_WASM
-sed -i -e '/^wasm = wasmInstance/d' $SRC_WASM
-
-# construct our promise and add ready helpers (WASM)
-echo "module.exports.abort = function () { throw new Error('abort'); };
-
-const createPromise = require('./wasm_promise');
-const wasmPromise = createPromise().catch(() => null);
-
-module.exports.isReady = function () { return !!wasm; }
-module.exports.waitReady = function () { return wasmPromise.then(() => !!wasm); }
-
-wasmPromise.then((_wasm) => { wasm = _wasm });
-" >> $SRC_WASM
-
-# add extra methods to type definitions
-echo "
-export function isReady(): boolean;
-export function waitReady(): Promise<boolean>;
-" >> $DEF

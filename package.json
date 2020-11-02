@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "./scripts/build.sh",
-    "build:release": "./scripts/build-release.sh",
+    "build:release": "polkadot-ci-ghact-build",
     "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
