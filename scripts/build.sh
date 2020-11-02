@@ -9,9 +9,10 @@ echo "*** Building packages"
 cd packages/wasm-crypto
 
 ../../scripts/build-package.sh
-../../scripts/test-package.sh
 
-rm -rf build/*-e build/package.json build/README.md
+yarn test:wasm:js
+
+rm -rf build/*-e
 ls -alR build
 
 cd ../..
