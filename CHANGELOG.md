@@ -1,12 +1,13 @@
 # CHANGELOG
 
-## 1.5.0-x
+## 2.0.1 Nov 3, 2020
 
 - **Breaking change** `crypto.getRandomValues` is not a polyfill anymore. Generally in libraries these should always be supplied by the user to ensure control and non-conflicts. This could affect environments such as Jest, for those see https://stackoverflow.com/questions/52612122/how-to-use-jest-to-test-functions-using-crypto-or-window-mscrypto. On React Native, ensure you do have the required crypto polyfills, browser and Node.js is not affected.
 
 Changes:
 
 - Move to building via stable, not nightly
+- Rework generation of WASM interfaces (proper cross-platform support)
 - Remove application of `getRandomValues` polyfill. Generally these should be supplied by the user.
 
 
