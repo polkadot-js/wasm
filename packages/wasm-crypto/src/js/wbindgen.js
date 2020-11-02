@@ -12,7 +12,7 @@ const { getArrayU8FromWasm0, getInt32Memory0, getStringFromWasm0, getWasm, passA
 
 async function createPromise () {
   try {
-    const { instance } = await WebAssembly.instantiate(wasmBytes, { __wbindgen_placeholder__: wbindgenEnv });
+    const { instance } = await WebAssembly.instantiate(wasmBytes, { wbg: wbindgenEnv });
 
     setWasm(instance.exports);
   } catch (error) {

@@ -6,15 +6,12 @@ const crypto = require('crypto');
 const { getArrayU8FromWasm0, getStringFromWasm0, getWasm } = require('./wbindgen-util');
 
 const requires = { crypto };
-const heap = new Array(32).fill(undefined);
-
-heap.push(undefined, null, true, false);
+const heap = new Array(32).fill(undefined).concat(undefined, null, true, false);
+let heapNext = heap.length;
 
 function getObject (idx) {
   return heap[idx];
 }
-
-let heapNext = heap.length;
 
 function dropObject (idx) {
   if (idx < 36) {

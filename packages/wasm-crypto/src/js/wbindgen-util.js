@@ -1,11 +1,10 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const { u8aToString } = require('@polkadot/util');
+const { stringToU8a, u8aToString } = require('@polkadot/util');
 
 let wasm;
 let cachegetInt32Memory0 = null;
-let cachegetNodeBufferMemory0 = null;
 let cachegetUint8Memory0 = null;
 
 function getInt32Memory0 () {
@@ -24,29 +23,21 @@ function getUint8Memory0 () {
   return cachegetUint8Memory0;
 }
 
+function getArrayU8FromWasm0 (ptr, len) {
+  return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
+}
+
 function getStringFromWasm0 (ptr, len) {
   return u8aToString(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
-function getNodeBufferMemory0 () {
-  if (cachegetNodeBufferMemory0 === null || cachegetNodeBufferMemory0.buffer !== wasm.memory.buffer) {
-    cachegetNodeBufferMemory0 = Buffer.from(wasm.memory.buffer);
-  }
-
-  return cachegetNodeBufferMemory0;
-}
-
 function passStringToWasm0 (arg) {
-  const len = Buffer.byteLength(arg);
-  const ptr = wasm.__wbindgen_malloc(len);
+  const buf = stringToU8a(arg);
+  const ptr = wasm.__wbindgen_malloc(buf.length);
 
-  getNodeBufferMemory0().write(arg, ptr, len);
+  getUint8Memory0().subarray(ptr, ptr + buf.length).set(buf);
 
-  return [ptr, len];
-}
-
-function getArrayU8FromWasm0 (ptr, len) {
-  return getUint8Memory0().subarray(ptr / 1, ptr / 1 + len);
+  return [ptr, buf.length];
 }
 
 function passArray8ToWasm0 (arg) {

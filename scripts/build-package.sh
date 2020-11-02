@@ -18,7 +18,7 @@ mkdir -p build
 
 # build new via wasm-pack
 echo "*** Building WASM output"
-wasm-pack build --release --scope polkadot --target nodejs
+wasm-pack build --release --scope polkadot --target web
 
 # optimise
 echo "*** Optimising WASM output"
