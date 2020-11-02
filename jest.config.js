@@ -5,10 +5,13 @@ const config = require('@polkadot/dev/config/jest');
 
 module.exports = Object.assign({}, config, {
   moduleNameMapper: {
-    '@polkadot/wasm-(schnorrkel)(.*)$': '<rootDir>/packages/wasm-$1/src/$2'
+    '@polkadot/wasm-(crypto)(.*)$': '<rootDir>/packages/wasm-$1/src/$2'
   },
   modulePathIgnorePatterns: [
-    '<rootDir>/packages/wasm-schnorrkel/build'
+    '<rootDir>/packages/wasm-crypto/build'
   ],
-  resolver: '@polkadot/dev/config/jest-resolver'
+  resolver: '@polkadot/dev/config/jest-resolver',
+  setupFilesAfterEnv: [
+    '@polkadot/dev/config/jest-crypto'
+  ]
 });

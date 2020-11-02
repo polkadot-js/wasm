@@ -9,22 +9,6 @@ const requires = { crypto };
 const heap = new Array(32).fill(undefined).concat(undefined, null, true, false);
 let heapNext = heap.length;
 
-// FIXME We really want to get rid of this polyfill completely
-
-if (!global.crypto) {
-  global.crypto = {};
-}
-
-if (!global.crypto.getRandomValues) {
-  global.crypto.getRandomValues = function (arr) {
-    return crypto.randomBytes(arr.length).reduce((arr, value, index) => {
-      arr[index] = value;
-
-      return arr;
-    }, arr);
-  };
-}
-
 function getObject (idx) {
   return heap[idx];
 }
