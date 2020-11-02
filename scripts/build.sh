@@ -12,7 +12,6 @@ cd packages/wasm-crypto
 
 yarn test:wasm:js
 
-rm -rf build/*-e
 ls -alR build
 
 cd ../..
