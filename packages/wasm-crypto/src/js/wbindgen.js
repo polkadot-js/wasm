@@ -30,7 +30,7 @@ async function createPromise () {
 
 const wasmPromise = createPromise().catch(() => null);
 
-module.exports.ext_bip39_generate = function (words) {
+module.exports.bip39_generate = function (words) {
   getWasm().ext_bip39_generate(8, words);
 
   const r0 = getInt32Memory0()[8 / 4 + 0];
@@ -42,7 +42,7 @@ module.exports.ext_bip39_generate = function (words) {
   return ret;
 };
 
-module.exports.ext_bip39_to_entropy = function (phrase) {
+module.exports.bip39_to_entropy = function (phrase) {
   const [ptr0, len0] = passStringToWasm0(phrase);
 
   getWasm().ext_bip39_to_entropy(8, ptr0, len0);
@@ -56,7 +56,7 @@ module.exports.ext_bip39_to_entropy = function (phrase) {
   return ret;
 };
 
-module.exports.ext_bip39_to_mini_secret = function (phrase, password) {
+module.exports.bip39_to_mini_secret = function (phrase, password) {
   const [ptr0, len0] = passStringToWasm0(phrase);
   const [ptr1, len1] = passStringToWasm0(password);
 
@@ -71,7 +71,7 @@ module.exports.ext_bip39_to_mini_secret = function (phrase, password) {
   return ret;
 };
 
-module.exports.ext_bip39_to_seed = function (phrase, password) {
+module.exports.bip39_to_seed = function (phrase, password) {
   const [ptr0, len0] = passStringToWasm0(phrase);
   const [ptr1, len1] = passStringToWasm0(password);
 
@@ -86,14 +86,14 @@ module.exports.ext_bip39_to_seed = function (phrase, password) {
   return ret;
 };
 
-module.exports.ext_bip39_validate = function (phrase) {
+module.exports.bip39_validate = function (phrase) {
   const [ptr0, len0] = passStringToWasm0(phrase);
   const ret = getWasm().ext_bip39_validate(ptr0, len0);
 
   return ret !== 0;
 };
 
-module.exports.ext_ed_from_seed = function (seed) {
+module.exports.ed_from_seed = function (seed) {
   const [ptr0, len0] = passArray8ToWasm0(seed);
 
   getWasm().ext_ed_from_seed(8, ptr0, len0);
@@ -107,7 +107,7 @@ module.exports.ext_ed_from_seed = function (seed) {
   return ret;
 };
 
-module.exports.ext_ed_sign = function (pubkey, seckey, message) {
+module.exports.ed_sign = function (pubkey, seckey, message) {
   const [ptr0, len0] = passArray8ToWasm0(pubkey);
   const [ptr1, len1] = passArray8ToWasm0(seckey);
   const [ptr2, len2] = passArray8ToWasm0(message);
@@ -123,7 +123,7 @@ module.exports.ext_ed_sign = function (pubkey, seckey, message) {
   return ret;
 };
 
-module.exports.ext_ed_verify = function (signature, message, pubkey) {
+module.exports.ed_verify = function (signature, message, pubkey) {
   const [ptr0, len0] = passArray8ToWasm0(signature);
   const [ptr1, len1] = passArray8ToWasm0(message);
   const [ptr2, len2] = passArray8ToWasm0(pubkey);
@@ -132,7 +132,7 @@ module.exports.ext_ed_verify = function (signature, message, pubkey) {
   return ret !== 0;
 };
 
-module.exports.ext_blake2b = function (data, key, size) {
+module.exports.blake2b = function (data, key, size) {
   const [ptr0, len0] = passArray8ToWasm0(data);
   const [ptr1, len1] = passArray8ToWasm0(key);
 
@@ -147,7 +147,7 @@ module.exports.ext_blake2b = function (data, key, size) {
   return ret;
 };
 
-module.exports.ext_keccak256 = function (data) {
+module.exports.keccak256 = function (data) {
   const [ptr0, len0] = passArray8ToWasm0(data);
 
   getWasm().ext_keccak256(8, ptr0, len0);
@@ -161,7 +161,7 @@ module.exports.ext_keccak256 = function (data) {
   return ret;
 };
 
-module.exports.ext_pbkdf2 = function (data, salt, rounds) {
+module.exports.pbkdf2 = function (data, salt, rounds) {
   const [ptr0, len0] = passArray8ToWasm0(data);
   const [ptr1, len1] = passArray8ToWasm0(salt);
 
@@ -176,7 +176,7 @@ module.exports.ext_pbkdf2 = function (data, salt, rounds) {
   return ret;
 };
 
-module.exports.ext_scrypt = function (password, salt, log2_n, r, p) {
+module.exports.scrypt = function (password, salt, log2_n, r, p) {
   const [ptr0, len0] = passArray8ToWasm0(password);
   const [ptr1, len1] = passArray8ToWasm0(salt);
 
@@ -191,7 +191,7 @@ module.exports.ext_scrypt = function (password, salt, log2_n, r, p) {
   return ret;
 };
 
-module.exports.ext_sha512 = function (data) {
+module.exports.sha512 = function (data) {
   const [ptr0, len0] = passArray8ToWasm0(data);
 
   getWasm().ext_sha512(8, ptr0, len0);
@@ -205,7 +205,7 @@ module.exports.ext_sha512 = function (data) {
   return ret;
 };
 
-module.exports.ext_twox = function (data, rounds) {
+module.exports.twox = function (data, rounds) {
   const [ptr0, len0] = passArray8ToWasm0(data);
 
   getWasm().ext_twox(8, ptr0, len0, rounds);
@@ -219,7 +219,7 @@ module.exports.ext_twox = function (data, rounds) {
   return ret;
 };
 
-module.exports.ext_sr_derive_keypair_hard = function (pair, cc) {
+module.exports.sr_derive_keypair_hard = function (pair, cc) {
   const [ptr0, len0] = passArray8ToWasm0(pair);
   const [ptr1, len1] = passArray8ToWasm0(cc);
 
@@ -234,7 +234,7 @@ module.exports.ext_sr_derive_keypair_hard = function (pair, cc) {
   return ret;
 };
 
-module.exports.ext_sr_derive_keypair_soft = function (pair, cc) {
+module.exports.sr_derive_keypair_soft = function (pair, cc) {
   const [ptr0, len0] = passArray8ToWasm0(pair);
   const [ptr1, len1] = passArray8ToWasm0(cc);
 
@@ -249,7 +249,7 @@ module.exports.ext_sr_derive_keypair_soft = function (pair, cc) {
   return ret;
 };
 
-module.exports.ext_sr_derive_public_soft = function (pubkey, cc) {
+module.exports.sr_derive_public_soft = function (pubkey, cc) {
   const [ptr0, len0] = passArray8ToWasm0(pubkey);
   const [ptr1, len1] = passArray8ToWasm0(cc);
 
@@ -264,7 +264,7 @@ module.exports.ext_sr_derive_public_soft = function (pubkey, cc) {
   return ret;
 };
 
-module.exports.ext_sr_from_seed = function (seed) {
+module.exports.sr_from_seed = function (seed) {
   const [ptr0, len0] = passArray8ToWasm0(seed);
 
   getWasm().ext_sr_from_seed(8, ptr0, len0);
@@ -278,7 +278,7 @@ module.exports.ext_sr_from_seed = function (seed) {
   return ret;
 };
 
-module.exports.ext_sr_sign = function (pubkey, secret, message) {
+module.exports.sr_sign = function (pubkey, secret, message) {
   const [ptr0, len0] = passArray8ToWasm0(pubkey);
   const [ptr1, len1] = passArray8ToWasm0(secret);
   const [ptr2, len2] = passArray8ToWasm0(message);
@@ -294,7 +294,7 @@ module.exports.ext_sr_sign = function (pubkey, secret, message) {
   return ret;
 };
 
-module.exports.ext_sr_verify = function (signature, message, pubkey) {
+module.exports.sr_verify = function (signature, message, pubkey) {
   const [ptr0, len0] = passArray8ToWasm0(signature);
   const [ptr1, len1] = passArray8ToWasm0(message);
   const [ptr2, len2] = passArray8ToWasm0(pubkey);
