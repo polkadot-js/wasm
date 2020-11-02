@@ -3,4 +3,4 @@
 
 // Stub replaced at build time
 
-module.exports = {};
+module.exports = null;
