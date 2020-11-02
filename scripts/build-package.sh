@@ -41,8 +41,7 @@ echo "*** Building asm.js version"
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
-echo "const imports = require('../js/imports');
-$(cat $ASM)" > $ASM
-sed -i -e 's/{abort.*},memasmFunc/imports, memasmFunc/g' $ASM
-sed -i -e 's/export var /module\.exports\./g' $ASM
+sed -i -e '/export var /d' $ASM
+sed -i -e 's/{abort.*},memasmFunc/wbg, memasmFunc/g' $ASM
+sed -i -e 's/var retasmFunc = /module.exports = (wbg) => /' $ASM
 rm -rf build/wasm/*-e
