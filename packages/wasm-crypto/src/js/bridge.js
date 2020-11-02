@@ -1,9 +1,9 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const { assert, stringToU8a, u8aToString } = require('@polkadot/util');
+import { assert, stringToU8a, u8aToString } from '@polkadot/util';
 
-const pkg = require('./package.json');
+import pkg from '../package.json';
 
 let wasm;
 let cachegetInt32 = null;

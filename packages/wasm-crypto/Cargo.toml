@@ -3,7 +3,7 @@
 
 [package]
 authors = ["Jaco Greeff <jacogr@gmail.com>"]
-description = "WASM bindings to Rust crypto libaries."
+description = "WASM bindings to Rust crypto libraries."
 edition = "2018"
 license = "Apache-2.0"
 name = "wasm"
