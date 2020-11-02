@@ -7,12 +7,12 @@
     "exports.js",
     "index.d.ts",
     "index.js",
+    "wasm_asm_stub.js",
+    "wasm_asm.js",
+    "wasm_wasm.js",
     "wbindgen-env.js",
     "wbindgen-util.js",
-    "wbindgen.js",
-    "wasm_asm.js",
-    "wasm_asm_stub.js",
-    "wasm_wasm.js"
+    "wbindgen.js"
   ],
   "react-native": {
     "./wasm_asm_stub.js": "./wasm_asm.js"

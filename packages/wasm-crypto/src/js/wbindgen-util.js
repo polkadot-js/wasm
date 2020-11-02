@@ -1,8 +1,6 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/* eslint-disable camelcase */
-
 const crypto = require('crypto');
 const { u8aToString } = require('@polkadot/util');
 
@@ -17,13 +15,13 @@ function getObject (idx) {
   return heap[idx];
 }
 
-let heap_next = heap.length;
+let heapNext = heap.length;
 
 function dropObject (idx) {
   if (idx < 36) return;
 
-  heap[idx] = heap_next;
-  heap_next = idx;
+  heap[idx] = heapNext;
+  heapNext = idx;
 }
 
 function takeObject (idx) {
@@ -35,10 +33,13 @@ function takeObject (idx) {
 }
 
 function addHeapObject (obj) {
-  if (heap_next === heap.length) heap.push(heap.length + 1);
-  const idx = heap_next;
+  if (heapNext === heap.length) {
+    heap.push(heap.length + 1);
+  }
 
-  heap_next = heap[idx];
+  const idx = heapNext;
+
+  heapNext = heap[idx];
   heap[idx] = obj;
 
   return idx;

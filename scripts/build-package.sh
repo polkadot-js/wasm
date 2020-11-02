@@ -5,11 +5,8 @@
 
 set -e
 
-BGJ=build/wasm_bg.js
-SRC_WASM=build/wasm.js
-DEF=build/wasm.d.ts
-WSM=build/wasm_bg.wasm
-OPT=build/wasm_opt.wasm
+WSM=pkg/wasm_bg.wasm
+OPT=pkg/wasm_opt.wasm
 ASM=build/wasm_asm.js
 
 echo "*** Building package"
@@ -17,11 +14,11 @@ echo "*** Building package"
 # cleanup old
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
+mkdir -p build
 
 # build new via wasm-pack
 echo "*** Building WASM output"
 wasm-pack build --release --scope polkadot --target nodejs
-mv pkg build
 
 # optimise
 echo "*** Optimising WASM output"
@@ -44,4 +41,5 @@ sed -i -e 's/export var /module\.exports\./g' $ASM
 
 # copy our package interfaces
 echo "*** Copying package sources"
+cp package.json build/
 cp src/js/* build/
