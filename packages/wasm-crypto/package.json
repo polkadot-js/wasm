@@ -3,7 +3,7 @@
   "version": "2.0.0-1",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "react-native": {
-    "./wasm/stub.js": "./wasm/asm.js"
+    "./wasm/asm-empty.js": "./wasm/asm.js"
   },
   "main": "index.js",
   "types": "index.d.ts",
