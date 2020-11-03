@@ -1712,9 +1712,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.59.16":
-  version: 0.59.16
-  resolution: "@polkadot/dev@npm:0.59.16"
+"@polkadot/dev@npm:^0.59.17":
+  version: 0.59.17
+  resolution: "@polkadot/dev@npm:0.59.17"
   dependencies:
     "@babel/cli": ^7.12.1
     "@babel/core": ^7.12.3
@@ -1801,7 +1801,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.js
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.js
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.js
-  checksum: c5f2ccbb5f7a0f9bcc186aaad28f8cd5b125b6de3ae7f8cdd41311b6e22ded9873482805bd128fb95b813f776b900cef000c3a02605f1c0d8e3f43bec9480ed7
+  checksum: 35865dd5fb7a5f3784f5887c2f54cc51cd1265ec3802be12a6394947024a37ff83307f7d5be8563e662916da22dd0f0d6c43e9fb84463260e5a5a0d6c1eb169f
   languageName: node
   linkType: hard
 
@@ -1824,7 +1824,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
-    "@polkadot/dev": ^0.59.16
+    "@polkadot/dev": ^0.59.17
     "@polkadot/util": ^3.7.1
     override-require: ^1.1.1
   peerDependencies:
@@ -1892,15 +1892,15 @@ __metadata:
   linkType: hard
 
 "@types/babel__core@npm:^7.0.0, @types/babel__core@npm:^7.1.7":
-  version: 7.1.11
-  resolution: "@types/babel__core@npm:7.1.11"
+  version: 7.1.12
+  resolution: "@types/babel__core@npm:7.1.12"
   dependencies:
     "@babel/parser": ^7.1.0
     "@babel/types": ^7.0.0
     "@types/babel__generator": "*"
     "@types/babel__template": "*"
     "@types/babel__traverse": "*"
-  checksum: 081ea9a093ce22ebbc7fd07c07298d84d551f1517159631a69953634509e88324d26199b012a20cca5da116222f9f3468b1ee98eb78f6bb4efb909c0e856f272
+  checksum: e2642b77b89af41254a19d85b6cc5b1096f9825aa2b6534d5426cee7fbf6d90cfeceb5c1621f233d32dc1925a9fe88c317e412f81a061cf7239dbd4e2dd413e4
   languageName: node
   linkType: hard
 
@@ -3795,9 +3795,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.585":
-  version: 1.3.585
-  resolution: "electron-to-chromium@npm:1.3.585"
-  checksum: a7cd8515631144a05e065d19ec6cc1ace5547f7bd81af5815f8dd4f2ff14cd1fd1aef95a6628b24e20d63b35fdaf5304efbb597231f0efa4670fde905e5a6b06
+  version: 1.3.586
+  resolution: "electron-to-chromium@npm:1.3.586"
+  checksum: 3c680e665ac32aef5e569343a66f17ca600e533daf24b841dfccb813f891bd8fbd132a4e208572660dc7f259f66963768b22117df1ba7ab6e25df68c3a0221dc
   languageName: node
   linkType: hard
 
@@ -8594,7 +8594,7 @@ fsevents@^1.2.7:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.3
-    "@polkadot/dev": ^0.59.16
+    "@polkadot/dev": ^0.59.17
   languageName: unknown
   linkType: soft
 
@@ -9737,11 +9737,11 @@ fsevents@^1.2.7:
   linkType: hard
 
 "uglify-js@npm:^3.1.4":
-  version: 3.11.4
-  resolution: "uglify-js@npm:3.11.4"
+  version: 3.11.5
+  resolution: "uglify-js@npm:3.11.5"
   bin:
     uglifyjs: bin/uglifyjs
-  checksum: 654020b5bb2e53ef99b91603396dee47fc24930909a207590f04a93699c1df0f951e85c1c486aec44859b1ca255430681b46f13bd36f81e0113e57c370bf93d0
+  checksum: 8614bb84f305d229ed42a4cfba1687725a32d17828e67ea06f8c972f2d71eaaccc973c21dd65d4271a9bbd8e45cdde096ebf3f21c0f041dd39b2592862e7713a
   languageName: node
   linkType: hard
 

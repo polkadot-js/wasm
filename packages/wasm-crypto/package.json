@@ -1,14 +1,14 @@
 {
   "name": "@polkadot/wasm-crypto",
-  "version": "1.5.0-beta.19",
+  "version": "2.0.0-1",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "react-native": {
-    "./wasm/stub.js": "./wasm/asm.js"
+    "./wasm/asm-empty.js": "./wasm/asm.js"
   },
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "@polkadot/dev": "^0.59.16",
+    "@polkadot/dev": "^0.59.17",
     "@polkadot/util": "^3.7.1",
     "override-require": "^1.1.1"
   },

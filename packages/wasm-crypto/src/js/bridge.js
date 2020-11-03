@@ -11,7 +11,7 @@ let cachegetUint8 = null;
 
 async function initWasm (wasmBytes, asmFn, wbg) {
   try {
-    assert(typeof WebAssembly !== 'undefined', 'WebAssembly is not available in your environment');
+    assert(typeof WebAssembly !== 'undefined' && wasmBytes && wasmBytes.length, 'WebAssembly is not available in your environment');
 
     const source = await WebAssembly.instantiate(wasmBytes, { wbg });
 

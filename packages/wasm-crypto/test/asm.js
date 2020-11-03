@@ -4,7 +4,7 @@
 global.WebAssembly = null;
 
 require('override-require')(
-  (request) => request.endsWith('wasm/stub'),
+  (request) => request.endsWith('wasm/asm-empty'),
   () => require('../build/wasm/asm')
 );
 
