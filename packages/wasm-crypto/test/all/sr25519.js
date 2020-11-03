@@ -44,6 +44,17 @@ function sr25519_verifyExisting (wasm) {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
+function sr25519_sign_deterministic (wasm) {
+  const [, pk, sk] = randomPair(wasm);
+  const sig1 = u8aToHex(wasm.sr25519Sign(pk, sk, stringToU8a('this is a message')));
+  const sig2 = u8aToHex(wasm.sr25519Sign(pk, sk, stringToU8a('this is a message')));
+
+  console.log('\tSG1', sig1);
+  console.log('\tSG2', sig2);
+
+  assert(sig1 !== sig2, 'ERROR: Signatures are deterministic');
+}
+
 function sr25519_signAndVerify (wasm) {
   const [, pk, sk] = randomPair(wasm);
   const signature = wasm.sr25519Sign(pk, sk, stringToU8a('this is a message'));
@@ -119,5 +130,6 @@ module.exports = {
   sr25519_devFromSeed,
   sr25519_pairFromSeed,
   sr25519_signAndVerify,
+  sr25519_sign_deterministic,
   sr25519_verifyExisting
 };
