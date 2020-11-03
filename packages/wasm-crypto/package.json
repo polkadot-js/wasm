@@ -8,7 +8,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "@polkadot/dev": "^0.59.16",
+    "@polkadot/dev": "^0.59.17",
     "@polkadot/util": "^3.7.1",
     "override-require": "^1.1.1"
   },
