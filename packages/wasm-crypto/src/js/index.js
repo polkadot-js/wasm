@@ -1,7 +1,7 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const asmFallback = require('../wasm/asm-none');
+const asmFallback = require('../wasm/asm-empty');
 const wasmBytes = require('../wasm/bytes');
 const { allocString, allocU8a, getWasm, initWasm, resultString, resultU8a, withWasm } = require('./bridge');
 const imports = require('./imports');
