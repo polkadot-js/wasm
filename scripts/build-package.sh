@@ -35,7 +35,7 @@ rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
 # optimise
 echo "*** Optimising WASM output"
 # ../../wabt/bin/wasm-strip $WSM
-../../binaryen/bin/wasm-opt $WSM -Os -o $OPT
+../../binaryen/wasm-opt $WSM -Os -o $OPT
 
 # convert wasm to base64 structure
 echo "*** Packing WASM into baseX"
@@ -43,7 +43,7 @@ node ../../scripts/pack-wasm-base.js
 
 # build asmjs version from the input (optimised) WASM
 echo "*** Building asm.js version"
-../../binaryen/bin/wasm2js --output $ASM $OPT
+../../binaryen/wasm2js --output $ASM $OPT
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM

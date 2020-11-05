@@ -32,23 +32,24 @@ cargo install xargo
 #   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 # fi
 
-if [[ "$unamestr" == 'Linux' ]]; then
+# if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"
   BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-linux
   BINDGEN_ZIP=wasm-bindgen-$BINDGEN_VER-x86_64-unknown-linux-musl
   WABT_ZIP=wabt-$WABT_VER-ubuntu
-elif [[ "$unamestr" == "Darwin" ]]; then
-  echo "*** Detected Mac"
-  BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-macos
-  BINDGEN_ZIP=wasm-bindgen-$BINDGEN_VER-x86_64-apple-darwin
-  WABT_ZIP=wabt-$WABT_VER-macos
-fi
+# elif [[ "$unamestr" == "Darwin" ]]; then
+#   echo "*** Detected Mac"
+#   BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-macos
+#   BINDGEN_ZIP=wasm-bindgen-$BINDGEN_VER-x86_64-apple-darwin
+#   WABT_ZIP=wabt-$WABT_VER-macos
+# fi
 
 if [ ! -z "$BINARYEN_ZIP" ]; then
   if [ ! -d "binaryen" ]; then
     echo "*** Downloading binaryen"
     curl -L $BINARYEN_REPO/releases/download/$BINARYEN_VER/$BINARYEN_ZIP.tar.gz | tar xz
-    mv binaryen-$BINARYEN_VER binaryen
+    mv binaryen-$BINARYEN_VER/bin binaryen
+    rm -rf binaryen-$BINARYEN_VER
   fi
 else
   echo "*** Unable to extract binaryen"
