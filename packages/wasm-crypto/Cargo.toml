@@ -33,7 +33,6 @@ wee_alloc = "0.4.3"
 [dev-dependencies]
 hex-literal = "0.2.0"
 rand = { version = "0.7.3", features = ["wasm-bindgen"] }
-xargo = "0.3.22"
 
 [profile.release]
 codegen-units = 1

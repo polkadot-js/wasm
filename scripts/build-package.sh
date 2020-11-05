@@ -34,7 +34,7 @@ rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
 
 # optimise
 echo "*** Optimising WASM output"
-../../wabt/bin/wasm-strip $WSM
+# ../../wabt/bin/wasm-strip $WSM
 ../../binaryen/bin/wasm-opt $WSM -Os -o $OPT
 
 # convert wasm to base64 structure

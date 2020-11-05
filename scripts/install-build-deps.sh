@@ -25,6 +25,7 @@ unamestr=`uname`
 
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
+cargo install xargo
 
 # if ! [ -x "$(command -v wasm-pack)" ]; then
 #   echo "*** Installing wasm-pack"
@@ -53,22 +54,22 @@ else
   echo "*** Unable to extract binaryen"
 fi
 
-if [ ! -z "$WABT_ZIP" ]; then
-  if [ ! -d "wabt" ]; then
-    echo "*** Downloading wabt"
-    curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
-    mv wabt-$WABT_VER wabt
-  fi
-else
-  echo "*** Unable to extract wabt"
-fi
+# if [ ! -z "$WABT_ZIP" ]; then
+#   if [ ! -d "wabt" ]; then
+#     echo "*** Downloading wabt"
+#     curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
+#     mv wabt-$WABT_VER wabt
+#   fi
+# else
+#   echo "*** Unable to extract wabt"
+# fi
 
-if [ ! -z "$WABT_ZIP" ]; then
-  if [ ! -d "wabt" ]; then
-    echo "*** Downloading wabt"
-    curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
-    mv wabt-$WABT_VER wabt
-  fi
-else
-  echo "*** Unable to extract wabt"
-fi
+# if [ ! -z "$WABT_ZIP" ]; then
+#   if [ ! -d "wabt" ]; then
+#     echo "*** Downloading wabt"
+#     curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
+#     mv wabt-$WABT_VER wabt
+#   fi
+# else
+#   echo "*** Unable to extract wabt"
+# fi
