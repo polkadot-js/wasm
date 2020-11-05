@@ -1,4 +1,5 @@
-binaryen*
+binaryen/
+bindgen/
 build/
 build-docs/
 coverage/
@@ -8,7 +9,6 @@ pkg/
 target/
 tmp/
 wabt/
-wasm-bindgen/
 .DS_Store
 .env.local
 .env.development.local
