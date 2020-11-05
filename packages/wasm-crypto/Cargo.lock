@@ -657,7 +657,6 @@ checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
 name = "wasm"
 version = "0.0.0"
 dependencies = [
- "backtrace",
  "blake2-rfc",
  "byteorder",
  "ed25519-dalek",

@@ -6,9 +6,9 @@
 
 Changes:
 
-- Move to building via stable Rust, not nightly
 - Rework generation of WASM interfaces (proper cross-platform support)
 - Remove application of `getRandomValues` polyfill. Generally these should be supplied by the user.
+- Build via xargo for panic abort (Pinned nightly)
 
 
 ## 1.4.1 Aug 27, 2020
