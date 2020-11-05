@@ -5,6 +5,9 @@
 
 set -e
 
+# also change in install-build-deps
+RUST_VER=nightly-2020-10-25
+
 WSM=pkg/wasm_bg.wasm
 OPT=pkg/wasm_opt.wasm
 ASM=build/wasm/asm.js
@@ -25,10 +28,13 @@ cp src/wasm/* build/wasm/
 
 # build new via wasm-pack
 echo "*** Building WASM output"
-wasm-pack build --release --scope polkadot --target web
+rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
+../../wasm-bindgen/wasm-bindgen target/wasm32-unknown-unknown/release/wasm.wasm --out-dir pkg --target web
+# wasm-pack build --release --scope polkadot --target web
 
 # optimise
 echo "*** Optimising WASM output"
+../../wabt/bin/wasm-strip $WSM
 ../../binaryen/bin/wasm-opt $WSM -Os -o $OPT
 
 # convert wasm to base64 structure
