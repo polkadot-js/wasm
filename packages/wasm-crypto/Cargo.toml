@@ -43,11 +43,3 @@ lto = true
 opt-level = "z"
 panic = "abort"
 rpath = false
-
-[package.metadata.wasm-pack.profile.release]
-wasm-opt = false
-
-[package.metadata.wasm-pack.profile.release.wasm-bindgen]
-debug-js-glue = false
-demangle-name-section = true
-dwarf-debug-info = false
