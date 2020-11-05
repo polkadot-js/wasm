@@ -8,7 +8,6 @@ set -e
 # also change in build-package
 RUST_VER=nightly-2020-10-25
 
-BINARYEN_TOOLS=( "wasm-opt" "wasm2js" )
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
 BINARYEN_VER=version_97
 BINARYEN_ZIP=
@@ -32,45 +31,36 @@ cargo install xargo
 #   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 # fi
 
-# if [[ "$unamestr" == 'Linux' ]]; then
+if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"
   BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-linux
   BINDGEN_ZIP=wasm-bindgen-$BINDGEN_VER-x86_64-unknown-linux-musl
   WABT_ZIP=wabt-$WABT_VER-ubuntu
-# elif [[ "$unamestr" == "Darwin" ]]; then
-#   echo "*** Detected Mac"
-#   BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-macos
-#   BINDGEN_ZIP=wasm-bindgen-$BINDGEN_VER-x86_64-apple-darwin
-#   WABT_ZIP=wabt-$WABT_VER-macos
-# fi
-
-if [ ! -z "$BINARYEN_ZIP" ]; then
-  if [ ! -d "binaryen" ]; then
-    echo "*** Downloading binaryen"
-    curl -L $BINARYEN_REPO/releases/download/$BINARYEN_VER/$BINARYEN_ZIP.tar.gz | tar xz
-    mv binaryen-$BINARYEN_VER/bin binaryen
-    rm -rf binaryen-$BINARYEN_VER
-  fi
+elif [[ "$unamestr" == "Darwin" ]]; then
+  echo "*** Detected Mac"
+  BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-macos
+  BINDGEN_ZIP=wasm-bindgen-$BINDGEN_VER-x86_64-apple-darwin
+  WABT_ZIP=wabt-$WABT_VER-macos
 else
-  echo "*** Unable to extract binaryen"
+  echo "*** Unknown platform $unamestr, unable to install wasm helper binaries"
+  exit 1
 fi
 
-if [ ! -z "$BINDGEN_ZIP" ]; then
-  if [ ! -d "wasm-bindgen" ]; then
-    echo "*** Downloading wasm-bindgen"
-    curl -L $BINDGEN_REPO/releases/download/$BINDGEN_VER/$BINDGEN_ZIP.tar.gz | tar xz
-    mv $BINDGEN_ZIP wasm-bindgen
-  fi
-else
-  echo "*** Unable to extract wasm-bindgen"
+if [ ! -d "binaryen" ]; then
+  echo "*** Downloading binaryen"
+  curl -L $BINARYEN_REPO/releases/download/$BINARYEN_VER/$BINARYEN_ZIP.tar.gz | tar xz
+  mv binaryen-$BINARYEN_VER/bin binaryen
+  rm -rf binaryen-$BINARYEN_VER
 fi
 
-# if [ ! -z "$WABT_ZIP" ]; then
-#   if [ ! -d "wabt" ]; then
-#     echo "*** Downloading wabt"
-#     curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
-#     mv wabt-$WABT_VER wabt
-#   fi
-# else
-#   echo "*** Unable to extract wabt"
+if [ ! -d "wasm-bindgen" ]; then
+  echo "*** Downloading wasm-bindgen"
+  curl -L $BINDGEN_REPO/releases/download/$BINDGEN_VER/$BINDGEN_ZIP.tar.gz | tar xz
+  mv $BINDGEN_ZIP wasm-bindgen
+fi
+
+# if [ ! -d "wabt" ]; then
+#   echo "*** Downloading wabt"
+#   curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
+#   mv wabt-$WABT_VER wabt
 # fi
