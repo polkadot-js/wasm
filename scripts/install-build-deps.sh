@@ -44,25 +44,25 @@ elif [[ "$unamestr" == "Darwin" ]]; then
   WABT_ZIP=wabt-$WABT_VER-macos
 fi
 
-if [ ! -z "$BINDGEN_ZIP" ]; then
-  if [ ! -d "wasm-bindgen" ]; then
+if [ ! -z "$BINARYEN_ZIP" ]; then
+  if [ ! -d "binaryen" ]; then
     echo "*** Downloading binaryen"
-    curl -L $BINDGEN_REPO/releases/download/$BINDGEN_VER/$BINDGEN_ZIP.tar.gz | tar xz
-    mv $BINDGEN_ZIP wasm-bindgen
+    curl -L $BINARYEN_REPO/releases/download/$BINARYEN_VER/$BINARYEN_ZIP.tar.gz | tar xz
+    mv binaryen-$BINARYEN_VER binaryen
   fi
 else
   echo "*** Unable to extract binaryen"
 fi
 
-# if [ ! -z "$WABT_ZIP" ]; then
-#   if [ ! -d "wabt" ]; then
-#     echo "*** Downloading wabt"
-#     curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
-#     mv wabt-$WABT_VER wabt
-#   fi
-# else
-#   echo "*** Unable to extract wabt"
-# fi
+if [ ! -z "$BINDGEN_ZIP" ]; then
+  if [ ! -d "wasm-bindgen" ]; then
+    echo "*** Downloading wasm-bindgen"
+    curl -L $BINDGEN_REPO/releases/download/$BINDGEN_VER/$BINDGEN_ZIP.tar.gz | tar xz
+    mv $BINDGEN_ZIP wasm-bindgen
+  fi
+else
+  echo "*** Unable to extract wasm-bindgen"
+fi
 
 # if [ ! -z "$WABT_ZIP" ]; then
 #   if [ ! -d "wabt" ]; then
