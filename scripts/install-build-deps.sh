@@ -26,10 +26,10 @@ unamestr=`uname`
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
 
-if ! [ -x "$(command -v wasm-pack)" ]; then
-  echo "*** Installing wasm-pack"
-  curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-fi
+# if ! [ -x "$(command -v wasm-pack)" ]; then
+#   echo "*** Installing wasm-pack"
+#   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+# fi
 
 if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"
