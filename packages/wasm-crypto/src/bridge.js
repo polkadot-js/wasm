@@ -3,8 +3,6 @@
 
 const { assert, stringToU8a, u8aToString } = require('@polkadot/util');
 
-const pkg = require('../package.json');
-
 let wasm;
 let cachegetInt32 = null;
 let cachegetUint8 = null;
@@ -21,7 +19,7 @@ async function initWasm (wasmBytes, asmFn, wbg) {
     if (asmFn) {
       wasm = asmFn(wbg);
     } else {
-      console.error(`ERROR: Unable to initialize ${pkg.name} ${pkg.version}`);
+      console.error('ERROR: Unable to initialize @polkadot/wasm-crypto');
       console.error(error);
 
       wasm = null;
@@ -31,7 +29,7 @@ async function initWasm (wasmBytes, asmFn, wbg) {
 
 function withWasm (fn) {
   return (...params) => {
-    assert(wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
+    assert(wasm, '@polkadot/wasm-crypto has not been initialized. Ensure that you wait for the initialization Promise with waitReady() (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
 
     return fn(wasm, ...params);
   };

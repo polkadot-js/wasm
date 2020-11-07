@@ -17,13 +17,12 @@ echo "*** Building package"
 # cleanup old
 echo "*** Cleaning old builds"
 rm -rf ./build ./pkg
-mkdir -p build/js build/wasm
+mkdir -p build/wasm
 
 # copy our package interfaces
 echo "*** Copying package sources"
 cp package.json build/
-cp src/index.d.ts src/index.js build/
-cp src/js/* build/js/
+cp src/index.d.ts src/*.js build/
 cp src/wasm/* build/wasm/
 
 # build new via wasm-pack
