@@ -10,8 +10,5 @@ module.exports = Object.assign({}, config, {
   modulePathIgnorePatterns: [
     '<rootDir>/packages/wasm-crypto/build'
   ],
-  resolver: '@polkadot/dev/config/jest-resolver',
-  setupFilesAfterEnv: [
-    '@polkadot/dev/config/jest-crypto'
-  ]
+  resolver: '@polkadot/dev/config/jest-resolver'
 });
