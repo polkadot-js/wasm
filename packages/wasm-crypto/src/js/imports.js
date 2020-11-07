@@ -1,11 +1,11 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const crypto = require('crypto');
+const { getString, getU8a } = require('./bridge');
+const getRandomValues = require('./randomvalues');
 
-const { getString, getU8a, getWasm } = require('./bridge');
+const DEFAULT_SELF = { crypto: { getRandomValues } };
 
-const requires = { crypto };
 const heap = new Array(32).fill(undefined).concat(undefined, null, true, false);
 let heapNext = heap.length;
 
@@ -43,24 +43,16 @@ function addObject (obj) {
   return idx;
 }
 
-function handleError (f) {
-  return function () {
-    try {
-      return f.apply(this, arguments);
-    } catch (e) {
-      getWasm().__wbindgen_exn_store(addObject(e));
-    }
-  };
-}
-
 module.exports.__wbindgen_is_undefined = function (arg0) {
   return getObject(arg0) === undefined;
 };
 
-module.exports.__wbg_self_1b7a39e3a92c949c = handleError(() => addObject(self.self));
+module.exports.__wbg_self_1b7a39e3a92c949c = function () {
+  return addObject(DEFAULT_SELF);
+};
 
 module.exports.__wbg_require_604837428532a733 = function (arg0, arg1) {
-  return addObject(requires[getString(arg0, arg1)]);
+  throw new Error(`Unable to import ${getString(arg0, arg1)}`);
 };
 
 module.exports.__wbg_crypto_968f1772287e2df0 = function (arg0) {
