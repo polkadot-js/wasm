@@ -1,8 +1,9 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+const getRandomValues = require('@polkadot/x-randomvalues').default;
+
 const { getString, getU8a } = require('./bridge');
-const getRandomValues = require('./randomvalues');
 
 const DEFAULT_SELF = { crypto: { getRandomValues } };
 

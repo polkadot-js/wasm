@@ -1846,11 +1846,22 @@ __metadata:
   dependencies:
     "@polkadot/dev": ^0.59.19
     "@polkadot/util": ^4.0.0-5
+    "@polkadot/x-randomvalues": ^4.0.0-5
     override-require: ^1.1.1
   peerDependencies:
     "@polkadot/util": "*"
+    "@polkadot/x-randomvalues": "*"
   languageName: unknown
   linkType: soft
+
+"@polkadot/x-randomvalues@npm:^4.0.0-5":
+  version: 4.0.0-6
+  resolution: "@polkadot/x-randomvalues@npm:4.0.0-6"
+  dependencies:
+    "@babel/runtime": ^7.12.1
+  checksum: a19fffec41b330e261354464da21706592b2553dbbde9fe5547f0564051d856a0e1d0664c61c9f00f8a3d308b60a611e2ffa44265c378fe0f1aefaeac2f680aa
+  languageName: node
+  linkType: hard
 
 "@polkadot/x-textdecoder@npm:^4.0.0-5":
   version: 4.0.0-5

@@ -14,9 +14,11 @@
   "devDependencies": {
     "@polkadot/dev": "^0.59.19",
     "@polkadot/util": "^4.0.0-5",
+    "@polkadot/x-randomvalues": "^4.0.0-5",
     "override-require": "^1.1.1"
   },
   "peerDependencies": {
-    "@polkadot/util": "*"
+    "@polkadot/util": "*",
+    "@polkadot/x-randomvalues": "*"
   }
 }
