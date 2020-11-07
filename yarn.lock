@@ -9727,7 +9727,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.0.3":
+"typescript@npm:^4.0.5":
   version: 4.0.5
   resolution: "typescript@npm:4.0.5"
   bin:
@@ -9737,7 +9737,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^4.0.3#builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^4.0.5#builtin<compat/typescript>":
   version: 4.0.5
   resolution: "typescript@patch:typescript@npm%3A4.0.5#builtin<compat/typescript>::version=4.0.5&hash=5bf698"
   bin:
