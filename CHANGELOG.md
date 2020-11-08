@@ -1,14 +1,13 @@
 # CHANGELOG
 
-## 2.0.0-x
-
-- **Breaking change** `crypto.getRandomValues` is not a polyfill anymore. Generally in libraries these should always be supplied by the user to ensure control and non-conflicts. This could affect environments such as Jest, for those see https://stackoverflow.com/questions/52612122/how-to-use-jest-to-test-functions-using-crypto-or-window-mscrypto. On React Native, ensure you do have the required crypto polyfills, browser and Node.js is not affected.
+## 2.0.1 Nov 8, 2020
 
 Changes:
 
-- Rework generation of WASM interfaces (proper cross-platform support)
-- Remove application of `getRandomValues` polyfill. Generally these should be supplied by the user.
-- Build via xargo for panic abort (Pinned nightly)
+- Rework generation of WASM interfaces (proper cross-platform JS support)
+- Remove explicit `crypto` dependency, this is now applied by `@polkadot/x-randomvalues`
+- Build via xargo for panic abort, an overall small sizes without stack (Pinned nightly)
+- Move Rust library sources in to `rs/` subfolder
 
 
 ## 1.4.1 Aug 27, 2020
