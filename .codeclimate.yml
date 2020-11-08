@@ -2,3 +2,4 @@ exclude_patterns:
 - "**/*.spec.js"
 - "**/*.spec.ts"
 - "docs/**/*.js"
+- "**/test/**/*.js"
