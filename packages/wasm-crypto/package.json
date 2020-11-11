@@ -8,9 +8,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "@polkadot/dev": "^0.59.19",
-    "@polkadot/util": "^4.0.0-7",
-    "@polkadot/x-randomvalues": "^4.0.0-7",
+    "@polkadot/dev": "^0.60.1",
+    "@polkadot/util": "^4.0.2-11",
+    "@polkadot/x-randomvalues": "^4.0.2-11",
     "override-require": "^1.1.1"
   },
   "peerDependencies": {
