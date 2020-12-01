@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto",
-  "version": "2.0.2-0",
+  "version": "2.0.2-1",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "react-native": {
     "./wasm/asm-empty.js": "./wasm/asm.js"
