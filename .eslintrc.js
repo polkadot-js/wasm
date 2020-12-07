@@ -13,7 +13,9 @@ module.exports = {
     '**/binaryen/*',
     '**/build/*',
     '**/coverage/*',
-    '**/node_modules/*'
+    '**/node_modules/*',
+    '**/pkg/*',
+    '**/target/*'
   ],
   parserOptions: {
     ...base.parserOptions,
