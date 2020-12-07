@@ -13,7 +13,7 @@
     "build": "yarn build:wasm",
     "build:release": "polkadot-ci-ghact-build",
     "build:wasm": "./scripts/build.sh",
-    "lint": "polkadot-dev-run-lint",
+    "lint": "polkadot-dev-run-lint --fix",
     "clean": "./scripts/clean.sh",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "yarn test:wasm:rust",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@polkadot/dev": "^0.60.7"
+    "@polkadot/dev": "^0.60.9"
   },
   "version": "2.0.2-2"
 }
