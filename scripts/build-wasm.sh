@@ -12,19 +12,6 @@ WSM=pkg/wasm_bg.wasm
 OPT=pkg/wasm_opt.wasm
 ASM=build/wasm/asm.js
 
-echo "*** Building package"
-
-# cleanup old
-echo "*** Cleaning old builds"
-rm -rf ./build ./pkg
-mkdir -p build/wasm
-
-# copy our package interfaces
-echo "*** Copying package sources"
-cp package.json build/
-cp src/index.d.ts src/*.js build/
-cp src/wasm/* build/wasm/
-
 # build new via wasm-pack
 echo "*** Building WASM output"
 rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release

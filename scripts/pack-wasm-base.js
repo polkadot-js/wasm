@@ -3,9 +3,20 @@
 
 const fs = require('fs');
 
-const buffer = fs.readFileSync('./pkg/wasm_opt.wasm');
+const HDR = `// Generated as part of the build, do not edit
+`;
+const FTR = '';
 
-fs.writeFileSync('./build/wasm/bytes.js', `// Generated as part of the build, do not edit
+fs.writeFileSync('./build/wasm/bytes.js', `${HDR}
+module.exports = Buffer.from('${fs.readFileSync('./pkg/wasm_opt.wasm').toString('base64')}', 'base64');
+${FTR}`);
 
-module.exports = Buffer.from('${buffer.toString('base64')}', 'base64');
-`);
+fs.writeFileSync('./build/esm/wasm/asm.js', `${HDR}
+import asm from '../../wasm/asm.js';
+export default asm;
+${FTR}`);
+
+fs.writeFileSync('./build/esm/wasm/bytes.js', `${HDR}
+import bytes from '../../wasm/bytes.js';
+export default bytes;
+${FTR}`);

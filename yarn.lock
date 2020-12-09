@@ -1712,9 +1712,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.60.12":
-  version: 0.60.12
-  resolution: "@polkadot/dev@npm:0.60.12"
+"@polkadot/dev@npm:^0.60.14":
+  version: 0.60.14
+  resolution: "@polkadot/dev@npm:0.60.14"
   dependencies:
     "@babel/cli": ^7.12.8
     "@babel/core": ^7.12.9
@@ -1801,9 +1801,15 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: 13f7153ccc62fc62c4823946175845f8c6b50b1e20e9321ce607ea23a0b8b39f3359e707997a62ce31a44c6ea8b9a134b206e3aecd970ff9c3b040d3cd79f06e
+  checksum: 1a7f21b8dca7775e0f7ec85f6f925f7a0ed1c6acd86d74e2da2ef25dacd754b68af348a79de03cc2f0611e998e4c91c10184580d9b113cf708472b9c05060606
   languageName: node
   linkType: hard
+
+"@polkadot/unused@workspace:packages/unused":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/unused@workspace:packages/unused"
+  languageName: unknown
+  linkType: soft
 
 "@polkadot/util@npm:^4.2.1":
   version: 4.2.1
@@ -1824,7 +1830,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
-    "@polkadot/dev": ^0.60.12
+    "@polkadot/dev": ^0.60.14
     "@polkadot/util": ^4.2.1
     "@polkadot/x-randomvalues": ^4.2.1
     override-require: ^1.1.1
@@ -8566,7 +8572,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.9
-    "@polkadot/dev": ^0.60.12
+    "@polkadot/dev": ^0.60.14
   languageName: unknown
   linkType: soft
 
