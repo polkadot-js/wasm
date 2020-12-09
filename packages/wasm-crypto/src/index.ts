@@ -101,14 +101,16 @@ export const sr25519DeriveKeypairHard = withWasm((wasm) =>
   }
 );
 
-export const sr25519DeriveKeypairSoft = withWasm((wasm) => (pair, cc): Uint8Array => {
-  const [ptr0, len0] = allocU8a(pair);
-  const [ptr1, len1] = allocU8a(cc);
+export const sr25519DeriveKeypairSoft = withWasm((wasm) =>
+  (pair: Uint8Array, cc: Uint8Array): Uint8Array => {
+    const [ptr0, len0] = allocU8a(pair);
+    const [ptr1, len1] = allocU8a(cc);
 
-  wasm.ext_sr_derive_keypair_soft(8, ptr0, len0, ptr1, len1);
+    wasm.ext_sr_derive_keypair_soft(8, ptr0, len0, ptr1, len1);
 
-  return resultU8a();
-});
+    return resultU8a();
+  }
+);
 
 export const sr25519DerivePublicSoft = withWasm((wasm) =>
   (pubkey: Uint8Array, cc: Uint8Array): Uint8Array => {
