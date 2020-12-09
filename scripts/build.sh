@@ -5,10 +5,13 @@
 
 set -e
 
-echo "*** Building packages"
+echo "*** Building JavaScript"
+./scripts/build-js.sh
+
+echo "*** Building WASM"
 cd packages/wasm-crypto
 
-../../scripts/build-package.sh
+../../scripts/build-wasm.sh
 
 yarn test:wasm:js
 

@@ -5,11 +5,6 @@
 
 set -e
 
-./scripts/clean-js.sh
-
-echo "*** Cleaning wasm"
-cd packages/wasm-crypto
-
-cargo clean
-
-cd ../..
+# cleanup old
+echo "*** Cleaning old builds"
+rm -rf packages/wasm-crypto/build packages/wasm-crypto/pkg

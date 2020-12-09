@@ -5,11 +5,7 @@
 
 set -e
 
+DEST=packages/wasm-crypto/build/esm
+
 ./scripts/clean-js.sh
-
-echo "*** Cleaning wasm"
-cd packages/wasm-crypto
-
-cargo clean
-
-cd ../..
+yarn polkadot-dev-build-ts
