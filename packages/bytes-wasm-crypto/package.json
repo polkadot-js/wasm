@@ -1,0 +1,14 @@
+{
+  "name": "@polkadot/bytes-wasm-crypto",
+  "version": "2.0.2-7",
+  "description": "Wasm content for wasm-crypto",
+  "browser": "data.js",
+  "main": "data.js",
+  "react-native": "data.js",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [],
+  "contributors": [],
+  "license": "Apache-2.0",
+  "bugs": "https://github.com/polkadot-js/wasm/issues",
+  "homepage": "https://github.com/polkadot-js/wasm"
+}

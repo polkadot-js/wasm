@@ -2,14 +2,15 @@
   "name": "@polkadot/wasm-crypto",
   "version": "2.0.2-7",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "react-native": {
-    "./wasm/asm-empty.js": "./wasm/asm.js"
-  },
   "main": "index.js",
+  "dependencies": {
+    "@polkadot/bytes-asmjs-crypto": "^2.0.2-7",
+    "@polkadot/bytes-wasm-crypto": "^2.0.2-7"
+  },
   "devDependencies": {
-    "@polkadot/dev": "^0.60.17",
-    "@polkadot/util": "^4.2.2-8",
-    "@polkadot/x-randomvalues": "^4.2.2-8",
+    "@polkadot/dev": "^0.60.20",
+    "@polkadot/util": "^4.2.2-9",
+    "@polkadot/x-randomvalues": "^4.2.2-9",
     "override-require": "^1.1.1"
   },
   "peerDependencies": {

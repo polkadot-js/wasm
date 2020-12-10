@@ -9,12 +9,20 @@ echo "*** Building JavaScript"
 ./scripts/build-js.sh
 
 echo "*** Building WASM"
-cd packages/wasm-crypto
+cd packages
 
-../../scripts/build-wasm.sh
+../scripts/build-wasm.sh
 
 yarn test:wasm:js
 
-ls -alR build
+echo ""
+echo "*** wasm-crypto"
+ls -alR wasm-crypto/build
+echo ""
+echo "*** bytes-asmjs-crypto"
+ls -alR bytes-asmjs-crypto/build
+echo ""
+echo "*** bytes-wasm-crypto"
+ls -alR bytes-wasm-crypto/build
 
-cd ../..
+cd ..

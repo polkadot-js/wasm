@@ -7,4 +7,4 @@ set -e
 
 # cleanup old
 echo "*** Cleaning old builds"
-rm -rf packages/wasm-crypto/build packages/wasm-crypto/pkg
+rm -rf packages/*/build packages/bytes

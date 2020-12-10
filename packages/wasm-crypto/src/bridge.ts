@@ -3,7 +3,7 @@
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import type { AsmCreator, WasmCryptoInstance } from './wasm/types';
+import type { AsmCreator, WasmCryptoInstance } from './types';
 
 import { assert, stringToU8a, u8aToString } from '@polkadot/util';
 

@@ -7,6 +7,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@polkadot/bytes-asmjs-crypto": [ "packages/bytes-asmjs-crypto/src/data" ],
+      "@polkadot/bytes-wasm-crypto": [ "packages/bytes-wasm-crypto/src/data" ],
       "@polkadot/wasm-crypto": [ "packages/wasm-crypto/src" ]
     },
     "skipLibCheck": true,
