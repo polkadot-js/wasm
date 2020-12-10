@@ -1,8 +1,10 @@
 {
-  "name": "@polkadot/unused",
+  "name": "@polkadot/bytes-asmjs-crypto",
   "version": "2.0.2-7",
-  "description": "Dummy",
-  "main": "index.js",
+  "description": "Asm.js content for wasm-crypto",
+  "browser": "empty.js",
+  "main": "empty.js",
+  "react-native": "data.js",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],

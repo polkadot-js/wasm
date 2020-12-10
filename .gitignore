@@ -2,6 +2,7 @@ binaryen/
 bindgen/
 build/
 build-docs/
+bytes/
 coverage/
 docs/.vuepress/dist/
 node_modules/
