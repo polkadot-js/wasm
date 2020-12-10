@@ -1723,9 +1723,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/dev@npm:^0.60.20":
-  version: 0.60.20
-  resolution: "@polkadot/dev@npm:0.60.20"
+"@polkadot/dev@npm:^0.60.21":
+  version: 0.60.21
+  resolution: "@polkadot/dev@npm:0.60.21"
   dependencies:
     "@babel/cli": ^7.12.8
     "@babel/core": ^7.12.9
@@ -1813,7 +1813,7 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: f8784f3c657b5b42e6ea3e123c9b349f908d6cdd44ac6ff4851523da0607f58fd886170a863902550d409327082602c4ccfc7457d959bcda0a1a7ba1a5fe832d
+  checksum: ffb4cf43e9e7db28f8a9b7378888120c9635d6b9b2af59b1e4d93ad6da1a66a88442ecf74e159265fa912b973035ff4035f59bb279f987c8817a1b0f4979d0e5
   languageName: node
   linkType: hard
 
@@ -1838,7 +1838,7 @@ __metadata:
   dependencies:
     "@polkadot/bytes-asmjs-crypto": ^2.0.2-8
     "@polkadot/bytes-wasm-crypto": ^2.0.2-8
-    "@polkadot/dev": ^0.60.20
+    "@polkadot/dev": ^0.60.21
     "@polkadot/util": ^4.2.2-9
     "@polkadot/x-randomvalues": ^4.2.2-9
     override-require: ^1.1.1
@@ -8580,7 +8580,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
-    "@polkadot/dev": ^0.60.20
+    "@polkadot/dev": ^0.60.21
   languageName: unknown
   linkType: soft
 
