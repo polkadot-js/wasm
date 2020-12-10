@@ -1711,7 +1711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/bytes-asmjs-crypto@^2.0.2-9, @polkadot/bytes-asmjs-crypto@workspace:packages/bytes-asmjs-crypto":
+"@polkadot/bytes-asmjs-crypto@^2.0.2-10, @polkadot/bytes-asmjs-crypto@workspace:packages/bytes-asmjs-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/bytes-asmjs-crypto@workspace:packages/bytes-asmjs-crypto"
   dependencies:
@@ -1719,7 +1719,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/bytes-wasm-crypto@^2.0.2-9, @polkadot/bytes-wasm-crypto@workspace:packages/bytes-wasm-crypto":
+"@polkadot/bytes-wasm-crypto@^2.0.2-10, @polkadot/bytes-wasm-crypto@workspace:packages/bytes-wasm-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/bytes-wasm-crypto@workspace:packages/bytes-wasm-crypto"
   dependencies:
@@ -1841,8 +1841,8 @@ __metadata:
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/bytes-asmjs-crypto": ^2.0.2-9
-    "@polkadot/bytes-wasm-crypto": ^2.0.2-9
+    "@polkadot/bytes-asmjs-crypto": ^2.0.2-10
+    "@polkadot/bytes-wasm-crypto": ^2.0.2-10
     "@polkadot/dev": ^0.60.21
     "@polkadot/util": ^4.2.2-9
     "@polkadot/x-randomvalues": ^4.2.2-9
