@@ -3,20 +3,28 @@
 
 const fs = require('fs');
 
-const HDR = `// Generated as part of the build, do not edit
+const A_NAME = 'bytes-asmjs-crypto';
+const W_NAME = 'bytes-wasm-crypto';
+
+const hdr = (package) => `// Copyright 2019-2020 @polkadot/${package} authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
+// Generated as part of the build, do not edit
 `;
-const FTR = '';
 
-fs.writeFileSync('./bytes-wasm-crypto/build/data.js', `${HDR}
+function writeEsm (package) {
+  fs.writeFileSync(`./${package}/build/data.mjs`, `${hdr(package)}
+import data from './data.js';
+export default data;
+`);
+  fs.writeFileSync(`./${package}/build/empty.mjs`, `${hdr(package)}
+export default null;
+`);
+}
+
+writeEsm(A_NAME);
+writeEsm(W_NAME);
+
+fs.writeFileSync('./bytes-wasm-crypto/build/data.js', `${hdr(W_NAME)}
 module.exports = Buffer.from('${fs.readFileSync('./bytes/wasm_opt.wasm').toString('base64')}', 'base64');
-${FTR}`);
-
-// fs.writeFileSync('./bytes-asmjs-crypto/data.mjs', `${HDR}
-// import asm from '../../wasm/asm.js';
-// export default asm;
-// ${FTR}`);
-
-// fs.writeFileSync('./bytes-wasm-crypto/data.mjs', `${HDR}
-// import bytes from '../../wasm/bytes.js';
-// export default bytes;
-// ${FTR}`);
+`);
