@@ -10,8 +10,8 @@
   },
   "devDependencies": {
     "@polkadot/dev": "^0.60.27",
-    "@polkadot/util": "^4.2.2-12",
-    "@polkadot/x-randomvalues": "^4.2.2-12",
+    "@polkadot/util": "^4.2.2-13",
+    "@polkadot/x-randomvalues": "^4.2.2-13",
     "override-require": "^1.1.1"
   },
   "peerDependencies": {

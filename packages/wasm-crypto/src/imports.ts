@@ -3,7 +3,7 @@
 
 /* eslint-disable camelcase */
 
-import getRandomValues from '@polkadot/x-randomvalues';
+import { getRandomValues } from '@polkadot/x-randomvalues';
 
 import { getString, getU8a } from './bridge';
 
