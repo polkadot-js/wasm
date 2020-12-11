@@ -12,19 +12,14 @@ const hdr = (package) => `// Copyright 2019-2020 @polkadot/${package} authors & 
 // Generated as part of the build, do not edit
 `;
 
-function writeEsm (package) {
-  fs.writeFileSync(`./${package}/build/data.mjs`, `${hdr(package)}
-import data from './data.js';
-export default data;
+fs.writeFileSync(`./${A_NAME}/build/data.mjs`, `${hdr(A_NAME)}
+export { asmJsInit } from './data.js';
 `);
-  fs.writeFileSync(`./${package}/build/empty.mjs`, `${hdr(package)}
-export default null;
-`);
-}
 
-writeEsm(A_NAME);
-writeEsm(W_NAME);
+fs.writeFileSync(`./${W_NAME}/build/data.mjs`, `${hdr(W_NAME)}
+export { wasmBytes } from './data.js';
+`);
 
 fs.writeFileSync('./bytes-wasm-crypto/build/data.js', `${hdr(W_NAME)}
-module.exports = Buffer.from('${fs.readFileSync('./bytes/wasm_opt.wasm').toString('base64')}', 'base64');
+module.exports = { wasmBytes: Buffer.from('${fs.readFileSync('./bytes/wasm_opt.wasm').toString('base64')}', 'base64') };
 `);

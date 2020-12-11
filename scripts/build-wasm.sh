@@ -40,7 +40,8 @@ echo "*** Building asm.js version"
 sed -i -e '/import {/d' $ASM
 sed -i -e '/export var /d' $ASM
 sed -i -e 's/{abort.*},memasmFunc/wbg, memasmFunc/g' $ASM
-sed -i -e 's/var retasmFunc = /module.exports = (wbg) => /' $ASM
+sed -i -e 's/var retasmFunc = /const asmJsInit = (wbg) => /' $ASM
+echo "module.exports = { asmJsInit };" >> $ASM
 
 # cleanups
 rm -rf bytes-asmjs-crypto/build/*-e

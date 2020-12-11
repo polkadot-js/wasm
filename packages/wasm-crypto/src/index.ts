@@ -1,13 +1,13 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import asmFallback from '@polkadot/bytes-asmjs-crypto';
-import wasmBytes from '@polkadot/bytes-wasm-crypto';
+import { asmJsInit } from '@polkadot/bytes-asmjs-crypto';
+import { wasmBytes } from '@polkadot/bytes-wasm-crypto';
 
 import { allocString, allocU8a, getWasm, initWasm, resultString, resultU8a, withWasm } from './bridge';
 import * as imports from './imports';
 
-const wasmPromise = initWasm(wasmBytes, asmFallback, imports).catch(() => null);
+const wasmPromise = initWasm(wasmBytes, asmJsInit, imports).catch(() => null);
 
 export const bip39Generate = withWasm((wasm) =>
   (words: 12 | 15 | 18 | 21 | 24): string => {
