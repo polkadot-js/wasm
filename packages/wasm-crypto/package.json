@@ -9,9 +9,9 @@
     "@polkadot/bytes-wasm-crypto": "^2.0.2-11"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.60.22",
-    "@polkadot/util": "^4.2.2-10",
-    "@polkadot/x-randomvalues": "^4.2.2-10",
+    "@polkadot/dev": "^0.60.23",
+    "@polkadot/util": "^4.2.2-11",
+    "@polkadot/x-randomvalues": "^4.2.2-11",
     "override-require": "^1.1.1"
   },
   "peerDependencies": {
