@@ -1702,9 +1702,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/dev@npm:^0.60.27":
-  version: 0.60.27
-  resolution: "@polkadot/dev@npm:0.60.27"
+"@polkadot/dev@npm:^0.60.29":
+  version: 0.60.29
+  resolution: "@polkadot/dev@npm:0.60.29"
   dependencies:
     "@babel/cli": ^7.12.10
     "@babel/core": ^7.12.10
@@ -1792,22 +1792,22 @@ __metadata:
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: e4e90914eed69bd21f6617265030388e4d651046e156717a816e5a4719b75abbb5641e71025d2df1a71e45265b0fcadd201450e4b4ae67abf9b56dc029a2bb65
+  checksum: e2ff24a9b0d4ac815030e1b5d74f1556f35135f14963dd5c0718c552904548f5fef4185d20fa8441dd66576a4fe07600b69194c4c71364b5988fe08babfaf9ad
   languageName: node
   linkType: hard
 
-"@polkadot/util@npm:^4.2.2-13":
-  version: 4.2.2-13
-  resolution: "@polkadot/util@npm:4.2.2-13"
+"@polkadot/util@npm:^4.2.2-14":
+  version: 4.2.2-14
+  resolution: "@polkadot/util@npm:4.2.2-14"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/x-textdecoder": 4.2.2-13
-    "@polkadot/x-textencoder": 4.2.2-13
+    "@polkadot/x-textdecoder": 4.2.2-14
+    "@polkadot/x-textencoder": 4.2.2-14
     "@types/bn.js": ^4.11.6
     bn.js: ^4.11.9
     camelcase: ^5.3.1
     ip-regex: ^4.2.0
-  checksum: 98189661dfb0998547dea9b04a00ed285b10e032321a71cdd9dc098a9d4d0fa7b4736a4a4515538b35c30fba8fa2f2c491e48f0d13ae53d91ea0277ac0b76a31
+  checksum: bfe13736649b08eb08dbc6cf4a312ef13d6baf179755ecf918cc4b20ed673a551a4e0e0c95a641745a4627d14101c27759247d9f06878457f9cc4d8000a6eb70
   languageName: node
   linkType: hard
 
@@ -1818,9 +1818,9 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@polkadot/bytes-asmjs-crypto": ^2.0.2-14
     "@polkadot/bytes-wasm-crypto": ^2.0.2-14
-    "@polkadot/dev": ^0.60.27
-    "@polkadot/util": ^4.2.2-13
-    "@polkadot/x-randomvalues": ^4.2.2-13
+    "@polkadot/dev": ^0.60.29
+    "@polkadot/util": ^4.2.2-14
+    "@polkadot/x-randomvalues": ^4.2.2-14
     override-require: ^1.1.1
   peerDependencies:
     "@polkadot/util": "*"
@@ -1828,30 +1828,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/x-randomvalues@npm:^4.2.2-13":
-  version: 4.2.2-13
-  resolution: "@polkadot/x-randomvalues@npm:4.2.2-13"
+"@polkadot/x-randomvalues@npm:^4.2.2-14":
+  version: 4.2.2-14
+  resolution: "@polkadot/x-randomvalues@npm:4.2.2-14"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: c63d578e5c4529e9813041d259a1ffcaa71b8962eaefb1ca09f237fe8e1f867b4976f8073e706d1c706e06fa9bc02a6e66bcc7e783b5bc45fd22fdbe859eb10f
+  checksum: b8beaf8371334237607832d6e5e19291c03afcf533fff9ddd6e218e51d94273de5b534afd5b57eca31795165b3771f4f308299391299807f833bbce50776f323
   languageName: node
   linkType: hard
 
-"@polkadot/x-textdecoder@npm:4.2.2-13":
-  version: 4.2.2-13
-  resolution: "@polkadot/x-textdecoder@npm:4.2.2-13"
+"@polkadot/x-textdecoder@npm:4.2.2-14":
+  version: 4.2.2-14
+  resolution: "@polkadot/x-textdecoder@npm:4.2.2-14"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: 23c39e419a4d924cbc6859448cba7195294713091664767868c05f9b94287f0d71832941e9a12ac8df4498afefc409127d3f2c9a2a2cf05cd1cc9548bbc660de
+  checksum: 0516ef3abd8e04fe964f6d2aa95a09c80f9f6d8b3d1a62b9df2aae004393c1660ec5d18ce8be23f61043d0cc9903920731b598d5dd1c49f9f1be8d9ee955684f
   languageName: node
   linkType: hard
 
-"@polkadot/x-textencoder@npm:4.2.2-13":
-  version: 4.2.2-13
-  resolution: "@polkadot/x-textencoder@npm:4.2.2-13"
+"@polkadot/x-textencoder@npm:4.2.2-14":
+  version: 4.2.2-14
+  resolution: "@polkadot/x-textencoder@npm:4.2.2-14"
   dependencies:
     "@babel/runtime": ^7.12.5
-  checksum: 165f4bf7578ef88b06667182015ed6d22a553a0923474699b1947bb23fbc9fc7aef025212bc2307cef3fabdd3c7fd37b16b9cfbbd87e80f8ebbd90b7d69e8d02
+  checksum: 2d9c66b1e6e5e5ceb06c552f48f51bb38e881a77a7134a08ab2d725ab42612964234564064d6fb1d47de6d831469b23f9af3662a18867fe4c50cbd9258279c08
   languageName: node
   linkType: hard
 
@@ -8560,7 +8560,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
-    "@polkadot/dev": ^0.60.27
+    "@polkadot/dev": ^0.60.29
   languageName: unknown
   linkType: soft
 
