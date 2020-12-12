@@ -1699,6 +1699,7 @@ __metadata:
   resolution: "@polkadot/bytes-wasm-crypto@workspace:packages/bytes-wasm-crypto"
   dependencies:
     "@babel/runtime": ^7.12.5
+    fflate: ^0.4.2
     lz4js: ^0.2.0
   languageName: unknown
   linkType: soft
@@ -4454,6 +4455,13 @@ __metadata:
   dependencies:
     bser: 2.1.1
   checksum: f9ec24592a45026a6a7f54034a4b5efb010cac7d7fbc234fe9ae5d725c13efa9be0ded1ae348473fc42af4e28eea53f8b993857c0c49e6d721f7c9eb5b21217f
+  languageName: node
+  linkType: hard
+
+"fflate@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "fflate@npm:0.4.2"
+  checksum: e96c19a1d514f74faa1fe320c022aaf1dade597150510da18dce024ff5a2fa0b6e103daf828fac26c54b647777256638fc7106a3dcff078572b8dee73071df54
   languageName: node
   linkType: hard
 
