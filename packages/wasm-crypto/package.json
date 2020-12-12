@@ -1,12 +1,12 @@
 {
   "name": "@polkadot/wasm-crypto",
-  "version": "2.0.2-15",
+  "version": "2.0.2-16",
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
-    "@polkadot/bytes-asmjs-crypto": "^2.0.2-15",
-    "@polkadot/bytes-wasm-crypto": "^2.0.2-15"
+    "@polkadot/bytes-asmjs-crypto": "^2.0.2-16",
+    "@polkadot/bytes-wasm-crypto": "^2.0.2-16"
   },
   "devDependencies": {
     "@polkadot/dev": "^0.60.29",
