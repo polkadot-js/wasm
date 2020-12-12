@@ -8,6 +8,7 @@ Changes:
 
 - Build and expose both cjs and esm via exports map
 - Split wasm and asmjs files into the `@polkadot/bytes-{wasm,asmjs}-crypto` packages
+- Add fflate WASM compression, with 180K raw (37K over-the-wire) savings
 - Convert the package to full TypeScript sources
 
 
