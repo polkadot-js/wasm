@@ -12,6 +12,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "homepage": "https://github.com/polkadot-js/wasm",
   "dependencies": {
-    "@babel/runtime": "^7.12.5"
+    "@babel/runtime": "^7.12.5",
+    "lz4js": "^0.2.0"
   }
 }
