@@ -1700,7 +1700,6 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.12.5
     fflate: ^0.4.2
-    lz4js: ^0.2.0
   languageName: unknown
   linkType: soft
 
@@ -6823,13 +6822,6 @@ fsevents@~2.1.2:
   version: 2.3.9
   resolution: "lunr@npm:2.3.9"
   checksum: a2b66320c2f6632322b91c43621eed9e623c0f1b81e7c2d74c238884a02229698baa4478bd238e9b32d7abf0db5ae9233b311c28e1edbcc481774e1ce83bec6f
-  languageName: node
-  linkType: hard
-
-"lz4js@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "lz4js@npm:0.2.0"
-  checksum: bbad1b4c5aa9077050125958b7013a9c400ca75eb269976c2074b5b1b57f773e25a6f11efd88a491b115ae91cecac0f8a4ce299492296f3348fdc940c1dcc5ad
   languageName: node
   linkType: hard
 
