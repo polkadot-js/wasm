@@ -1,8 +1,8 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { asmJsInit } from '@polkadot/bytes-asmjs-crypto';
-import { wasmBytes } from '@polkadot/bytes-wasm-crypto';
+import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
+import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
 import { allocString, allocU8a, getWasm, initWasm, resultString, resultU8a, withWasm } from './bridge';
 import * as imports from './imports';

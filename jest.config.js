@@ -5,13 +5,14 @@ const config = require('@polkadot/dev/config/jest.cjs');
 
 module.exports = Object.assign({}, config, {
   moduleNameMapper: {
-    '@polkadot/bytes-asmjs-crypto(.*)$': '<rootDir>/packages/bytes-asmjs-crypto/build/$1',
-    '@polkadot/bytes-wasm-crypto(.*)$': '<rootDir>/packages/bytes-wasm-crypto/build/$1',
+    '@polkadot/wasm-crypto-asmjs(.*)$': '<rootDir>/packages/wasm-crypto-asmjs/build/$1',
+    '@polkadot/wasm-crypto-wasm(.*)$': '<rootDir>/packages/wasm-crypto-wasm/build/$1',
+    // eslint-disable-next-line sort-keys
     '@polkadot/wasm-crypto(.*)$': '<rootDir>/packages/wasm-crypto/src/$1'
   },
   modulePathIgnorePatterns: [
-    '<rootDir>/packages/bytes-asmjs-crypto/build',
-    '<rootDir>/packages/bytes-wasm-crypto/build',
+    '<rootDir>/packages/wasm-crypto-asmjs/build',
+    '<rootDir>/packages/wasm-crypto-wasm/build',
     '<rootDir>/packages/wasm-crypto/build'
   ],
   resolver: '@polkadot/dev/config/jest-resolver.cjs'
