@@ -1686,26 +1686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/bytes-asmjs-crypto@^3.0.0, @polkadot/bytes-asmjs-crypto@workspace:packages/bytes-asmjs-crypto":
-  version: 0.0.0-use.local
-  resolution: "@polkadot/bytes-asmjs-crypto@workspace:packages/bytes-asmjs-crypto"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-  languageName: unknown
-  linkType: soft
-
-"@polkadot/bytes-wasm-crypto@^3.0.0, @polkadot/bytes-wasm-crypto@workspace:packages/bytes-wasm-crypto":
-  version: 0.0.0-use.local
-  resolution: "@polkadot/bytes-wasm-crypto@workspace:packages/bytes-wasm-crypto"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    fflate: ^0.4.2
-  languageName: unknown
-  linkType: soft
-
-"@polkadot/dev@npm:^0.60.29":
-  version: 0.60.29
-  resolution: "@polkadot/dev@npm:0.60.29"
+"@polkadot/dev@npm:^0.60.30":
+  version: 0.60.30
+  resolution: "@polkadot/dev@npm:0.60.30"
   dependencies:
     "@babel/cli": ^7.12.10
     "@babel/core": ^7.12.10
@@ -1787,13 +1770,12 @@ __metadata:
     polkadot-exec-eslint: scripts/polkadot-exec-eslint.cjs
     polkadot-exec-ghpages: scripts/polkadot-exec-ghpages.cjs
     polkadot-exec-ghrelease: scripts/polkadot-exec-ghrelease.cjs
-    polkadot-exec-lerna: scripts/polkadot-exec-lerna.cjs
     polkadot-exec-prettier: scripts/polkadot-exec-prettier.cjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.cjs
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-vuepress: scripts/polkadot-exec-vuepress.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: e2ff24a9b0d4ac815030e1b5d74f1556f35135f14963dd5c0718c552904548f5fef4185d20fa8441dd66576a4fe07600b69194c4c71364b5988fe08babfaf9ad
+  checksum: 37eca4ff48b05283b601db429ad3053e1147479b6cf93c062ab775cec23f695983b1f72af8f107254bb38d56ec97ab9a595240c9ec8cad66395f19b34ba13f0e
   languageName: node
   linkType: hard
 
@@ -1812,15 +1794,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/wasm-crypto-asmjs@^3.0.0, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/wasm-crypto-wasm@^3.0.0, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    fflate: ^0.4.2
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/wasm-crypto@workspace:packages/wasm-crypto":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@polkadot/bytes-asmjs-crypto": ^3.0.0
-    "@polkadot/bytes-wasm-crypto": ^3.0.0
-    "@polkadot/dev": ^0.60.29
+    "@polkadot/dev": ^0.60.30
     "@polkadot/util": ^4.2.2-15
+    "@polkadot/wasm-crypto-asmjs": ^3.0.0
+    "@polkadot/wasm-crypto-wasm": ^3.0.0
     "@polkadot/x-randomvalues": ^4.2.2-15
     override-require: ^1.1.1
   peerDependencies:
@@ -8568,7 +8567,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.12.10
-    "@polkadot/dev": ^0.60.29
+    "@polkadot/dev": ^0.60.30
   languageName: unknown
   linkType: soft
 

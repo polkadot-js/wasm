@@ -5,11 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.12.5",
-    "@polkadot/bytes-asmjs-crypto": "^3.0.0",
-    "@polkadot/bytes-wasm-crypto": "^3.0.0"
+    "@polkadot/wasm-crypto-asmjs": "^3.0.0",
+    "@polkadot/wasm-crypto-wasm": "^3.0.0"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.60.29",
+    "@polkadot/dev": "^0.60.30",
     "@polkadot/util": "^4.2.2-15",
     "@polkadot/x-randomvalues": "^4.2.2-15",
     "override-require": "^1.1.1"

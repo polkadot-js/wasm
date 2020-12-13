@@ -3,12 +3,12 @@
 
 require('override-require')(
   (request) =>
-    request.endsWith('@polkadot/bytes-asmjs-crypto') ||
-    request.endsWith('@polkadot/bytes-wasm-crypto'),
+    request.endsWith('@polkadot/wasm-crypto-asmjs') ||
+    request.endsWith('@polkadot/wasm-crypto-wasm'),
   (request) =>
-    request.endsWith('@polkadot/bytes-asmjs-crypto')
-      ? require('../../bytes-asmjs-crypto/build/empty')
-      : require('../../bytes-wasm-crypto/build/data')
+    request.endsWith('@polkadot/wasm-crypto-asmjs')
+      ? require('../../wasm-crypto-asmjs/build/empty')
+      : require('../../wasm-crypto-wasm/build/data')
 );
 
 const { runUnassisted } = require('./all');

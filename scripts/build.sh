@@ -19,10 +19,10 @@ echo ""
 echo "*** wasm-crypto"
 ls -alR wasm-crypto/build
 echo ""
-echo "*** bytes-asmjs-crypto"
-ls -alR bytes-asmjs-crypto/build
+echo "*** wasm-crypto-asmjs"
+ls -alR wasm-crypto-asmjs/build
 echo ""
-echo "*** bytes-wasm-crypto"
-ls -alR bytes-wasm-crypto/build
+echo "*** wasm-crypto-wasm"
+ls -alR wasm-crypto-wasm/build
 
 cd ..

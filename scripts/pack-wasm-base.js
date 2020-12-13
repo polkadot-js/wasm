@@ -4,8 +4,8 @@
 const fs = require('fs');
 const { formatNumber } = require('@polkadot/util');
 
-const A_NAME = 'bytes-asmjs-crypto';
-const W_NAME = 'bytes-wasm-crypto';
+const A_NAME = 'wasm-crypto-asmjs';
+const W_NAME = 'wasm-crypto-wasm';
 
 function hdr (package) {
   return `// Copyright 2019-2020 @polkadot/${package} authors & contributors
@@ -37,7 +37,7 @@ fs.writeFileSync(`./${W_NAME}/build/buffer.mjs`, `${hdr(W_NAME)}
 export { buffer } from './buffer.js';
 `);
 
-fs.writeFileSync('./bytes-wasm-crypto/build/buffer.js', `${hdr(W_NAME)}
+fs.writeFileSync(`./${W_NAME}/build/buffer.js`, `${hdr(W_NAME)}
 const buffer = Buffer.from('${getWasmBuffer()}', 'base64');
 
 module.exports = { buffer };

@@ -10,7 +10,7 @@ RUST_VER=nightly-2020-10-25
 
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm
-ASM=bytes-asmjs-crypto/build/data.js
+ASM=wasm-crypto-asmjs/build/data.js
 
 # build new via wasm-pack
 echo "*** Building Rust sources"
@@ -44,5 +44,5 @@ sed -i -e 's/var retasmFunc = /const asmJsInit = (wbg) => /' $ASM
 echo "module.exports = { asmJsInit };" >> $ASM
 
 # cleanups
-rm -rf bytes-asmjs-crypto/build/*-e
-rm -rf bytes-wasm-crypto/build/*-e
+rm -rf wasm-crypto-asmjs/build/*-e
+rm -rf wasm-crypto-wasm/build/*-e
