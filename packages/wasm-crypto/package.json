@@ -9,7 +9,7 @@
     "@polkadot/wasm-crypto-wasm": "^3.0.0"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.60.30",
+    "@polkadot/dev": "^0.61.1",
     "@polkadot/util": "^4.2.2-15",
     "@polkadot/x-randomvalues": "^4.2.2-15",
     "override-require": "^1.1.1"
