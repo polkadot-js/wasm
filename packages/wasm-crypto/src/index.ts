@@ -227,5 +227,5 @@ export function isReady (): boolean {
 }
 
 export function waitReady (): Promise<boolean> {
-  return wasmPromise.then(() => !!getWasm());
+  return wasmPromise.then(() => isReady());
 }
