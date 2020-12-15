@@ -1,6 +1,8 @@
 // Copyright 2019-2020 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import './detectPackage';
+
 import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
 import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
