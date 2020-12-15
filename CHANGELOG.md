@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 3.0.2-x
+
+Changes:
+
+- Single-instance package detection
+
+
 ## 3.0.1 Dec 13, 2020
 
 **Important** This assumes `@polkadot/util` 5+ peerDependencies

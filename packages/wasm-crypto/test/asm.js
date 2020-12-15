@@ -3,15 +3,7 @@
 
 global.WebAssembly = null;
 
-require('override-require')(
-  (request) =>
-    request.endsWith('@polkadot/wasm-crypto-asmjs') ||
-    request.endsWith('@polkadot/wasm-crypto-wasm'),
-  (request) =>
-    request.endsWith('@polkadot/wasm-crypto-asmjs')
-      ? require('../../wasm-crypto-asmjs/build/data')
-      : require('../../wasm-crypto-wasm/build/empty')
-);
+require('./alias-imports');
 
 const { runUnassisted } = require('./all');
 
