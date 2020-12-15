@@ -5,9 +5,9 @@ require('override-require')(
   (request) =>
     request.endsWith('@polkadot/wasm-crypto-asmjs') ||
     request.endsWith('@polkadot/wasm-crypto-wasm') ||
-    require.includes('package-info.json'),
+    request.includes('package-info.json'),
   (request) =>
-    require.includes('package-info.json')
+    request.includes('package-info.json')
       ? require('../../wasm-crypto/build/package-info.json')
       : request.endsWith('@polkadot/wasm-crypto-asmjs')
         ? require('../../wasm-crypto-asmjs/build/data')
