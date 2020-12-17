@@ -5,6 +5,7 @@ import { detectPackage } from '@polkadot/util';
 
 import packageInfo from './package-info.json';
 
-detectPackage(packageInfo, () => import.meta.url);
+// eslint-disable-next-line @typescript-eslint/no-implied-eval,no-new-func
+detectPackage(packageInfo, () => new Function('import()') && import.meta.url);
 
 export { packageInfo };

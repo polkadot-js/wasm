@@ -5,6 +5,6 @@ const util = require('@polkadot/util');
 
 const packageInfo = require('./package-info.json');
 
-util.detectPackage(packageInfo, () => __dirname);
+util.detectPackage(packageInfo, () => typeof __dirname !== 'undefined' && __dirname);
 
 exports.packageInfo = packageInfo;
