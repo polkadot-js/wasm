@@ -20,13 +20,13 @@ function hdr (package) {
 //   "lz4js": "^0.2.0"
 function getWasmBuffer (lib = 'fflate') {
   const data = fs.readFileSync('./bytes/wasm_opt.wasm');
-  const comp = lib === 'fflate'
+  const compressed = lib === 'fflate'
     ? Buffer.from(require('fflate').zlibSync(data, { level: 9 }))
     : Buffer.from(require('lz4js').compress(data));
 
-  console.log(`*** Compressed WASM via ${lib}: ${formatNumber(data.length)} -> ${formatNumber(comp.length)} (${(100 * comp.length / data.length).toFixed(2)}%)`);
+  console.log(`*** Compressed WASM via ${lib}: ${formatNumber(data.length)} -> ${formatNumber(compressed.length)} (${(100 * compressed.length / data.length).toFixed(2)}%)`);
 
-  return comp.toString('base64');
+  return { compressed, sizeUncompressed: data.length };
 }
 
 fs.writeFileSync(`./${A_NAME}/build/data.mjs`, `${hdr(A_NAME)}
@@ -34,11 +34,15 @@ export { asmJsInit } from './data.js';
 `);
 
 fs.writeFileSync(`./${W_NAME}/build/buffer.mjs`, `${hdr(W_NAME)}
-export { buffer } from './buffer.js';
+export { buffer, sizeCompressed, sizeUncompressed } from './buffer.js';
 `);
 
-fs.writeFileSync(`./${W_NAME}/build/buffer.js`, `${hdr(W_NAME)}
-const buffer = Buffer.from('${getWasmBuffer()}', 'base64');
+const { compressed, sizeUncompressed } = getWasmBuffer();
 
-module.exports = { buffer };
+fs.writeFileSync(`./${W_NAME}/build/buffer.js`, `${hdr(W_NAME)}
+const sizeCompressed = ${compressed.length};
+const sizeUncompressed = ${sizeUncompressed};
+const buffer = Buffer.from('${compressed.toString('base64')}', 'base64');
+
+module.exports = { buffer, sizeCompressed, sizeUncompressed };
 `);
