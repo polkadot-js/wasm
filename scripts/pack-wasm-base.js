@@ -34,7 +34,7 @@ export { asmJsInit } from './data.js';
 `);
 
 fs.writeFileSync(`./${W_NAME}/build/buffer.mjs`, `${hdr(W_NAME)}
-export { buffer } from './buffer.js';
+export { buffer, sizeCompressed, sizeUncompressed } from './buffer.js';
 `);
 
 const { compressed, sizeUncompressed } = getWasmBuffer();
