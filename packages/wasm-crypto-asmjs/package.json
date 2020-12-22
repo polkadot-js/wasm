@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto-asmjs",
-  "version": "3.1.1",
+  "version": "3.1.2-0",
   "description": "Asm.js content for wasm-crypto",
   "browser": "empty.js",
   "main": "empty.js",
