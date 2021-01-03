@@ -1,4 +1,4 @@
-// Copyright 2017-2020 @polkadot/wasm-crypto authors & contributors
+// Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // MIT License
