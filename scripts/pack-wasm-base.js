@@ -1,4 +1,4 @@
-// Copyright 2019-2020 @polkadot/wasm authors & contributors
+// Copyright 2019-2021 @polkadot/wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const fs = require('fs');
@@ -8,7 +8,7 @@ const A_NAME = 'wasm-crypto-asmjs';
 const W_NAME = 'wasm-crypto-wasm';
 
 function hdr (package) {
-  return `// Copyright 2019-2020 @polkadot/${package} authors & contributors
+  return `// Copyright 2019-2021 @polkadot/${package} authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Generated as part of the build, do not edit
