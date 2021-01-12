@@ -662,6 +662,7 @@ dependencies = [
  "ed25519-dalek",
  "hex-literal",
  "hmac",
+ "merlin",
  "pbkdf2",
  "rand",
  "schnorrkel",
