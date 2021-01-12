@@ -23,18 +23,29 @@ pub const VRF_RAW_OUTPUT_SIZE: usize = 16;
 /// Size of VRF limit, bytes
 pub const VRF_THRESHOLD_SIZE: usize = 16;
 
-/// Run VRF on one single input transcript and an extra message transcript,
-/// producing the output and corresponding short proof.
+/// Run a Random Verifiable Function (VRF) on one single input
+/// (message) transcript, and an extra message transcript,
+/// producing the output signature and corresponding short proof.
+///
+/// * secret: UIntArray with 64 element
+/// * context: Arbitrary length UIntArray
+/// * message: Arbitrary length UIntArray
+/// * extra: Arbitrary length UIntArray
+///
+/// * returned vector is the 32-byte output (signature) and 64-byte proof.
 #[wasm_bindgen]
 pub fn ext_vrf_sign_extra(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8]) -> Vec<u8> {
     let keypair = SecretKey::from_ed25519_bytes(secret).unwrap().to_keypair();
+
     let mut transcript = Transcript::new(b"VRF");
     transcript.append_message(b"", extra);
+    
     let (io, proof, _) =
         keypair.vrf_sign_extra(signing_context(context).bytes(message), transcript);
 
     let mut result: [u8; VRF_OUTPUT_SIZE + VRF_PROOF_SIZE] =
         [0u8; VRF_OUTPUT_SIZE + VRF_PROOF_SIZE];
+    
     result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
     result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
     result.to_vec()
