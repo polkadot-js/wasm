@@ -59,7 +59,7 @@ pub fn ext_vrf_verify(pubkey: &[u8], context: &[u8], message: &[u8], out_and_pro
     match (
         PublicKey::from_bytes(pubkey),
         VRFOutput::from_bytes(&out_and_proof[..VRF_OUTPUT_SIZE]),
-        VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..]),
+        VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..(VRF_OUTPUT_SIZE+VRF_PROOF_SIZE)]),
     ) {
         (Ok(public), Ok(out), Ok(proof)) => public
             .vrf_verify(signing_context(context).bytes(message), &out, &proof)
@@ -114,7 +114,7 @@ pub fn ext_vrf_verify_extra(
     match (
         PublicKey::from_bytes(pubkey),
         VRFOutput::from_bytes(&out_and_proof[..VRF_OUTPUT_SIZE]),
-        VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..]),
+        VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..(VRF_OUTPUT_SIZE+VRF_PROOF_SIZE)]),
     ) {
         (Ok(public), Ok(out), Ok(proof)) => {
             let mut transcript = Transcript::new(b"VRF");
