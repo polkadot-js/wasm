@@ -6,12 +6,14 @@ const bip39 = require('./bip39');
 const ed25519 = require('./ed25519');
 const hashing = require('./hashing');
 const sr25519 = require('./sr25519');
+const vrf = require('./vrf');
 
 const tests = {
   ...bip39,
   ...ed25519,
   ...hashing,
-  ...sr25519
+  ...sr25519,
+  ...vrf
 };
 
 function beforeAll () {

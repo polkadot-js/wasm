@@ -16,3 +16,6 @@ pub mod hashing;
 
 #[path = "rs/sr25519.rs"]
 pub mod sr25519;
+
+#[path = "rs/vrf.rs"]
+pub mod vrf;
