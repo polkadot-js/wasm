@@ -32,10 +32,8 @@ export interface WasmCryptoInstance {
   ext_sr_from_seed(a: number, b: number, c: number): void;
   ext_sr_sign(a: number, b: number, c: number, d: number, e: number, f: number, g: number): void;
   ext_sr_verify(a: number, b: number, c: number, d: number, e: number, f: number): number;
-  ext_vrf_sign(a: number, b: number, c: number, d: number, e: number, f: number, g: number): void;
-  ext_vrf_verify(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number): number;
-  ext_vrf_sign_extra(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number): void;
-  ext_vrf_verify_extra(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number): number;
+  ext_vrf_sign(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number): void;
+  ext_vrf_verify(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number): number;
 }
 
 export type AsmCreator = (wbg: Record<string, WebAssembly.ImportValue>) => WasmCryptoInstance;
