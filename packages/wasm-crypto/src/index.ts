@@ -160,50 +160,26 @@ export const sr25519Verify = withWasm((wasm) =>
 );
 
 export const vrfSign = withWasm((wasm) =>
-  (secret: Uint8Array, context: Uint8Array, message: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(secret);
-    const [ptr1, len1] = allocU8a(context);
-    const [ptr2, len2] = allocU8a(message);
-
-    wasm.ext_vrf_sign(8, ptr0, len0, ptr1, len1, ptr2, len2);
-
-    return resultU8a();
-  }
-);
-
-export const vrfVerify = withWasm((wasm) =>
-  (pubkey: Uint8Array, context: Uint8Array, message: Uint8Array, outAndProof: Uint8Array): boolean => {
-    const [ptr0, len0] = allocU8a(pubkey);
-    const [ptr1, len1] = allocU8a(context);
-    const [ptr2, len2] = allocU8a(message);
-    const [ptr3, len3] = allocU8a(outAndProof);
-    const ret = wasm.ext_vrf_verify(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
-
-    return ret !== 0;
-  }
-);
-
-export const vrfSignExtra = withWasm((wasm) =>
   (secret: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array): Uint8Array => {
     const [ptr0, len0] = allocU8a(secret);
     const [ptr1, len1] = allocU8a(context);
     const [ptr2, len2] = allocU8a(message);
     const [ptr3, len3] = allocU8a(extra);
 
-    wasm.ext_vrf_sign_extra(8, ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
+    wasm.ext_vrf_sign(8, ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
 
     return resultU8a();
   }
 );
 
-export const vrfVerifyExtra = withWasm((wasm) =>
+export const vrfVerify = withWasm((wasm) =>
   (pubkey: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array, outAndProof: Uint8Array): boolean => {
     const [ptr0, len0] = allocU8a(pubkey);
     const [ptr1, len1] = allocU8a(context);
     const [ptr2, len2] = allocU8a(message);
     const [ptr3, len3] = allocU8a(extra);
     const [ptr4, len4] = allocU8a(outAndProof);
-    const ret = wasm.ext_vrf_verify_extra(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4);
+    const ret = wasm.ext_vrf_verify(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4);
 
     return ret !== 0;
   }

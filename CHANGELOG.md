@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 3.2.x
+
+Contributed:
+
+- Expose sr25519 `ext_vrf_{sign, verify}` methods (Thanks to https://github.com/stiiifff)
+
+
 ## 3.1.1 Dec 19, 2020
 
 Changes:

@@ -8,11 +8,7 @@
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
 use merlin::Transcript;
-use schnorrkel::{
-    signing_context,
-    vrf::{VRFOutput, VRFProof},
-    PublicKey, SecretKey,
-};
+use schnorrkel::{signing_context, vrf::{VRFOutput, VRFProof}, PublicKey, SecretKey};
 use wasm_bindgen::prelude::*;
 
 /// Size of VRF output, bytes
@@ -27,46 +23,26 @@ pub const VRF_RAW_OUTPUT_SIZE: usize = 16;
 /// Size of VRF limit, bytes
 pub const VRF_THRESHOLD_SIZE: usize = 16;
 
-/// Run a Random Verifiable Function (VRF) on one single input (message) transcript,
-/// producing the output signature and corresponding short proof.
-///
-/// * secret: UIntArray with 64 element
-/// * context: Arbitrary length UIntArray
-/// * message: Arbitrary length UIntArray
-///
-/// * returned vector is the 32-byte output (signature) and 64-byte proof.
-#[wasm_bindgen]
-pub fn ext_vrf_sign(secret: &[u8], context: &[u8], message: &[u8]) -> Vec<u8> {
-    let keypair = SecretKey::from_ed25519_bytes(secret).unwrap().to_keypair();
+/// Size of the final full output
+pub const VRF_OUTPUT_FULL: usize = VRF_OUTPUT_SIZE + VRF_PROOF_SIZE;
 
-    let (io, proof, _) = keypair.vrf_sign(signing_context(context).bytes(message));
+pub fn create_transcript(extra: &[u8]) -> Transcript {
+	let mut transcript = Transcript::new(b"VRF");
 
-    let mut result: [u8; VRF_OUTPUT_SIZE + VRF_PROOF_SIZE] =
-        [0u8; VRF_OUTPUT_SIZE + VRF_PROOF_SIZE];
-    result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
-    result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
-    result.to_vec()
+	// if is important that we don't append when empty, since the
+	// append in merging encodes length information
+	if extra.len() > 0 {
+		transcript.append_message(b"", extra);
+	}
+
+	transcript
 }
 
-/// Verify VRF proof for one single input transcript and corresponding output.
-///
-/// * pubkey: UIntArray with 32 element
-/// * context: Arbitrary length UIntArray
-/// * message: Arbitrary length UIntArray
-/// * out_and_proof: 96-byte output & proof array from the ext_vrf_sign function.
-#[wasm_bindgen]
-pub fn ext_vrf_verify(pubkey: &[u8], context: &[u8], message: &[u8], out_and_proof: &[u8]) -> bool {
-    match (
-        PublicKey::from_bytes(pubkey),
-        VRFOutput::from_bytes(&out_and_proof[..VRF_OUTPUT_SIZE]),
-        VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..(VRF_OUTPUT_SIZE+VRF_PROOF_SIZE)]),
-    ) {
-        (Ok(public), Ok(out), Ok(proof)) => public
-            .vrf_verify(signing_context(context).bytes(message), &out, &proof)
-            .is_ok(),
-        _ => false,
-    }
-}
+// We don't use the non-extra vrf_sign and vrf_verify internally  since in sr25519 they only wrap -
+//
+// https://github.com/w3f/schnorrkel/blob/8fa2ad3e9fbf0b652c724df6a87a4b3c5500f759/src/vrf.rs#L660
+//
+// The compat test (also commented) proofs this compatibility - vrf_extra_compat()
 
 /// Run a Random Verifiable Function (VRF) on one single input
 /// (message) transcript, and an extra message transcript,
@@ -79,20 +55,15 @@ pub fn ext_vrf_verify(pubkey: &[u8], context: &[u8], message: &[u8], out_and_pro
 ///
 /// * returned vector is the 32-byte output (signature) and 64-byte proof.
 #[wasm_bindgen]
-pub fn ext_vrf_sign_extra(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8]) -> Vec<u8> {
-    let keypair = SecretKey::from_ed25519_bytes(secret).unwrap().to_keypair();
+pub fn ext_vrf_sign(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8]) -> Vec<u8> {
+	let keypair = SecretKey::from_ed25519_bytes(secret).unwrap().to_keypair();
+	let transcript = create_transcript(extra);
+	let (io, proof, _) = keypair.vrf_sign_extra(signing_context(context).bytes(message), transcript);
+	let mut result: [u8; VRF_OUTPUT_FULL] = [0u8; VRF_OUTPUT_FULL];
 
-    let mut transcript = Transcript::new(b"VRF");
-    transcript.append_message(b"", extra);
-
-    let (io, proof, _) =
-        keypair.vrf_sign_extra(signing_context(context).bytes(message), transcript);
-
-    let mut result: [u8; VRF_OUTPUT_SIZE + VRF_PROOF_SIZE] =
-        [0u8; VRF_OUTPUT_SIZE + VRF_PROOF_SIZE];
-    result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
-    result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
-    result.to_vec()
+	result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
+	result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
+	result.to_vec()
 }
 
 /// Verify VRF proof for one single input transcript, and an extra message transcript,
@@ -104,108 +75,126 @@ pub fn ext_vrf_sign_extra(secret: &[u8], context: &[u8], message: &[u8], extra: 
 /// * extra: Arbitrary length UIntArray
 /// * out_and_proof: 96-byte output & proof array from the ext_vrf_sign function.
 #[wasm_bindgen]
-pub fn ext_vrf_verify_extra(
-    pubkey: &[u8],
-    context: &[u8],
-    message: &[u8],
-    extra: &[u8],
-    out_and_proof: &[u8],
-) -> bool {
-    match (
-        PublicKey::from_bytes(pubkey),
-        VRFOutput::from_bytes(&out_and_proof[..VRF_OUTPUT_SIZE]),
-        VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..(VRF_OUTPUT_SIZE+VRF_PROOF_SIZE)]),
-    ) {
-        (Ok(public), Ok(out), Ok(proof)) => {
-            let mut transcript = Transcript::new(b"VRF");
-            transcript.append_message(b"", extra);
-            public
-                .vrf_verify_extra(
-                    signing_context(context).bytes(message),
-                    &out,
-                    &proof,
-                    transcript,
-                )
-                .is_ok()
-        }
-        _ => false,
-    }
+pub fn ext_vrf_verify(pubkey: &[u8], context: &[u8], message: &[u8], extra: &[u8], out_and_proof: &[u8]) -> bool {
+	match (
+		PublicKey::from_bytes(pubkey),
+		VRFOutput::from_bytes(&out_and_proof[..VRF_OUTPUT_SIZE]),
+		VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..(VRF_OUTPUT_FULL)])
+	) {
+		(Ok(public), Ok(out), Ok(proof)) => {
+			public
+				.vrf_verify_extra(
+					signing_context(context).bytes(message),
+					&out,
+					&proof,
+					create_transcript(extra)
+				)
+				.is_ok()
+		}
+		_ => false,
+	}
 }
 
 #[cfg(test)]
 pub mod tests {
-    extern crate rand;
-    extern crate schnorrkel;
+	extern crate rand;
+	extern crate schnorrkel;
 
-    use super::*;
-    use crate::sr25519::ext_sr_from_seed;
-    use schnorrkel::{KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
+	use super::*;
+	use crate::sr25519::ext_sr_from_seed;
+	use schnorrkel::{KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
 
-    fn generate_random_seed() -> Vec<u8> {
-        (0..32).map(|_| rand::random::<u8>()).collect()
-    }
+	fn generate_random_seed() -> Vec<u8> {
+		(0..32).map(|_| rand::random::<u8>()).collect()
+	}
 
-    #[test]
-    fn vrf_sign_and_verify() {
-        let seed = generate_random_seed();
-        let keypair = ext_sr_from_seed(seed.as_slice());
-        let private = &keypair[0..SECRET_KEY_LENGTH];
-        let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
-        let context = b"my VRF context";
-        let message = b"this is a message";
+	#[test]
+	fn vrf_sign_extra_and_verify() {
+		let seed = generate_random_seed();
+		let keypair = ext_sr_from_seed(seed.as_slice());
+		let private = &keypair[0..SECRET_KEY_LENGTH];
+		let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+		let context = b"my VRF context";
+		let message = b"this is a message";
+		let extra = b"this is an extra";
 
-        // Call vrf_sign w/ given context & message
-        let out_and_proof = ext_vrf_sign(private, context, message);
+		// Perform multiple vrf_sign_extra calls w/ same context, message, extra args
+		let out_and_proof1 = ext_vrf_sign(private, context, message, extra);
+		let out_and_proof2 = ext_vrf_sign(private, context, message, extra);
 
-        // Basic size checks
-        assert!(out_and_proof.len() == VRF_OUTPUT_SIZE + VRF_PROOF_SIZE);
+		// Basic size checks
+		assert!(out_and_proof1.len() == VRF_OUTPUT_FULL);
+		assert!(out_and_proof2.len() == VRF_OUTPUT_FULL);
 
-        // VRF output can verified w/ original context & message
-        assert!(ext_vrf_verify(public, context, message, &out_and_proof));
-    }
+		// Given the same context, message & extra, output should be deterministic
+		let out1 = &out_and_proof1[..VRF_OUTPUT_SIZE];
+		let out2 = &out_and_proof2[..VRF_OUTPUT_SIZE];
+		assert_eq!(out1, out2);
 
-    #[test]
-    fn vrf_sign_extra_and_verify() {
-        let seed = generate_random_seed();
-        let keypair = ext_sr_from_seed(seed.as_slice());
-        let private = &keypair[0..SECRET_KEY_LENGTH];
-        let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
-        let context = b"my VRF context";
-        let message = b"this is a message";
-        let extra = b"this is an extra";
+		// But proof is non-deterministic
+		let proof1 = &out_and_proof1[VRF_OUTPUT_SIZE..];
+		let proof2 = &out_and_proof2[VRF_OUTPUT_SIZE..];
+		assert_ne!(proof1, proof2);
 
-        // Perform multiple vrf_sign_extra calls w/ same context, message, extra args
-        let out_and_proof1 = ext_vrf_sign_extra(private, context, message, extra);
-        let out_and_proof2 = ext_vrf_sign_extra(private, context, message, extra);
+		// VRF outputs can verified w/ original context, message & extra args
+		assert!(ext_vrf_verify(
+			public,
+			context,
+			message,
+			extra,
+			&out_and_proof1
+		));
+		assert!(ext_vrf_verify(
+			public,
+			context,
+			message,
+			extra,
+			&out_and_proof2
+		));
+	}
 
-        // Basic size checks
-        assert!(out_and_proof1.len() == VRF_OUTPUT_SIZE + VRF_PROOF_SIZE);
-        assert!(out_and_proof2.len() == VRF_OUTPUT_SIZE + VRF_PROOF_SIZE);
+	// #[test]
+	// fn vrf_extra_compat() {
+	// 	let seed = generate_random_seed();
+	// 	let keypair = ext_sr_from_seed(seed.as_slice());
+	// 	let private = &keypair[0..SECRET_KEY_LENGTH];
+	// 	let public = &keypair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+	// 	let context = b"my VRF context";
+	// 	let message = b"this is a message";
+	// 	let extra = b"";
 
-        // Given the same context, message & extra, output should be deterministic
-        let out1 = &out_and_proof1[..VRF_OUTPUT_SIZE];
-        let out2 = &out_and_proof2[..VRF_OUTPUT_SIZE];
-        assert_eq!(out1, out2);
+	// 	// Perform multiple vrf_sign_extra calls w/ same context, message, extra args
+	//  // (Here we refer to the current functions with an _extra postfix)
+	// 	let out_std = ext_vrf_sign(private, context, message);
+	// 	let out_ext = ext_vrf_sign_extra(private, context, message, extra);
 
-        // But proof is non-deterministic
-        let proof1 = &out_and_proof1[VRF_OUTPUT_SIZE..];
-        let proof2 = &out_and_proof2[VRF_OUTPUT_SIZE..];
-        assert_ne!(proof1, proof2);
+	// 	// Basic size checks
+	// 	assert!(out_std.len() == VRF_OUTPUT_FULL);
+	// 	assert!(out_ext.len() == VRF_OUTPUT_FULL);
 
-        // VRF outputs can verified w/ original context, message & extra args
-        assert!(ext_vrf_verify_extra(
-            public,
-            context,
-            message,
-            extra,
-            &out_and_proof1
-        ));
-        assert!(ext_vrf_verify_extra(
-            public,
-            context,
-            message,
-            extra,
-            &out_and_proof2
-        ));
-    }
+	// 	// Given the same context, message & extra, output should be deterministic
+	// 	let out1 = &out_std[..VRF_OUTPUT_SIZE];
+	// 	let out2 = &out_ext[..VRF_OUTPUT_SIZE];
+	// 	assert_eq!(out1, out2);
+
+	// 	// But proof is non-deterministic
+	// 	let proof1 = &out_std[VRF_OUTPUT_SIZE..];
+	// 	let proof2 = &out_ext[VRF_OUTPUT_SIZE..];
+	// 	assert_ne!(proof1, proof2);
+
+	// 	// Cross-verify
+	// 	assert!(ext_vrf_verify_extra(
+	// 		public,
+	// 		context,
+	// 		message,
+	// 		extra,
+	// 		&out_std
+	// 	));
+	// 	assert!(ext_vrf_verify(
+	// 		public,
+	// 		context,
+	// 		message,
+	// 		&out_ext
+	// 	));
+	// }
 }
