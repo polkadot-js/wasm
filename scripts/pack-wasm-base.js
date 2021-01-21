@@ -21,7 +21,7 @@ function hdr (package) {
 function getWasmBuffer (lib = 'fflate') {
   const data = fs.readFileSync('./bytes/wasm_opt.wasm');
   const compressed = lib === 'fflate'
-    ? Buffer.from(require('fflate').zlibSync(data, { level: 9 }))
+    ? Buffer.from(require('fflate/node').zlibSync(data, { level: 9 }))
     : Buffer.from(require('lz4js').compress(data));
 
   console.log(`*** Compressed WASM via ${lib}: ${formatNumber(data.length)} -> ${formatNumber(compressed.length)} (${(100 * compressed.length / data.length).toFixed(2)}%)`);
