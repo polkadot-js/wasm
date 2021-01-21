@@ -47,15 +47,14 @@ function runAll () {
 }
 
 function runUnassisted () {
-  (async () => {
-    await beforeAll();
+  beforeAll()
+    .then(() => runAll())
+    .then(() => process.exit(0))
+    .catch((error) => {
+      console.error(error);
 
-    runAll();
-  })().catch((error) => {
-    console.error(error);
-
-    process.exit(-1);
-  });
+      process.exit(-1);
+    });
 }
 
 module.exports = {
