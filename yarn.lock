@@ -4435,10 +4435,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fflate@npm:^0.5.3":
-  version: 0.5.3
-  resolution: "fflate@npm:0.5.3"
-  checksum: 7fb761651d7eecc30b19076c3b3988a365dbb9c4d8b522154116c74a532440a06c036f921c9b3310fcd6a6e158ce6082b70ccc6918897847f459e035f87d4c2b
+"fflate@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "fflate@npm:0.6.0"
+  checksum: 3c1ba4d6e56a15d1207f937f926cd0375f83c320685e38b651688102da82aac1cdc6176e31fca10b9417777cd33aa544df6cd30ddae1e7150ad5e3d43bfea02d
   languageName: node
   linkType: hard
 
@@ -8571,7 +8571,7 @@ fsevents@~2.1.2:
   dependencies:
     "@babel/core": ^7.12.10
     "@polkadot/dev": ^0.61.24
-    fflate: ^0.5.3
+    fflate: ^0.6.0
     override-require: ^1.1.1
   languageName: unknown
   linkType: soft
