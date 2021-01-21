@@ -29,17 +29,6 @@ function pbkdf2Hash (wasm) {
   assert(hash === '0x5fcbe04f05300a3ecc5c35d18ea0b78f3f6853d2ae5f3fca374f69a7d1f78b5def5c60dae1a568026c7492511e0c53521e8bb6e03a650e1263265fee92722270', 'ERROR: pbkdf2Hash does not match');
 }
 
-// function secp256k1Recover (wasm) {
-//   const pk = u8aToHex(wasm.keccak256(wasm.secp256k1Recover(
-//     hexToU8a('0x2bbfa926ee947dfac384d981f8913b4e0992e52d7b6711e0ec3d9f8b0f752648'),
-//     hexToU8a('0x7505f2880114da51b3f5d535f8687953c0ab9af4ab81e592eaebebf53b728d2b6dfd9b5bcd70fee412b1f31360e7c2774009305cb84fc50c1d0ff8034dfa5fff1c')
-//   )));
-
-//   console.log('\tPUB', pk);
-
-//   assert(pk === '0x91d366769d44a7c7690428bfdf67ec7eae23d2459694685257b6fc59d1baa1fe', 'ERROR: secp256k1Recover does not match');
-// }
-
 function scryptHash (wasm) {
   const hash = u8aToHex(wasm.scrypt(stringToU8a('password'), stringToU8a('salt'), 14, 8, 1));
 
@@ -71,7 +60,6 @@ module.exports = {
   keccak256,
   pbkdf2Hash,
   scryptHash,
-  // secp256k1Recover,
   sha512Hash,
   twoxHash
 };

@@ -1,10 +1,16 @@
 # CHANGELOG
 
-## 3.2.x
+## 3.2.1 Jan 21, 2021
 
 Contributed:
 
 - Expose sr25519 `ext_vrf_{sign, verify}` methods (Thanks to https://github.com/stiiifff)
+
+Changes:
+
+- Add explicit `.editorconfig` for Rust sources
+- Remove unused code bundles (`vrf_{sign,verify}_extra`, `secp256k1` with tests)
+- Test run wrapper cleanups
 
 
 ## 3.1.1 Dec 19, 2020

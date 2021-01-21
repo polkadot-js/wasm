@@ -7,7 +7,6 @@ use hmac::Hmac;
 use pbkdf2::pbkdf2;
 use scrypt::{ScryptParams, scrypt};
 use sha2::{Digest, Sha512};
-// use secp256k1;
 use tiny_keccak::{Hasher, Keccak};
 use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
@@ -95,58 +94,6 @@ pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> V
 	}
 }
 
-// /// Checks for the recoverability of a signature from message
-// ///
-// /// * message: The message
-// /// * signature: The signature
-// ///
-// /// Returns 0 on success, or a specific error code
-// #[wasm_bindgen]
-// pub fn ext_secp256k1_is_recoverable(message: &[u8], signature: &[u8]) -> u32 {
-// 	let rs = match secp256k1::Signature::parse_slice(&signature[0..64]) {
-// 		Ok(rs) => rs,
-// 		_ => return 1
-// 	};
-// 	let v = match secp256k1::RecoveryId::parse(if signature[64] > 26 { signature[64] - 27 } else { signature[64] } as u8) {
-// 		Ok(v) => v,
-// 		_ => return 2
-// 	};
-// 	let mut msg = [0u8; 32];
-
-// 	msg.copy_from_slice(&message);
-
-// 	match secp256k1::recover(&secp256k1::Message::parse(&msg), &rs, &v) {
-// 		Ok(_) => 0,
-// 		_ => 3
-// 	}
-// }
-
-// /// Recovers the secp256k1 signature from the input
-// ///
-// /// * message: The message
-// /// * signature: The signature
-// ///
-// /// Returns a vector with the recovered public key
-// #[wasm_bindgen]
-// pub fn ext_secp256k1_recover(message: &[u8], signature: &[u8]) -> Vec<u8> {
-// 	let rs = match secp256k1::Signature::parse_slice(&signature[0..64]) {
-// 		Ok(rs) => rs,
-// 		_ => panic!("Unable to recover r,s")
-// 	};
-// 	let v = match secp256k1::RecoveryId::parse(if signature[64] > 26 { signature[64] - 27 } else { signature[64] } as u8) {
-// 		Ok(v) => v,
-// 		_ => panic!("Unable to recover v")
-// 	};
-// 	let mut msg = [0u8; 32];
-
-// 	msg.copy_from_slice(&message);
-
-// 	match secp256k1::recover(&secp256k1::Message::parse(&msg), &rs, &v) {
-// 		Ok(pk) => return pk.serialize()[1..65].to_vec(),
-// 		_ => panic!("Unable to recover publickey")
-// 	}
-// }
-
 /// sha512 hash for the specified input
 ///
 /// * data: Arbitrary data to be hashed
@@ -185,24 +132,6 @@ pub fn ext_twox(data: &[u8], rounds: u32) -> Vec<u8> {
 pub mod tests {
 	use hex_literal::hex;
 	use super::*;
-
-	// // Constructs the message that Ethereum RPCs `personal_sign` and `eth_sign` would sign.
-	// fn ethereum_signable_message(data: &[u8]) -> Vec<u8> {
-	// 	let prefix = b"Pay DOTs to the Polkadot account:";
-	// 	let mut l = prefix.len() + data.len();
-	// 	let mut rev = Vec::new();
-	// 	let mut v = b"\x19Ethereum Signed Message:\n".to_vec();
-
-	// 	while l > 0 {
-	// 		rev.push(b'0' + (l % 10) as u8);
-	// 		l /= 10;
-	// 	}
-
-	// 	v.extend(rev.into_iter().rev());
-	// 	v.extend_from_slice(&prefix[..]);
-	// 	v.extend_from_slice(data);
-	// 	v
-	// }
 
 	#[test]
 	fn can_blake2b() {
@@ -244,17 +173,6 @@ pub mod tests {
 
 		assert_eq!(hash[..], expected[..]);
 	}
-
-	// #[test]
-	// fn can_secp256k1_real_eth_sig() {
-	// 	let sig = hex!("7505f2880114da51b3f5d535f8687953c0ab9af4ab81e592eaebebf53b728d2b6dfd9b5bcd70fee412b1f31360e7c2774009305cb84fc50c1d0ff8034dfa5fff1c");
-	// 	let pk = hex!("DF67EC7EAe23D2459694685257b6FC59d1BAA1FE");
-	// 	let data = [42, 0, 0, 0, 0, 0, 0, 0];
-	// 	let msg = ext_keccak256(&ethereum_signable_message(&data));
-	// 	let result = ext_keccak256(&ext_secp256k1_recover(&msg[..], &sig[..]));
-
-	// 	assert_eq!(result[12..], pk[..]);
-	// }
 
 	#[test]
 	fn can_sha512() {
