@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.2.1 Jan 21, 2021
+## 3.2.1 Jan 22, 2021
 
 Contributed:
 
