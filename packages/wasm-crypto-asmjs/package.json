@@ -1,10 +1,9 @@
 {
   "name": "@polkadot/wasm-crypto-asmjs",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "Asm.js content for wasm-crypto",
   "browser": "empty.js",
   "main": "empty.js",
-  "module": "empty.mjs",
   "react-native": "data.js",
   "sideEffects": false,
   "author": "Jaco Greeff <jacogr@gmail.com>",
