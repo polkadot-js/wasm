@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 3.2.3 Feb 16, 2021
+
+Changes:
+
+- Change package detect import to use `.js` source, not `.json`
+
+
+## 3.2.2 Jan 24, 2021
+
+Changes:
+
+- Remove `module` field in `package.json`
+
+
 ## 3.2.1 Jan 22, 2021
 
 Contributed:
