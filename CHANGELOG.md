@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 3.2.4 Feb 24, 2021
+
+Changes:
+
+- Cleanup implicit dependencies, perform base64 decoding using base64-js
+
+
 ## 3.2.3 Feb 16, 2021
 
 Changes:

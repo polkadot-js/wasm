@@ -33,16 +33,16 @@ fs.writeFileSync(`./${A_NAME}/build/data.mjs`, `${hdr(A_NAME)}
 export { asmJsInit } from './data.js';
 `);
 
-fs.writeFileSync(`./${W_NAME}/build/buffer.mjs`, `${hdr(W_NAME)}
-export { buffer, sizeCompressed, sizeUncompressed } from './buffer.js';
+fs.writeFileSync(`./${W_NAME}/build/bytes.mjs`, `${hdr(W_NAME)}
+export { bytes, sizeCompressed, sizeUncompressed } from './bytes.js';
 `);
 
 const { compressed, sizeUncompressed } = getWasmBuffer();
 
-fs.writeFileSync(`./${W_NAME}/build/buffer.js`, `${hdr(W_NAME)}
+fs.writeFileSync(`./${W_NAME}/build/bytes.js`, `${hdr(W_NAME)}
 const sizeCompressed = ${compressed.length};
 const sizeUncompressed = ${sizeUncompressed};
-const buffer = Buffer.from('${compressed.toString('base64')}', 'base64');
+const bytes = '${compressed.toString('base64')}';
 
-module.exports = { buffer, sizeCompressed, sizeUncompressed };
+module.exports = { bytes, sizeCompressed, sizeUncompressed };
 `);
