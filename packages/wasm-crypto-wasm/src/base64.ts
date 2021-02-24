@@ -42,13 +42,9 @@ function getLens (b64: string): [number, number] {
     : [validLen, 4 - (validLen % 4)];
 }
 
-function _byteLength (validLen: number, placeHoldersLen: number): number {
-  return ((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen;
-}
-
 export function toByteArray (b64: string): Uint8Array {
   const [validLen, placeHoldersLen] = getLens(b64);
-  const arr = new Uint8Array(_byteLength(validLen, placeHoldersLen));
+  const arr = new Uint8Array(((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen);
   let curByte = 0;
   let i;
 
