@@ -40,11 +40,9 @@ export { bytes, sizeCompressed, sizeUncompressed } from './bytes.js';
 const { compressed, sizeUncompressed } = getWasmBuffer();
 
 fs.writeFileSync(`./${W_NAME}/build/bytes.js`, `${hdr(W_NAME)}
-const { toByteArray } = require('base64-js');
-
 const sizeCompressed = ${compressed.length};
 const sizeUncompressed = ${sizeUncompressed};
-const bytes = toByteArray('${compressed.toString('base64')}');
+const bytes = '${compressed.toString('base64')}';
 
 module.exports = { bytes, sizeCompressed, sizeUncompressed };
 `);
