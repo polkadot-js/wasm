@@ -71,9 +71,7 @@ export function toByteArray (b64: string): Uint8Array {
       (revLookup[b64.charCodeAt(i + 1)] >> 4);
 
     arr[curByte++] = tmp & 0xFF;
-  }
-
-  if (placeHoldersLen === 1) {
+  } else if (placeHoldersLen === 1) {
     const tmp =
       (revLookup[b64.charCodeAt(i)] << 10) |
       (revLookup[b64.charCodeAt(i + 1)] << 4) |
