@@ -8,13 +8,13 @@
     "./detectPackage.mjs"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.13.7",
+    "@babel/runtime": "^7.13.8",
     "@polkadot/wasm-crypto-asmjs": "^3.2.4",
     "@polkadot/wasm-crypto-wasm": "^3.2.4"
   },
   "devDependencies": {
-    "@polkadot/util": "^5.7.1",
-    "@polkadot/x-randomvalues": "^5.7.1"
+    "@polkadot/util": "^5.9.2",
+    "@polkadot/x-randomvalues": "^5.9.2"
   },
   "peerDependencies": {
     "@polkadot/util": "*",
