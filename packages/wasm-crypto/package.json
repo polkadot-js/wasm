@@ -9,7 +9,7 @@
     "./detectPackage.cjs"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.13.8",
+    "@babel/runtime": "^7.13.9",
     "@polkadot/wasm-crypto-asmjs": "^4.0.0-1",
     "@polkadot/wasm-crypto-wasm": "^4.0.0-1"
   },
