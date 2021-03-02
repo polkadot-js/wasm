@@ -1878,7 +1878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-asmjs@^4.0.0-1, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@^4.0.1-2, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
@@ -1886,7 +1886,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@^4.0.0-1, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@^4.0.1-2, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
@@ -1900,8 +1900,8 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.13.9
     "@polkadot/util": ^5.9.2
-    "@polkadot/wasm-crypto-asmjs": ^4.0.0-1
-    "@polkadot/wasm-crypto-wasm": ^4.0.0-1
+    "@polkadot/wasm-crypto-asmjs": ^4.0.1-2
+    "@polkadot/wasm-crypto-wasm": ^4.0.1-2
     "@polkadot/x-randomvalues": ^5.9.2
   peerDependencies:
     "@polkadot/util": "*"
