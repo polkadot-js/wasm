@@ -7,7 +7,7 @@
 
 // override-require in jest.config.js
 
-const { beforeAll, tests, wasm } = require('./all');
+import { beforeAll, tests, wasm } from './all/index.cjs';
 
 describe('wasm-crypto', () => {
   beforeEach(async () => {

@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 const wasm = require('../../build/index.cjs');
-const bip39 = require('./bip39');
-const ed25519 = require('./ed25519');
-const hashing = require('./hashing');
-const sr25519 = require('./sr25519');
-const vrf = require('./vrf');
+const bip39 = require('./bip39.cjs');
+const ed25519 = require('./ed25519.cjs');
+const hashing = require('./hashing.cjs');
+const sr25519 = require('./sr25519.cjs');
+const vrf = require('./vrf.cjs');
 
 const tests = {
   ...bip39,
