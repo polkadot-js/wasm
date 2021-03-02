@@ -1,7 +1,7 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const wasm = require('../../build/index');
+const wasm = require('../../build/index.cjs');
 const bip39 = require('./bip39');
 const ed25519 = require('./ed25519');
 const hashing = require('./hashing');

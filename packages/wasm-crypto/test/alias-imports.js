@@ -7,6 +7,6 @@ require('override-require')(
     request.endsWith('@polkadot/wasm-crypto-wasm'),
   (request) =>
     request.endsWith('@polkadot/wasm-crypto-asmjs')
-      ? require('../../wasm-crypto-asmjs/build/data')
-      : require('../../wasm-crypto-wasm/build/empty')
+      ? require('../../wasm-crypto-asmjs/build/data.cjs')
+      : require('../../wasm-crypto-wasm/build/empty.cjs')
 );
