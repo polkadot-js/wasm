@@ -26,11 +26,6 @@ unamestr=`uname`
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
 cargo install xargo
 
-# if ! [ -x "$(command -v wasm-pack)" ]; then
-#   echo "*** Installing wasm-pack"
-#   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-# fi
-
 if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"
   BINARYEN_ZIP=binaryen-$BINARYEN_VER-x86_64-linux
@@ -59,9 +54,3 @@ if [ ! -d "bindgen" ]; then
   mv $BINDGEN_ZIP bindgen
   ls -alR bindgen
 fi
-
-# if [ ! -d "wabt" ]; then
-#   echo "*** Downloading wabt"
-#   curl -L $WABT_REPO/releases/download/$WABT_VER/$WABT_ZIP.tar.gz | tar xz
-#   mv wabt-$WABT_VER wabt
-# fi

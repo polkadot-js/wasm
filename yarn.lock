@@ -1295,12 +1295,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.13.8, @babel/runtime@npm:^7.8.4":
-  version: 7.13.8
-  resolution: "@babel/runtime@npm:7.13.8"
+"@babel/runtime@npm:^7.13.8, @babel/runtime@npm:^7.13.9, @babel/runtime@npm:^7.8.4":
+  version: 7.13.9
+  resolution: "@babel/runtime@npm:7.13.9"
   dependencies:
     regenerator-runtime: ^0.13.4
-  checksum: d8db125d3629c4000322e8264d7510640ac671136f416d1fcd4b74d26d7e703bf671820fab81a29a5ee0bd11e981de518666619398ec29b1ab5e155ab8131812
+  checksum: e6f79d20e10c2921520c499f3cf295a9ee5c137e73f77f77eedde9f9073bc3541c1fc7fa6c97b0613f4140303ac00d08506e9f090068d219c58781d2b62c662d
   languageName: node
   linkType: hard
 
@@ -1773,9 +1773,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.61.31":
-  version: 0.61.31
-  resolution: "@polkadot/dev@npm:0.61.31"
+"@polkadot/dev@npm:^0.62.1":
+  version: 0.62.1
+  resolution: "@polkadot/dev@npm:0.62.1"
   dependencies:
     "@babel/cli": ^7.13.0
     "@babel/core": ^7.13.8
@@ -1859,7 +1859,7 @@ __metadata:
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.cjs
     polkadot-exec-typedoc: scripts/polkadot-exec-typedoc.cjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.cjs
-  checksum: 087b0f00c94d11f03e10731101a9c81c4034ca3d49d838fb602b95db611bdd9968006610c3b1abdf8977162ccce6e5edceff64636bfd69fae45a2c649f6c2257
+  checksum: e45a19d9c7768fa08e74eda4bbcfb0dfd0ad57a867a41768b0d165d3600f4981df4f72c265be2329815f8885f5f03c2818254a56e2c8f89e19cf410f22df252b
   languageName: node
   linkType: hard
 
@@ -1878,19 +1878,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-crypto-asmjs@^3.2.5-0, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@^4.0.0-1, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
-    "@babel/runtime": ^7.13.8
+    "@babel/runtime": ^7.13.9
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@^3.2.5-0, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@^4.0.0-1, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
-    "@babel/runtime": ^7.13.8
+    "@babel/runtime": ^7.13.9
   languageName: unknown
   linkType: soft
 
@@ -1898,10 +1898,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
-    "@babel/runtime": ^7.13.8
+    "@babel/runtime": ^7.13.9
     "@polkadot/util": ^5.9.2
-    "@polkadot/wasm-crypto-asmjs": ^3.2.5-0
-    "@polkadot/wasm-crypto-wasm": ^3.2.5-0
+    "@polkadot/wasm-crypto-asmjs": ^4.0.0-1
+    "@polkadot/wasm-crypto-wasm": ^4.0.0-1
     "@polkadot/x-randomvalues": ^5.9.2
   peerDependencies:
     "@polkadot/util": "*"
@@ -8788,7 +8788,7 @@ fsevents@~2.1.2:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.13.8
-    "@polkadot/dev": ^0.61.31
+    "@polkadot/dev": ^0.62.1
     fflate: ^0.6.7
     override-require: ^1.1.1
   languageName: unknown

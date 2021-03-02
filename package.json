@@ -19,14 +19,14 @@
     "test": "yarn test:wasm:rust",
     "test:wasm:js": "yarn test:wasm:js:jest && yarn test:wasm:js:node",
     "test:wasm:js:jest": "polkadot-dev-run-test ./test/jest.spec.js",
-    "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.js && node ./test/asm.js",
+    "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
     "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
-    "@polkadot/dev": "^0.61.31",
+    "@polkadot/dev": "^0.62.1",
     "fflate": "^0.6.7",
     "override-require": "^1.1.1"
   },
-  "version": "3.2.5-0"
+  "version": "4.0.0-1"
 }

@@ -29,17 +29,17 @@ function getWasmBuffer (lib = 'fflate') {
   return { compressed, sizeUncompressed: data.length };
 }
 
-fs.writeFileSync(`./${A_NAME}/build/data.mjs`, `${hdr(A_NAME)}
-export { asmJsInit } from './data.js';
+fs.writeFileSync(`./${A_NAME}/build/data.js`, `${hdr(A_NAME)}
+export { asmJsInit } from './data.cjs';
 `);
 
-fs.writeFileSync(`./${W_NAME}/build/bytes.mjs`, `${hdr(W_NAME)}
-export { bytes, sizeCompressed, sizeUncompressed } from './bytes.js';
+fs.writeFileSync(`./${W_NAME}/build/bytes.js`, `${hdr(W_NAME)}
+export { bytes, sizeCompressed, sizeUncompressed } from './bytes.cjs';
 `);
 
 const { compressed, sizeUncompressed } = getWasmBuffer();
 
-fs.writeFileSync(`./${W_NAME}/build/bytes.js`, `${hdr(W_NAME)}
+fs.writeFileSync(`./${W_NAME}/build/bytes.cjs`, `${hdr(W_NAME)}
 const sizeCompressed = ${compressed.length};
 const sizeUncompressed = ${sizeUncompressed};
 const bytes = '${compressed.toString('base64')}';
