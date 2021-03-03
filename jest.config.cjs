@@ -15,5 +15,5 @@ module.exports = Object.assign({}, config, {
     '<rootDir>/packages/wasm-crypto-wasm/build',
     '<rootDir>/packages/wasm-crypto/build'
   ],
-  resolver: '@polkadot/dev/config/jest-resolver.cjs'
+  transformIgnorePatterns: ['/node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)']
 });
