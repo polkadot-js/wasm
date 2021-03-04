@@ -1,12 +1,15 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+const rootIncl = ['@polkadot/wasm-crypto-asmjs', '@polkadot/wasm-crypto-wasm'];
+const detcIncl = rootIncl.map((p) => `${p}/packageInfo`);
+
 require('override-require')(
   (request) =>
-    request.endsWith('@polkadot/wasm-crypto-asmjs') ||
-    request.endsWith('@polkadot/wasm-crypto-wasm'),
+    rootIncl.some((p) => request.endsWith(p)) ||
+    detcIncl.some((p) => request.endsWith(p)),
   (request) =>
-    request.endsWith('@polkadot/wasm-crypto-asmjs')
-      ? require('../../wasm-crypto-asmjs/build/data.cjs')
-      : require('../../wasm-crypto-wasm/build/empty.cjs')
+    rootIncl.some((p) => request.endsWith(p))
+      ? require(`${rootIncl.find((p) => request.endsWith(p))}/build/data.cjs`)
+      : require(`${detcIncl.find((p) => request.endsWith(p)).replace('packageInfo', 'build/packageInfo.cjs')}`)
 );
