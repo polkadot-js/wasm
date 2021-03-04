@@ -8,5 +8,3 @@ import { packageInfo as wasmInfo } from '@polkadot/wasm-crypto-wasm/packageInfo'
 import { packageInfo } from './packageInfo';
 
 detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [asmInfo, wasmInfo]);
-
-export { packageInfo };

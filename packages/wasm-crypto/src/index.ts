@@ -9,6 +9,8 @@ import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 import { allocString, allocU8a, getWasm, initWasm, resultString, resultU8a, withWasm } from './bridge';
 import * as imports from './imports';
 
+export { packageInfo } from './packageInfo';
+
 const wasmPromise = initWasm(wasmBytes, asmJsInit, imports).catch(() => null);
 
 export const bip39Generate = withWasm((wasm) =>
