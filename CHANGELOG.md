@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 4.0.1 Mar 4, 2021
+
+**Important** In the 4.0 version the default package type has been changed to ESM modules by default. This should not affect usage, however since the output formats changed, a new major version is required.
+
+Changes:
+
+- Build to ESM by default (with cjs versions via export map)
+
+
 ## 3.2.4 Feb 24, 2021
 
 Changes:
