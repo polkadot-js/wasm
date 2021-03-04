@@ -1,6 +1,7 @@
 // Copyright 2019-2021 @polkadot/wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+const fflate = require('fflate/node');
 const fs = require('fs');
 const { formatNumber } = require('@polkadot/util');
 
@@ -15,16 +16,11 @@ function hdr (package) {
 `;
 }
 
-// only one of the deps are included, here are the details for package.json -
-//   "fflate": "^0.4.2"
-//   "lz4js": "^0.2.0"
-function getWasmBuffer (lib = 'fflate') {
+function getWasmBuffer () {
   const data = fs.readFileSync('./bytes/wasm_opt.wasm');
-  const compressed = lib === 'fflate'
-    ? Buffer.from(require('fflate/node').zlibSync(data, { level: 9 }))
-    : Buffer.from(require('lz4js').compress(data));
+  const compressed = Buffer.from(fflate.zlibSync(data, { level: 9 }));
 
-  console.log(`*** Compressed WASM via ${lib}: ${formatNumber(data.length)} -> ${formatNumber(compressed.length)} (${(100 * compressed.length / data.length).toFixed(2)}%)`);
+  console.log(`*** Compressed WASM: ${formatNumber(data.length)} -> ${formatNumber(compressed.length)} (${(100 * compressed.length / data.length).toFixed(2)}%)`);
 
   return { compressed, sizeUncompressed: data.length };
 }

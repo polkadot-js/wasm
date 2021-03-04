@@ -30,7 +30,7 @@ echo "*** Optimising WASM output"
 
 # convert wasm to base64 structure
 echo "*** Packing WASM into baseX"
-node ../scripts/pack-wasm-base.js
+node ../scripts/pack-wasm-base.cjs
 
 # build asmjs version from the input (optimised) WASM
 echo "*** Building asm.js version"

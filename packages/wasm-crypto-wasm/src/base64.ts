@@ -47,6 +47,7 @@ export function toByteArray (b64: string): Uint8Array {
   const arr = new Uint8Array(((validLen + placeHoldersLen) * 3 / 4) - placeHoldersLen);
   let curByte = 0;
   let i;
+  let tmp;
 
   // if there are placeholders, only get up to the last complete 4 chars
   const len = placeHoldersLen > 0
@@ -54,7 +55,7 @@ export function toByteArray (b64: string): Uint8Array {
     : validLen;
 
   for (i = 0; i < len; i += 4) {
-    const tmp =
+    tmp =
       (revLookup[b64.charCodeAt(i)] << 18) |
       (revLookup[b64.charCodeAt(i + 1)] << 12) |
       (revLookup[b64.charCodeAt(i + 2)] << 6) |
@@ -66,13 +67,13 @@ export function toByteArray (b64: string): Uint8Array {
   }
 
   if (placeHoldersLen === 2) {
-    const tmp =
+    tmp =
       (revLookup[b64.charCodeAt(i)] << 2) |
       (revLookup[b64.charCodeAt(i + 1)] >> 4);
 
     arr[curByte++] = tmp & 0xFF;
   } else if (placeHoldersLen === 1) {
-    const tmp =
+    tmp =
       (revLookup[b64.charCodeAt(i)] << 10) |
       (revLookup[b64.charCodeAt(i + 1)] << 4) |
       (revLookup[b64.charCodeAt(i + 2)] >> 2);
