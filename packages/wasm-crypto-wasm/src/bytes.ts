@@ -1,8 +1,10 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto-wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export const bytes = '';
+import { bytes as _bytes, sizeCompressed as _sizeCompressed, sizeUncompressed as _sizeUncompressed } from './cjs/bytes';
 
-export const sizeCompressed = 0;
+export const bytes = _bytes;
 
-export const sizeUncompressed = 0;
+export const sizeCompressed = _sizeCompressed;
+
+export const sizeUncompressed = _sizeUncompressed;

@@ -5,7 +5,7 @@ const fflate = require('fflate/node');
 const fs = require('fs');
 const { formatNumber } = require('@polkadot/util');
 
-const A_NAME = 'wasm-crypto-asmjs';
+// const A_NAME = 'wasm-crypto-asmjs';
 const W_NAME = 'wasm-crypto-wasm';
 
 function hdr (package) {
@@ -25,17 +25,17 @@ function getWasmBuffer () {
   return { compressed, sizeUncompressed: data.length };
 }
 
-fs.writeFileSync(`./${A_NAME}/build/data.js`, `${hdr(A_NAME)}
-export { asmJsInit } from './data.cjs';
-`);
+// fs.writeFileSync(`./${A_NAME}/build/data.js`, `${hdr(A_NAME)}
+// export { asmJsInit } from './data.cjs';
+// `);
 
-fs.writeFileSync(`./${W_NAME}/build/bytes.js`, `${hdr(W_NAME)}
-export { bytes, sizeCompressed, sizeUncompressed } from './bytes.cjs';
-`);
+// fs.writeFileSync(`./${W_NAME}/build/bytes.js`, `${hdr(W_NAME)}
+// export { bytes, sizeCompressed, sizeUncompressed } from './bytes.cjs';
+// `);
 
 const { compressed, sizeUncompressed } = getWasmBuffer();
 
-fs.writeFileSync(`./${W_NAME}/build/bytes.cjs`, `${hdr(W_NAME)}
+fs.writeFileSync(`./${W_NAME}/build/cjs/bytes.js`, `${hdr(W_NAME)}
 const sizeCompressed = ${compressed.length};
 const sizeUncompressed = ${sizeUncompressed};
 const bytes = '${compressed.toString('base64')}';

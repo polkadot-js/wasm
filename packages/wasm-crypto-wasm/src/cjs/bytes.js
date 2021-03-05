@@ -1,8 +1,8 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto-wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export const bytes = null;
+exports.bytes = '';
 
-export const sizeCompressed = 0;
+exports.sizeCompressed = 0;
 
-export const sizeUncompressed = 0;
+exports.sizeUncompressed = 0;
