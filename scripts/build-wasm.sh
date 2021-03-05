@@ -10,7 +10,7 @@ RUST_VER=nightly-2020-10-25
 
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm
-ASM=wasm-crypto-asmjs/build/data.cjs
+ASM=wasm-crypto-asmjs/build/cjs/data.js
 
 # build new via wasm-pack
 echo "*** Building Rust sources"

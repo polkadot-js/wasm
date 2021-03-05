@@ -1,8 +1,13 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto-wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export const bytes = '';
+import { bytes as _bytes, sizeCompressed as _sizeUCompressed, sizeUncompressed as _sizeUncompressed } from './cjs/bytes';
 
-export const sizeCompressed = 0;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const bytes = _bytes;
 
-export const sizeUncompressed = 0;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const sizeCompressed = _sizeUCompressed;
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+export const sizeUncompressed = _sizeUncompressed;
