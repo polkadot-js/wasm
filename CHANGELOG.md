@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 4.0.2 Mar 5, 2021
+
+Changes:
+
+- Add import indirection for both CJS & ESM (where generated source file is commonjs)
+
+
 ## 4.0.1 Mar 4, 2021
 
 **Important** In the 4.0 version the default package type has been changed to ESM modules by default. This should not affect usage, however since the output formats changed, a new major version is required.
