@@ -3,5 +3,4 @@
 
 import { asmJsInit as _asmJsInit } from './cjs/data.js';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const asmJsInit = _asmJsInit;
