@@ -44,5 +44,5 @@ sed -i -e 's/var retasmFunc = /const asmJsInit = (wbg) => /' $ASM
 echo "module.exports = { asmJsInit };" >> $ASM
 
 # cleanups
-rm -rf wasm-crypto-asmjs/build/*-e
-rm -rf wasm-crypto-wasm/build/*-e
+rm -rf wasm-crypto-asmjs/build/cjs/*-e
+rm -rf wasm-crypto-wasm/build/cjs/*-e
