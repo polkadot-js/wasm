@@ -14,8 +14,8 @@
     "@polkadot/wasm-crypto-wasm": "^4.0.2"
   },
   "devDependencies": {
-    "@polkadot/util": "^6.0.1-6",
-    "@polkadot/x-randomvalues": "^6.0.1-6"
+    "@polkadot/util": "^6.0.5",
+    "@polkadot/x-randomvalues": "^6.0.5"
   },
   "peerDependencies": {
     "@polkadot/util": "*",
