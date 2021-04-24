@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Add explcit `engines` field to `package.json`
+
+
 ## 4.0.2 Mar 5, 2021
 
 Changes:
