@@ -6,8 +6,8 @@
 set -e
 
 # also change in install-build-deps
-# RUST_VER=nightly-2020-10-25
-RUST_VER=stable
+RUST_VER=nightly-2020-10-25
+# RUST_VER=stable
 
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm
