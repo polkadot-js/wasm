@@ -6,7 +6,7 @@
 set -e
 
 # also change in build-package
-# RUST_VER=nightly-2020-10-25
+# RUST_VER=nightly-2021-10-25
 RUST_VER=stable
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
@@ -25,7 +25,10 @@ unamestr=`uname`
 
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-cargo install xargo
+
+if [ "$RUST_VER" != "stable" ]; then
+  cargo install xargo
+fi
 
 if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"

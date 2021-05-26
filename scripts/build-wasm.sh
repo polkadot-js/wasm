@@ -7,7 +7,6 @@ set -e
 
 # also change in install-build-deps
 # RUST_VER=nightly-2020-10-25
-# We use RUSTC_BOOTSTRAP=1 below to switch on unstable features
 RUST_VER=stable
 
 WSM=bytes/wasm_bg.wasm
@@ -17,8 +16,11 @@ ASM=wasm-crypto-asmjs/build/cjs/data.js
 # build new via wasm-pack
 echo "*** Building Rust sources"
 cd wasm-crypto
-RUSTC_BOOTSTRAP=1 rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
-# rustup run $RUST_VER cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
+if [ "$RUST_VER" == "stable" ]; then
+  RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
+else
+  rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
+fi
 cd ..
 
 echo "*** Converting to WASM"
