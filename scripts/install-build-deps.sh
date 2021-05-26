@@ -6,7 +6,8 @@
 set -e
 
 # also change in build-package
-RUST_VER=nightly-2020-10-25
+# RUST_VER=nightly-2020-10-25
+RUST_VER=stable
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
 BINARYEN_VER=version_97
