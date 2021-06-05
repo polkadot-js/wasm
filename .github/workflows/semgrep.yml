@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  semgrep:
-    if: "startsWith(github.event.head_commit.message, '[CI Skip]') && github.repository == 'polkadot-js/wasm'"
+  check:
+    if: "! startsWith(github.event.head_commit.message, '[CI Skip]') && github.repository == 'polkadot-js/wasm'"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
