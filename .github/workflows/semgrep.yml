@@ -10,7 +10,7 @@ jobs:
     name: Scan
     runs-on: ubuntu-latest
     steps:
-      if: "startsWith(github.event.head_commit.message, '[CI Skip]') && github.repository == 'polkadot-js/wasm'"
+      if: "! startsWith(github.event.head_commit.message, '[CI Skip]') && github.repository == 'polkadot-js/wasm'"
       - uses: actions/checkout@v2
       - uses: returntocorp/semgrep-action@v1
         with:
