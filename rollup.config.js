@@ -10,14 +10,15 @@ export default {
     '@polkadot/util',
     '@polkadot/x-randomvalues'
   ],
-  globals: {
-    '@polkadot/util': 'rollup-pjs-util',
-    '@polkadot/x-randomvalues': 'rollup-pjs-x-randomvalues'
-  },
   input: 'packages/wasm-crypto/build/index.js',
   output: {
-    file: 'build/wasm-crypto/rollup-pjs-wasm-crypto.js',
-    format: 'module'
+    file: 'build/wasm-crypto/bundle/polkadotWasmCrypto.js',
+    format: 'iife',
+    globals: {
+      '@polkadot/util': 'polkadotUtil',
+      '@polkadot/x-randomvalues': 'polkadotXRandomvalues'
+    },
+    name: 'polkadotWasmCrypto'
   },
   plugins: [
     alias({
