@@ -31,8 +31,7 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "fflate": "^0.7.1",
     "override-require": "^1.1.1",
-    "rollup": "^2.52.7",
-    "rollup-plugin-ts": "^1.4.0"
+    "rollup": "^2.52.7"
   },
   "version": "4.0.3-30"
 }
