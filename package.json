@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "resolutions": {
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.5"
   },
   "scripts": {
     "build": "yarn build:wasm",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@polkadot/dev": "^0.62.43",
+    "@polkadot/dev": "^0.62.44",
     "fflate": "^0.7.1",
     "override-require": "^1.1.1"
   },
