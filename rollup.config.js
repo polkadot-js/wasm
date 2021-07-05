@@ -28,7 +28,7 @@ export default [
           { find: '@polkadot/wasm-crypto-wasm', replacement: '../../wasm-crypto-wasm/build' }
         ]
       }),
-      nodeResolve(),
+      nodeResolve({ browser: true }),
       commonjs()
     ]
   }
