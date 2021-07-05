@@ -12,7 +12,7 @@
   "scripts": {
     "build": "yarn build:wasm",
     "build:release": "polkadot-ci-ghact-build",
-    "build:rollup": "rollup --config",
+    "build:rollup": "polkadot-exec-rollup --config",
     "build:wasm": "./scripts/build.sh",
     "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
@@ -25,13 +25,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@polkadot/dev": "^0.62.44",
-    "@rollup/plugin-alias": "^3.1.2",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@polkadot/dev": "^0.62.47",
     "fflate": "^0.7.1",
-    "override-require": "^1.1.1",
-    "rollup": "^2.52.7"
+    "override-require": "^1.1.1"
   },
   "version": "4.0.3-30"
 }
