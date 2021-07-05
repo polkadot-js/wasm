@@ -5,21 +5,26 @@ import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
+const external = [
+  '@polkadot/util',
+  '@polkadot/x-randomvalues'
+];
+
+const globals = {
+  '@polkadot/util': 'polkadotUtil',
+  '@polkadot/x-randomvalues': 'polkadotXRandomvalues'
+};
+
 export default [
   {
-    external: [
-      '@polkadot/util',
-      '@polkadot/x-randomvalues'
-    ],
+    external,
     input: 'packages/wasm-crypto/build/index.js',
     output: {
       file: 'build/wasm-crypto/bundle/polkadotWasmCrypto.js',
       format: 'iife',
-      globals: {
-        '@polkadot/util': 'polkadotUtil',
-        '@polkadot/x-randomvalues': 'polkadotXRandomvalues'
-      },
-      name: 'polkadotWasmCrypto'
+      globals,
+      name: 'polkadotWasmCrypto',
+      preferConst: true
     },
     plugins: [
       alias({
