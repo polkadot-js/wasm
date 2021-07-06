@@ -15,7 +15,7 @@ const external = [
 
 const overrides = {
   '@polkadot/wasm-crypto': {
-    entries: ['wasm-crypto-asmjs', 'wasm-crypto-wasm'].map((p) => ({
+    entries: ['asmjs', 'wasm'].map((p) => `wasm-crypto-${p}`).map((p) => ({
       find: `@polkadot/${p}`,
       replacement: `../../${p}/build`
     }))
