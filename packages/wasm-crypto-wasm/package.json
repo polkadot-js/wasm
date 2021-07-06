@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto-wasm",
-  "version": "4.0.3-31",
+  "version": "4.0.3-32",
   "type": "module",
   "description": "Wasm content for wasm-crypto",
   "browser": "data.js",
