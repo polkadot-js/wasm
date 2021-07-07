@@ -9,8 +9,7 @@ const pkgs = [
 
 const external = [
   ...pkgs,
-  '@polkadot/util',
-  '@polkadot/x-randomvalues'
+  '@polkadot/util'
 ];
 
 const overrides = {
