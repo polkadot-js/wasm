@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## master
+## 4.1.1 Jul 7, 2021
 
 Changes:
 
-- Add explcit `engines` field to `package.json`
+- Add an explicit `engines` field to `package.json`
+- Allow building as a completely stand-alone browser bundle
 
 
 ## 4.0.2 Mar 5, 2021
