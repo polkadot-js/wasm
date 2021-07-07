@@ -26,3 +26,5 @@ echo "*** wasm-crypto-wasm"
 ls -alR wasm-crypto-wasm/build
 
 cd ..
+
+yarn build:rollup

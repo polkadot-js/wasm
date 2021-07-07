@@ -12,6 +12,7 @@
   "scripts": {
     "build": "yarn build:wasm",
     "build:release": "polkadot-ci-ghact-build",
+    "build:rollup": "polkadot-exec-rollup --config",
     "build:wasm": "./scripts/build.sh",
     "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
