@@ -1,11 +1,18 @@
 # CHANGELOG
 
+## 4.1.2 Jul 9, 2021
+
+Changes:
+
+- Bump `@polkadot/dev` to allow for bundles with new-format
+
+
 ## 4.1.1 Jul 7, 2021
 
 Changes:
 
 - Add an explicit `engines` field to `package.json`
-- Allow building as a completely stand-alone browser bundle
+- Allow building as a completely stand-alone browser bundle (experimental)
 
 
 ## 4.0.2 Mar 5, 2021
