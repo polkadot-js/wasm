@@ -14,13 +14,17 @@ const external = [
 
 const overrides = {
   '@polkadot/wasm-crypto': {
-    entries: ['asmjs', 'wasm'].map((p) => `wasm-crypto-${p}`).map((p) => ({
-      find: `@polkadot/${p}`,
-      replacement: `../../${p}/build`
-    }))
+    entries: ['asmjs', 'wasm'].map((p) => `wasm-crypto-${p}`).reduce((all, p) => ({
+      ...all,
+      [`@polkadot/${p}`]: `../../${p}/build`
+    }), {})
   }
 };
 
 export default pkgs.map((pkg) =>
-  createBundle({ external, pkg, ...(overrides[pkg] || {}) })
+  createBundle({
+    external,
+    pkg,
+    ...(overrides[pkg] || {})
+  })
 );
