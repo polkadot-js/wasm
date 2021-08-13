@@ -17,6 +17,6 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "homepage": "https://github.com/polkadot-js/wasm",
   "dependencies": {
-    "@babel/runtime": "^7.14.6"
+    "@babel/runtime": "^7.15.3"
   }
 }
