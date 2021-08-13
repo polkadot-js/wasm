@@ -12,13 +12,13 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.6",
+    "@babel/runtime": "^7.15.3",
     "@polkadot/wasm-crypto-asmjs": "^4.1.2",
     "@polkadot/wasm-crypto-wasm": "^4.1.2"
   },
   "devDependencies": {
-    "@polkadot/util": "^6.11.1",
-    "@polkadot/x-randomvalues": "^6.11.1"
+    "@polkadot/util": "^7.1.2",
+    "@polkadot/x-randomvalues": "^7.1.2"
   },
   "peerDependencies": {
     "@polkadot/util": "*",
