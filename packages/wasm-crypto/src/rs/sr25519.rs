@@ -7,6 +7,7 @@
 // which was adpated from the initial https://github.com/paritytech/schnorrkel-js/
 // forked at commit eff430ddc3090f56317c80654208b8298ef7ab3f
 
+use curve25519_dalek::scalar::Scalar;
 use schnorrkel::{
 	ExpansionMode, Keypair, MiniSecretKey, PublicKey, SecretKey, Signature,
 	derive::{Derivation, ChainCode, CHAIN_CODE_LENGTH},
@@ -134,6 +135,23 @@ pub fn ext_sr_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 	}
 }
 
+/// Key agreement between other's public key and self secret key.
+///
+/// * pubkey: UIntArray with 32 element
+/// * secret: UIntArray with 64 element
+///
+/// * returned vector is the generated secret of 32 bytes.
+#[wasm_bindgen]
+pub fn ext_sr_agree(pubkey: &[u8], secret: &[u8]) -> Vec<u8> {
+		let secret = SecretKey::from_ed25519_bytes(secret).unwrap();
+	    // The first 32 bytes holds the canonical private key
+		let mut key = [0u8; 32];
+		key.copy_from_slice(&secret.to_bytes()[0..32]);
+		let key = Scalar::from_canonical_bytes(key).unwrap();
+		let public = PublicKey::from_bytes(pubkey).unwrap();
+		(&key * public.as_point()).compress().0.to_vec()
+}
+
 #[cfg(test)]
 pub mod tests {
 	extern crate rand;
@@ -242,5 +260,20 @@ pub mod tests {
 		let public = &derived[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
 
 		assert_eq!(public, expected);
+	}
+
+	#[test]
+	fn key_agreement() {
+		let seed = generate_random_seed();
+		let self_pair = ext_sr_from_seed(seed.as_slice());
+		let self_sk = &self_pair[0..SECRET_KEY_LENGTH];
+		let self_pk = &self_pair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+
+		let seed = generate_random_seed();
+		let other_pair = ext_sr_from_seed(seed.as_slice());
+		let other_sk = &other_pair[0..SECRET_KEY_LENGTH];
+		let other_pk = &other_pair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+
+		assert_eq!(ext_sr_agree(self_pk, other_sk), ext_sr_agree(other_pk, self_sk));
 	}
 }

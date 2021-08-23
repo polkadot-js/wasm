@@ -120,6 +120,15 @@ function sr25519_benchmark (wasm) {
   }
 }
 
+function sr25519_key_agreement (wasm) {
+  for (let i = 0; i < 256; i++) {
+    const [, pk1, sk1] = randomPair(wasm);
+    const [, pk2, sk2] = randomPair(wasm);
+
+    assert(u8aToHex(wasm.sr25519Agree(pk1, sk2)) === u8aToHex(wasm.sr25519Agree(pk2, sk1)), 'Unmatched agreement keys');
+  }
+}
+
 module.exports = {
   sr25519_benchmark,
   sr25519_deriveHard,
@@ -131,5 +140,6 @@ module.exports = {
   sr25519_pairFromSeed,
   sr25519_signAndVerify,
   sr25519_sign_deterministic,
-  sr25519_verifyExisting
+  sr25519_verifyExisting,
+  sr25519_key_agreement
 };
