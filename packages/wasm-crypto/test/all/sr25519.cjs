@@ -120,6 +120,23 @@ function sr25519_benchmark (wasm) {
   }
 }
 
+function sr25519_key_agreement (wasm) {
+  const pair1 = wasm.sr25519KeypairFromSeed(hexToU8a('0x3b44c558f9a8f3dc9690d53088558c1ba2529b677e316c6054d1852595b004af'));
+  const pair2 = wasm.sr25519KeypairFromSeed(hexToU8a('0x923b80f79c6981fe756272128ec236eb510ae016dd20bdccbd77a9416b7ab94e'));
+  const [, pk1, sk1] = extractKeys(pair1);
+  const [, pk2, sk2] = extractKeys(pair2);
+
+  assert(u8aToHex(wasm.sr25519Agree(pk1, sk2)) === '0xfa7b90001b790fe42ff78b8cd86f6cf7a7c0a70b72f6b4c771b5d67536450222', 'Unmatched agreement keys');
+  assert(u8aToHex(wasm.sr25519Agree(pk2, sk1)) === '0xfa7b90001b790fe42ff78b8cd86f6cf7a7c0a70b72f6b4c771b5d67536450222', 'Unmatched agreement keys');
+
+  for (let i = 0; i < 256; i++) {
+    const [, pk1, sk1] = randomPair(wasm);
+    const [, pk2, sk2] = randomPair(wasm);
+
+    assert(u8aToHex(wasm.sr25519Agree(pk1, sk2)) === u8aToHex(wasm.sr25519Agree(pk2, sk1)), 'Unmatched agreement keys');
+  }
+}
+
 module.exports = {
   sr25519_benchmark,
   sr25519_deriveHard,
@@ -128,6 +145,7 @@ module.exports = {
   sr25519_deriveSoftKnown,
   sr25519_deriveSoftPubkey,
   sr25519_devFromSeed,
+  sr25519_key_agreement,
   sr25519_pairFromSeed,
   sr25519_signAndVerify,
   sr25519_sign_deterministic,

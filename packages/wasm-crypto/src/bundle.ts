@@ -159,6 +159,17 @@ export const sr25519Verify = withWasm((wasm) =>
   }
 );
 
+export const sr25519Agree = withWasm((wasm) =>
+  (pubkey: Uint8Array, secret: Uint8Array): Uint8Array => {
+    const [ptr0, len0] = allocU8a(pubkey);
+    const [ptr1, len1] = allocU8a(secret);
+
+    wasm.ext_sr_agree(8, ptr0, len0, ptr1, len1);
+
+    return resultU8a();
+  }
+);
+
 export const vrfSign = withWasm((wasm) =>
   (secret: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array): Uint8Array => {
     const [ptr0, len0] = allocU8a(secret);
