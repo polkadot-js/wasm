@@ -147,9 +147,7 @@ pub fn ext_sr_agree(pubkey: &[u8], secret: &[u8]) -> Vec<u8> {
 	    // The first 32 bytes holds the canonical private key
 		let mut key = [0u8; 32];
 		key.copy_from_slice(&secret.to_bytes()[0..32]);
-		let key = Scalar::from_canonical_bytes(key).unwrap();
-		let public = PublicKey::from_bytes(pubkey).unwrap();
-		(&key * public.as_point()).compress().0.to_vec()
+		(&Scalar::from_canonical_bytes(key).unwrap() * PublicKey::from_bytes(pubkey).unwrap().as_point()).compress().0.to_vec()
 }
 
 #[cfg(test)]
