@@ -262,6 +262,19 @@ pub mod tests {
 
 	#[test]
 	fn key_agreement() {
+		let self_seed = hex!("98b3d305d5a5eace562387e47e59badd4d77e3f72cabfb10a60f8a197059f0a8");
+		let other_seed = hex!("9732eea001851ff862d949a1699c9971f3a26edbede2ad7922cbbe9a0701f366");
+		let expected = hex!("b03a0b198c34c16f35cae933d88b16341b4cef3e84e851f20e664c6a30527f4e");
+		let self_pair = ext_sr_from_seed(self_seed.as_slice());
+		let self_sk = &self_pair[0..SECRET_KEY_LENGTH];
+		let self_pk = &self_pair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+		let other_pair = ext_sr_from_seed(other_seed.as_slice());
+		let other_sk = &other_pair[0..SECRET_KEY_LENGTH];
+		let other_pk = &other_pair[SECRET_KEY_LENGTH..KEYPAIR_LENGTH];
+
+		assert_eq!(ext_sr_agree(self_pk, other_sk), expected);
+		assert_eq!(ext_sr_agree(other_pk, self_sk), expected);
+
 		let seed = generate_random_seed();
 		let self_pair = ext_sr_from_seed(seed.as_slice());
 		let self_sk = &self_pair[0..SECRET_KEY_LENGTH];
