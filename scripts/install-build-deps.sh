@@ -5,9 +5,7 @@
 
 set -e
 
-# also change in build-package
-RUST_VER=nightly-2021-10-25
-# RUST_VER=stable
+source ./rust-version.sh
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
 BINARYEN_VER=version_97

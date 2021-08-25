@@ -5,9 +5,7 @@
 
 set -e
 
-# also change in install-build-deps
-RUST_VER=nightly-2020-10-25
-# RUST_VER=stable
+source ./rust-version.sh
 
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm
