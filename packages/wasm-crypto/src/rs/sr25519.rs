@@ -143,11 +143,19 @@ pub fn ext_sr_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 /// * returned vector is the generated secret of 32 bytes.
 #[wasm_bindgen]
 pub fn ext_sr_agree(pubkey: &[u8], secret: &[u8]) -> Vec<u8> {
-		let secret = SecretKey::from_ed25519_bytes(secret).unwrap();
-	    // The first 32 bytes holds the canonical private key
+		// The first 32 bytes holds the canonical private key
 		let mut key = [0u8; 32];
-		key.copy_from_slice(&secret.to_bytes()[0..32]);
-		(&Scalar::from_canonical_bytes(key).unwrap() * PublicKey::from_bytes(pubkey).unwrap().as_point()).compress().0.to_vec()
+
+		key.copy_from_slice(
+			&SecretKey::from_ed25519_bytes(secret)
+				.unwrap()
+				.to_bytes()[0..32]
+		);
+
+		(
+			&Scalar::from_canonical_bytes(key).unwrap() *
+			PublicKey::from_bytes(pubkey).unwrap().as_point()
+		).compress().0.to_vec()
 }
 
 #[cfg(test)]
@@ -155,8 +163,8 @@ pub mod tests {
 	extern crate rand;
 	extern crate schnorrkel;
 
-	use hex_literal::hex;
 	use super::*;
+	use hex_literal::hex;
 	use schnorrkel::{SIGNATURE_LENGTH, KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
 
 	fn generate_random_seed() -> Vec<u8> {

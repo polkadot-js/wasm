@@ -1,8 +1,6 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/* eslint-disable camelcase */
-
 const { assert, stringToU8a, u8aToHex } = require('@polkadot/util');
 
 function blake2bHash (wasm) {

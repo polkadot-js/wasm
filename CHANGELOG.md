@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Support sr25519 agreement (https://github.com/shelvenzhou)
+
+Changes:
+
+- Adjust tests to align with JS coding standards
+
+
 ## 4.1.2 Jul 9, 2021
 
 Changes:
