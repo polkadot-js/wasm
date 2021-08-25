@@ -1,8 +1,6 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/* eslint-disable camelcase */
-
 const crypto = require('crypto');
 const { assert, hexToU8a, stringToU8a, u8aToHex } = require('@polkadot/util');
 
@@ -14,7 +12,7 @@ function randomPair (wasm) {
   return extractKeys(wasm.sr25519KeypairFromSeed(crypto.randomBytes(32)));
 }
 
-function sr25519_pairFromSeed (wasm) {
+function sr25519PairFromSeed (wasm) {
   const pair = wasm.sr25519KeypairFromSeed(stringToU8a('12345678901234567890123456789012'));
 
   console.log('\tSEC', u8aToHex(pair.slice(0, 64)));
@@ -23,7 +21,7 @@ function sr25519_pairFromSeed (wasm) {
   assert(u8aToHex(pair) === '0xf0106660c3dda23f16daa9ac5b811b963077f5bc0af89f85804f0de8e424f050f98d66f39442506ff947fd911f18c7a7a5da639a63e8d3b4e233f74143d951c1741c08a06f41c596608f6774259bd9043304adfa5d3eea62760bd9be97634d63', 'ERROR: pairFromSeed() does not match');
 }
 
-function sr25519_devFromSeed (wasm) {
+function sr25519DevFromSeed (wasm) {
   const pair = wasm.sr25519KeypairFromSeed(hexToU8a('0xfac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e'));
 
   console.log('\tSEC', u8aToHex(pair.slice(0, 64)));
@@ -32,7 +30,7 @@ function sr25519_devFromSeed (wasm) {
   assert(u8aToHex(pair) === '0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a', 'ERROR: devFromSeed() does not match');
 }
 
-function sr25519_verifyExisting (wasm) {
+function sr25519VerifyExisting (wasm) {
   const PK = hexToU8a('0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d');
   const MESSAGE = stringToU8a('I hereby verify that I control 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY');
   const SIGNATURE = hexToU8a('0xb83881d3bd7302981ee1c504fe5b7b394682927131fc0846fd616bb40fa14d02640fd2aca785b4cb57904765c2e4e75f59a7dd30154c209964369912091f6981');
@@ -44,7 +42,7 @@ function sr25519_verifyExisting (wasm) {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
-function sr25519_sign_deterministic (wasm) {
+function sr25519SignDeterministic (wasm) {
   const [, pk, sk] = randomPair(wasm);
   const sig1 = u8aToHex(wasm.sr25519Sign(pk, sk, stringToU8a('this is a message')));
   const sig2 = u8aToHex(wasm.sr25519Sign(pk, sk, stringToU8a('this is a message')));
@@ -55,7 +53,7 @@ function sr25519_sign_deterministic (wasm) {
   assert(sig1 !== sig2, 'ERROR: Signatures are deterministic');
 }
 
-function sr25519_signAndVerify (wasm) {
+function sr25519SignAndVerify (wasm) {
   const [, pk, sk] = randomPair(wasm);
   const signature = wasm.sr25519Sign(pk, sk, stringToU8a('this is a message'));
   const isValid = wasm.sr25519Verify(signature, stringToU8a('this is a message'), pk);
@@ -66,7 +64,7 @@ function sr25519_signAndVerify (wasm) {
   assert(isValid, 'ERROR: Unable to verify signature');
 }
 
-function sr25519_deriveHard (wasm) {
+function sr25519DeriveHard (wasm) {
   const [pair] = randomPair(wasm);
   const derived = wasm.sr25519DeriveKeypairHard(pair, hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
 
@@ -74,7 +72,7 @@ function sr25519_deriveHard (wasm) {
   console.log('\tPUB', u8aToHex(derived.slice(64)));
 }
 
-function sr25519_deriveHardKnown (wasm) {
+function sr25519DeriveHardKnown (wasm) {
   const derived = wasm.sr25519DeriveKeypairHard(hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x14416c6963650000000000000000000000000000000000000000000000000000'));
   const publicKey = u8aToHex(derived.slice(64));
 
@@ -84,7 +82,7 @@ function sr25519_deriveHardKnown (wasm) {
   assert(publicKey === '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d', 'Unmatched resulting public keys');
 }
 
-function sr25519_deriveSoft (wasm) {
+function sr25519DeriveSoft (wasm) {
   const [pair] = randomPair(wasm);
   const derived = wasm.sr25519DeriveKeypairSoft(pair, hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
 
@@ -92,7 +90,7 @@ function sr25519_deriveSoft (wasm) {
   console.log('\tPUB', u8aToHex(derived.slice(64)));
 }
 
-function sr25519_deriveSoftKnown (wasm) {
+function sr25519DeriveSoftKnown (wasm) {
   const derived = wasm.sr25519DeriveKeypairSoft(hexToU8a('0x28b0ae221c6bb06856b287f60d7ea0d98552ea5a16db16956849aa371db3eb51fd190cce74df356432b410bd64682309d6dedb27c76845daf388557cbac3ca3446ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000'));
   const publicKey = u8aToHex(derived.slice(64));
 
@@ -102,7 +100,7 @@ function sr25519_deriveSoftKnown (wasm) {
   assert(publicKey === '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a', 'Unmatched resulting public keys');
 }
 
-function sr25519_deriveSoftPubkey (wasm) {
+function sr25519DeriveSoftPubkey (wasm) {
   const derived = u8aToHex(wasm.sr25519DerivePublicSoft(hexToU8a('0x46ebddef8cd9bb167dc30878d7113b7e168e6f0646beffd77d69d39bad76b47a'), hexToU8a('0x0c666f6f00000000000000000000000000000000000000000000000000000000')));
 
   console.log('\tPUB', derived);
@@ -110,17 +108,7 @@ function sr25519_deriveSoftPubkey (wasm) {
   assert(derived === '0x40b9675df90efa6069ff623b0fdfcf706cd47ca7452a5056c7ad58194d23440a', 'Unmatched resulting public keys');
 }
 
-function sr25519_benchmark (wasm) {
-  const MESSAGE = stringToU8a('this is a message');
-
-  for (let i = 0; i < 256; i++) {
-    const [, pk, sk] = randomPair(wasm);
-
-    assert(wasm.sr25519Verify(wasm.sr25519Sign(pk, sk, MESSAGE), MESSAGE, pk), 'ERROR: Unable to verify signature');
-  }
-}
-
-function sr25519_key_agreement (wasm) {
+function sr25519KeyAgreement (wasm) {
   const pair1 = wasm.sr25519KeypairFromSeed(hexToU8a('0x3b44c558f9a8f3dc9690d53088558c1ba2529b677e316c6054d1852595b004af'));
   const pair2 = wasm.sr25519KeypairFromSeed(hexToU8a('0x923b80f79c6981fe756272128ec236eb510ae016dd20bdccbd77a9416b7ab94e'));
   const [, pk1, sk1] = extractKeys(pair1);
@@ -137,17 +125,27 @@ function sr25519_key_agreement (wasm) {
   }
 }
 
+function sr25519Benchmark (wasm) {
+  const MESSAGE = stringToU8a('this is a message');
+
+  for (let i = 0; i < 256; i++) {
+    const [, pk, sk] = randomPair(wasm);
+
+    assert(wasm.sr25519Verify(wasm.sr25519Sign(pk, sk, MESSAGE), MESSAGE, pk), 'ERROR: Unable to verify signature');
+  }
+}
+
 module.exports = {
-  sr25519_benchmark,
-  sr25519_deriveHard,
-  sr25519_deriveHardKnown,
-  sr25519_deriveSoft,
-  sr25519_deriveSoftKnown,
-  sr25519_deriveSoftPubkey,
-  sr25519_devFromSeed,
-  sr25519_key_agreement,
-  sr25519_pairFromSeed,
-  sr25519_signAndVerify,
-  sr25519_sign_deterministic,
-  sr25519_verifyExisting
+  sr25519Benchmark,
+  sr25519DeriveHard,
+  sr25519DeriveHardKnown,
+  sr25519DeriveSoft,
+  sr25519DeriveSoftKnown,
+  sr25519DeriveSoftPubkey,
+  sr25519DevFromSeed,
+  sr25519KeyAgreement,
+  sr25519PairFromSeed,
+  sr25519SignAndVerify,
+  sr25519SignDeterministic,
+  sr25519VerifyExisting
 };
