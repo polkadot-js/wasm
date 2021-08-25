@@ -23,11 +23,9 @@ cd ..
 
 echo "*** Converting to WASM"
 ../bindgen/wasm-bindgen wasm-crypto/target/wasm32-unknown-unknown/release/wasm.wasm --out-dir bytes --target web
-# wasm-pack build --release --scope polkadot --target web
 
 # optimise
 echo "*** Optimising WASM output"
-# ../../wabt/bin/wasm-strip $WSM
 ../binaryen/bin/wasm-opt $WSM -Os -o $OPT
 
 # convert wasm to base64 structure
