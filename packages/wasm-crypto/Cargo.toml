@@ -22,6 +22,7 @@ hmac = "0.7.0"
 # libsecp256k1 = "0.2.2"
 merlin = { version = "2.0", default-features = false }
 pbkdf2 = { version = "0.3.0", default-features = false }
+curve25519-dalek = { version = "2.1.0", default-features = false }
 schnorrkel = { version = "0.9.1", features = ["preaudit_deprecated", "u64_backend"] }
 scrypt = { version = "0.2", default-features = false }
 sha2 = "0.8.1"

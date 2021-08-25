@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto-wasm",
-  "version": "4.0.3-5",
+  "version": "4.1.3-4",
   "type": "module",
   "description": "Wasm content for wasm-crypto",
   "browser": "data.js",
@@ -17,6 +17,6 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "homepage": "https://github.com/polkadot-js/wasm",
   "dependencies": {
-    "@babel/runtime": "^7.14.0"
+    "@babel/runtime": "^7.15.3"
   }
 }

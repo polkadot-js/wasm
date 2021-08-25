@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto-asmjs",
-  "version": "4.0.3-5",
+  "version": "4.1.3-4",
   "type": "module",
   "description": "Asm.js content for wasm-crypto",
   "browser": "empty.js",
@@ -17,6 +17,6 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "homepage": "https://github.com/polkadot-js/wasm",
   "dependencies": {
-    "@babel/runtime": "^7.14.0"
+    "@babel/runtime": "^7.15.3"
   }
 }

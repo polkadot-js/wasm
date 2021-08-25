@@ -265,7 +265,7 @@ const inflt = (dat: Uint8Array, buf?: Uint8Array, st?: InflateState) => {
         //    length tree                 distance tree
         const lt = ldt.subarray(0, hLit), dt = ldt.subarray(hLit);
         // max length bits
-        lbt = max(lt)
+        lbt = max(lt);
         // max dist bits
         dbt = max(dt);
         lm = hMap(lt, lbt, 1);
@@ -321,7 +321,7 @@ const inflt = (dat: Uint8Array, buf?: Uint8Array, st?: InflateState) => {
     }
     st.l = lm, st.p = pos, st.b = bt;
     if (lm) final = 1, st.m = lbt, st.d = dm, st.n = dbt;
-  } while (!final)
+  } while (!final);
   return bt == buf.length ? buf : slc(buf, 0, bt);
 }
 
