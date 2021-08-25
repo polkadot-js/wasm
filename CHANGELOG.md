@@ -9,6 +9,7 @@ Contributed:
 Changes:
 
 - Adjust tests to align with JS coding standards
+- Allow for optional build with Rust stable bootstrap
 
 
 ## 4.1.2 Jul 9, 2021
