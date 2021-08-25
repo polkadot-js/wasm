@@ -5,7 +5,7 @@
 
 set -e
 
-source ./rust-version.sh
+source ../scripts/rust-version.sh
 
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm

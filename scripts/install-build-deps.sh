@@ -5,7 +5,7 @@
 
 set -e
 
-source ./rust-version.sh
+source ../scripts/rust-version.sh
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
 BINARYEN_VER=version_97
