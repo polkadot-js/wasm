@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master
+## 4.2.1 Aug 28, 2021
 
 Contributed:
 
-- Support sr25519 agreement (https://github.com/shelvenzhou)
+- Add sr25519 agreement external (Thanks to https://github.com/shelvenzhou)
 
 Changes:
 
