@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "resolutions": {
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   },
   "scripts": {
     "build": "yarn build:wasm",
@@ -24,8 +24,8 @@
     "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@polkadot/dev": "^0.62.65",
+    "@babel/core": "^7.15.5",
+    "@polkadot/dev": "^0.62.66",
     "fflate": "^0.7.1",
     "override-require": "^1.1.1"
   },
