@@ -1,6 +1,6 @@
 {
   "name": "@polkadot/wasm-crypto",
-  "version": "4.2.2-7",
+  "version": "4.2.2-8",
   "license": "Apache-2.0",
   "type": "module",
   "description": "A wasm interface layer for use by @polkadot/util-crypto",
@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@polkadot/wasm-crypto-asmjs": "^4.2.2-7",
-    "@polkadot/wasm-crypto-wasm": "^4.2.2-7"
+    "@polkadot/wasm-crypto-asmjs": "^4.2.2-8",
+    "@polkadot/wasm-crypto-wasm": "^4.2.2-8"
   },
   "devDependencies": {
     "@polkadot/util": "^7.6.1",
