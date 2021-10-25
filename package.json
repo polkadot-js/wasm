@@ -15,7 +15,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "bin": {},
   "scripts": {
     "build": "yarn build:wasm",
     "build:release": "polkadot-ci-ghact-build",
@@ -30,15 +29,12 @@
     "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
     "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.8",
+    "@polkadot/dev": "^0.63.9",
     "fflate": "^0.7.1",
     "override-require": "^1.1.1"
   },
-  "optionalDependencies": {},
-  "peerDependencies": {},
   "resolutions": {
     "typescript": "^4.4.4"
   }
