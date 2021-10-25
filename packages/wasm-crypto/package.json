@@ -8,6 +8,11 @@
     "./detectPackage.js",
     "./detectPackage.cjs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/wasm.git",
+    "directory": "packages/wasm-crypto"
+  },
   "engines": {
     "node": ">=14.0.0"
   },
