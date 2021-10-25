@@ -1,18 +1,24 @@
 {
   "name": "@polkadot/wasm-crypto",
   "version": "4.2.2-7",
+  "license": "Apache-2.0",
   "type": "module",
-  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "description": "A wasm interface layer for use by @polkadot/util-crypto",
   "main": "index.js",
-  "sideEffects": [
-    "./detectPackage.js",
-    "./detectPackage.cjs"
-  ],
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "maintainers": [],
+  "contributors": [],
+  "bugs": "https://github.com/polkadot-js/wasm/issues",
+  "homepage": "https://github.com/polkadot-js/wasm#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/polkadot-js/wasm.git",
     "directory": "packages/wasm-crypto"
   },
+  "sideEffects": [
+    "./detectPackage.js",
+    "./detectPackage.cjs"
+  ],
   "engines": {
     "node": ">=14.0.0"
   },
@@ -22,8 +28,8 @@
     "@polkadot/wasm-crypto-wasm": "^4.2.2-7"
   },
   "devDependencies": {
-    "@polkadot/util": "^7.5.1",
-    "@polkadot/x-randomvalues": "^7.5.1"
+    "@polkadot/util": "^7.6.1",
+    "@polkadot/x-randomvalues": "^7.6.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*",
