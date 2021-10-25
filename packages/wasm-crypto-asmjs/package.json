@@ -10,6 +10,11 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/wasm.git",
+    "directory": "packages/wasm-crypto-asmjs"
+  },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
   "contributors": [],
