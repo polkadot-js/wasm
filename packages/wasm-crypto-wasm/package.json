@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/wasm-crypto-wasm",
+  "private": false,
   "repository": {
     "directory": "packages/wasm-crypto-wasm",
     "type": "git",
@@ -17,11 +18,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "4.2.2-9",
+  "version": "4.2.2-10",
   "browser": "data.js",
   "main": "data.js",
   "react-native": "data.js",
-  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4"
   }

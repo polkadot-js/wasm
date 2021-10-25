@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/wasm-crypto",
+  "private": false,
   "repository": {
     "directory": "packages/wasm-crypto",
     "type": "git",
@@ -20,13 +21,12 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "4.2.2-9",
+  "version": "4.2.2-10",
   "main": "index.js",
-  "scripts": {},
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@polkadot/wasm-crypto-asmjs": "^4.2.2-9",
-    "@polkadot/wasm-crypto-wasm": "^4.2.2-9"
+    "@polkadot/wasm-crypto-asmjs": "^4.2.2-10",
+    "@polkadot/wasm-crypto-wasm": "^4.2.2-10"
   },
   "devDependencies": {
     "@polkadot/util": "^7.6.1",
