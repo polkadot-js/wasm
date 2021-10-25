@@ -1,21 +1,28 @@
 {
-  "repository": "https://github.com/polkadot-js/wasm",
   "author": "Jaco Greeff <jacogr@gmail.com>",
+  "bugs": "https://github.com/polkadot-js/wasm/issues",
+  "engines": {},
+  "homepage": "https://github.com/polkadot-js/wasm#readme",
   "license": "Apache-2",
+  "packageManager": "yarn@3.0.1",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polkadot-js/wasm.git"
+  },
+  "sideEffects": false,
+  "version": "4.2.2-8",
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "typescript": "^4.4.4"
-  },
+  "bin": {},
   "scripts": {
     "build": "yarn build:wasm",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
     "build:wasm": "./scripts/build.sh",
-    "lint": "polkadot-dev-run-lint",
     "clean": "./scripts/clean.sh",
+    "lint": "polkadot-dev-run-lint",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "yarn test:wasm:rust",
     "test:wasm:js": "yarn test:wasm:js:jest && yarn test:wasm:js:node",
@@ -23,12 +30,16 @@
     "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
     "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.6",
+    "@polkadot/dev": "^0.63.8",
     "fflate": "^0.7.1",
     "override-require": "^1.1.1"
   },
-  "version": "4.2.2-8",
-  "packageManager": "yarn@3.0.1"
+  "optionalDependencies": {},
+  "peerDependencies": {},
+  "resolutions": {
+    "typescript": "^4.4.4"
+  }
 }
