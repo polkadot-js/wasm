@@ -13,7 +13,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/polkadot-js/wasm.git",
-    "directory": "packages//wasm-crypto-wasm"
+    "directory": "packages/wasm-crypto-wasm"
   },
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "maintainers": [],
