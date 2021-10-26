@@ -10,7 +10,6 @@
   "license": "Apache-2.0",
   "maintainers": [],
   "name": "@polkadot/wasm-crypto-asmjs",
-  "private": false,
   "repository": {
     "directory": "packages/wasm-crypto-asmjs",
     "type": "git",
