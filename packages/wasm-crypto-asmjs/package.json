@@ -17,7 +17,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "4.2.2-11",
+  "version": "4.2.2-12",
   "browser": "empty.js",
   "main": "empty.js",
   "react-native": "data.js",
