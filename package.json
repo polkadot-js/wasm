@@ -30,8 +30,8 @@
     "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@polkadot/dev": "^0.63.10",
+    "@babel/core": "^7.16.0",
+    "@polkadot/dev": "^0.63.20",
     "fflate": "^0.7.1",
     "override-require": "^1.1.1"
   },
