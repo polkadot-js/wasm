@@ -20,12 +20,12 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "4.2.2-15",
+  "version": "4.2.2-16",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@polkadot/wasm-crypto-asmjs": "^4.2.2-15",
-    "@polkadot/wasm-crypto-wasm": "^4.2.2-15"
+    "@polkadot/wasm-crypto-asmjs": "^4.2.2-16",
+    "@polkadot/wasm-crypto-wasm": "^4.2.2-16"
   },
   "devDependencies": {
     "@polkadot/util": "^7.8.2",
