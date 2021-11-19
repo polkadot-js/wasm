@@ -22,8 +22,10 @@ export interface WasmCryptoInstance {
   ext_ed_verify(a: number, b: number, c: number, d: number, e: number, f: number): number;
   ext_blake2b(a: number, b: number, c: number, d: number, e: number, f: number): void;
   ext_keccak256(a: number, b: number, c: number): void;
+  ext_keccak512(a: number, b: number, c: number): void;
   ext_pbkdf2(a: number, b: number, c: number, d: number, e: number, f: number): void;
   ext_scrypt(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number): void;
+  ext_sha256(a: number, b: number, c: number): void;
   ext_sha512(a: number, b: number, c: number): void;
   ext_twox(a: number, b: number, c: number, d: number): void;
   ext_sr_derive_keypair_hard(a: number, b: number, c: number, d: number, e: number): void;

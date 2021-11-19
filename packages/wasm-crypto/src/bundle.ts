@@ -217,6 +217,16 @@ export const keccak256 = withWasm((wasm) =>
   }
 );
 
+export const keccak512 = withWasm((wasm) =>
+  (data: Uint8Array): Uint8Array => {
+    const [ptr0, len0] = allocU8a(data);
+
+    wasm.ext_keccak512(8, ptr0, len0);
+
+    return resultU8a();
+  }
+);
+
 export const pbkdf2 = withWasm((wasm) =>
   (data: Uint8Array, salt: Uint8Array, rounds: number): Uint8Array => {
     const [ptr0, len0] = allocU8a(data);
@@ -234,6 +244,16 @@ export const scrypt = withWasm((wasm) =>
     const [ptr1, len1] = allocU8a(salt);
 
     wasm.ext_scrypt(8, ptr0, len0, ptr1, len1, log2n, r, p);
+
+    return resultU8a();
+  }
+);
+
+export const sha256 = withWasm((wasm) =>
+  (data: Uint8Array): Uint8Array => {
+    const [ptr0, len0] = allocU8a(data);
+
+    wasm.ext_sha256(8, ptr0, len0);
 
     return resultU8a();
   }

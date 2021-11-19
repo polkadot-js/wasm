@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## master
+
+Contributed:
+
+- Updated package.json to include repo (Thanks to https://github.com/v-zhzhou)
+
+Changes:
+
+- Add `keccak512` function
+- Add `sha256` function
+
+
 ## 4.2.1 Aug 28, 2021
 
 Contributed:

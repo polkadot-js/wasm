@@ -6,7 +6,7 @@ use byteorder::{ByteOrder, LittleEndian};
 use hmac::Hmac;
 use pbkdf2::pbkdf2;
 use scrypt::{ScryptParams, scrypt};
-use sha2::{Digest, Sha512};
+use sha2::{Digest, Sha256, Sha512};
 use tiny_keccak::{Hasher, Keccak};
 use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
@@ -57,6 +57,22 @@ pub fn ext_keccak256(data: &[u8]) -> Vec<u8> {
 	result.to_vec()
 }
 
+/// Create a keccak512 hash for the specified input
+///
+// * data: Arbitrary data to be hashed
+///
+/// Returns the hash as a vector
+#[wasm_bindgen]
+pub fn ext_keccak512(data: &[u8]) -> Vec<u8> {
+	let mut keccak = Keccak::v512();
+	let mut result = [0u8; 64];
+
+	keccak.update(data);
+	keccak.finalize(&mut result);
+
+	result.to_vec()
+}
+
 /// pbkdf2 kdf from an input, salt for the number of specified rounds
 ///
 /// * data: Arbitrary data to be hashed
@@ -92,6 +108,22 @@ pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> V
 		Ok(_) => return result.to_vec(),
 		Err(_) => panic!("Invalid scrypt hash.")
 	}
+}
+
+/// sha256 hash for the specified input
+///
+/// * data: Arbitrary data to be hashed
+///
+/// Returns a vector with the hash result
+#[wasm_bindgen]
+pub fn ext_sha256(data: &[u8]) -> Vec<u8> {
+	let mut hasher = Sha256::new();
+
+	hasher.input(data);
+
+	hasher
+		.result()
+		.to_vec()
 }
 
 /// sha512 hash for the specified input
@@ -155,6 +187,15 @@ pub mod tests {
 	}
 
 	#[test]
+	fn can_keccak512() {
+		let data = b"test";
+		let expected = hex!("1e2e9fc2002b002d75198b7503210c05a1baac4560916a3c6d93bcce3a50d7f00fd395bf1647b9abb8d1afcc9c76c289b0c9383ba386a956da4b38934417789e");
+		let hash = ext_keccak512(data);
+
+		assert_eq!(hash[..], expected[..]);
+	}
+
+	#[test]
 	fn can_pbkdf2() {
 		let salt = b"this is a salt";
 		let data = b"hello world";
@@ -170,6 +211,15 @@ pub mod tests {
 		let salt = b"salt";
 		let expected = hex!("745731af4484f323968969eda289aeee005b5903ac561e64a5aca121797bf7734ef9fd58422e2e22183bcacba9ec87ba0c83b7a2e788f03ce0da06463433cda6");
 		let hash = ext_scrypt(password, salt, 14, 8, 1);
+
+		assert_eq!(hash[..], expected[..]);
+	}
+
+	#[test]
+	fn can_sha256() {
+		let data = b"hello world";
+		let expected = hex!("b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9");
+		let hash = ext_sha256(data);
 
 		assert_eq!(hash[..], expected[..]);
 	}
