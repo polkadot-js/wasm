@@ -20,7 +20,7 @@ function keccak256 (wasm) {
 }
 
 function keccak512 (wasm) {
-  const hash = u8aToHex(wasm.keccak256(stringToU8a('test')));
+  const hash = u8aToHex(wasm.keccak512(stringToU8a('test')));
 
   console.log('\tRES', hash);
 
