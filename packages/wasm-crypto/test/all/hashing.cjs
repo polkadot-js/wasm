@@ -19,6 +19,14 @@ function keccak256 (wasm) {
   assert(hash === '0x2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e', 'ERROR: keccak256 does not match');
 }
 
+function keccak512 (wasm) {
+  const hash = u8aToHex(wasm.keccak256(stringToU8a('test')));
+
+  console.log('\tRES', hash);
+
+  assert(hash === '0x1e2e9fc2002b002d75198b7503210c05a1baac4560916a3c6d93bcce3a50d7f00fd395bf1647b9abb8d1afcc9c76c289b0c9383ba386a956da4b38934417789e', 'ERROR: keccak512 does not match');
+}
+
 function pbkdf2Hash (wasm) {
   const hash = u8aToHex(wasm.pbkdf2(stringToU8a('hello world'), stringToU8a('this is a salt'), 2048));
 
@@ -33,6 +41,14 @@ function scryptHash (wasm) {
   console.log('\tRES', hash);
 
   assert(hash === '0x745731af4484f323968969eda289aeee005b5903ac561e64a5aca121797bf7734ef9fd58422e2e22183bcacba9ec87ba0c83b7a2e788f03ce0da06463433cda6', 'ERROR: scryptHash does not match');
+}
+
+function sha256Hash (wasm) {
+  const hash = u8aToHex(wasm.sha256(stringToU8a('hello world')));
+
+  console.log('\tRES', hash);
+
+  assert(hash === '0xb94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9', 'ERROR: sha256Hash does not match');
 }
 
 function sha512Hash (wasm) {
@@ -56,8 +72,10 @@ function twoxHash (wasm) {
 module.exports = {
   blake2bHash,
   keccak256,
+  keccak512,
   pbkdf2Hash,
   scryptHash,
+  sha256Hash,
   sha512Hash,
   twoxHash
 };
