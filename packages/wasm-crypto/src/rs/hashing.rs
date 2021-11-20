@@ -3,7 +3,7 @@
 
 use blake2_rfc::blake2b::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
-use hmac::Hmac;
+use hmac::{Hmac, Mac, NewMac};
 use pbkdf2::pbkdf2;
 use scrypt::{ScryptParams, scrypt};
 use sha2::{Digest, Sha256, Sha512};
