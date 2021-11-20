@@ -51,7 +51,7 @@ pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
 		.update(data)
 		.finalize()
 		.into_bytes()
-		.to_vec();
+		.to_vec()
 }
 
 /// hmac with sha512
