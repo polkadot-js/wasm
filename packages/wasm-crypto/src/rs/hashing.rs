@@ -3,7 +3,7 @@
 
 use blake2_rfc::blake2b::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
-use hmac::{Hmac, Mac, NewMac};
+use hmac::{Hmac, NewMac};
 use pbkdf2::pbkdf2;
 use scrypt::{ScryptParams, scrypt};
 use sha2::{Digest, Sha256, Sha512};
@@ -214,7 +214,7 @@ pub mod tests {
 		let key = b"secret";
 		let data = b"some message";
 		let expected = hex!("f28a70b41263840e5c059a0a733336e0957efba87902aa8cca11441d4b0c96d7");
-		let hash = ext_hmac_sha256(data);
+		let hash = ext_hmac_sha256(key, data);
 
 		assert_eq!(hash[..], expected[..]);
 	}
@@ -224,7 +224,7 @@ pub mod tests {
 		let key = b"secret";
 		let data = b"some message";
 		let expected = hex!("295832e97ed77be75a9fa98029497e4a722c4b9a2f21b39d34f1befa931a39ec520fd24711d6f5c03501384ea66b83066a01a82c57a0460f8cd1f471fcce5841");
-		let hash = ext_hmac_sha512(data);
+		let hash = ext_hmac_sha512(key, data);
 
 		assert_eq!(hash[..], expected[..]);
 	}
