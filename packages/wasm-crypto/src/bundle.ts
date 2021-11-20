@@ -207,6 +207,28 @@ export const blake2b = withWasm((wasm) =>
   }
 );
 
+export const hmacSha256 = withWasm((wasm) =>
+  (key: Uint8Array, data: Uint8Array): Uint8Array => {
+    const [ptr0, len0] = allocU8a(key);
+    const [ptr1, len1] = allocU8a(data);
+
+    wasm.ext_hmac_sha256(8, ptr0, len0, ptr1, len1);
+
+    return resultU8a();
+  }
+);
+
+export const hmacSha512 = withWasm((wasm) =>
+  (key: Uint8Array, data: Uint8Array): Uint8Array => {
+    const [ptr0, len0] = allocU8a(key);
+    const [ptr1, len1] = allocU8a(data);
+
+    wasm.ext_hmac_sha512(8, ptr0, len0, ptr1, len1);
+
+    return resultU8a();
+  }
+);
+
 export const keccak256 = withWasm((wasm) =>
   (data: Uint8Array): Uint8Array => {
     const [ptr0, len0] = allocU8a(data);

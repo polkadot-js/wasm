@@ -41,6 +41,26 @@ pub fn ext_blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 		.to_vec()
 }
 
+/// hmac with sha256
+#[wasm_bindgen]
+pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
+	Hmac<Sha256>::new_from_slice(key)
+		.update(data)
+		.finalize()
+		.into_bytes()
+		.to_vec();
+}
+
+/// hmac with sha512
+#[wasm_bindgen]
+pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
+	Hmac<Sha512>::new_from_slice(key)
+		.update(data)
+		.finalize()
+		.into_bytes()
+		.to_vec();
+}
+
 /// Create a keccak256 hash for the specified input
 ///
 // * data: Arbitrary data to be hashed
@@ -182,6 +202,26 @@ pub mod tests {
 		let data = b"test value";
 		let expected = hex!("2d07364b5c231c56ce63d49430e085ea3033c750688ba532b24029124c26ca5e");
 		let hash = ext_keccak256(data);
+
+		assert_eq!(hash[..], expected[..]);
+	}
+
+	#[test]
+	fn can_hmac_sha256() {
+		let key = b"secret";
+		let data = b"some message";
+		let expected = hex!("f28a70b41263840e5c059a0a733336e0957efba87902aa8cca11441d4b0c96d7");
+		let hash = ext_hmac_sha256(data);
+
+		assert_eq!(hash[..], expected[..]);
+	}
+
+	#[test]
+	fn can_hmac_sha512() {
+		let key = b"secret";
+		let data = b"some message";
+		let expected = hex!("295832e97ed77be75a9fa98029497e4a722c4b9a2f21b39d34f1befa931a39ec520fd24711d6f5c03501384ea66b83066a01a82c57a0460f8cd1f471fcce5841");
+		let hash = ext_hmac_sha512(data);
 
 		assert_eq!(hash[..], expected[..]);
 	}

@@ -11,6 +11,22 @@ function blake2bHash (wasm) {
   assert(hash === '0xba80a53f981c4d0d6a2797b69f12f6e94c212f14685ac4b74b12bb6fdbffa2d17d87c5392aab792dc252d5de4533cc9518d38aa8dbf1925ab92386edd4009923', 'ERROR: blake2bHash does not match');
 }
 
+function hmacSha256 (wasm) {
+  const hash = u8aToHex(wasm.hmacSha256(stringToU8a('secret'), stringToU8a('some message')));
+
+  console.log('\tRES', hash);
+
+  assert(hash === '0xf28a70b41263840e5c059a0a733336e0957efba87902aa8cca11441d4b0c96d7', 'ERROR: hmacSha256 does not match');
+}
+
+function hmacSha512 (wasm) {
+  const hash = u8aToHex(wasm.hmacSha512(stringToU8a('secret'), stringToU8a('some message')));
+
+  console.log('\tRES', hash);
+
+  assert(hash === '0x295832e97ed77be75a9fa98029497e4a722c4b9a2f21b39d34f1befa931a39ec520fd24711d6f5c03501384ea66b83066a01a82c57a0460f8cd1f471fcce5841', 'ERROR: hmacSha512 does not match');
+}
+
 function keccak256 (wasm) {
   const hash = u8aToHex(wasm.keccak256(stringToU8a('test value')));
 
@@ -71,6 +87,8 @@ function twoxHash (wasm) {
 
 module.exports = {
   blake2bHash,
+  hmacSha256,
+  hmacSha512,
   keccak256,
   keccak512,
   pbkdf2Hash,
