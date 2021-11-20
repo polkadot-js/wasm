@@ -61,7 +61,7 @@ pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
 		.update(data)
 		.finalize()
 		.into_bytes()
-		.to_vec();
+		.to_vec()
 }
 
 /// Create a keccak256 hash for the specified input
