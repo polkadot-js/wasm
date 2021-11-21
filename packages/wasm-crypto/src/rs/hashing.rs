@@ -11,9 +11,6 @@ use tiny_keccak::{Hasher, Keccak};
 use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
 
-type HmacSha256 = Hmac<Sha256>;
-type HmacSha512 = Hmac<Sha512>;
-
 /// helper function for a single twox round with a seed
 fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
 	use ::std::hash::Hasher;
@@ -47,7 +44,7 @@ pub fn ext_blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 /// hmac with sha256
 #[wasm_bindgen]
 pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
-	match HmacSha256::new_varkey(key){
+	match Hmac::<Sha256>::new_varkey(key){
 		Ok(mut mac) => {
 			mac.input(data);
 
@@ -63,7 +60,7 @@ pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
 /// hmac with sha512
 #[wasm_bindgen]
 pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
-	match HmacSha512::new_varkey(key) {
+	match Hmac::<Sha512>::new_varkey(key) {
 		Ok(mut mac) => {
 			mac.input(data);
 
@@ -121,7 +118,7 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 	let mut result = [0u8; 64];
 
 	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
-	pbkdf2::<HmacSha512>(data, salt, rounds as usize, &mut result);
+	pbkdf2::<Hmac::<Sha512>>(data, salt, rounds as usize, &mut result);
 
 	result.to_vec()
 }
