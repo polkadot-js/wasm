@@ -141,7 +141,7 @@ pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> V
 	let mut result = [0u8; 64];
 
 	match scrypt(password, salt, &params, &mut result) {
-		Ok(_) => return result.to_vec(),
+		Ok(_) => result.to_vec(),
 		Err(_) => panic!("Invalid scrypt hash.")
 	}
 }
