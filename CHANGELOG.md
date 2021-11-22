@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 4.4.1 Nov 22, 2021
+
+Changes:
+
+- Add `hmacSha256` & `hmacSha512` functions
+
+
 ## 4.3.1 Nov 19, 2021
 
 Contributed:
