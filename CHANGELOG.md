@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust and optimize WASM function JS interface construction
+
+
 ## 4.4.1 Nov 22, 2021
 
 Changes:
