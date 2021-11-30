@@ -5,6 +5,7 @@
 Changes:
 
 - Adjust and optimize WASM function JS interface construction
+- Simplify base64 bytes decoding
 
 
 ## 4.4.1 Nov 22, 2021
