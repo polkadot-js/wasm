@@ -9,299 +9,169 @@ import * as imports from './imports';
 
 export { packageInfo } from './packageInfo';
 
-const PTR_VEC = 8;
-
 const wasmPromise = initWasm(wasmBytes, asmJsInit, imports).catch(() => null);
 
-export const bip39Generate = withWasm((wasm) =>
-  (words: 12 | 15 | 18 | 21 | 24): string => {
-    wasm.ext_bip39_generate(PTR_VEC, words);
+export const bip39Generate = withWasm((wasm, words: 12 | 15 | 18 | 21 | 24): string => {
+  wasm.ext_bip39_generate(8, words);
 
-    return resultString();
-  }
-);
+  return resultString();
+});
 
-export const bip39ToEntropy = withWasm((wasm) =>
-  (phrase: string): Uint8Array => {
-    const [ptr0, len0] = allocString(phrase);
+export const bip39ToEntropy = withWasm((wasm, phrase: string): Uint8Array => {
+  wasm.ext_bip39_to_entropy(8, ...allocString(phrase));
 
-    wasm.ext_bip39_to_entropy(PTR_VEC, ptr0, len0);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const bip39ToMiniSecret = withWasm((wasm, phrase: string, password: string): Uint8Array => {
+  wasm.ext_bip39_to_mini_secret(8, ...allocString(phrase), ...allocString(password));
 
-export const bip39ToMiniSecret = withWasm((wasm) =>
-  (phrase: string, password: string): Uint8Array => {
-    const [ptr0, len0] = allocString(phrase);
-    const [ptr1, len1] = allocString(password);
+  return resultU8a();
+});
 
-    wasm.ext_bip39_to_mini_secret(PTR_VEC, ptr0, len0, ptr1, len1);
+export const bip39ToSeed = withWasm((wasm, phrase: string, password: string): Uint8Array => {
+  wasm.ext_bip39_to_seed(8, ...allocString(phrase), ...allocString(password));
 
-    return resultU8a();
-  }
-);
+  return resultU8a();
+});
 
-export const bip39ToSeed = withWasm((wasm) =>
-  (phrase: string, password: string): Uint8Array => {
-    const [ptr0, len0] = allocString(phrase);
-    const [ptr1, len1] = allocString(password);
+export const bip39Validate = withWasm((wasm, phrase: string): boolean => {
+  const ret = wasm.ext_bip39_validate(...allocString(phrase));
 
-    wasm.ext_bip39_to_seed(PTR_VEC, ptr0, len0, ptr1, len1);
+  return ret !== 0;
+});
 
-    return resultU8a();
-  }
-);
+export const ed25519KeypairFromSeed = withWasm((wasm, seed: Uint8Array): Uint8Array => {
+  wasm.ext_ed_from_seed(8, ...allocU8a(seed));
 
-export const bip39Validate = withWasm((wasm) =>
-  (phrase: string): boolean => {
-    const [ptr0, len0] = allocString(phrase);
-    const ret = wasm.ext_bip39_validate(ptr0, len0);
+  return resultU8a();
+});
 
-    return ret !== 0;
-  }
-);
+export const ed25519Sign = withWasm((wasm, pubkey: Uint8Array, seckey: Uint8Array, message: Uint8Array): Uint8Array => {
+  wasm.ext_ed_sign(8, ...allocU8a(pubkey), ...allocU8a(seckey), ...allocU8a(message));
 
-export const ed25519KeypairFromSeed = withWasm((wasm) =>
-  (seed: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(seed);
+  return resultU8a();
+});
 
-    wasm.ext_ed_from_seed(PTR_VEC, ptr0, len0);
+export const ed25519Verify = withWasm((wasm, signature: Uint8Array, message: Uint8Array, pubkey: Uint8Array): boolean => {
+  const ret = wasm.ext_ed_verify(...allocU8a(signature), ...allocU8a(message), ...allocU8a(pubkey));
 
-    return resultU8a();
-  }
-);
+  return ret !== 0;
+});
 
-export const ed25519Sign = withWasm((wasm) =>
-  (pubkey: Uint8Array, seckey: Uint8Array, message: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(pubkey);
-    const [ptr1, len1] = allocU8a(seckey);
-    const [ptr2, len2] = allocU8a(message);
+export const sr25519DeriveKeypairHard = withWasm((wasm, pair: Uint8Array, cc: Uint8Array): Uint8Array => {
+  wasm.ext_sr_derive_keypair_hard(8, ...allocU8a(pair), ...allocU8a(cc));
 
-    wasm.ext_ed_sign(PTR_VEC, ptr0, len0, ptr1, len1, ptr2, len2);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const sr25519DeriveKeypairSoft = withWasm((wasm, pair: Uint8Array, cc: Uint8Array): Uint8Array => {
+  wasm.ext_sr_derive_keypair_soft(8, ...allocU8a(pair), ...allocU8a(cc));
 
-export const ed25519Verify = withWasm((wasm) =>
-  (signature: Uint8Array, message: Uint8Array, pubkey: Uint8Array): boolean => {
-    const [ptr0, len0] = allocU8a(signature);
-    const [ptr1, len1] = allocU8a(message);
-    const [ptr2, len2] = allocU8a(pubkey);
-    const ret = wasm.ext_ed_verify(ptr0, len0, ptr1, len1, ptr2, len2);
-
-    return ret !== 0;
-  }
-);
-
-export const sr25519DeriveKeypairHard = withWasm((wasm) =>
-  (pair: Uint8Array, cc: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(pair);
-    const [ptr1, len1] = allocU8a(cc);
-
-    wasm.ext_sr_derive_keypair_hard(PTR_VEC, ptr0, len0, ptr1, len1);
-
-    return resultU8a();
-  }
-);
+  return resultU8a();
+});
 
-export const sr25519DeriveKeypairSoft = withWasm((wasm) =>
-  (pair: Uint8Array, cc: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(pair);
-    const [ptr1, len1] = allocU8a(cc);
-
-    wasm.ext_sr_derive_keypair_soft(PTR_VEC, ptr0, len0, ptr1, len1);
-
-    return resultU8a();
-  }
-);
-
-export const sr25519DerivePublicSoft = withWasm((wasm) =>
-  (pubkey: Uint8Array, cc: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(pubkey);
-    const [ptr1, len1] = allocU8a(cc);
-
-    wasm.ext_sr_derive_public_soft(PTR_VEC, ptr0, len0, ptr1, len1);
-
-    return resultU8a();
-  }
-);
-
-export const sr25519KeypairFromSeed = withWasm((wasm) =>
-  (seed: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(seed);
-
-    wasm.ext_sr_from_seed(PTR_VEC, ptr0, len0);
-
-    return resultU8a();
-  }
-);
+export const sr25519DerivePublicSoft = withWasm((wasm, pubkey: Uint8Array, cc: Uint8Array): Uint8Array => {
+  wasm.ext_sr_derive_public_soft(8, ...allocU8a(pubkey), ...allocU8a(cc));
 
-export const sr25519Sign = withWasm((wasm) =>
-  (pubkey: Uint8Array, secret: Uint8Array, message: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(pubkey);
-    const [ptr1, len1] = allocU8a(secret);
-    const [ptr2, len2] = allocU8a(message);
-
-    wasm.ext_sr_sign(PTR_VEC, ptr0, len0, ptr1, len1, ptr2, len2);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const sr25519KeypairFromSeed = withWasm((wasm, seed: Uint8Array): Uint8Array => {
+  wasm.ext_sr_from_seed(8, ...allocU8a(seed));
 
-export const sr25519Verify = withWasm((wasm) =>
-  (signature: Uint8Array, message: Uint8Array, pubkey: Uint8Array): boolean => {
-    const [ptr0, len0] = allocU8a(signature);
-    const [ptr1, len1] = allocU8a(message);
-    const [ptr2, len2] = allocU8a(pubkey);
-    const ret = wasm.ext_sr_verify(ptr0, len0, ptr1, len1, ptr2, len2);
+  return resultU8a();
+});
 
-    return ret !== 0;
-  }
-);
+export const sr25519Sign = withWasm((wasm, pubkey: Uint8Array, secret: Uint8Array, message: Uint8Array): Uint8Array => {
+  wasm.ext_sr_sign(8, ...allocU8a(pubkey), ...allocU8a(secret), ...allocU8a(message));
 
-export const sr25519Agree = withWasm((wasm) =>
-  (pubkey: Uint8Array, secret: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(pubkey);
-    const [ptr1, len1] = allocU8a(secret);
+  return resultU8a();
+});
 
-    wasm.ext_sr_agree(PTR_VEC, ptr0, len0, ptr1, len1);
+export const sr25519Verify = withWasm((wasm, signature: Uint8Array, message: Uint8Array, pubkey: Uint8Array): boolean => {
+  const ret = wasm.ext_sr_verify(...allocU8a(signature), ...allocU8a(message), ...allocU8a(pubkey));
 
-    return resultU8a();
-  }
-);
+  return ret !== 0;
+});
 
-export const vrfSign = withWasm((wasm) =>
-  (secret: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(secret);
-    const [ptr1, len1] = allocU8a(context);
-    const [ptr2, len2] = allocU8a(message);
-    const [ptr3, len3] = allocU8a(extra);
+export const sr25519Agree = withWasm((wasm, pubkey: Uint8Array, secret: Uint8Array): Uint8Array => {
+  wasm.ext_sr_agree(8, ...allocU8a(pubkey), ...allocU8a(secret));
 
-    wasm.ext_vrf_sign(PTR_VEC, ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const vrfSign = withWasm((wasm, secret: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array): Uint8Array => {
+  wasm.ext_vrf_sign(8, ...allocU8a(secret), ...allocU8a(context), ...allocU8a(message), ...allocU8a(extra));
 
-export const vrfVerify = withWasm((wasm) =>
-  (pubkey: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array, outAndProof: Uint8Array): boolean => {
-    const [ptr0, len0] = allocU8a(pubkey);
-    const [ptr1, len1] = allocU8a(context);
-    const [ptr2, len2] = allocU8a(message);
-    const [ptr3, len3] = allocU8a(extra);
-    const [ptr4, len4] = allocU8a(outAndProof);
-    const ret = wasm.ext_vrf_verify(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4);
+  return resultU8a();
+});
 
-    return ret !== 0;
-  }
-);
+export const vrfVerify = withWasm((wasm, pubkey: Uint8Array, context: Uint8Array, message: Uint8Array, extra: Uint8Array, outAndProof: Uint8Array): boolean => {
+  const ret = wasm.ext_vrf_verify(...allocU8a(pubkey), ...allocU8a(context), ...allocU8a(message), ...allocU8a(extra), ...allocU8a(outAndProof));
 
-export const blake2b = withWasm((wasm) =>
-  (data: Uint8Array, key: Uint8Array, size: number): Uint8Array => {
-    const [ptr0, len0] = allocU8a(data);
-    const [ptr1, len1] = allocU8a(key);
+  return ret !== 0;
+});
 
-    wasm.ext_blake2b(PTR_VEC, ptr0, len0, ptr1, len1, size);
+export const blake2b = withWasm((wasm, data: Uint8Array, key: Uint8Array, size: number): Uint8Array => {
+  wasm.ext_blake2b(8, ...allocU8a(data), ...allocU8a(key), size);
 
-    return resultU8a();
-  }
-);
+  return resultU8a();
+});
 
-export const hmacSha256 = withWasm((wasm) =>
-  (key: Uint8Array, data: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(key);
-    const [ptr1, len1] = allocU8a(data);
+export const hmacSha256 = withWasm((wasm, key: Uint8Array, data: Uint8Array): Uint8Array => {
+  wasm.ext_hmac_sha256(8, ...allocU8a(key), ...allocU8a(data));
 
-    wasm.ext_hmac_sha256(PTR_VEC, ptr0, len0, ptr1, len1);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const hmacSha512 = withWasm((wasm, key: Uint8Array, data: Uint8Array): Uint8Array => {
+  wasm.ext_hmac_sha512(8, ...allocU8a(key), ...allocU8a(data));
 
-export const hmacSha512 = withWasm((wasm) =>
-  (key: Uint8Array, data: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(key);
-    const [ptr1, len1] = allocU8a(data);
+  return resultU8a();
+});
 
-    wasm.ext_hmac_sha512(PTR_VEC, ptr0, len0, ptr1, len1);
+export const keccak256 = withWasm((wasm, data: Uint8Array): Uint8Array => {
+  wasm.ext_keccak256(8, ...allocU8a(data));
 
-    return resultU8a();
-  }
-);
+  return resultU8a();
+});
 
-export const keccak256 = withWasm((wasm) =>
-  (data: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(data);
+export const keccak512 = withWasm((wasm, data: Uint8Array): Uint8Array => {
+  wasm.ext_keccak512(8, ...allocU8a(data));
 
-    wasm.ext_keccak256(PTR_VEC, ptr0, len0);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const pbkdf2 = withWasm((wasm, data: Uint8Array, salt: Uint8Array, rounds: number): Uint8Array => {
+  wasm.ext_pbkdf2(8, ...allocU8a(data), ...allocU8a(salt), rounds);
 
-export const keccak512 = withWasm((wasm) =>
-  (data: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(data);
+  return resultU8a();
+});
 
-    wasm.ext_keccak512(PTR_VEC, ptr0, len0);
+export const scrypt = withWasm((wasm, password: Uint8Array, salt: Uint8Array, log2n: number, r: number, p: number): Uint8Array => {
+  wasm.ext_scrypt(8, ...allocU8a(password), ...allocU8a(salt), log2n, r, p);
 
-    return resultU8a();
-  }
-);
+  return resultU8a();
+});
 
-export const pbkdf2 = withWasm((wasm) =>
-  (data: Uint8Array, salt: Uint8Array, rounds: number): Uint8Array => {
-    const [ptr0, len0] = allocU8a(data);
-    const [ptr1, len1] = allocU8a(salt);
+export const sha256 = withWasm((wasm, data: Uint8Array): Uint8Array => {
+  wasm.ext_sha256(8, ...allocU8a(data));
 
-    wasm.ext_pbkdf2(PTR_VEC, ptr0, len0, ptr1, len1, rounds);
+  return resultU8a();
+});
 
-    return resultU8a();
-  }
-);
+export const sha512 = withWasm((wasm, data: Uint8Array): Uint8Array => {
+  wasm.ext_sha512(8, ...allocU8a(data));
 
-export const scrypt = withWasm((wasm) =>
-  (password: Uint8Array, salt: Uint8Array, log2n: number, r: number, p: number): Uint8Array => {
-    const [ptr0, len0] = allocU8a(password);
-    const [ptr1, len1] = allocU8a(salt);
+  return resultU8a();
+});
 
-    wasm.ext_scrypt(PTR_VEC, ptr0, len0, ptr1, len1, log2n, r, p);
+export const twox = withWasm((wasm, data: Uint8Array, rounds: number) => {
+  wasm.ext_twox(8, ...allocU8a(data), rounds);
 
-    return resultU8a();
-  }
-);
-
-export const sha256 = withWasm((wasm) =>
-  (data: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(data);
-
-    wasm.ext_sha256(PTR_VEC, ptr0, len0);
-
-    return resultU8a();
-  }
-);
-
-export const sha512 = withWasm((wasm) =>
-  (data: Uint8Array): Uint8Array => {
-    const [ptr0, len0] = allocU8a(data);
-
-    wasm.ext_sha512(PTR_VEC, ptr0, len0);
-
-    return resultU8a();
-  }
-);
-
-export const twox = withWasm((wasm) =>
-  (data: Uint8Array, rounds: number) => {
-    const [ptr0, len0] = allocU8a(data);
-
-    wasm.ext_twox(PTR_VEC, ptr0, len0, rounds);
-
-    return resultU8a();
-  }
-);
+  return resultU8a();
+});
 
 export function isReady (): boolean {
   return !!getWasm();

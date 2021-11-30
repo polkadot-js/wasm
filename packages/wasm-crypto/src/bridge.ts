@@ -7,6 +7,11 @@ import type { AsmCreator, WasmCryptoInstance } from './types';
 
 import { assert, stringToU8a, u8aToString } from '@polkadot/util';
 
+type PopFirst<T extends unknown[]> =
+  T extends [WasmCryptoInstance, ...infer N]
+    ? N
+    : [];
+
 let wasm: WasmCryptoInstance | null = null;
 let cachegetInt32: Int32Array | null = null;
 let cachegetUint8: Uint8Array | null = null;
@@ -31,14 +36,12 @@ export async function initWasm (wasmBytes: Uint8Array | null, asmFn: AsmCreator 
   }
 }
 
-// FIXME We really would love to clean this up and have a sign like (wasm, ...params) => T
-// Alas, TypeScript foo is not that great today, so we sadly have an extra closure here
-export function withWasm <T, F extends (...params: never[]) => T> (fn: (wasm: WasmCryptoInstance) => F): F {
-  return ((...params: never[]): T => {
+export function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {
+  return (...params: PopFirst<Parameters<F>>): ReturnType<F> => {
     assert(wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
 
-    return fn(wasm)(...params);
-  }) as unknown as F;
+    return fn(wasm, ...params) as ReturnType<F>;
+  };
 }
 
 export function getWasm (): WasmCryptoInstance {
