@@ -22,7 +22,7 @@ curve25519-dalek = { version = "2.1.0", default-features = false }
 ed25519-dalek = { version = "1.0.0-pre.4", features = [] }
 getrandom = { version="0.2.3", features = ["js"] }
 hmac = "0.7.0"
-libsecp256k1 = { version = "0.7.0", default-features = false, features=["lazy-static-context"] }
+libsecp256k1 = { version = "0.7.0", default-features = false, features=["hmac", "lazy-static-context"] }
 merlin = { version = "2.0", default-features = false }
 pbkdf2 = { version = "0.3.0", default-features = false }
 rand = { version="0.7.3", features = ["wasm-bindgen"] }

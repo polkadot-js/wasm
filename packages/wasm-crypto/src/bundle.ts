@@ -77,6 +77,12 @@ export const secp256k1Recover = withWasm((wasm, msg: Uint8Array, sig: Uint8Array
   return resultU8a();
 });
 
+export const secp256k1Sign = withWasm((wasm, msg: Uint8Array, seckey: Uint8Array): Uint8Array => {
+  wasm.ext_secp_sign(8, ...allocU8a(msg), ...allocU8a(seckey));
+
+  return resultU8a();
+});
+
 export const sr25519DeriveKeypairHard = withWasm((wasm, pair: Uint8Array, cc: Uint8Array): Uint8Array => {
   wasm.ext_sr_derive_keypair_hard(8, ...allocU8a(pair), ...allocU8a(cc));
 
