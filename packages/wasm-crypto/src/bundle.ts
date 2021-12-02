@@ -59,6 +59,24 @@ export const ed25519Verify = withWasm((wasm, signature: Uint8Array, message: Uin
   return ret !== 0;
 });
 
+export const secp256k1Compress = withWasm((wasm, pubkey: Uint8Array): Uint8Array => {
+  wasm.ext_secp_pub_compress(8, ...allocU8a(pubkey));
+
+  return resultU8a();
+});
+
+export const secp256k1Expand = withWasm((wasm, pubkey: Uint8Array): Uint8Array => {
+  wasm.ext_secp_pub_expand(8, ...allocU8a(pubkey));
+
+  return resultU8a();
+});
+
+export const secp256k1Recover = withWasm((wasm, msg: Uint8Array, sig: Uint8Array, recovery: number): Uint8Array => {
+  wasm.ext_secp_recover(8, ...allocU8a(msg), ...allocU8a(sig), recovery);
+
+  return resultU8a();
+});
+
 export const sr25519DeriveKeypairHard = withWasm((wasm, pair: Uint8Array, cc: Uint8Array): Uint8Array => {
   wasm.ext_sr_derive_keypair_hard(8, ...allocU8a(pair), ...allocU8a(cc));
 

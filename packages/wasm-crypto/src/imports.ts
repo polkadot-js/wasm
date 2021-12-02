@@ -51,6 +51,10 @@ export function __wbindgen_is_undefined (idx: number): boolean {
   return getObject(idx) === undefined;
 }
 
+export function __wbindgen_throw (ptr: number, len: number): boolean {
+  throw new Error(getString(ptr, len));
+}
+
 export function __wbg_self_1b7a39e3a92c949c (): number {
   return addObject(DEFAULT_SELF);
 }

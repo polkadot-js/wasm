@@ -5,6 +5,7 @@ const wasm = require('../../build/index.cjs');
 const bip39 = require('./bip39.cjs');
 const ed25519 = require('./ed25519.cjs');
 const hashing = require('./hashing.cjs');
+const secp256k1 = require('./secp256k1.cjs');
 const sr25519 = require('./sr25519.cjs');
 const vrf = require('./vrf.cjs');
 
@@ -12,6 +13,7 @@ const tests = {
   ...bip39,
   ...ed25519,
   ...hashing,
+  ...secp256k1,
   ...sr25519,
   ...vrf
 };
