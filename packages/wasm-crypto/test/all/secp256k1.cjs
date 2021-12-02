@@ -21,6 +21,15 @@ function secp256k1Expand (wasm) {
   assert(result === '0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af', 'ERROR: secp256k1Expand does not match');
 }
 
+function secp256k1FromSeed (wasm) {
+  const seckey = '0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae';
+  const result = u8aToHex(wasm.secp256k1FromSeed(hexToU8a(seckey)));
+
+  console.log('\tRES', result);
+
+  assert(result === '0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae03fd8c74f795ced92064b86191cb2772b1e3a0947740aa0a5a6e379592471fd85b', 'ERROR: secp256k1FromSeed does not match');
+}
+
 function secp256k1Recover (wasm) {
   const sig = '0x7505f2880114da51b3f5d535f8687953c0ab9af4ab81e592eaebebf53b728d2b6dfd9b5bcd70fee412b1f31360e7c2774009305cb84fc50c1d0ff8034dfa5fff';
   const msg = '0xa30b64ce1eedf409c8afb801d72c05234e64849ea538c15dd3c8cf4ffcf166c9';
@@ -44,6 +53,7 @@ function secp256k1Sign (wasm) {
 module.exports = {
   secp256k1Compress,
   secp256k1Expand,
+  secp256k1FromSeed,
   secp256k1Recover,
   secp256k1Sign
 };

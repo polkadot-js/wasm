@@ -55,6 +55,8 @@ export interface WasmCryptoInstance {
 
   ext_twox(resLen: 8, ptrData: number, lenData: number, rounds: number): void;
 
+  ext_secp_from_seed(reslen: 8, ptrSec: number, lenSec: number): void;
+
   ext_secp_pub_compress(resLen: 8, ptrPub: number, lenPub: number): void;
 
   ext_secp_pub_expand(resLen: 8, ptrPub: number, lenPub: number): void;

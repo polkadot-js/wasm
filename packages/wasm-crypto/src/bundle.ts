@@ -59,6 +59,12 @@ export const ed25519Verify = withWasm((wasm, signature: Uint8Array, message: Uin
   return ret !== 0;
 });
 
+export const secp256k1FromSeed = withWasm((wasm, seckey: Uint8Array): Uint8Array => {
+  wasm.ext_secp_from_seed(8, ...allocU8a(seckey));
+
+  return resultU8a();
+});
+
 export const secp256k1Compress = withWasm((wasm, pubkey: Uint8Array): Uint8Array => {
   wasm.ext_secp_pub_compress(8, ...allocU8a(pubkey));
 

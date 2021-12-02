@@ -1,7 +1,7 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-use libsecp256k1::{Message, PublicKey, RecoveryId, SecretKey, Signature, recover, sign, verify};
+use libsecp256k1::{Message, PublicKey, RecoveryId, SecretKey, Signature, recover, sign};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -26,6 +26,18 @@ pub fn ext_secp_pub_expand(pubkey: &[u8]) -> Vec<u8> {
 		Ok(pubkey) => pubkey.serialize().to_vec(),
 		Err(_) => panic!("Invalid pubkey provided.")
 	}
+}
+
+#[wasm_bindgen]
+pub fn ext_secp_from_seed(seed: &[u8]) -> Vec<u8> {
+	let seckey = SecretKey::parse_slice(seed).unwrap();
+	let pubkey = PublicKey::from_secret_key(&seckey);
+	let mut result = vec![];
+
+	result.extend_from_slice(&seckey.serialize());
+	result.extend_from_slice(&pubkey.serialize_compressed());
+
+	result
 }
 
 #[wasm_bindgen]
@@ -58,6 +70,15 @@ pub fn ext_secp_sign(message: &[u8], seckey: &[u8]) -> Vec<u8> {
 pub mod tests {
 	use hex_literal::hex;
 	use super::*;
+
+	#[test]
+	fn can_create_pair() {
+		let seckey = hex!("4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae");
+		let expected = hex!("4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae03fd8c74f795ced92064b86191cb2772b1e3a0947740aa0a5a6e379592471fd85b");
+		let result = ext_secp_from_seed(&seckey);
+
+		assert_eq!(result[..], expected[..]);
+	}
 
 	#[test]
 	fn can_pub_compress_full() {
