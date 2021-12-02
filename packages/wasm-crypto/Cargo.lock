@@ -768,6 +768,7 @@ dependencies = [
  "byteorder",
  "curve25519-dalek",
  "ed25519-dalek",
+ "getrandom",
  "hex-literal",
  "hmac",
  "libsecp256k1",
