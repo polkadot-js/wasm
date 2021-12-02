@@ -44,7 +44,7 @@ pub fn ext_blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 /// hmac with sha256
 #[wasm_bindgen]
 pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
-	match Hmac::<Sha256>::new_varkey(key){
+	match Hmac::<Sha256>::new_varkey(key) {
 		Ok(mut mac) => {
 			mac.input(data);
 
