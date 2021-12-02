@@ -14,6 +14,9 @@ pub mod ed25519;
 #[path = "rs/hashing.rs"]
 pub mod hashing;
 
+#[path = "rs/secp256k1.rs"]
+pub mod secp256k1;
+
 #[path = "rs/sr25519.rs"]
 pub mod sr25519;
 
