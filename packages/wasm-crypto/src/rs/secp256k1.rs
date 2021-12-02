@@ -1,7 +1,7 @@
 // Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-use libsecp256k1::{Message, PublicKey, RecoveryId, SecretKey, Signature};
+use libsecp256k1::{Message, PublicKey, RecoveryId, SecretKey, Signature, recover, sign, verify};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -30,7 +30,7 @@ pub fn ext_secp_pub_expand(pubkey: &[u8]) -> Vec<u8> {
 
 #[wasm_bindgen]
 pub fn ext_secp_recover(message: &[u8], signature: &[u8], recovery: u8) -> Vec<u8> {
-	match libsecp256k1::recover(
+	match recover(
 		&Message::parse_slice(message).unwrap(),
 		&Signature::parse_standard_slice(signature).unwrap(),
 		&RecoveryId::parse(recovery).unwrap()
@@ -42,7 +42,7 @@ pub fn ext_secp_recover(message: &[u8], signature: &[u8], recovery: u8) -> Vec<u
 
 #[wasm_bindgen]
 pub fn ext_secp_sign(message: &[u8], seckey: &[u8]) -> Vec<u8> {
-	let (sig, rec) = libsecp256k1::sign(
+	let (sig, rec) = sign(
 		&Message::parse_slice(message).unwrap(),
 		&SecretKey::parse_slice(seckey).unwrap()
 	);

@@ -4,6 +4,7 @@
 
 Changes:
 
+- Add `secp256k1*` functions
 - Adjust and optimize WASM function JS interface construction
 - Simplify base64 bytes decoding
 
