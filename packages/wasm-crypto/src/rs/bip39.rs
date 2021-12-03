@@ -14,11 +14,10 @@ use wasm_bindgen::prelude::*;
 /// Returns the bip 39 phrase
 #[wasm_bindgen]
 pub fn ext_bip39_generate(words: u32) -> String {
-	Mnemonic::new(
-		MnemonicType::for_word_count(words as usize).unwrap(),
-		Language::English
-	)
-		.into_phrase()
+	match MnemonicType::for_word_count(words as usize) {
+		Ok(phrase) => Mnemonic::new(phrase, Language::English).into_phrase(),
+		Err(_) => panic!("Invalid count provided.")
+	}
 }
 
 /// Create entropy from a bip39 phrase
@@ -28,13 +27,13 @@ pub fn ext_bip39_generate(words: u32) -> String {
 /// Returns the entropy
 #[wasm_bindgen]
 pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
-	Mnemonic::from_phrase(
-		phrase,
-		Language::English
-	)
-		.unwrap()
-		.entropy()
-		.to_vec()
+	match Mnemonic::from_phrase(phrase, Language::English) {
+		Ok(mnemonic) =>
+			mnemonic
+				.entropy()
+				.to_vec(),
+		Err(_) => panic!("Invalid phrase provided.")
+	}
 }
 
 /// Create a mini-secret from a bip39 phrase
@@ -44,16 +43,20 @@ pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 /// Returns the 32-byte mini-secret via entropy
 #[wasm_bindgen]
 pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
-	let mut result = [0u8; 64];
+	match Mnemonic::from_phrase(phrase, Language::English) {
+		Ok(mnemonic) => {
+			let mut result = [0u8; 64];
+			let mut seed = vec![];
 
-	pbkdf2::<Hmac<Sha512>>(
-		Mnemonic::from_phrase(phrase, Language::English).unwrap().entropy(),
-		format!("mnemonic{}", password).as_bytes(),
-		2048,
-		&mut result
-	);
+			seed.extend_from_slice(b"mnemonic");
+			seed.extend_from_slice(password.as_bytes());
 
-	result[..32].to_vec()
+			pbkdf2::<Hmac<Sha512>>(mnemonic.entropy(), &seed, 2048, &mut result);
+
+			result[..32].to_vec()
+		},
+		Err(_) => panic!("Invalid phrase provided.")
+	}
 }
 
 /// Creates a BTC/ETH compatible seed from a bip-39 phrase
@@ -63,12 +66,13 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 /// Returns a 32-byte seed
 #[wasm_bindgen]
 pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
-	Seed::new(
-		&Mnemonic::from_phrase(phrase, Language::English).unwrap(),
-		password
-	)
-		.as_bytes()[..32]
-		.to_vec()
+	match Mnemonic::from_phrase(phrase, Language::English) {
+		Ok(mnemonic) =>
+			Seed::new(&mnemonic, password)
+				.as_bytes()[..32]
+				.to_vec(),
+		Err(_) => panic!("Invalid phrase provided.")
+	}
 }
 
 /// Validates a bip39 phrase

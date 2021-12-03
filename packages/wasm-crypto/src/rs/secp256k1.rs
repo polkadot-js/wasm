@@ -28,43 +28,54 @@ pub fn ext_secp_pub_expand(pubkey: &[u8]) -> Vec<u8> {
 
 #[wasm_bindgen]
 pub fn ext_secp_from_seed(seed: &[u8]) -> Vec<u8> {
-	let seckey = SecretKey::parse_slice(seed).unwrap();
-	let pubkey = PublicKey::from_secret_key(&seckey);
-	let mut result = vec![];
+	match SecretKey::parse_slice(seed) {
+		Ok(seckey) => {
+			let pubkey = PublicKey::from_secret_key(&seckey);
+			let mut result = vec![];
 
-	result.extend_from_slice(&seckey.serialize());
-	result.extend_from_slice(&pubkey.serialize_compressed());
+			result.extend_from_slice(&seckey.serialize());
+			result.extend_from_slice(&pubkey.serialize_compressed());
 
-	result
+			result
+		},
+		Err(_) => panic!("Incalid seed provided.")
+	}
 }
 
 #[wasm_bindgen]
 pub fn ext_secp_recover(message: &[u8], signature: &[u8], recovery: u8) -> Vec<u8> {
-	match recover(
-		&Message::parse_slice(message).unwrap(),
-		&Signature::parse_standard_slice(signature).unwrap(),
-		&RecoveryId::parse(recovery).unwrap()
+	match (
+		Message::parse_slice(message),
+		Signature::parse_standard_slice(signature),
+		RecoveryId::parse(recovery)
 	) {
-		Ok(pubkey) =>
-			pubkey
-				.serialize_compressed()
-				.to_vec(),
-		Err(_) => panic!("Invalid message provided.")
+		(Ok(msg), Ok(sig), Ok(rec)) =>
+			match recover(&msg, &sig, &rec) {
+				Ok(pubkey) =>
+					pubkey
+						.serialize_compressed()
+						.to_vec(),
+				Err(_) => panic!("Invalid message provided.")
+			},
+		_ => panic!("Invalid recovery data provided.")
 	}
 }
 
 #[wasm_bindgen]
 pub fn ext_secp_sign(message: &[u8], seckey: &[u8]) -> Vec<u8> {
-	let (sig, rec) = sign(
-		&Message::parse_slice(message).unwrap(),
-		&SecretKey::parse_slice(seckey).unwrap()
-	);
 	let mut result = vec![];
 
-	result.extend_from_slice(&sig.serialize());
-	result.push(rec.into());
+	match (Message::parse_slice(message), SecretKey::parse_slice(seckey)) {
+		(Ok(msg), Ok(sec)) => {
+			let (sig, rec) = sign(&msg, &sec);
 
-	result
+			result.extend_from_slice(&sig.serialize());
+			result.push(rec.into());
+
+			result
+		},
+		_ => panic!("Invalid message or secret provided.")
+	}
 }
 
 #[cfg(test)]

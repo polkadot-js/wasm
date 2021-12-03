@@ -131,12 +131,18 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 /// Returns vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
-	let mut result = [0u8; 64];
+	match ScryptParams::new(log2_n, r, p) {
+		Ok(params) => {
+			let mut result = [0u8; 64];
 
-	match scrypt(password, salt, &ScryptParams::new(log2_n, r, p).unwrap(), &mut result) {
-		Ok(_) => result.to_vec(),
-		Err(_) => panic!("Invalid scrypt hash.")
+			match scrypt(password, salt, &params, &mut result) {
+				Ok(_) => result.to_vec(),
+				Err(_) => panic!("Invalid scrypt hash.")
+			}
+		},
+		Err(_) => panic!("Invalid scrypt params.")
 	}
+
 }
 
 /// sha256 hash for the specified input

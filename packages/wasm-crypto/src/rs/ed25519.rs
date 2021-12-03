@@ -25,9 +25,14 @@ fn create_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 
 /// Keypair helper function.
 fn create_from_seed(seed: &[u8]) -> Keypair {
-	let pubkey: PublicKey = (&SecretKey::from_bytes(seed).unwrap()).into();
+	match &SecretKey::from_bytes(seed) {
+		Ok(sec) => {
+			let pubkey: PublicKey = sec.into();
 
-	create_from_parts(pubkey.as_bytes(), seed)
+			create_from_parts(pubkey.as_bytes(), seed)
+		},
+		Err(_) => panic!("Invalid seed provided.")
+	}
 }
 
 /// PublicKey helper

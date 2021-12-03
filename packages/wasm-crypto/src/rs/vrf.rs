@@ -54,19 +54,23 @@ pub fn create_transcript(extra: &[u8]) -> Transcript {
 /// * returned vector is the 32-byte output (signature) and 64-byte proof.
 #[wasm_bindgen]
 pub fn ext_vrf_sign(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8]) -> Vec<u8> {
-	let (io, proof, _) = SecretKey::from_ed25519_bytes(secret)
-		.unwrap()
-		.to_keypair()
-		.vrf_sign_extra(
-			signing_context(context).bytes(message),
-			create_transcript(extra)
-		);
-	let mut result: [u8; VRF_RESULT_SIZE] = [0u8; VRF_RESULT_SIZE];
+	match SecretKey::from_ed25519_bytes(secret) {
+		Ok(sec) => {
+			let mut result: [u8; VRF_RESULT_SIZE] = [0u8; VRF_RESULT_SIZE];
+			let (io, proof, _) = sec
+				.to_keypair()
+				.vrf_sign_extra(
+					signing_context(context).bytes(message),
+					create_transcript(extra)
+				);
 
-	result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
-	result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
+			result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
+			result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
 
-	result.to_vec()
+			result.to_vec()
+		},
+		Err(_) => panic!("Invalid secret provided.")
+	}
 }
 
 /// Verify VRF proof for one single input transcript, and an extra message transcript,
