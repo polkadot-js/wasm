@@ -34,13 +34,17 @@ fn create_cc(data: &[u8]) -> ChainCode {
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
-	Keypair::from_half_ed25519_bytes(pair)
-		.unwrap()
-		.secret
-		.hard_derive_mini_secret_key(Some(create_cc(cc)), &[]).0
-		.expand_to_keypair(ExpansionMode::Ed25519)
-		.to_half_ed25519_bytes()
-		.to_vec()
+	match Keypair::from_half_ed25519_bytes(pair) {
+		Ok(pair) =>
+			pair
+				.secret
+				.hard_derive_mini_secret_key(Some(create_cc(cc)), &[])
+				.0
+				.expand_to_keypair(ExpansionMode::Ed25519)
+				.to_half_ed25519_bytes()
+				.to_vec(),
+		_ => panic!("Invalid pair provided.")
+	}
 }
 
 /// Perform a derivation on a secret
@@ -51,11 +55,15 @@ pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 /// returned vector the derived keypair as a array of 96 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
-	Keypair::from_half_ed25519_bytes(pair)
-		.unwrap()
-		.derived_key_simple(create_cc(cc), &[]).0
-		.to_half_ed25519_bytes()
-		.to_vec()
+	match Keypair::from_half_ed25519_bytes(pair) {
+		Ok(pair) =>
+			pair
+				.derived_key_simple(create_cc(cc), &[])
+				.0
+				.to_half_ed25519_bytes()
+				.to_vec(),
+		_ => panic!("Invalid pair provided.")
+	}
 }
 
 /// Perform a derivation on a publicKey
@@ -66,11 +74,15 @@ pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 /// returned vector is the derived publicKey as a array of 32 bytes
 #[wasm_bindgen]
 pub fn ext_sr_derive_public_soft(pubkey: &[u8], cc: &[u8]) -> Vec<u8> {
-	PublicKey::from_bytes(pubkey)
-		.unwrap()
-		.derived_key_simple(create_cc(cc), &[]).0
-		.to_bytes()
-		.to_vec()
+	match PublicKey::from_bytes(pubkey) {
+		Ok(pubkey) =>
+			pubkey
+				.derived_key_simple(create_cc(cc), &[])
+				.0
+				.to_bytes()
+				.to_vec(),
+		_ => panic!("Invalid pubkey provided.")
+	}
 }
 
 /// Generate a key pair.
@@ -81,11 +93,14 @@ pub fn ext_sr_derive_public_soft(pubkey: &[u8], cc: &[u8]) -> Vec<u8> {
 /// followed by the public key (32) bytes.
 #[wasm_bindgen]
 pub fn ext_sr_from_seed(seed: &[u8]) -> Vec<u8> {
-	MiniSecretKey::from_bytes(seed)
-		.unwrap()
-		.expand_to_keypair(ExpansionMode::Ed25519)
-		.to_half_ed25519_bytes()
-		.to_vec()
+	match MiniSecretKey::from_bytes(seed) {
+		Ok(sec) =>
+			sec
+				.expand_to_keypair(ExpansionMode::Ed25519)
+				.to_half_ed25519_bytes()
+				.to_vec(),
+		_ => panic!("Invalid seed provided.")
+	}
 }
 
 /// Generate a key pair from a known pair. (This is not exposed via WASM)
@@ -95,10 +110,13 @@ pub fn ext_sr_from_seed(seed: &[u8]) -> Vec<u8> {
 /// returned vector is the concatenation of first the private key (64 bytes)
 /// followed by the public key (32) bytes.
 pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
-	Keypair::from_half_ed25519_bytes(pair)
-		.unwrap()
-		.to_half_ed25519_bytes()
-		.to_vec()
+	match Keypair::from_half_ed25519_bytes(pair) {
+		Ok(pair) =>
+			pair
+				.to_half_ed25519_bytes()
+				.to_vec(),
+		_ => panic!("Invalid pair provided.")
+	}
 }
 
 /// Sign a message
@@ -113,11 +131,17 @@ pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
 pub fn ext_sr_sign(pubkey: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
-	SecretKey::from_ed25519_bytes(secret)
-		.unwrap()
-		.sign_simple(SIGNING_CTX, message, &PublicKey::from_bytes(pubkey).unwrap())
-		.to_bytes()
-		.to_vec()
+	match (
+		SecretKey::from_ed25519_bytes(secret),
+		PublicKey::from_bytes(pubkey)
+	 ) {
+		(Ok(seckey), Ok(pubkey)) =>
+			seckey
+				.sign_simple(SIGNING_CTX, message, &pubkey)
+				.to_bytes()
+				.to_vec(),
+		_ => panic!("Invalid secret or pubkey provided.")
+	 }
 }
 
 /// Verify a message and its corresponding against a public key;
@@ -127,11 +151,15 @@ pub fn ext_sr_sign(pubkey: &[u8], secret: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_sr_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
-	match Signature::from_bytes(signature) {
-		Ok(signature) => PublicKey::from_bytes(pubkey).unwrap()
-			.verify_simple(SIGNING_CTX, message, &signature)
-			.is_ok(),
-		Err(_) => false
+	match (
+		Signature::from_bytes(signature),
+		PublicKey::from_bytes(pubkey)
+	 ) {
+		(Ok(signature), Ok(pubkey)) =>
+			pubkey
+				.verify_simple(SIGNING_CTX, message, &signature)
+				.is_ok(),
+		_ => false
 	}
 }
 
@@ -143,19 +171,27 @@ pub fn ext_sr_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 /// * returned vector is the generated secret of 32 bytes.
 #[wasm_bindgen]
 pub fn ext_sr_agree(pubkey: &[u8], secret: &[u8]) -> Vec<u8> {
-		// The first 32 bytes holds the canonical private key
-		let mut key = [0u8; 32];
+	match SecretKey::from_ed25519_bytes(secret) {
+		Ok(secret) => {
+			// The first 32 bytes holds the canonical private key
+			let mut key = [0u8; 32];
 
-		key.copy_from_slice(
-			&SecretKey::from_ed25519_bytes(secret)
-				.unwrap()
-				.to_bytes()[0..32]
-		);
+			key.copy_from_slice(&secret.to_bytes()[0..32]);
 
-		(
-			&Scalar::from_canonical_bytes(key).unwrap() *
-			PublicKey::from_bytes(pubkey).unwrap().as_point()
-		).compress().0.to_vec()
+			match (
+				Scalar::from_canonical_bytes(key),
+				PublicKey::from_bytes(pubkey)
+			) {
+				(Some(scalar), Ok(pubkey)) =>
+					(&scalar * pubkey.as_point())
+						.compress()
+						.0
+						.to_vec(),
+				_ => panic!("Invalid scalar or pubkey provided.")
+			}
+		},
+		_ => panic!("Invalid secret provided.")
+	}
 }
 
 #[cfg(test)]
@@ -168,7 +204,7 @@ pub mod tests {
 	use schnorrkel::{SIGNATURE_LENGTH, KEYPAIR_LENGTH, SECRET_KEY_LENGTH};
 
 	fn generate_random_seed() -> Vec<u8> {
-		(0..32).map(|_| rand::random::<u8>() ).collect()
+		(0..32).map(|_| rand::random::<u8>()).collect()
 	}
 
 	#[test]

@@ -15,13 +15,10 @@ use wasm_bindgen::prelude::*;
 fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
 	use ::std::hash::Hasher;
 	let mut hasher = XxHash::with_seed(seed);
-
-	hasher.write(data);
-
-	let hash64 = hasher.finish();
 	let mut result = [0u8; 8];
 
-	LittleEndian::write_u64(&mut result, hash64);
+	hasher.write(data);
+	LittleEndian::write_u64(&mut result, hasher.finish());
 
 	result
 }
@@ -53,7 +50,7 @@ pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
 				.code()
 				.to_vec()
 		},
-		Err(_) => panic!("Invalid key provided.")
+		_ => panic!("Invalid key provided.")
 	}
 }
 
@@ -69,7 +66,7 @@ pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
 				.code()
 				.to_vec()
 		},
-		Err(_) => panic!("Invalid key provided.")
+		_ => panic!("Invalid key provided.")
 	}
 
 }
@@ -134,13 +131,18 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 /// Returns vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
-	let params = ScryptParams::new(log2_n, r, p).unwrap();
-	let mut result = [0u8; 64];
+	match ScryptParams::new(log2_n, r, p) {
+		Ok(params) => {
+			let mut result = [0u8; 64];
 
-	match scrypt(password, salt, &params, &mut result) {
-		Ok(_) => result.to_vec(),
-		Err(_) => panic!("Invalid scrypt hash.")
+			match scrypt(password, salt, &params, &mut result) {
+				Ok(_) => result.to_vec(),
+				_ => panic!("Invalid scrypt hash.")
+			}
+		},
+		_ => panic!("Invalid scrypt params.")
 	}
+
 }
 
 /// sha256 hash for the specified input

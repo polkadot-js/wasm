@@ -8,8 +8,8 @@ use wasm_bindgen::prelude::*;
 /// Keypair helper function.
 fn create_from_pair(pair: &[u8]) -> Keypair {
 	match Keypair::from_bytes(pair) {
-		Ok(pair) => return pair,
-		Err(_) => panic!("Provided pair is invalid.")
+		Ok(pair) => pair,
+		_ => panic!("Provided pair is invalid.")
 	}
 }
 
@@ -25,17 +25,21 @@ fn create_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 
 /// Keypair helper function.
 fn create_from_seed(seed: &[u8]) -> Keypair {
-	let seckey = SecretKey::from_bytes(seed).unwrap();
-	let pubkey: PublicKey = (&seckey).into();
+	match &SecretKey::from_bytes(seed) {
+		Ok(sec) => {
+			let pubkey: PublicKey = sec.into();
 
-	create_from_parts(pubkey.as_bytes(), seed)
+			create_from_parts(pubkey.as_bytes(), seed)
+		},
+		_ => panic!("Invalid seed provided.")
+	}
 }
 
 /// PublicKey helper
 fn create_public(pubkey: &[u8]) -> PublicKey {
 	match PublicKey::from_bytes(pubkey) {
-		Ok(pubkey) => return pubkey,
-		Err(_) => panic!("Provided public key is invalid.")
+		Ok(pubkey) => pubkey,
+		_ => panic!("Provided public key is invalid.")
 	}
 }
 
@@ -77,14 +81,13 @@ pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_ed_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
-	let signature = match Signature::try_from(signature) {
-		Ok(signature) => signature,
-		Err(_) => return false
-	};
-
-	create_public(pubkey)
-		.verify(message, &signature)
-		.is_ok()
+	match Signature::try_from(signature) {
+		Ok(sig) =>
+			create_public(pubkey)
+				.verify(message, &sig)
+				.is_ok(),
+		_ => false
+	}
 }
 
 #[cfg(test)]
