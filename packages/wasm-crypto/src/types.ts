@@ -61,9 +61,9 @@ export interface WasmCryptoInstance {
 
   ext_secp_pub_expand(resLen: 8, ptrPub: number, lenPub: number): void;
 
-  ext_secp_recover(resLen: 8, ptrMsg: number, lenMsg: number, ptrSig: number, lenSig: number, recovery: number): void;
+  ext_secp_recover(resLen: 8, ptrMsgHash: number, lenMsgHash: number, ptrSig: number, lenSig: number, recovery: number): void;
 
-  ext_secp_sign(resLen: 8, ptrMsg: number, lenMsg: number, ptrSsec: number, lenSec: number): void;
+  ext_secp_sign(resLen: 8, ptrMsgHash: number, lenMsgHash: number, ptrSec: number, lenSec: number): void;
 
   ext_sr_derive_keypair_hard(resLen: 8, ptrPair: number, lenPair: number, ptrCc: number, lenCc: number): void;
 

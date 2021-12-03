@@ -12,21 +12,21 @@ use schnorrkel::{signing_context, vrf::{VRFOutput, VRFProof}, PublicKey, SecretK
 use wasm_bindgen::prelude::*;
 
 /// Size of VRF output, bytes
-pub const VRF_OUTPUT_SIZE: usize = 32;
+pub const OUTPUT_SIZE: usize = 32;
 
 /// Size of VRF proof, bytes
-pub const VRF_PROOF_SIZE: usize = 64;
+pub const PROOF_SIZE: usize = 64;
 
 /// Size of VRF raw output, bytes
-pub const VRF_RAW_OUTPUT_SIZE: usize = 16;
+pub const RAW_OUTPUT_SIZE: usize = 16;
 
 /// Size of VRF limit, bytes
-pub const VRF_THRESHOLD_SIZE: usize = 16;
+pub const THRESHOLD_SIZE: usize = 16;
 
 /// Size of the final full output
-pub const VRF_RESULT_SIZE: usize = VRF_OUTPUT_SIZE + VRF_PROOF_SIZE;
+pub const RESULT_SIZE: usize = OUTPUT_SIZE + PROOF_SIZE;
 
-pub fn create_transcript(extra: &[u8]) -> Transcript {
+pub fn new_transcript(extra: &[u8]) -> Transcript {
 	let mut transcript = Transcript::new(b"VRF");
 
 	// if is important that we don't append when empty, since the
@@ -38,7 +38,7 @@ pub fn create_transcript(extra: &[u8]) -> Transcript {
 	transcript
 }
 
-// We don't use the non-extra vrf_sign and vrf_verify internally  since in sr25519 they only wrap -
+// We don't use the non-extra sign and verify internally  since in sr25519 they only wrap -
 //
 // https://github.com/w3f/schnorrkel/blob/8fa2ad3e9fbf0b652c724df6a87a4b3c5500f759/src/vrf.rs#L660
 
@@ -53,21 +53,18 @@ pub fn create_transcript(extra: &[u8]) -> Transcript {
 ///
 /// * returned vector is the 32-byte output (signature) and 64-byte proof.
 #[wasm_bindgen]
-pub fn ext_vrf_sign(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8]) -> Vec<u8> {
+pub fn ext_vrf_sign(secret: &[u8], ctx: &[u8], msg: &[u8], extra: &[u8]) -> Vec<u8> {
 	match SecretKey::from_ed25519_bytes(secret) {
-		Ok(sec) => {
-			let mut result: [u8; VRF_RESULT_SIZE] = [0u8; VRF_RESULT_SIZE];
-			let (io, proof, _) = sec
+		Ok(s) => {
+			let mut res: [u8; RESULT_SIZE] = [0u8; RESULT_SIZE];
+			let (io, proof, _) = s
 				.to_keypair()
-				.vrf_sign_extra(
-					signing_context(context).bytes(message),
-					create_transcript(extra)
-				);
+				.vrf_sign_extra(signing_context(ctx).bytes(msg), new_transcript(extra));
 
-			result[..VRF_OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
-			result[VRF_OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
+			res[..OUTPUT_SIZE].copy_from_slice(io.as_output_bytes());
+			res[OUTPUT_SIZE..].copy_from_slice(&proof.to_bytes());
 
-			result.to_vec()
+			res.to_vec()
 		},
 		_ => panic!("Invalid secret provided.")
 	}
@@ -80,23 +77,13 @@ pub fn ext_vrf_sign(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8])
 /// * context: Arbitrary length UIntArray
 /// * message: Arbitrary length UIntArray
 /// * extra: Arbitrary length UIntArray
-/// * out_and_proof: 96-byte output & proof array from the ext_vrf_sign function.
+/// * out_and_proof: 96-byte output & proof array from the ext_sign function.
 #[wasm_bindgen]
-pub fn ext_vrf_verify(pubkey: &[u8], context: &[u8], message: &[u8], extra: &[u8], out_and_proof: &[u8]) -> bool {
-	match (
-		PublicKey::from_bytes(pubkey),
-		VRFOutput::from_bytes(&out_and_proof[..VRF_OUTPUT_SIZE]),
-		VRFProof::from_bytes(&out_and_proof[VRF_OUTPUT_SIZE..VRF_RESULT_SIZE])
-	) {
-		(Ok(public), Ok(out), Ok(proof)) =>
-			public
-				.vrf_verify_extra(
-					signing_context(context).bytes(message),
-					&out,
-					&proof,
-					create_transcript(extra)
-				)
-				.is_ok(),
+pub fn ext_vrf_verify(pubkey: &[u8], ctx: &[u8], msg: &[u8], extra: &[u8], out: &[u8]) -> bool {
+	match (PublicKey::from_bytes(pubkey), VRFOutput::from_bytes(&out[..OUTPUT_SIZE]), VRFProof::from_bytes(&out[OUTPUT_SIZE..RESULT_SIZE])) {
+		(Ok(k), Ok(o), Ok(p)) => k
+			.vrf_verify_extra(signing_context(ctx).bytes(msg), &o, &p, new_transcript(extra))
+			.is_ok(),
 		_ => false,
 	}
 }
@@ -115,7 +102,7 @@ pub mod tests {
 	}
 
 	#[test]
-	fn vrf_sign_extra_and_verify() {
+	fn sign_extra_and_verify() {
 		let seed = generate_random_seed();
 		let keypair = ext_sr_from_seed(seed.as_slice());
 		let private = &keypair[0..SECRET_KEY_LENGTH];
@@ -124,23 +111,19 @@ pub mod tests {
 		let message = b"this is a message";
 		let extra = b"this is an extra";
 
-		// Perform multiple vrf_sign_extra calls w/ same context, message, extra args
-		let out_and_proof1 = ext_vrf_sign(private, context, message, extra);
-		let out_and_proof2 = ext_vrf_sign(private, context, message, extra);
+		// Perform multiple sign_extra calls w/ same context, message, extra args
+		let out1 = ext_vrf_sign(private, context, message, extra);
+		let out2 = ext_vrf_sign(private, context, message, extra);
 
 		// Basic size checks
-		assert!(out_and_proof1.len() == VRF_RESULT_SIZE);
-		assert!(out_and_proof2.len() == VRF_RESULT_SIZE);
+		assert!(out1.len() == RESULT_SIZE);
+		assert!(out2.len() == RESULT_SIZE);
 
 		// Given the same context, message & extra, output should be deterministic
-		let out1 = &out_and_proof1[..VRF_OUTPUT_SIZE];
-		let out2 = &out_and_proof2[..VRF_OUTPUT_SIZE];
-		assert_eq!(out1, out2);
+		assert_eq!(&out1[..OUTPUT_SIZE], &out2[..OUTPUT_SIZE]);
 
 		// But proof is non-deterministic
-		let proof1 = &out_and_proof1[VRF_OUTPUT_SIZE..];
-		let proof2 = &out_and_proof2[VRF_OUTPUT_SIZE..];
-		assert_ne!(proof1, proof2);
+		assert_ne!(&out1[OUTPUT_SIZE..], &out2[OUTPUT_SIZE..]);
 
 		// VRF outputs can verified w/ original context, message & extra args
 		assert!(ext_vrf_verify(
@@ -148,14 +131,14 @@ pub mod tests {
 			context,
 			message,
 			extra,
-			&out_and_proof1
+			&out1
 		));
 		assert!(ext_vrf_verify(
 			public,
 			context,
 			message,
 			extra,
-			&out_and_proof2
+			&out2
 		));
 	}
 }

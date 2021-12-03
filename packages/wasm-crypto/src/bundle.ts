@@ -77,14 +77,14 @@ export const secp256k1Expand = withWasm((wasm, pubkey: Uint8Array): Uint8Array =
   return resultU8a();
 });
 
-export const secp256k1Recover = withWasm((wasm, msg: Uint8Array, sig: Uint8Array, recovery: number): Uint8Array => {
-  wasm.ext_secp_recover(8, ...allocU8a(msg), ...allocU8a(sig), recovery);
+export const secp256k1Recover = withWasm((wasm, msgHash: Uint8Array, sig: Uint8Array, recovery: number): Uint8Array => {
+  wasm.ext_secp_recover(8, ...allocU8a(msgHash), ...allocU8a(sig), recovery);
 
   return resultU8a();
 });
 
-export const secp256k1Sign = withWasm((wasm, msg: Uint8Array, seckey: Uint8Array): Uint8Array => {
-  wasm.ext_secp_sign(8, ...allocU8a(msg), ...allocU8a(seckey));
+export const secp256k1Sign = withWasm((wasm, msgHash: Uint8Array, seckey: Uint8Array): Uint8Array => {
+  wasm.ext_secp_sign(8, ...allocU8a(msgHash), ...allocU8a(seckey));
 
   return resultU8a();
 });

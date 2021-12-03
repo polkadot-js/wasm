@@ -15,7 +15,8 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 pub fn ext_bip39_generate(words: u32) -> String {
 	match MnemonicType::for_word_count(words as usize) {
-		Ok(phrase) => Mnemonic::new(phrase, Language::English).into_phrase(),
+		Ok(p) => Mnemonic::new(p, Language::English)
+			.into_phrase(),
 		_ => panic!("Invalid count provided.")
 	}
 }
@@ -28,7 +29,9 @@ pub fn ext_bip39_generate(words: u32) -> String {
 #[wasm_bindgen]
 pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 	match Mnemonic::from_phrase(phrase, Language::English) {
-		Ok(mnemonic) => mnemonic.entropy().to_vec(),
+		Ok(m) => m
+			.entropy()
+			.to_vec(),
 		_ => panic!("Invalid phrase provided.")
 	}
 }
@@ -41,16 +44,16 @@ pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 	match Mnemonic::from_phrase(phrase, Language::English) {
-		Ok(mnemonic) => {
-			let mut result = [0u8; 64];
+		Ok(m) => {
+			let mut res = [0u8; 64];
 			let mut seed = vec![];
 
 			seed.extend_from_slice(b"mnemonic");
 			seed.extend_from_slice(password.as_bytes());
 
-			pbkdf2::<Hmac<Sha512>>(mnemonic.entropy(), &seed, 2048, &mut result);
+			pbkdf2::<Hmac<Sha512>>(m.entropy(), &seed, 2048, &mut res);
 
-			result[..32].to_vec()
+			res[..32].to_vec()
 		},
 		_ => panic!("Invalid phrase provided.")
 	}
@@ -64,7 +67,9 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
 	match Mnemonic::from_phrase(phrase, Language::English) {
-		Ok(mnemonic) => Seed::new(&mnemonic, password).as_bytes()[..32].to_vec(),
+		Ok(m) => Seed::new(&m, password)
+			.as_bytes()[..32]
+			.to_vec(),
 		_ => panic!("Invalid phrase provided.")
 	}
 }
@@ -77,8 +82,8 @@ pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_bip39_validate(phrase: &str) -> bool {
 	match Mnemonic::validate(phrase, Language::English) {
-		Err(_) => false,
-		_ => true
+		Ok(_) => true,
+		_ => false
 	}
 }
 
@@ -91,9 +96,9 @@ pub mod tests {
 	fn can_bip39_entropy() {
 		let phrase = "legal winner thank year wave sausage worth useful legal winner thank yellow";
 		let entropy = hex!("7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f");
-		let result = ext_bip39_to_entropy(phrase);
+		let res = ext_bip39_to_entropy(phrase);
 
-		assert_eq!(result, entropy);
+		assert_eq!(res, entropy);
 	}
 
 	#[test]
@@ -101,18 +106,18 @@ pub mod tests {
 		let phrase = "legal winner thank year wave sausage worth useful legal winner thank yellow";
 		let password = "Substrate";
 		let mini = hex!("4313249608fe8ac10fd5886c92c4579007272cb77c21551ee5b8d60b78041685");
-		let result = ext_bip39_to_mini_secret(phrase, password);
+		let res = ext_bip39_to_mini_secret(phrase, password);
 
-		assert_eq!(result[..], mini[..]);
+		assert_eq!(res[..], mini[..]);
 	}
 
 	#[test]
 	fn can_bip39_seed() {
 		let phrase = "seed sock milk update focus rotate barely fade car face mechanic mercy";
 		let seed = hex!("3c121e20de068083b49c2315697fb59a2d9e8643c24e5ea7628132c58969a027");
-		let result = ext_bip39_to_seed(phrase, "");
+		let res = ext_bip39_to_seed(phrase, "");
 
-		assert_eq!(result[..], seed[..]);
+		assert_eq!(res[..], seed[..]);
 	}
 
 	#[test]
