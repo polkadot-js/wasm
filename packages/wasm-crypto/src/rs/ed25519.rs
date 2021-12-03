@@ -6,39 +6,39 @@ use ed25519_dalek::{Keypair, PublicKey, SecretKey, Signature, Signer as _, Verif
 use wasm_bindgen::prelude::*;
 
 /// Keypair helper function.
-fn create_from_pair(pair: &[u8]) -> Keypair {
+fn new_from_pair(pair: &[u8]) -> Keypair {
 	match Keypair::from_bytes(pair) {
-		Ok(pair) => pair,
+		Ok(p) => p,
 		_ => panic!("Provided pair is invalid.")
 	}
 }
 
 /// Keypair helper function
-fn create_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
+fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 	let mut pair = vec![];
 
 	pair.extend_from_slice(seckey);
 	pair.extend_from_slice(pubkey);
 
-	create_from_pair(&pair)
+	new_from_pair(&pair)
 }
 
 /// Keypair helper function.
-fn create_from_seed(seed: &[u8]) -> Keypair {
+fn new_from_seed(seed: &[u8]) -> Keypair {
 	match &SecretKey::from_bytes(seed) {
-		Ok(sec) => {
-			let pubkey: PublicKey = sec.into();
+		Ok(s) => {
+			let pubkey: PublicKey = s.into();
 
-			create_from_parts(pubkey.as_bytes(), seed)
+			new_from_parts(pubkey.as_bytes(), seed)
 		},
 		_ => panic!("Invalid seed provided.")
 	}
 }
 
 /// PublicKey helper
-fn create_public(pubkey: &[u8]) -> PublicKey {
+fn new_public(pubkey: &[u8]) -> PublicKey {
 	match PublicKey::from_bytes(pubkey) {
-		Ok(pubkey) => pubkey,
+		Ok(p) => p,
 		_ => panic!("Provided public key is invalid.")
 	}
 }
@@ -51,7 +51,7 @@ fn create_public(pubkey: &[u8]) -> PublicKey {
 /// followed by the public key (32) bytes.
 #[wasm_bindgen]
 pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
-	create_from_seed(seed)
+	new_from_seed(seed)
 		.to_bytes()
 		.to_vec()
 }
@@ -68,7 +68,7 @@ pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
 pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
-	create_from_parts(pubkey, seckey)
+	new_from_parts(pubkey, seckey)
 		.sign(message)
 		.to_bytes()
 		.to_vec()
@@ -82,10 +82,9 @@ pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_ed_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 	match Signature::try_from(signature) {
-		Ok(sig) =>
-			create_public(pubkey)
-				.verify(message, &sig)
-				.is_ok(),
+		Ok(s) => new_public(pubkey)
+			.verify(message, &s)
+			.is_ok(),
 		_ => false
 	}
 }
@@ -103,7 +102,7 @@ pub mod tests {
 	}
 
 	#[test]
-	fn can_create_keypair() {
+	fn can_new_keypair() {
 		let seed = generate_random_seed();
 		let keypair = ext_ed_from_seed(seed.as_slice());
 

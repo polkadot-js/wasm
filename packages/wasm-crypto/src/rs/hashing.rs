@@ -12,15 +12,15 @@ use twox_hash::XxHash;
 use wasm_bindgen::prelude::*;
 
 /// helper function for a single twox round with a seed
-fn create_twox(data: &[u8], seed: u64) -> [u8; 8] {
+fn new_twox(data: &[u8], seed: u64) -> [u8; 8] {
 	use ::std::hash::Hasher;
 	let mut hasher = XxHash::with_seed(seed);
-	let mut result = [0u8; 8];
+	let mut res = [0u8; 8];
 
 	hasher.write(data);
-	LittleEndian::write_u64(&mut result, hasher.finish());
+	LittleEndian::write_u64(&mut res, hasher.finish());
 
-	result
+	res
 }
 
 /// blake2b hash for the specified input
@@ -42,10 +42,10 @@ pub fn ext_blake2b(data: &[u8], key: &[u8], size: u32) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
 	match Hmac::<Sha256>::new_varkey(key) {
-		Ok(mut mac) => {
-			mac.input(data);
+		Ok(mut m) => {
+			m.input(data);
 
-			mac
+			m
 				.result()
 				.code()
 				.to_vec()
@@ -58,10 +58,10 @@ pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
 	match Hmac::<Sha512>::new_varkey(key) {
-		Ok(mut mac) => {
-			mac.input(data);
+		Ok(mut m) => {
+			m.input(data);
 
-			mac
+			m
 				.result()
 				.code()
 				.to_vec()
@@ -79,12 +79,12 @@ pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_keccak256(data: &[u8]) -> Vec<u8> {
 	let mut keccak = Keccak::v256();
-	let mut result = [0u8; 32];
+	let mut res = [0u8; 32];
 
 	keccak.update(data);
-	keccak.finalize(&mut result);
+	keccak.finalize(&mut res);
 
-	result.to_vec()
+	res.to_vec()
 }
 
 /// Create a keccak512 hash for the specified input
@@ -95,12 +95,12 @@ pub fn ext_keccak256(data: &[u8]) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_keccak512(data: &[u8]) -> Vec<u8> {
 	let mut keccak = Keccak::v512();
-	let mut result = [0u8; 64];
+	let mut res = [0u8; 64];
 
 	keccak.update(data);
-	keccak.finalize(&mut result);
+	keccak.finalize(&mut res);
 
-	result.to_vec()
+	res.to_vec()
 }
 
 /// pbkdf2 kdf from an input, salt for the number of specified rounds
@@ -112,12 +112,12 @@ pub fn ext_keccak512(data: &[u8]) -> Vec<u8> {
 /// Returns a vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
-	let mut result = [0u8; 64];
+	let mut res = [0u8; 64];
 
 	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
-	pbkdf2::<Hmac::<Sha512>>(data, salt, rounds as usize, &mut result);
+	pbkdf2::<Hmac::<Sha512>>(data, salt, rounds as usize, &mut res);
 
-	result.to_vec()
+	res.to_vec()
 }
 
 /// scrypt kdf from input, salt and config
@@ -132,11 +132,11 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
 	match ScryptParams::new(log2_n, r, p) {
-		Ok(params) => {
-			let mut result = [0u8; 64];
+		Ok(p) => {
+			let mut res = [0u8; 64];
 
-			match scrypt(password, salt, &params, &mut result) {
-				Ok(_) => result.to_vec(),
+			match scrypt(password, salt, &p, &mut res) {
+				Ok(_) => res.to_vec(),
 				_ => panic!("Invalid scrypt hash.")
 			}
 		},
@@ -189,7 +189,7 @@ pub fn ext_twox(data: &[u8], rounds: u32) -> Vec<u8> {
 
 	for round in 0..rounds {
 		// we cast to u64 here - due to the WASM, we'd rather have u32 inputs
-		vec.extend_from_slice(&create_twox(data, round as u64));
+		vec.extend_from_slice(&new_twox(data, round as u64));
 	}
 
 	vec
