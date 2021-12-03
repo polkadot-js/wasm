@@ -7,7 +7,10 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 pub fn ext_secp_pub_compress(pubkey: &[u8]) -> Vec<u8> {
 	match PublicKey::parse_slice(&pubkey, None) {
-		Ok(pubkey) => pubkey.serialize_compressed().to_vec(),
+		Ok(pubkey) =>
+			pubkey
+				.serialize_compressed()
+				.to_vec(),
 		Err(_) => panic!("Invalid pubkey provided.")
 	}
 }
@@ -15,7 +18,10 @@ pub fn ext_secp_pub_compress(pubkey: &[u8]) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_secp_pub_expand(pubkey: &[u8]) -> Vec<u8> {
 	match PublicKey::parse_slice(&pubkey, None) {
-		Ok(pubkey) => pubkey.serialize().to_vec(),
+		Ok(pubkey) =>
+			pubkey
+				.serialize()
+				.to_vec(),
 		Err(_) => panic!("Invalid pubkey provided.")
 	}
 }
@@ -39,7 +45,10 @@ pub fn ext_secp_recover(message: &[u8], signature: &[u8], recovery: u8) -> Vec<u
 		&Signature::parse_standard_slice(signature).unwrap(),
 		&RecoveryId::parse(recovery).unwrap()
 	) {
-		Ok(pubkey) => pubkey.serialize_compressed().to_vec(),
+		Ok(pubkey) =>
+			pubkey
+				.serialize_compressed()
+				.to_vec(),
 		Err(_) => panic!("Invalid message provided.")
 	}
 }
@@ -107,7 +116,6 @@ pub mod tests {
 		let expected = hex!("df92f73d9f060cefacf187b5414491cb992998ace017fa48839b5cda3e264ba83b105adec9e9872647a7d8bb28855b45e22805aea3d097953cbb1391f671d13e01");
 		let seckey = hex!("4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae");
 		let msg = hex!("68c731589a583d08b70861683b59ce3dd56284cb2f0da5b6cd83e6641dac3aab");
-
 		let result = ext_secp_sign(&msg, &seckey);
 
 		assert_eq!(result[..], expected[..]);

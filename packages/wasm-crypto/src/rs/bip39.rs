@@ -14,7 +14,10 @@ use wasm_bindgen::prelude::*;
 /// Returns the bip 39 phrase
 #[wasm_bindgen]
 pub fn ext_bip39_generate(words: u32) -> String {
-	Mnemonic::new(MnemonicType::for_word_count(words as usize).unwrap(), Language::English)
+	Mnemonic::new(
+		MnemonicType::for_word_count(words as usize).unwrap(),
+		Language::English
+	)
 		.into_phrase()
 }
 
@@ -25,7 +28,10 @@ pub fn ext_bip39_generate(words: u32) -> String {
 /// Returns the entropy
 #[wasm_bindgen]
 pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
-	Mnemonic::from_phrase(phrase, Language::English)
+	Mnemonic::from_phrase(
+		phrase,
+		Language::English
+	)
 		.unwrap()
 		.entropy()
 		.to_vec()
@@ -38,11 +44,14 @@ pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 /// Returns the 32-byte mini-secret via entropy
 #[wasm_bindgen]
 pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
-	let salt = format!("mnemonic{}", password);
-	let mnemonic = Mnemonic::from_phrase(phrase, Language::English).unwrap();
 	let mut result = [0u8; 64];
 
-	pbkdf2::<Hmac<Sha512>>(mnemonic.entropy(), salt.as_bytes(), 2048, &mut result);
+	pbkdf2::<Hmac<Sha512>>(
+		Mnemonic::from_phrase(phrase, Language::English).unwrap().entropy(),
+		format!("mnemonic{}", password).as_bytes(),
+		2048,
+		&mut result
+	);
 
 	result[..32].to_vec()
 }
@@ -54,9 +63,10 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 /// Returns a 32-byte seed
 #[wasm_bindgen]
 pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
-	let mnemonic = Mnemonic::from_phrase(phrase, Language::English).unwrap();
-
-	Seed::new(&mnemonic, password)
+	Seed::new(
+		&Mnemonic::from_phrase(phrase, Language::English).unwrap(),
+		password
+	)
 		.as_bytes()[..32]
 		.to_vec()
 }
