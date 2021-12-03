@@ -43,14 +43,14 @@ pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 /// Returns the 32-byte mini-secret via entropy
 #[wasm_bindgen]
 pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
+	let mut res = [0u8; 64];
+	let mut seed = vec![];
+
+	seed.extend_from_slice(b"mnemonic");
+	seed.extend_from_slice(password.as_bytes());
+
 	match Mnemonic::from_phrase(phrase, Language::English) {
 		Ok(m) => {
-			let mut res = [0u8; 64];
-			let mut seed = vec![];
-
-			seed.extend_from_slice(b"mnemonic");
-			seed.extend_from_slice(password.as_bytes());
-
 			pbkdf2::<Hmac<Sha512>>(m.entropy(), &seed, 2048, &mut res);
 
 			res[..32].to_vec()

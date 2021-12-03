@@ -54,9 +54,10 @@ pub fn new_transcript(extra: &[u8]) -> Transcript {
 /// * returned vector is the 32-byte output (signature) and 64-byte proof.
 #[wasm_bindgen]
 pub fn ext_vrf_sign(secret: &[u8], ctx: &[u8], msg: &[u8], extra: &[u8]) -> Vec<u8> {
+	let mut res: [u8; RESULT_SIZE] = [0u8; RESULT_SIZE];
+
 	match SecretKey::from_ed25519_bytes(secret) {
 		Ok(s) => {
-			let mut res: [u8; RESULT_SIZE] = [0u8; RESULT_SIZE];
 			let (io, proof, _) = s
 				.to_keypair()
 				.vrf_sign_extra(signing_context(ctx).bytes(msg), new_transcript(extra));
@@ -113,21 +114,17 @@ pub mod tests {
 
 		// Perform multiple sign_extra calls w/ same context, message, extra args
 		let out1 = ext_vrf_sign(private, context, message, extra);
-		let out2 = ext_svrf_ign(private, context, message, extra);
+		let out2 = ext_vrf_sign(private, context, message, extra);
 
 		// Basic size checks
 		assert!(out1.len() == RESULT_SIZE);
 		assert!(out2.len() == RESULT_SIZE);
 
 		// Given the same context, message & extra, output should be deterministic
-		let out1 = &out1[..OUTPUT_SIZE];
-		let out2 = &out2[..OUTPUT_SIZE];
-		assert_eq!(out1, out2);
+		assert_eq!(&out1[..OUTPUT_SIZE], &out2[..OUTPUT_SIZE]);
 
 		// But proof is non-deterministic
-		let proof1 = &out1[OUTPUT_SIZE..];
-		let proof2 = &out2[OUTPUT_SIZE..];
-		assert_ne!(proof1, proof2);
+		assert_ne!(&out1[OUTPUT_SIZE..], &out2[OUTPUT_SIZE..]);
 
 		// VRF outputs can verified w/ original context, message & extra args
 		assert!(ext_vrf_verify(
