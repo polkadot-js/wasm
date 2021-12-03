@@ -50,7 +50,7 @@ pub fn ext_hmac_sha256(key: &[u8], data: &[u8]) -> Vec<u8> {
 				.code()
 				.to_vec()
 		},
-		Err(_) => panic!("Invalid key provided.")
+		_ => panic!("Invalid key provided.")
 	}
 }
 
@@ -66,7 +66,7 @@ pub fn ext_hmac_sha512(key: &[u8], data: &[u8]) -> Vec<u8> {
 				.code()
 				.to_vec()
 		},
-		Err(_) => panic!("Invalid key provided.")
+		_ => panic!("Invalid key provided.")
 	}
 
 }
@@ -137,10 +137,10 @@ pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> V
 
 			match scrypt(password, salt, &params, &mut result) {
 				Ok(_) => result.to_vec(),
-				Err(_) => panic!("Invalid scrypt hash.")
+				_ => panic!("Invalid scrypt hash.")
 			}
 		},
-		Err(_) => panic!("Invalid scrypt params.")
+		_ => panic!("Invalid scrypt params.")
 	}
 
 }

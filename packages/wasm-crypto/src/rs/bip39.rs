@@ -16,7 +16,7 @@ use wasm_bindgen::prelude::*;
 pub fn ext_bip39_generate(words: u32) -> String {
 	match MnemonicType::for_word_count(words as usize) {
 		Ok(phrase) => Mnemonic::new(phrase, Language::English).into_phrase(),
-		Err(_) => panic!("Invalid count provided.")
+		_ => panic!("Invalid count provided.")
 	}
 }
 
@@ -28,11 +28,8 @@ pub fn ext_bip39_generate(words: u32) -> String {
 #[wasm_bindgen]
 pub fn ext_bip39_to_entropy(phrase: &str) -> Vec<u8> {
 	match Mnemonic::from_phrase(phrase, Language::English) {
-		Ok(mnemonic) =>
-			mnemonic
-				.entropy()
-				.to_vec(),
-		Err(_) => panic!("Invalid phrase provided.")
+		Ok(mnemonic) => mnemonic.entropy().to_vec(),
+		_ => panic!("Invalid phrase provided.")
 	}
 }
 
@@ -55,7 +52,7 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 
 			result[..32].to_vec()
 		},
-		Err(_) => panic!("Invalid phrase provided.")
+		_ => panic!("Invalid phrase provided.")
 	}
 }
 
@@ -67,11 +64,8 @@ pub fn ext_bip39_to_mini_secret(phrase: &str, password: &str) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_bip39_to_seed(phrase: &str, password: &str) -> Vec<u8> {
 	match Mnemonic::from_phrase(phrase, Language::English) {
-		Ok(mnemonic) =>
-			Seed::new(&mnemonic, password)
-				.as_bytes()[..32]
-				.to_vec(),
-		Err(_) => panic!("Invalid phrase provided.")
+		Ok(mnemonic) => Seed::new(&mnemonic, password).as_bytes()[..32].to_vec(),
+		_ => panic!("Invalid phrase provided.")
 	}
 }
 

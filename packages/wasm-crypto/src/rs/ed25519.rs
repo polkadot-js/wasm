@@ -9,7 +9,7 @@ use wasm_bindgen::prelude::*;
 fn create_from_pair(pair: &[u8]) -> Keypair {
 	match Keypair::from_bytes(pair) {
 		Ok(pair) => pair,
-		Err(_) => panic!("Provided pair is invalid.")
+		_ => panic!("Provided pair is invalid.")
 	}
 }
 
@@ -31,7 +31,7 @@ fn create_from_seed(seed: &[u8]) -> Keypair {
 
 			create_from_parts(pubkey.as_bytes(), seed)
 		},
-		Err(_) => panic!("Invalid seed provided.")
+		_ => panic!("Invalid seed provided.")
 	}
 }
 
@@ -39,7 +39,7 @@ fn create_from_seed(seed: &[u8]) -> Keypair {
 fn create_public(pubkey: &[u8]) -> PublicKey {
 	match PublicKey::from_bytes(pubkey) {
 		Ok(pubkey) => pubkey,
-		Err(_) => panic!("Provided public key is invalid.")
+		_ => panic!("Provided public key is invalid.")
 	}
 }
 
@@ -86,7 +86,7 @@ pub fn ext_ed_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
 			create_public(pubkey)
 				.verify(message, &sig)
 				.is_ok(),
-		Err(_) => false
+		_ => false
 	}
 }
 

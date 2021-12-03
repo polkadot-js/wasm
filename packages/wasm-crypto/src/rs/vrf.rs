@@ -69,7 +69,7 @@ pub fn ext_vrf_sign(secret: &[u8], context: &[u8], message: &[u8], extra: &[u8])
 
 			result.to_vec()
 		},
-		Err(_) => panic!("Invalid secret provided.")
+		_ => panic!("Invalid secret provided.")
 	}
 }
 

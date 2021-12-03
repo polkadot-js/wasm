@@ -11,7 +11,7 @@ pub fn ext_secp_pub_compress(pubkey: &[u8]) -> Vec<u8> {
 			pubkey
 				.serialize_compressed()
 				.to_vec(),
-		Err(_) => panic!("Invalid pubkey provided.")
+		_ => panic!("Invalid pubkey provided.")
 	}
 }
 
@@ -22,7 +22,7 @@ pub fn ext_secp_pub_expand(pubkey: &[u8]) -> Vec<u8> {
 			pubkey
 				.serialize()
 				.to_vec(),
-		Err(_) => panic!("Invalid pubkey provided.")
+		_ => panic!("Invalid pubkey provided.")
 	}
 }
 
@@ -38,7 +38,7 @@ pub fn ext_secp_from_seed(seed: &[u8]) -> Vec<u8> {
 
 			result
 		},
-		Err(_) => panic!("Incalid seed provided.")
+		_ => panic!("Incalid seed provided.")
 	}
 }
 
@@ -55,7 +55,7 @@ pub fn ext_secp_recover(message: &[u8], signature: &[u8], recovery: u8) -> Vec<u
 					pubkey
 						.serialize_compressed()
 						.to_vec(),
-				Err(_) => panic!("Invalid message provided.")
+				_ => panic!("Invalid message provided.")
 			},
 		_ => panic!("Invalid recovery data provided.")
 	}
@@ -63,10 +63,12 @@ pub fn ext_secp_recover(message: &[u8], signature: &[u8], recovery: u8) -> Vec<u
 
 #[wasm_bindgen]
 pub fn ext_secp_sign(message: &[u8], seckey: &[u8]) -> Vec<u8> {
-	let mut result = vec![];
-
-	match (Message::parse_slice(message), SecretKey::parse_slice(seckey)) {
+	match (
+		Message::parse_slice(message),
+		SecretKey::parse_slice(seckey)
+	) {
 		(Ok(msg), Ok(sec)) => {
+			let mut result = vec![];
 			let (sig, rec) = sign(&msg, &sec);
 
 			result.extend_from_slice(&sig.serialize());

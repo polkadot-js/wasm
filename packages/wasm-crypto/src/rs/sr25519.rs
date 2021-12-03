@@ -43,7 +43,7 @@ pub fn ext_sr_derive_keypair_hard(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 				.expand_to_keypair(ExpansionMode::Ed25519)
 				.to_half_ed25519_bytes()
 				.to_vec(),
-		Err(_) => panic!("Invalid pair provided.")
+		_ => panic!("Invalid pair provided.")
 	}
 }
 
@@ -62,7 +62,7 @@ pub fn ext_sr_derive_keypair_soft(pair: &[u8], cc: &[u8]) -> Vec<u8> {
 				.0
 				.to_half_ed25519_bytes()
 				.to_vec(),
-		Err(_) => panic!("Invalid pair provided.")
+		_ => panic!("Invalid pair provided.")
 	}
 }
 
@@ -81,7 +81,7 @@ pub fn ext_sr_derive_public_soft(pubkey: &[u8], cc: &[u8]) -> Vec<u8> {
 				.0
 				.to_bytes()
 				.to_vec(),
-		Err(_) => panic!("Invalid pubkey provided.")
+		_ => panic!("Invalid pubkey provided.")
 	}
 }
 
@@ -99,7 +99,7 @@ pub fn ext_sr_from_seed(seed: &[u8]) -> Vec<u8> {
 				.expand_to_keypair(ExpansionMode::Ed25519)
 				.to_half_ed25519_bytes()
 				.to_vec(),
-		Err(_) => panic!("Invalid seed provided.")
+		_ => panic!("Invalid seed provided.")
 	}
 }
 
@@ -115,7 +115,7 @@ pub fn ext_sr_from_pair(pair: &[u8]) -> Vec<u8> {
 			pair
 				.to_half_ed25519_bytes()
 				.to_vec(),
-		Err(_) => panic!("Invalid pair provided.")
+		_ => panic!("Invalid pair provided.")
 	}
 }
 
@@ -190,7 +190,7 @@ pub fn ext_sr_agree(pubkey: &[u8], secret: &[u8]) -> Vec<u8> {
 				_ => panic!("Invalid scalar or pubkey provided.")
 			}
 		},
-		Err(_) => panic!("Invalid secret provided.")
+		_ => panic!("Invalid secret provided.")
 	}
 }
 
