@@ -1,12 +1,13 @@
 # CHANGELOG
 
-## master
+## 4.5.1 Dec 3, 2021
 
 Changes:
 
-- Add `secp256k1*` functions
+- Add `secp256k1{Compress, Expand, Recover, Sign}` functions
+- Remove all occurences of `.unwrap()` (match everywhere)
 - Adjust and optimize WASM function JS interface construction
-- Simplify base64 bytes decoding
+- Simplify base64 bytes decoding on construction
 
 
 ## 4.4.1 Nov 22, 2021
