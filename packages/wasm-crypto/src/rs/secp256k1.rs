@@ -26,10 +26,9 @@ pub fn ext_secp_pub_expand(pubkey: &[u8]) -> Vec<u8> {
 
 #[wasm_bindgen]
 pub fn ext_secp_from_seed(seed: &[u8]) -> Vec<u8> {
-	let mut res = vec![];
-
 	match SecretKey::parse_slice(seed) {
 		Ok(s) => {
+			let mut res = vec![];
 			let pubkey = PublicKey::from_secret_key(&s);
 
 			res.extend_from_slice(&s.serialize());

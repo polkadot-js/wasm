@@ -54,10 +54,9 @@ pub fn new_transcript(extra: &[u8]) -> Transcript {
 /// * returned vector is the 32-byte output (signature) and 64-byte proof.
 #[wasm_bindgen]
 pub fn ext_vrf_sign(secret: &[u8], ctx: &[u8], msg: &[u8], extra: &[u8]) -> Vec<u8> {
-	let mut res: [u8; RESULT_SIZE] = [0u8; RESULT_SIZE];
-
 	match SecretKey::from_ed25519_bytes(secret) {
 		Ok(s) => {
+			let mut res: [u8; RESULT_SIZE] = [0u8; RESULT_SIZE];
 			let (io, proof, _) = s
 				.to_keypair()
 				.vrf_sign_extra(signing_context(ctx).bytes(msg), new_transcript(extra));

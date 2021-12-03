@@ -119,12 +119,14 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 /// Returns vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
-	let mut res = [0u8; 64];
-
 	match ScryptParams::new(log2_n, r, p) {
-		Ok(p) => match scrypt(password, salt, &p, &mut res) {
-			Ok(_) => res.to_vec(),
-			_ => panic!("Invalid scrypt hash.")
+		Ok(p) => {
+			let mut res = [0u8; 64];
+
+			match scrypt(password, salt, &p, &mut res) {
+				Ok(_) => res.to_vec(),
+				_ => panic!("Invalid scrypt hash.")
+			}
 		},
 		_ => panic!("Invalid scrypt params.")
 	}
@@ -172,19 +174,19 @@ pub fn ext_sha512(data: &[u8]) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn ext_twox(data: &[u8], rounds: u32) -> Vec<u8> {
 	use ::std::hash::Hasher;
-	let mut vec = vec![];
-	let mut res = [0u8; 8];
+	let mut res = vec![];
+	let mut buf = [0u8; 8];
 
 	for round in 0..rounds {
 		// we cast to u64 here - due to the WASM, we'd rather have u32 inputs
 		let mut hasher = XxHash::with_seed(round as u64);
 
 		hasher.write(data);
-		LittleEndian::write_u64(&mut res, hasher.finish());
-		vec.extend_from_slice(&res);
+		LittleEndian::write_u64(&mut buf, hasher.finish());
+		res.extend_from_slice(&buf);
 	}
 
-	vec
+	res
 }
 
 #[cfg(test)]
