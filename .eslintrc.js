@@ -8,6 +8,7 @@ module.exports = {
   ignorePatterns: [
     ...base.ignorePatterns,
     '**/target/*',
+    'packages/bytes/*',
     'scripts/*'
   ],
   parserOptions: {
