@@ -1,10 +1,10 @@
 {
   "extends": "@polkadot/dev/config/tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
+  "compilerOptions": {
+    "composite": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-		"paths": {
+    "paths": {
       "@polkadot/wasm-crypto-asmjs/packageInfo": ["wasm-crypto-asmjs/src/packageInfo"],
       "@polkadot/wasm-crypto-asmjs": ["wasm-crypto-asmjs/src/data"],
       "@polkadot/wasm-crypto-wasm/packageInfo": ["wasm-crypto-wasm/src/packageInfo"],
@@ -16,5 +16,5 @@
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"
     ]
-	}
+  }
  }

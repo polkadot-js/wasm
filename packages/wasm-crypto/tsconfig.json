@@ -1,11 +1,11 @@
 {
-	"extends": "../../tsconfig.base.json",
-	"compilerOptions": {
-		"baseUrl": "..",
-		"outDir": "./build",
-		"rootDir": "./src"
-	},
-	"references": [
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./src"
+  },
+  "references": [
     { "path": "../wasm-crypto-asmjs" },
     { "path": "../wasm-crypto-wasm" }
   ]
