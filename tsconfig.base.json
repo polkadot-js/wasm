@@ -1,18 +1,18 @@
 {
   "extends": "@polkadot/dev/config/tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
-		"paths": {
-      "@polkadot/wasm-crypto-asmjs/packageInfo": [ "wasm-crypto-asmjs/src/packageInfo" ],
-      "@polkadot/wasm-crypto-asmjs": [ "wasm-crypto-asmjs/src/data" ],
-      "@polkadot/wasm-crypto-wasm/packageInfo": [ "wasm-crypto-wasm/src/packageInfo" ],
-      "@polkadot/wasm-crypto-wasm": [ "wasm-crypto-wasm/src/data" ],
-      "@polkadot/wasm-crypto": [ "wasm-crypto/src" ]
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@polkadot/wasm-crypto-asmjs/packageInfo": ["wasm-crypto-asmjs/src/packageInfo"],
+      "@polkadot/wasm-crypto-asmjs": ["wasm-crypto-asmjs/src/data"],
+      "@polkadot/wasm-crypto-wasm/packageInfo": ["wasm-crypto-wasm/src/packageInfo"],
+      "@polkadot/wasm-crypto-wasm": ["wasm-crypto-wasm/src/data"],
+      "@polkadot/wasm-crypto": ["wasm-crypto/src"]
     },
     "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"
     ]
-	}
+  }
  }
