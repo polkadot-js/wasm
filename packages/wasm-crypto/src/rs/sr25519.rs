@@ -256,7 +256,7 @@ pub mod tests {
 		let is_valid = ext_sr_verify(&signature, message, &public);
 
 		assert!(is_valid);
-  }
+	}
 
 	#[test]
 	fn soft_derives_pair() {
