@@ -259,6 +259,16 @@ pub mod tests {
 	}
 
 	#[test]
+	fn can_verify_known_wrapped_message_fail() {
+		let message = b"message to sign";
+		let public = hex!("f84d048da2ddae2d9d8fd6763f469566e8817a26114f39408de15547f6d47805");
+		let signature = hex!("48ce2c90e08651adfc8ecef84e916f6d1bb51ebebd16150ee12df247841a5437951ea0f9d632ca165e6ab391532e75e701be6a1caa88c8a6bcca3511f55b4183");
+		let is_valid = ext_sr_verify(&signature, message, &public);
+
+		assert!(!is_valid);
+	}
+
+	#[test]
 	fn soft_derives_pair() {
 		let cc = hex!("0c666f6f00000000000000000000000000000000000000000000000000000000"); // foo
 		let seed = hex!("fac7959dbfe72f052e5a0c3c8d6530f202b02fd8f9f5ca3580ec8deb7797479e");
