@@ -5,14 +5,6 @@ use std::convert::TryFrom;
 use ed25519_dalek::{Keypair, PublicKey, SecretKey, Signature, Signer as _, Verifier as _};
 use wasm_bindgen::prelude::*;
 
-/// Keypair helper function.
-fn new_from_pair(pair: &[u8]) -> Keypair {
-	match Keypair::from_bytes(pair) {
-		Ok(p) => p,
-		_ => panic!("Provided pair is invalid.")
-	}
-}
-
 /// Keypair helper function
 fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 	let mut pair = vec![];
@@ -20,7 +12,10 @@ fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 	pair.extend_from_slice(seckey);
 	pair.extend_from_slice(pubkey);
 
-	new_from_pair(&pair)
+	match Keypair::from_bytes(&pair) {
+		Ok(p) => p,
+		_ => panic!("Provided pair is invalid.")
+	}
 }
 
 /// Keypair helper function.
@@ -32,14 +27,6 @@ fn new_from_seed(seed: &[u8]) -> Keypair {
 			new_from_parts(pubkey.as_bytes(), seed)
 		},
 		_ => panic!("Invalid seed provided.")
-	}
-}
-
-/// PublicKey helper
-fn new_public(pubkey: &[u8]) -> PublicKey {
-	match PublicKey::from_bytes(pubkey) {
-		Ok(p) => p,
-		_ => panic!("Provided public key is invalid.")
 	}
 }
 
@@ -81,8 +68,8 @@ pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
 /// * pubkey: UIntArray with 32 element
 #[wasm_bindgen]
 pub fn ext_ed_verify(signature: &[u8], message: &[u8], pubkey: &[u8]) -> bool {
-	match Signature::try_from(signature) {
-		Ok(s) => new_public(pubkey)
+	match (Signature::try_from(signature), PublicKey::from_bytes(pubkey)) {
+		(Ok(s), Ok(k)) => k
 			.verify(message, &s)
 			.is_ok(),
 		_ => false

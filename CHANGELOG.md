@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust ed25519 internals (speed & size)
+- JS wrapped bytes interoperability test
+
+
 ## 4.5.1 Dec 3, 2021
 
 Changes:
