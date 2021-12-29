@@ -18,18 +18,6 @@ fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 	}
 }
 
-/// Keypair helper function.
-fn new_from_seed(seed: &[u8]) -> Keypair {
-	match &SecretKey::from_bytes(seed) {
-		Ok(s) => {
-			let pubkey: PublicKey = s.into();
-
-			new_from_parts(pubkey.as_bytes(), seed)
-		},
-		_ => panic!("Invalid seed provided.")
-	}
-}
-
 /// Generate a key pair.
 ///
 /// * seed: UIntArray with 32 element
@@ -38,9 +26,16 @@ fn new_from_seed(seed: &[u8]) -> Keypair {
 /// followed by the public key (32) bytes.
 #[wasm_bindgen]
 pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
-	new_from_seed(seed)
-		.to_bytes()
-		.to_vec()
+	match &SecretKey::from_bytes(seed) {
+		Ok(s) => {
+			let pubkey: PublicKey = s.into();
+
+			new_from_parts(pubkey.as_bytes(), seed)
+				.to_bytes()
+				.to_vec()
+		},
+		_ => panic!("Invalid seed provided.")
+	}
 }
 
 /// Sign a message
