@@ -3,6 +3,7 @@
 
 import { detectPackage } from '@polkadot/util';
 
+import __dirname from './cjs/dirname';
 import others from './detectOther';
 import { packageInfo } from './packageInfo';
 
