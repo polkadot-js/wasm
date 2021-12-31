@@ -8,4 +8,4 @@ import { packageInfo as wasmInfo } from '@polkadot/wasm-crypto-wasm/packageInfo'
 import __dirname from './cjs/dirname';
 import { packageInfo } from './packageInfo';
 
-detectPackage(packageInfo, typeof __dirname === 'string' && __dirname, [asmInfo, wasmInfo]);
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [asmInfo, wasmInfo]);
