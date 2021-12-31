@@ -1,4 +1,4 @@
-// Copyright 2019-2021 @polkadot/wasm authors & contributors
+// Copyright 2019-2022 @polkadot/wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const fflate = require('fflate/node');
@@ -12,7 +12,7 @@ const compressed = Buffer.from(fflate.zlibSync(data, { level: 9 }));
 
 console.log(`*** Compressed WASM: ${formatNumber(data.length)} -> ${formatNumber(compressed.length)} (${(100 * compressed.length / data.length).toFixed(2)}%)`);
 
-fs.writeFileSync(`./${W_NAME}/build/cjs/bytes.js`, `// Copyright 2019-2021 @polkadot/${W_NAME} authors & contributors
+fs.writeFileSync(`./${W_NAME}/build/cjs/bytes.js`, `// Copyright 2019-2022 @polkadot/${W_NAME} authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Generated as part of the build, do not edit

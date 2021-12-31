@@ -1,4 +1,4 @@
-// Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
+// Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 const { assert, stringToU8a, u8aToHex } = require('@polkadot/util');

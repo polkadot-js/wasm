@@ -1,4 +1,4 @@
-// Copyright 2019-2021 @polkadot/wasm-crypto authors & contributors
+// Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 use libsecp256k1::{Message, PublicKey, RecoveryId, SecretKey, Signature, recover, sign};
