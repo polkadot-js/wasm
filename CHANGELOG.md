@@ -4,7 +4,8 @@
 
 Changes:
 
-- Adjust ed25519 internals (speed & size)
+- Adjust ed25519 internals, consistency in code
+- Ensure package path is availble under ESM & CJS
 - JS wrapped bytes interoperability test
 
 
