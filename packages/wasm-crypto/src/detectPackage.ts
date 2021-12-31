@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { detectPackage } from '@polkadot/util';
-import { packageInfo as asmInfo } from '@polkadot/wasm-crypto-asmjs/packageInfo';
-import { packageInfo as wasmInfo } from '@polkadot/wasm-crypto-wasm/packageInfo';
 
+import others from './detectOther';
 import { packageInfo } from './packageInfo';
 
-detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, [asmInfo, wasmInfo]);
+detectPackage(packageInfo, typeof __dirname !== 'undefined' && __dirname, others);
