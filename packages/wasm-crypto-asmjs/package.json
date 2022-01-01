@@ -23,5 +23,11 @@
   "react-native": "data.js",
   "dependencies": {
     "@babel/runtime": "^7.16.7"
+  },
+  "devDependencies": {
+    "@polkadot/util": "^8.2.2"
+  },
+  "peerDependencies": {
+    "@polkadot/util": "*"
   }
 }
