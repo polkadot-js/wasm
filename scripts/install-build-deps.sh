@@ -5,8 +5,6 @@
 
 set -e
 
-source ./scripts/rust-version.sh
-
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
 BINARYEN_VER=version_97
 BINARYEN_ZIP=
@@ -21,12 +19,9 @@ WABT_ZIP=
 
 unamestr=`uname`
 
-# toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
-rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-
-if [ "$RUST_VER" != "stable" ]; then
-  cargo install xargo
-fi
+# rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
+rustup toolchain install .
+cargo install xargo
 
 if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"

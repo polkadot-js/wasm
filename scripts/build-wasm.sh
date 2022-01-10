@@ -5,8 +5,6 @@
 
 set -e
 
-source ../scripts/rust-version.sh
-
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm
 ASM=wasm-crypto-asmjs/build/cjs/data.js
@@ -14,11 +12,11 @@ ASM=wasm-crypto-asmjs/build/cjs/data.js
 # build new via wasm-pack
 echo "*** Building Rust sources"
 cd wasm-crypto
-if [ "$RUST_VER" == "stable" ]; then
-  RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
-else
-  rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
-fi
+
+# when using stable
+# RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
+rustup run xargo build --target wasm32-unknown-unknown --release
+
 cd ..
 
 echo "*** Converting to WASM"
