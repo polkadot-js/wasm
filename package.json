@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "yarn build:wasm",
+    "build:js": "./scripts/build-js.sh",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
     "build:wasm": "./scripts/build.sh",
@@ -30,7 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
-    "@polkadot/dev": "^0.65.23",
+    "@polkadot/dev": "^0.65.25",
     "fflate": "^0.7.2",
     "override-require": "^1.1.1"
   },
