@@ -4,8 +4,14 @@
   },
   "files": [],
   "references": [
-    { "path": "./packages/wasm-crypto" },
-    { "path": "./packages/wasm-crypto-asmjs" },
-    { "path": "./packages/wasm-crypto-wasm" }
+    {
+      "path": "./packages/wasm-crypto/tsconfig.build.json"
+    },
+    {
+      "path": "./packages/wasm-crypto-asmjs/tsconfig.build.json"
+    },
+    {
+      "path": "./packages/wasm-crypto-wasm/tsconfig.build.json"
+    }
   ]
 }
