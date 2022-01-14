@@ -6,11 +6,7 @@
     "rootDir": "./src"
   },
   "references": [
-    {
-      "path": "../wasm-crypto-asmjs/tsconfig.build.json"
-    },
-    {
-      "path": "../wasm-crypto-wasm/tsconfig.build.json"
-    }
+    { "path": "../wasm-crypto-asmjs/tsconfig.build.json" },
+    { "path": "../wasm-crypto-wasm/tsconfig.build.json" }
   ]
 }
