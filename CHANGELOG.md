@@ -5,8 +5,9 @@
 Changes:
 
 - Adjust ed25519 internals, consistency in code
-- Ensure package path is availble under ESM & CJS
+- Ensure package path is available under ESM & CJS
 - JS wrapped bytes interoperability test
+- Adjust for bundlers where `import.meta.url` is undefined
 
 
 ## 4.5.1 Dec 3, 2021
