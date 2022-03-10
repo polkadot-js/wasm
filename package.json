@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "homepage": "https://github.com/polkadot-js/wasm#readme",
   "license": "Apache-2.0",
-  "packageManager": "yarn@3.0.1",
+  "packageManager": "yarn@3.2.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
-    "@polkadot/dev": "^0.65.85",
+    "@polkadot/dev": "^0.65.87",
     "fflate": "^0.7.3",
     "override-require": "^1.1.1"
   },
