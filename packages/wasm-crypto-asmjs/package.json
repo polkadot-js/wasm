@@ -22,7 +22,7 @@
   "main": "empty.js",
   "react-native": "data.js",
   "dependencies": {
-    "@babel/runtime": "^7.17.2"
+    "@babel/runtime": "^7.17.7"
   },
   "devDependencies": {
     "@polkadot/util": "^8.5.1"
