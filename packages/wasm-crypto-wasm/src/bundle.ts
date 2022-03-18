@@ -5,4 +5,6 @@ import { base64Decode } from './base64';
 import { bytes, sizeUncompressed } from './bytes';
 import { unzlibSync } from './fflate';
 
+export { packageInfo } from './packageInfo';
+
 export const wasmBytes = unzlibSync(base64Decode(bytes), new Uint8Array(sizeUncompressed));
