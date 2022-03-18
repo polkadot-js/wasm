@@ -1,15 +1,11 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
-import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
-
-import { allocString, allocU8a, getWasm, initWasm, resultString, resultU8a, withWasm } from './bridge';
-import * as imports from './imports';
+import { __internal } from './cjs/internal.js';
+import { allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
+import { setWasmOnlyPromise } from './init';
 
 export { packageInfo } from './packageInfo';
-
-const wasmPromise = initWasm(wasmBytes, asmJsInit, imports).catch(() => null);
 
 export const bip39Generate = withWasm((wasm, words: 12 | 15 | 18 | 21 | 24): string => {
   wasm.ext_bip39_generate(8, words);
@@ -208,5 +204,9 @@ export function isReady (): boolean {
 }
 
 export function waitReady (): Promise<boolean> {
-  return wasmPromise.then(() => isReady());
+  return (
+    __internal.wasmPromise || setWasmOnlyPromise()
+  )
+    .then(() => isReady())
+    .catch(() => false);
 }

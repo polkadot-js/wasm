@@ -3,65 +3,43 @@
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import type { AsmCreator, WasmCryptoInstance } from './types';
+import type { WasmCryptoInstance } from './types';
 
 import { assert, stringToU8a, u8aToString } from '@polkadot/util';
+
+import { __internal } from './cjs/internal.js';
 
 type PopFirst<T extends unknown[]> =
   T extends [WasmCryptoInstance, ...infer N]
     ? N
     : [];
 
-let wasm: WasmCryptoInstance | null = null;
-let cachegetInt32: Int32Array | null = null;
-let cachegetUint8: Uint8Array | null = null;
-
-export async function initWasm (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null, wbg: Record<string, WebAssembly.ImportValue>): Promise<void> {
-  try {
-    assert(typeof WebAssembly !== 'undefined' && wasmBytes && wasmBytes.length, 'WebAssembly is not available in your environment');
-
-    const source = await WebAssembly.instantiate(wasmBytes, { wbg });
-
-    wasm = source.instance.exports as unknown as WasmCryptoInstance;
-  } catch (error) {
-    // if we have a valid supplied asm.js, return that
-    if (asmFn) {
-      wasm = asmFn(wbg);
-    } else {
-      console.error('FATAL: Unable to initialize @polkadot/wasm-crypto');
-      console.error(error);
-
-      wasm = null;
-    }
-  }
-}
-
 export function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {
   return (...params: PopFirst<Parameters<F>>): ReturnType<F> => {
-    assert(wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
+    assert(__internal.wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
 
-    return fn(wasm, ...params) as ReturnType<F>;
+    return fn(__internal.wasm, ...params) as ReturnType<F>;
   };
 }
 
 export function getWasm (): WasmCryptoInstance {
-  return wasm!;
+  return __internal.wasm!;
 }
 
 export function getInt32 (): Int32Array {
-  if (cachegetInt32 === null || cachegetInt32.buffer !== wasm!.memory.buffer) {
-    cachegetInt32 = new Int32Array(wasm!.memory.buffer);
+  if (__internal.cachegetInt32 === null || __internal.cachegetInt32.buffer !== __internal.wasm!.memory.buffer) {
+    __internal.cachegetInt32 = new Int32Array(__internal.wasm!.memory.buffer);
   }
 
-  return cachegetInt32;
+  return __internal.cachegetInt32;
 }
 
 export function getUint8 (): Uint8Array {
-  if (cachegetUint8 === null || cachegetUint8.buffer !== wasm!.memory.buffer) {
-    cachegetUint8 = new Uint8Array(wasm!.memory.buffer);
+  if (__internal.cachegetUint8 === null || __internal.cachegetUint8.buffer !== __internal.wasm!.memory.buffer) {
+    __internal.cachegetUint8 = new Uint8Array(__internal.wasm!.memory.buffer);
   }
 
-  return cachegetUint8;
+  return __internal.cachegetUint8;
 }
 
 export function getU8a (ptr: number, len: number): Uint8Array {
@@ -73,7 +51,7 @@ export function getString (ptr: number, len: number): string {
 }
 
 export function allocU8a (arg: Uint8Array): [number, number] {
-  const ptr = wasm!.__wbindgen_malloc(arg.length * 1);
+  const ptr = __internal.wasm!.__wbindgen_malloc(arg.length * 1);
 
   getUint8().set(arg, ptr / 1);
 
@@ -89,7 +67,7 @@ export function resultU8a (): Uint8Array {
   const r1 = getInt32()[8 / 4 + 1];
   const ret = getU8a(r0, r1).slice();
 
-  wasm!.__wbindgen_free(r0, r1 * 1);
+  __internal.wasm!.__wbindgen_free(r0, r1 * 1);
 
   return ret;
 }

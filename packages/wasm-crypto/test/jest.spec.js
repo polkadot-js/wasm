@@ -5,8 +5,6 @@
  * @jest-environment jsdom
  */
 
-// override-require in jest.config.js
-
 import { beforeAll, tests, wasm } from './all/index.cjs';
 
 describe('wasm-crypto', () => {
