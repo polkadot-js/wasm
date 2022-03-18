@@ -45,7 +45,7 @@ function secp256k1FromSeed2 (wasm) {
     213, 224, 71, 121, 104, 144, 104, 201, 22, 176, 76,
     179, 101, 236, 49, 83, 117, 86, 132, 217, 161
   ]));
-  const result = u8aToHex(wasm.secp256k1FromSeed(hexToU8a(seckey)));
+  const result = u8aToHex(wasm.secp256k1FromSeed(seckey));
 
   console.log('\tRES', result);
 
