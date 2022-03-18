@@ -10,12 +10,14 @@ const sr25519 = require('./sr25519.cjs');
 const vrf = require('./vrf.cjs');
 
 const tests = {
-  ...bip39,
-  ...ed25519,
-  ...hashing,
+  // We place secp256k1 first, this allows the interaction with it in the
+  // hashing (specifically scrypt) test not be an issue (ASM.js only)
   ...secp256k1,
+  ...ed25519,
   ...sr25519,
-  ...vrf
+  ...vrf,
+  ...bip39,
+  ...hashing
 };
 
 function beforeAll () {
