@@ -21,13 +21,35 @@ function secp256k1Expand (wasm) {
   assert(result === '0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af', 'ERROR: secp256k1Expand does not match');
 }
 
-function secp256k1FromSeed (wasm) {
+function secp256k1FromSeed1 (wasm) {
   const seckey = '0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae';
   const result = u8aToHex(wasm.secp256k1FromSeed(hexToU8a(seckey)));
 
   console.log('\tRES', result);
 
   assert(result === '0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae03fd8c74f795ced92064b86191cb2772b1e3a0947740aa0a5a6e379592471fd85b', 'ERROR: secp256k1FromSeed does not match');
+}
+
+function secp256k1FromSeed2 (wasm) {
+  // https://github.com/polkadot-js/wasm/issues/307
+  const seckey = new Uint8Array([
+    203, 109, 249, 222, 30, 252, 167, 163, 153, 138, 142,
+    173, 78, 2, 21, 157, 95, 169, 156, 62, 13, 79,
+    214, 67, 38, 103, 57, 11, 180, 114, 104, 84
+  ]);
+  const expected = u8aToHex(new Uint8Array([
+    203, 109, 249, 222, 30, 252, 167, 163, 153, 138, 142,
+    173, 78, 2, 21, 157, 95, 169, 156, 62, 13, 79,
+    214, 67, 38, 103, 57, 11, 180, 114, 104, 84, 2,
+    10, 16, 145, 52, 31, 229, 102, 75, 250, 23, 130,
+    213, 224, 71, 121, 104, 144, 104, 201, 22, 176, 76,
+    179, 101, 236, 49, 83, 117, 86, 132, 217, 161
+  ]));
+  const result = u8aToHex(wasm.secp256k1FromSeed(seckey));
+
+  console.log('\tRES', result);
+
+  assert(result === expected, 'ERROR: secp256k1FromSeed does not match');
 }
 
 function secp256k1Recover (wasm) {
@@ -53,7 +75,8 @@ function secp256k1Sign (wasm) {
 module.exports = {
   secp256k1Compress,
   secp256k1Expand,
-  secp256k1FromSeed,
+  secp256k1FromSeed1,
+  secp256k1FromSeed2,
   secp256k1Recover,
   secp256k1Sign
 };
