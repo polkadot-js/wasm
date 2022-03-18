@@ -7,39 +7,51 @@ import type { WasmCryptoInstance } from './types';
 
 import { assert, stringToU8a, u8aToString } from '@polkadot/util';
 
-import { __internal } from './cjs/internal.js';
-
 type PopFirst<T extends unknown[]> =
   T extends [WasmCryptoInstance, ...infer N]
     ? N
     : [];
 
+interface Bridge {
+  cachegetInt32: Int32Array | null;
+  cachegetUint8: Uint8Array | null;
+  wasm: WasmCryptoInstance | null;
+  wasmPromise: Promise<void> | null;
+}
+
+export const __bridge: Bridge = {
+  cachegetInt32: null,
+  cachegetUint8: null,
+  wasm: null,
+  wasmPromise: null
+};
+
 export function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {
   return (...params: PopFirst<Parameters<F>>): ReturnType<F> => {
-    assert(__internal.wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
+    assert(__bridge.wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
 
-    return fn(__internal.wasm, ...params) as ReturnType<F>;
+    return fn(__bridge.wasm, ...params) as ReturnType<F>;
   };
 }
 
 export function getWasm (): WasmCryptoInstance {
-  return __internal.wasm!;
+  return __bridge.wasm!;
 }
 
 export function getInt32 (): Int32Array {
-  if (__internal.cachegetInt32 === null || __internal.cachegetInt32.buffer !== __internal.wasm!.memory.buffer) {
-    __internal.cachegetInt32 = new Int32Array(__internal.wasm!.memory.buffer);
+  if (__bridge.cachegetInt32 === null || __bridge.cachegetInt32.buffer !== __bridge.wasm!.memory.buffer) {
+    __bridge.cachegetInt32 = new Int32Array(__bridge.wasm!.memory.buffer);
   }
 
-  return __internal.cachegetInt32;
+  return __bridge.cachegetInt32;
 }
 
 export function getUint8 (): Uint8Array {
-  if (__internal.cachegetUint8 === null || __internal.cachegetUint8.buffer !== __internal.wasm!.memory.buffer) {
-    __internal.cachegetUint8 = new Uint8Array(__internal.wasm!.memory.buffer);
+  if (__bridge.cachegetUint8 === null || __bridge.cachegetUint8.buffer !== __bridge.wasm!.memory.buffer) {
+    __bridge.cachegetUint8 = new Uint8Array(__bridge.wasm!.memory.buffer);
   }
 
-  return __internal.cachegetUint8;
+  return __bridge.cachegetUint8;
 }
 
 export function getU8a (ptr: number, len: number): Uint8Array {
@@ -51,7 +63,7 @@ export function getString (ptr: number, len: number): string {
 }
 
 export function allocU8a (arg: Uint8Array): [number, number] {
-  const ptr = __internal.wasm!.__wbindgen_malloc(arg.length * 1);
+  const ptr = __bridge.wasm!.__wbindgen_malloc(arg.length * 1);
 
   getUint8().set(arg, ptr / 1);
 
@@ -67,7 +79,7 @@ export function resultU8a (): Uint8Array {
   const r1 = getInt32()[8 / 4 + 1];
   const ret = getU8a(r0, r1).slice();
 
-  __internal.wasm!.__wbindgen_free(r0, r1 * 1);
+  __bridge.wasm!.__wbindgen_free(r0, r1 * 1);
 
   return ret;
 }

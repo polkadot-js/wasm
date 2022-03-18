@@ -6,7 +6,7 @@ import type { AsmCreator, WasmCryptoInstance } from './types';
 import { assert } from '@polkadot/util';
 import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
-import { __internal } from './cjs/internal.js';
+import { __bridge } from './bridge';
 import * as imports from './imports';
 
 async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
@@ -15,24 +15,24 @@ async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | 
 
     const source = await WebAssembly.instantiate(wasmBytes, { wbg: imports });
 
-    __internal.wasm = source.instance.exports as unknown as WasmCryptoInstance;
+    __bridge.wasm = source.instance.exports as unknown as WasmCryptoInstance;
   } catch (error) {
     // if we have a valid supplied asm.js, return that
     if (asmFn) {
-      __internal.wasm = asmFn(imports);
+      __bridge.wasm = asmFn(imports);
     } else {
       console.error('FATAL: Unable to initialize @polkadot/wasm-crypto');
       console.error(error);
 
-      __internal.wasm = null;
+      __bridge.wasm = null;
     }
   }
 }
 
 export function setPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
-  __internal.wasmPromise = createPromise(wasmBytes, asmFn);
+  __bridge.wasmPromise = createPromise(wasmBytes, asmFn);
 
-  return __internal.wasmPromise;
+  return __bridge.wasmPromise;
 }
 
 export function setWasmOnlyPromise (): Promise<void> {

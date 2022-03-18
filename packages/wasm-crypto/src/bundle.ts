@@ -1,8 +1,7 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { __internal } from './cjs/internal.js';
-import { allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
+import { __bridge, allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
 import { setWasmOnlyPromise } from './init';
 
 export { packageInfo } from './packageInfo';
@@ -205,7 +204,7 @@ export function isReady (): boolean {
 
 export function waitReady (): Promise<boolean> {
   return (
-    __internal.wasmPromise || setWasmOnlyPromise()
+    __bridge.wasmPromise || setWasmOnlyPromise()
   )
     .then(() => isReady())
     .catch(() => false);
