@@ -36,7 +36,7 @@ pub fn ext_secp_from_seed(seed: &[u8]) -> Vec<u8> {
 
 			res
 		},
-		_ => panic!("Incalid seed provided.")
+		_ => panic!("Invalid seed provided.")
 	}
 }
 
