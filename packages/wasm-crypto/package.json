@@ -18,10 +18,10 @@
   "sideEffects": [
     "./detectPackage.js",
     "./detectPackage.cjs",
-    "./initAsmOnly.js",
-    "./initAsmOnly.cjs",
-    "./initWasmOnly.js",
-    "./initWasmOnly.cjs",
+    "./initOnlyAsm.js",
+    "./initOnlyAsm.cjs",
+    "./initOnlyWasm.js",
+    "./initOnlyWasm.cjs",
     "./initWasmAsm.js",
     "./initWasmAsm.cjs"
   ],
