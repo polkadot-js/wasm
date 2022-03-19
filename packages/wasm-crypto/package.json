@@ -26,12 +26,12 @@
     "./initWasmAsm.cjs"
   ],
   "type": "module",
-  "version": "4.6.2-5",
+  "version": "4.6.2-6",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.8",
-    "@polkadot/wasm-crypto-asmjs": "^4.6.2-5",
-    "@polkadot/wasm-crypto-wasm": "^4.6.2-5"
+    "@polkadot/wasm-crypto-asmjs": "^4.6.2-6",
+    "@polkadot/wasm-crypto-wasm": "^4.6.2-6"
   },
   "devDependencies": {
     "@polkadot/util": "^8.5.1",
