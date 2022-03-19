@@ -8,6 +8,8 @@
 Changes:
 
 - Add (optional) `@polkadot/wasm-crypto/init{OnlyAsm, OnlyWasm, WasmAsm}` to allow specific interface types
+- Add work-around for lazy secp256k1 init in asm.js environments
+- Additional workaround for Vite bundling
 
 
 ## 4.6.1 Mar 12, 2022
