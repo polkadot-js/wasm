@@ -5,4 +5,4 @@ require('./alias-imports.cjs');
 
 const { runUnassisted } = require('./all/index.cjs');
 
-runUnassisted();
+runUnassisted('WASM');

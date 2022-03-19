@@ -568,9 +568,9 @@ checksum = "99c605b9a0adc77b7211c6b1f722dcb613d68d66859a44f3d485a6da332b0598"
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.19"
+version = "1.0.36"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "04f5f085b5d71e2188cb8271e5da0161ad52c3f227a661a3c135fdf28e258b12"
+checksum = "c7342d5883fbccae1cc37a2353b09c87c9b0f3afd73f5fb9bba687a1f733b029"
 dependencies = [
  "unicode-xid",
 ]
@@ -781,9 +781,9 @@ checksum = "502d53007c02d7605a05df1c1a73ee436952781653da5d0bf57ad608f66932c1"
 
 [[package]]
 name = "syn"
-version = "1.0.38"
+version = "1.0.89"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e69abc24912995b3038597a7a593be5053eb0fb44f3cc5beec0deb421790c1f4"
+checksum = "ea297be220d52398dcc07ce15a209fce436d361735ac1db700cab3b6cdfb9f54"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -908,19 +908,19 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen"
-version = "0.2.65"
+version = "0.2.79"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f3edbcc9536ab7eababcc6d2374a0b7bfe13a2b6d562c5e07f370456b1a8f33d"
+checksum = "25f1af7423d8588a3d840681122e72e6a24ddbcb3f0ec385cac0d12d24256c06"
 dependencies = [
- "cfg-if 0.1.10",
+ "cfg-if 1.0.0",
  "wasm-bindgen-macro",
 ]
 
 [[package]]
 name = "wasm-bindgen-backend"
-version = "0.2.65"
+version = "0.2.79"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "89ed2fb8c84bfad20ea66b26a3743f3e7ba8735a69fe7d95118c33ec8fc1244d"
+checksum = "8b21c0df030f5a177f3cba22e9bc4322695ec43e7257d865302900290bcdedca"
 dependencies = [
  "bumpalo",
  "lazy_static",
@@ -933,9 +933,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro"
-version = "0.2.65"
+version = "0.2.79"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eb071268b031a64d92fc6cf691715ca5a40950694d8f683c5bb43db7c730929e"
+checksum = "2f4203d69e40a52ee523b2529a773d5ffc1dc0071801c87b3d270b471b80ed01"
 dependencies = [
  "quote",
  "wasm-bindgen-macro-support",
@@ -943,9 +943,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro-support"
-version = "0.2.65"
+version = "0.2.79"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf592c807080719d1ff2f245a687cbadb3ed28b2077ed7084b47aba8b691f2c6"
+checksum = "bfa8a30d46208db204854cadbb5d4baf5fcf8071ba5bf48190c3e59937962ebc"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -956,9 +956,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-shared"
-version = "0.2.65"
+version = "0.2.79"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72b6c0220ded549d63860c78c38f3bcc558d1ca3f4efa74942c536ddbbb55e87"
+checksum = "3d958d035c4438e28c70e4321a2911302f10135ce78a9c7834c0cab4123d06a2"
 
 [[package]]
 name = "wee_alloc"
