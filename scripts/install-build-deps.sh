@@ -8,15 +8,18 @@ set -e
 source ./scripts/rust-version.sh
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
-BINARYEN_VER=version_97
+# BINARYEN_VER=version_97
+BINARYEN_VER=version_105
 BINARYEN_ZIP=
 
 BINDGEN_REPO=https://github.com/rustwasm/wasm-bindgen
 BINDGEN_VER=0.2.65
+# BINDGEN_VER=0.2.79
 BINDGEN_ZIP=
 
 WABT_REPO=https://github.com/WebAssembly/wabt
-WABT_VER=1.0.19
+# WABT_VER=1.0.19
+WABT_VER=1.0.27
 WABT_ZIP=
 
 unamestr=`uname`

@@ -38,10 +38,8 @@ echo "*** Building asm.js version"
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
-sed -i -e '/export var /d' $ASM
-sed -i -e 's/{abort.*},memasmFunc/wbg, memasmFunc/g' $ASM
-sed -i -e 's/var retasmFunc = /const asmJsInit = (wbg) => /' $ASM
-echo "module.exports = { asmJsInit };" >> $ASM
+sed -i -e '1,/var retasmFunc = /!d' $ASM
+sed -i -e 's/var retasmFunc = .*/const asmJsInit = (wbg) => asmFunc(wbg);\n\nmodule.exports = { asmJsInit };/g' $ASM
 
 # cleanups
 rm -rf wasm-crypto-asmjs/build/cjs/*-e
