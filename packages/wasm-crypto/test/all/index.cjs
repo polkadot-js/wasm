@@ -12,6 +12,7 @@ const vrf = require('./vrf.cjs');
 const tests = {
   // We place secp256k1 first, this allows the interaction with it in the
   // hashing (specifically scrypt) test not be an issue (ASM.js only)
+  // https://github.com/polkadot-js/wasm/issues/307
   ...secp256k1,
   ...ed25519,
   ...sr25519,
