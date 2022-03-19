@@ -59,6 +59,7 @@ let secpLazyInit = false;
 export const secp256k1FromSeed = withWasm((wasm, seckey: Uint8Array): Uint8Array => {
   // HACK In an asm.js environment, the static initialization seems to trip up the
   // first usage of the keypair generation
+  // https://github.com/polkadot-js/wasm/issues/307
   if (!secpLazyInit && __bridge.type === 'asm') {
     wasm.ext_secp_from_seed(8, ...allocU8a(seckey));
     resultU8a();
