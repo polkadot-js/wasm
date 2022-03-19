@@ -19,6 +19,7 @@ async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | 
   } catch (error) {
     // if we have a valid supplied asm.js, return that
     if (asmFn) {
+      __bridge.type = 'asm';
       __bridge.wasm = asmFn(imports);
     } else {
       console.error('FATAL: Unable to initialize @polkadot/wasm-crypto');
