@@ -40,7 +40,9 @@ function runAll (name) {
 
       console.timeEnd(name);
     } catch (error) {
+      console.error();
       console.error(error);
+
       failed.push(name);
     }
   });
