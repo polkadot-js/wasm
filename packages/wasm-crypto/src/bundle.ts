@@ -64,7 +64,7 @@ export const secp256k1FromSeed = withWasm((wasm, seckey: Uint8Array): Uint8Array
     resultU8a();
   }
 
-  secpLazyInit = false;
+  secpLazyInit = true;
   wasm.ext_secp_from_seed(8, ...allocU8a(seckey));
 
   return resultU8a();
