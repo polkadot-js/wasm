@@ -3,7 +3,7 @@
 ## 5.0.1 Mar 19, 2022
 
 - **Breaking change** For users of React Native, you are now required to add `import '@polkadot/wasm-crypto/initOnlyAsm'` at your project top-level to ensure that asm.js is initialized. (Or alternatively `import '@polkadot/wasm-crypto/initWasmAsm'` to future-proof when WASM does become available)
-- **Breaking change** For users who used to map the `data` and `empty` of the internal `wasm-crypto-{wasm, asmjs}` packages in their bundlers, swap to one of the `@polkadot/wasm-crypto/init*` top-level imports to set the type of interfaces you would prefer.
+- **Breaking change** For users who used to map the `data` and `empty` of the internal `wasm-crypto-{wasm, asmjs}` packages in their bundlers, swap to one of the `@polkadot/wasm-crypto/init*` top-level imports to set the type of interfaces you would prefer. A full writeup of the rationale and other options can be found [in the FAQ](https://polkadot.js.org/docs/util-crypto/FAQ#i-dont-have-wasm-available-in-my-environment) 
 
 Changes:
 
