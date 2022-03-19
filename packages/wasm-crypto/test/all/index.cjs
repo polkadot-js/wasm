@@ -24,7 +24,7 @@ function beforeAll () {
   return wasm.waitReady();
 }
 
-function runAll () {
+function runAll (name) {
   const failed = [];
   let count = 0;
 
@@ -46,17 +46,21 @@ function runAll () {
   });
 
   if (failed.length) {
-    throw new Error(`Failed: ${failed.length} of ${count}: ${failed.concat(', ')}`);
+    throw new Error(`\n*** ${name}: FAILED: ${failed.length} of ${count}: ${failed.join(', ')}`);
   }
 }
 
-function runUnassisted () {
-  beforeAll()
-    .then(() => runAll())
-    .then(() => process.exit(0))
-    .catch((error) => {
-      console.error(error);
+function runUnassisted (name) {
+  console.log(`\n*** ${name}: Running tests`);
 
+  beforeAll()
+    .then(() => runAll(name))
+    .then(() => {
+      console.log(`\n*** ${name}: All passed`);
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error(error.message, '\n');
       process.exit(-1);
     });
 }
