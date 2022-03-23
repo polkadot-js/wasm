@@ -3,27 +3,23 @@
 
 import type { AsmCreator, WasmCryptoInstance } from './types';
 
-import { assert, isFunction } from '@polkadot/util';
+import { assert } from '@polkadot/util';
 
 import { __bridge } from './bridge';
-import * as imports from './imports';
+import * as wbg from './imports';
 
 async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
   try {
-    assert(typeof WebAssembly !== 'undefined' && wasmBytes && wasmBytes.length, 'WebAssembly is not available in your environment');
+    assert(typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function' && wasmBytes && wasmBytes.length, 'WebAssembly is not available in your environment');
 
-    const source = await WebAssembly.instantiate(wasmBytes, { wbg: imports });
-    const exports = (source.instance.exports as unknown as WasmCryptoInstance);
+    const source = await WebAssembly.instantiate(wasmBytes, { wbg });
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    assert(isFunction(exports.ext_blake2b), 'Invalid instantiated WASM interface');
-
-    __bridge.wasm = exports;
+    __bridge.wasm = (source.instance.exports as unknown as WasmCryptoInstance);
   } catch (error) {
     // if we have a valid supplied asm.js, return that
     if (asmFn) {
       __bridge.type = 'asm';
-      __bridge.wasm = asmFn(imports);
+      __bridge.wasm = asmFn(wbg);
     } else {
       console.error(`FATAL: Unable to initialize @polkadot/wasm-crypto:: ${(error as Error).message}`);
 
