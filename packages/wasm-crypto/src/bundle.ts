@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { __bridge, allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
-import { setWasmOnlyPromise } from './init';
+import { setWasmOnlyPromise } from './initOnlyWasmBase';
 
 export { packageInfo } from './packageInfo';
 
