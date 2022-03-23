@@ -6,7 +6,7 @@ import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
 import { setPromise } from './init';
 
 export function initWasm (): Promise<void> {
-  return setPromise(null, asmJsInit);
+  return setPromise(null, asmJsInit, true);
 }
 
 initWasm().catch(() => undefined);

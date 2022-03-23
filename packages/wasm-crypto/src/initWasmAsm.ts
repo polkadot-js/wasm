@@ -7,7 +7,7 @@ import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 import { setPromise } from './init';
 
 export function initWasm (): Promise<void> {
-  return setPromise(wasmBytes, asmJsInit);
+  return setPromise(wasmBytes, asmJsInit, true);
 }
 
 initWasm().catch(() => undefined);

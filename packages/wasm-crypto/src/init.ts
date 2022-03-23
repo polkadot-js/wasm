@@ -32,8 +32,8 @@ async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | 
   }
 }
 
-export function setPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
-  if (!__bridge.wasmPromise) {
+export function setPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null, force = false): Promise<void> {
+  if (!__bridge.wasmPromise || force) {
     __bridge.wasmPromise = createPromise(wasmBytes, asmFn);
   }
 

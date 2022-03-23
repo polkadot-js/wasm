@@ -5,6 +5,6 @@ import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
 import { setPromise } from './init';
 
-export function setWasmOnlyPromise (): Promise<void> {
-  return setPromise(wasmBytes, null);
+export function setWasmOnlyPromise (force = false): Promise<void> {
+  return setPromise(wasmBytes, null, force);
 }
