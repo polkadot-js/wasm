@@ -27,7 +27,7 @@
     "test:wasm:js": "yarn test:wasm:js:jest && yarn test:wasm:js:node",
     "test:wasm:js:jest": "polkadot-dev-run-test ./test/jest.spec.js",
     "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
-    "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
+    "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
