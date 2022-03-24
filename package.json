@@ -17,6 +17,7 @@
   "scripts": {
     "build": "yarn build:wasm",
     "build:js": "./scripts/build-js.sh",
+    "build:mac": "PATH=\"/opt/homebrew/opt/llvm/bin:$PATH\" CC=/opt/homebrew/opt/llvm/bin/clang AR=/opt/homebrew/opt/llvm/bin/llvm-ar yarn build",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
     "build:wasm": "./scripts/build.sh",
@@ -27,7 +28,7 @@
     "test:wasm:js": "yarn test:wasm:js:jest && yarn test:wasm:js:node",
     "test:wasm:js:jest": "polkadot-dev-run-test ./test/jest.spec.js",
     "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
-    "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --nocapture"
+    "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

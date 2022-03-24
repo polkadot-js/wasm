@@ -4,7 +4,9 @@
 
 Changes:
 
-- Allow for `initNone` with no Wasm and no Asm
+- Swap from `libsecp256k1` to `secp256k1` (this aligns with the Substrate use)
+- Adjust `wasm-crypto/init*` to also export `initWasm(): Promise<void>` (optional manual init)
+- Allow for `wasm-crypto/initNone` with no defined Wasm or Asm interfaces
 
 
 ## 5.0.1 Mar 19, 2022
