@@ -20,4 +20,4 @@ export function initWasm (): Promise<void> {
   return setWasmOnlyPromise();
 }
 
-initWasm().catch(() => undefined);
+__bridge.initFn = initWasm;

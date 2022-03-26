@@ -4,6 +4,7 @@
 import type { AsmCreator, WasmCryptoInstance } from './types';
 
 import { assert } from '@polkadot/util';
+import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
 import { __bridge } from './bridge';
 import * as wbg from './imports';
@@ -28,10 +29,12 @@ async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | 
   }
 }
 
-export function setPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null, force = false): Promise<void> {
-  if (!__bridge.wasmPromise || force) {
-    __bridge.wasmPromise = createPromise(wasmBytes, asmFn);
-  }
+export function setPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
+  __bridge.wasmPromise = createPromise(wasmBytes, asmFn);
 
   return __bridge.wasmPromise;
+}
+
+export function initWasm (): Promise<void> {
+  return setPromise(wasmBytes, null);
 }
