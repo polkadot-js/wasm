@@ -4,10 +4,11 @@
 import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
 import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
+import { __bridge } from './bridge';
 import { setPromise } from './init';
 
 export function initWasm (): Promise<void> {
-  return setPromise(wasmBytes, asmJsInit, true);
+  return setPromise(wasmBytes, asmJsInit);
 }
 
-initWasm().catch(() => undefined);
+__bridge.initFn = initWasm;

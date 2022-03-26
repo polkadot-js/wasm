@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { __bridge, allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
-import { setWasmOnlyPromise } from './initOnlyWasmBase';
+import { initWasm } from './init';
 
 export { packageInfo } from './packageInfo';
 
@@ -202,9 +202,13 @@ export function isReady (): boolean {
   return !!getWasm();
 }
 
-export function waitReady (): Promise<boolean> {
+export async function waitReady (): Promise<boolean> {
+  if (!__bridge.initFn) {
+    __bridge.initFn = initWasm;
+  }
+
   return (
-    __bridge.wasmPromise || setWasmOnlyPromise()
+    __bridge.wasmPromise || __bridge.initFn()
   )
     .then(() => isReady())
     .catch(() => false);

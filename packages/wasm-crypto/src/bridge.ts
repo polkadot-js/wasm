@@ -15,6 +15,7 @@ type PopFirst<T extends unknown[]> =
 interface Bridge {
   cachegetInt32: Int32Array | null;
   cachegetUint8: Uint8Array | null;
+  initFn: null | (() => Promise<void>);
   type: 'wasm' | 'asm';
   wasm: WasmCryptoInstance | null;
   wasmPromise: Promise<void> | null;
@@ -23,6 +24,7 @@ interface Bridge {
 export const __bridge: Bridge = {
   cachegetInt32: null,
   cachegetUint8: null,
+  initFn: null,
   type: 'wasm',
   wasm: null,
   wasmPromise: null
