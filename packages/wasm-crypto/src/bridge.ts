@@ -15,19 +15,19 @@ type PopFirst<T extends unknown[]> =
 interface Bridge {
   cachegetInt32: Int32Array | null;
   cachegetUint8: Uint8Array | null;
-  initFn: null | (() => Promise<void>);
   type: 'wasm' | 'asm';
   wasm: WasmCryptoInstance | null;
   wasmPromise: Promise<void> | null;
+  wasmPromiseFn: null | (() => Promise<void>);
 }
 
 export const __bridge: Bridge = {
   cachegetInt32: null,
   cachegetUint8: null,
-  initFn: null,
   type: 'wasm',
   wasm: null,
-  wasmPromise: null
+  wasmPromise: null,
+  wasmPromiseFn: null
 };
 
 export function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {
