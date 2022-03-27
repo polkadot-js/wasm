@@ -29,12 +29,16 @@ async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | 
   }
 }
 
-export function setPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
+export function setWasmPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
   __bridge.wasmPromise = createPromise(wasmBytes, asmFn);
 
   return __bridge.wasmPromise;
 }
 
+export function setWasmPromiseFn (fn: () => Promise<void>): void {
+  __bridge.wasmPromiseFn = fn;
+}
+
 export function initWasm (): Promise<void> {
-  return setPromise(wasmBytes, null);
+  return setWasmPromise(wasmBytes, null);
 }

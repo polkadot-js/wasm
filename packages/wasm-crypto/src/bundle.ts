@@ -203,16 +203,19 @@ export function isReady (): boolean {
 }
 
 export async function waitReady (): Promise<boolean> {
-  if (!__bridge.wasmPromise) {
-    if (!__bridge.initFn) {
-      __bridge.initFn = initWasm;
+  try {
+    if (!__bridge.wasmPromise) {
+      if (!__bridge.wasmPromiseFn) {
+        __bridge.wasmPromiseFn = initWasm;
+      }
+
+      __bridge.wasmPromise = __bridge.wasmPromiseFn();
     }
 
-    __bridge.wasmPromise = __bridge.initFn().catch(() => undefined);
-  }
+    await __bridge.wasmPromise;
 
-  return __bridge
-    .wasmPromise
-    .then(() => isReady())
-    .catch(() => false);
+    return isReady();
+  } catch {
+    return false;
+  }
 }
