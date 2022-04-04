@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Update ed25519 secret key format return description
+
+
 ## 5.1.1 Mar 27, 2022
 
 Changes:
