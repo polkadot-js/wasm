@@ -1,4 +1,4 @@
-     396	Jaco                          	Update ed25519 secret key format return description (#325)
+     397	Jaco                          	Allow for CJS file locations under `cjs/**` root (#326)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
