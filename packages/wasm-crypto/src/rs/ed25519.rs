@@ -22,8 +22,8 @@ fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 ///
 /// * seed: UIntArray with 32 element
 ///
-/// returned vector is the concatenation of first the private key (64 bytes)
-/// followed by the public key (32) bytes.
+/// returned vector is the concatenation of first the seed (32 bytes)
+/// followed by the public key (32) bytes, as the full secret keys.
 #[wasm_bindgen]
 pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
 	match &SecretKey::from_bytes(seed) {
