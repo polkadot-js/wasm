@@ -5,6 +5,7 @@
 Changes:
 
 - Update ed25519 secret key format return description
+- Allow for CJS file locations under `cjs/**` root
 
 
 ## 5.1.1 Mar 27, 2022
