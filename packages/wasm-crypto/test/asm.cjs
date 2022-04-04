@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 require('./alias-imports.cjs');
-require('@polkadot/wasm-crypto/initOnlyAsm.cjs');
+require('@polkadot/wasm-crypto/initOnlyAsm');
 
 const { runUnassisted } = require('./all/index.cjs');
 

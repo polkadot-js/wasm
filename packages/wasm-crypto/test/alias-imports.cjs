@@ -3,9 +3,8 @@
 
 const rootIncl = ['@polkadot/wasm-crypto', '@polkadot/wasm-crypto-asmjs', '@polkadot/wasm-crypto-wasm'];
 const detcIncl = [
-  ...rootIncl.map((p) => `${p}/initOnlyAsm.cjs`),
-  ...rootIncl.map((p) => `${p}/initOnlyWasm.cjs`),
-  ...rootIncl.map((p) => `${p}/packageInfo.cjs`)
+  ...rootIncl.map((p) => `${p}/initOnlyAsm`),
+  ...rootIncl.map((p) => `${p}/cjs/packageInfo`)
 ];
 
 require('override-require')(
@@ -14,10 +13,9 @@ require('override-require')(
     detcIncl.some((p) => request.endsWith(p)),
   (request) =>
     rootIncl.some((p) => request.endsWith(p))
-      ? require(`${rootIncl.find((p) => request.endsWith(p))}/build/index.cjs`)
+      ? require(`${rootIncl.find((p) => request.endsWith(p))}/build/cjs`)
       : require(`${detcIncl.find((p) => request.endsWith(p))
-        .replace('initOnlyAsm.cjs', 'build/initOnlyAsm.cjs')
-        .replace('initOnlyWasm.cjs', 'build/initOnlyWasm.cjs')
-        .replace('packageInfo.cjs', 'build/packageInfo.cjs')
+        .replace('initOnlyAsm', 'build/cjs/initOnlyAsm.js')
+        .replace('/cjs/packageInfo', '/build/cjs/packageInfo.js')
       }`)
 );

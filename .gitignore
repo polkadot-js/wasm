@@ -1,6 +1,8 @@
 binaryen/
 bindgen/
 build/
+build-cjs/
+build-esm/
 build-docs/
 bytes/
 coverage/
