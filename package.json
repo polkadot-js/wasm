@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
-    "@polkadot/dev": "^0.65.101",
+    "@polkadot/dev": "^0.65.105",
     "fflate": "^0.7.3",
     "override-require": "^1.1.1"
   },
