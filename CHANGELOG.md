@@ -7,7 +7,7 @@
 Changes:
 
 - Update ed25519 secret key format return description
-- Output CJS file under `cjs/**` root
+- Output commonjs files under the `cjs/**` root
 
 
 ## 5.1.1 Mar 27, 2022
