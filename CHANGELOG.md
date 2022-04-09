@@ -1,11 +1,11 @@
 # CHANGELOG
 
-## master
+## 5.2.1 Apr 9, 2022
 
 Changes:
 
 - Update ed25519 secret key format return description
-- Allow for CJS file locations under `cjs/**` root
+- Output CJS file under `cjs/**` root
 
 
 ## 5.1.1 Mar 27, 2022
