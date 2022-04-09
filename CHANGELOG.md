@@ -1,11 +1,13 @@
 # CHANGELOG
 
-## master
+## 6.0.1 Apr 9, 2022
+
+- **Breaking change** In this major version the commonjs outputs are moved to a sub-folder. Since the `export` map and `main` field in `package.json` does reflect this change, there should be no usage changes. However the packages here will all need to be on the same version for internal linkage.
 
 Changes:
 
 - Update ed25519 secret key format return description
-- Allow for CJS file locations under `cjs/**` root
+- Output commonjs files under the `cjs/**` root
 
 
 ## 5.1.1 Mar 27, 2022

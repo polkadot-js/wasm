@@ -17,10 +17,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "5.1.2-4",
+  "version": "6.0.0",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.17.8"
+    "@babel/runtime": "^7.17.9"
   },
   "devDependencies": {
     "@polkadot/util": "^8.7.1"
