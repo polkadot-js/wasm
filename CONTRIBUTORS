@@ -1,4 +1,4 @@
-     408	Jaco                          	Bump dev deps (#338)
+     409	Jaco                          	Adjust WASM init process (w/ RN aliases) (#340)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)

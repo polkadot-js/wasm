@@ -20,14 +20,14 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "6.0.2-7",
+  "version": "6.0.2-8",
   "browser": "wasm.js",
   "main": "wasm.js",
   "react-native": "asm.js",
   "dependencies": {
     "@babel/runtime": "^7.17.9",
-    "@polkadot/wasm-data-asmjs": "6.0.2-7",
-    "@polkadot/wasm-data-wasm": "6.0.2-7"
+    "@polkadot/wasm-data-asmjs": "6.0.2-8",
+    "@polkadot/wasm-data-wasm": "6.0.2-8"
   },
   "devDependencies": {
     "@polkadot/util": "^9.1.1"
