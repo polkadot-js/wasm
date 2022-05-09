@@ -9,7 +9,7 @@ source ../scripts/rust-version.sh
 
 WSM=bytes/wasm_bg.wasm
 OPT=bytes/wasm_opt.wasm
-ASM=wasm-crypto-asmjs/build/cjs/data.js
+ASM=wasm-data-asmjs/build/cjs/data.js
 
 # build new via wasm-pack
 echo "*** Building Rust sources"
@@ -42,5 +42,5 @@ sed -i -e '1,/var retasmFunc = /!d' $ASM
 sed -i -e 's/var retasmFunc = .*/const asmJsInit = (wbg) => asmFunc(wbg);\n\nmodule.exports = { asmJsInit };/g' $ASM
 
 # cleanups
-rm -rf wasm-crypto-asmjs/build/cjs/*-e
-rm -rf wasm-crypto-wasm/build/cjs/*-e
+rm -rf wasm-data-asmjs/build/cjs/*-e
+rm -rf wasm-data-wasm/build/cjs/*-e
