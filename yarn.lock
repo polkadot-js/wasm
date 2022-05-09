@@ -2038,6 +2038,8 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@polkadot/util": ^9.1.1
+    "@polkadot/wasm-data-asmjs": 6.0.2-7
+    "@polkadot/wasm-data-wasm": 6.0.2-7
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
