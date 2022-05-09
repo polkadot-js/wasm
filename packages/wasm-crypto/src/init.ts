@@ -1,44 +1,19 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AsmCreator, WasmCryptoInstance } from './types';
+import type { CreatePromise, WasmCryptoInstance } from './types';
 
-import { assert } from '@polkadot/util';
-import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
+import { init } from '@polkadot/wasm-crypto-init';
 
 import { __bridge } from './bridge';
 import * as wbg from './imports';
 
-async function createPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
-  try {
-    assert(typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function' && wasmBytes && wasmBytes.length, 'WebAssembly is not available in your environment');
-
-    const source = await WebAssembly.instantiate(wasmBytes, { wbg });
-
-    __bridge.wasm = (source.instance.exports as unknown as WasmCryptoInstance);
-  } catch (error) {
-    // if we have a valid supplied asm.js, return that
-    if (asmFn) {
-      __bridge.type = 'asm';
-      __bridge.wasm = asmFn(wbg);
-    } else {
-      console.error(`FATAL: Unable to initialize @polkadot/wasm-crypto:: ${(error as Error).message}`);
-
-      __bridge.wasm = null;
-    }
+export async function initWasm (initOverride?: (wbg: WebAssembly.ModuleImports) => CreatePromise): Promise<void> {
+  if (!__bridge.wasmPromise || initOverride) {
+    __bridge.wasmPromise = (initOverride || init)(wbg);
   }
-}
 
-export function setWasmPromise (wasmBytes: Uint8Array | null, asmFn: AsmCreator | null): Promise<void> {
-  __bridge.wasmPromise = createPromise(wasmBytes, asmFn);
+  const { wasm } = await __bridge.wasmPromise;
 
-  return __bridge.wasmPromise;
-}
-
-export function setWasmPromiseFn (fn: () => Promise<void>): void {
-  __bridge.wasmPromiseFn = fn;
-}
-
-export function initWasm (): Promise<void> {
-  return setWasmPromise(wasmBytes, null);
+  __bridge.wasm = wasm as WasmCryptoInstance;
 }

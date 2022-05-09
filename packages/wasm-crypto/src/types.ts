@@ -1,6 +1,8 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { InitResult } from '@polkadot/wasm-crypto-init/types';
+
 /* eslint-disable camelcase */
 
 // wasm-pack build output (formatted) from pkg/wasm_bg.d.ts
@@ -85,3 +87,5 @@ export interface WasmCryptoInstance {
 }
 
 export type AsmCreator = (wbg: Record<string, WebAssembly.ImportValue>) => WasmCryptoInstance;
+
+export type CreatePromise = Promise<InitResult>;

@@ -14,10 +14,11 @@ const external = [
 
 const overrides = {
   '@polkadot/wasm-crypto': {
-    entries: ['asmjs', 'wasm'].map((p) => `wasm-crypto-${p}`).reduce((all, p) => ({
-      ...all,
-      [`@polkadot/${p}`]: `../../${p}/build`
-    }), {})
+    entries: {
+      '@polkadot/wasm-crypto-init': '../../wasm-crypto-init/build',
+      '@polkadot/wasm-data-asmjs': '../../../wasm-data-asmjs/build',
+      '@polkadot/wasm-data-wasm': '../../../wasm-data-wasm/build',
+    }
   }
 };
 

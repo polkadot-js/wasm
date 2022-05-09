@@ -3,7 +3,7 @@
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import type { WasmCryptoInstance } from './types';
+import type { CreatePromise, WasmCryptoInstance } from './types';
 
 import { assert, stringToU8a, u8aToString } from '@polkadot/util';
 
@@ -15,19 +15,15 @@ type PopFirst<T extends unknown[]> =
 interface Bridge {
   cachegetInt32: Int32Array | null;
   cachegetUint8: Uint8Array | null;
-  type: 'wasm' | 'asm';
   wasm: WasmCryptoInstance | null;
-  wasmPromise: Promise<void> | null;
-  wasmPromiseFn: null | (() => Promise<void>);
+  wasmPromise: CreatePromise | null;
 }
 
 export const __bridge: Bridge = {
   cachegetInt32: null,
   cachegetUint8: null,
-  type: 'wasm',
   wasm: null,
-  wasmPromise: null,
-  wasmPromiseFn: null
+  wasmPromise: null
 };
 
 export function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {

@@ -5,7 +5,7 @@ const fflate = require('fflate/node');
 const fs = require('fs');
 const { formatNumber } = require('@polkadot/util');
 
-const W_NAME = 'wasm-crypto-wasm';
+const W_NAME = 'wasm-data-wasm';
 
 const data = fs.readFileSync('./bytes/wasm_opt.wasm');
 const compressed = Buffer.from(fflate.zlibSync(data, { level: 9 }));

@@ -5,7 +5,7 @@
   "files": [],
   "references": [
     { "path": "./packages/wasm-crypto/tsconfig.build.json" },
-    { "path": "./packages/wasm-crypto-asmjs/tsconfig.build.json" },
-    { "path": "./packages/wasm-crypto-wasm/tsconfig.build.json" }
+    { "path": "./packages/wasm-data-asmjs/tsconfig.build.json" },
+    { "path": "./packages/wasm-data-wasm/tsconfig.build.json" }
   ]
 }
