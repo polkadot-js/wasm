@@ -21,8 +21,12 @@ const tests = {
   ...hashing
 };
 
-function beforeAll () {
-  return wasm.waitReady();
+async function beforeAll () {
+  const result = await wasm.waitReady();
+
+  console.log(`*** waitReady()=${result} for ${wasm.__bridge.type}`);
+
+  return result;
 }
 
 function runAll (name) {
@@ -30,16 +34,18 @@ function runAll (name) {
   let count = 0;
 
   Object.keys(tests).forEach((name) => {
+    const timerId = `\t${name}`;
+
     count++;
 
     try {
-      console.time(name);
+      console.time(timerId);
       console.log();
-      console.log(name);
+      console.log(timerId);
 
       tests[name](wasm);
 
-      console.timeEnd(name);
+      console.timeEnd(timerId);
     } catch (error) {
       console.error();
       console.error(error);

@@ -1,10 +1,11 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
+import { __bridge, allocString, allocU8a, getWasm, resultString, resultU8a, withWasm } from './bridge';
 import { initWasm } from './init';
 
 export { packageInfo } from './packageInfo';
+export { __bridge };
 
 export const bip39Generate = withWasm((wasm, words: 12 | 15 | 18 | 21 | 24): string => {
   wasm.ext_bip39_generate(8, words);

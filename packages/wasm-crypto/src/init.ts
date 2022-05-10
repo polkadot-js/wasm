@@ -13,7 +13,8 @@ export async function initWasm (initOverride?: (wbg: WebAssembly.ModuleImports) 
     __bridge.wasmPromise = (initOverride || init)(wbg);
   }
 
-  const { wasm } = await __bridge.wasmPromise;
+  const { type, wasm } = await __bridge.wasmPromise;
 
+  __bridge.type = type;
   __bridge.wasm = wasm as WasmCryptoInstance;
 }
