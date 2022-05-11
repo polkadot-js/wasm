@@ -17,4 +17,4 @@ exclude_patterns:
 - "**/*.spec.ts"
 - "docs/**/*.js"
 - "**/test/**/*.js"
-- "packages/wasm-data-wasm/src/fflate.ts"
+- "packages/wasm-crypto-wasm/src/fflate.ts"

@@ -1,7 +1,13 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const rootIncl = ['@polkadot/wasm-crypto', '@polkadot/wasm-crypto-init', '@polkadot/wasm-data-asmjs', '@polkadot/wasm-data-wasm'];
+const rootIncl = [
+  '@polkadot/wasm-crypto',
+  '@polkadot/wasm-crypto-init',
+  '@polkadot/wasm-crypto-asmjs',
+  '@polkadot/wasm-crypto-wasm'
+];
+
 const detcIncl = [
   ...rootIncl.map((p) => `${p}/initOnlyAsm`),
   ...rootIncl.map((p) => `${p}/cjs/asm`),

@@ -3,10 +3,10 @@
   "compilerOptions": {
     "composite": true,
     "paths": {
-      "@polkadot/wasm-data-asmjs/packageInfo": ["wasm-data-asmjs/src/packageInfo"],
-      "@polkadot/wasm-data-asmjs": ["wasm-data-asmjs/src"],
-      "@polkadot/wasm-data-wasm/packageInfo": ["wasm-data-wasm/src/packageInfo"],
-      "@polkadot/wasm-data-wasm": ["wasm-data-wasm/src"],
+      "@polkadot/wasm-crypto-asmjs/packageInfo": ["wasm-crypto-asmjs/src/packageInfo"],
+      "@polkadot/wasm-crypto-asmjs": ["wasm-crypto-asmjs/src"],
+      "@polkadot/wasm-crypto-wasm/packageInfo": ["wasm-crypto-wasm/src/packageInfo"],
+      "@polkadot/wasm-crypto-wasm": ["wasm-crypto-wasm/src"],
       "@polkadot/wasm-crypto-init/asm": ["wasm-crypto-init/src/asm"],
       "@polkadot/wasm-crypto-init/both": ["wasm-crypto-init/src/both"],
       "@polkadot/wasm-crypto-init/none": ["wasm-crypto-init/src/none"],

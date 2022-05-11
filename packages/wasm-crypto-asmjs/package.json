@@ -2,16 +2,16 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "contributors": [],
-  "description": "Wasm content for wasm-crypto",
+  "description": "Asm.js content for wasm-crypto",
   "engines": {
     "node": ">=14.0.0"
   },
-  "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-data-wasm#readme",
+  "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto-asmjs#readme",
   "license": "Apache-2.0",
   "maintainers": [],
-  "name": "@polkadot/wasm-data-wasm",
+  "name": "@polkadot/wasm-crypto-asmjs",
   "repository": {
-    "directory": "packages/wasm-data-wasm",
+    "directory": "packages/wasm-crypto-asmjs",
     "type": "git",
     "url": "https://github.com/polkadot-js/wasm.git"
   },
