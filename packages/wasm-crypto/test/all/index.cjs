@@ -1,6 +1,8 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+const { assert } = require('@polkadot/util');
+
 const wasm = require('../../build');
 const bip39 = require('./bip39.cjs');
 const ed25519 = require('./ed25519.cjs');
@@ -21,10 +23,12 @@ const tests = {
   ...hashing
 };
 
-async function beforeAll () {
+async function beforeAll (name) {
   const result = await wasm.waitReady();
 
   console.log(`*** waitReady()=${result} for ${wasm.__bridge.type}`);
+
+  assert(name.toLowerCase() === wasm.__bridge.type, `Incorrect environment laucnhed, expected ${name.toLowerCase()}, found ${wasm.__bridge.type}`);
 
   return result;
 }
@@ -62,7 +66,7 @@ function runAll (name) {
 function runUnassisted (name) {
   console.log(`\n*** ${name}: Running tests`);
 
-  beforeAll()
+  beforeAll(name)
     .then(() => runAll(name))
     .then(() => {
       console.log(`\n*** ${name}: All passed`);

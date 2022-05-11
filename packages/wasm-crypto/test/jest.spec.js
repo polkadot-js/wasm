@@ -9,7 +9,7 @@ import { beforeAll as beforeAllFn, tests, wasm } from './all/index.cjs';
 
 describe('wasm-crypto', () => {
   beforeAll(async () => {
-    await beforeAllFn();
+    await beforeAllFn('wasm');
   });
 
   Object.keys(tests).forEach((name) => {
