@@ -19,7 +19,7 @@ export interface BridgeBase<C extends WasmBaseInstance> {
   wbg: WebAssembly.ModuleImports;
   wasm: C | null;
 
-  initWasm (initOverride?: CreatePromiseFn<C>): Promise<C>;
+  init (initOverride?: CreatePromiseFn<C>): Promise<C>;
   getObject (idx: number): unknown;
   dropObject (idx: number): void;
   takeObject (idx: number): unknown;

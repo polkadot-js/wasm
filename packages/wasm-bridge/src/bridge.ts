@@ -44,9 +44,9 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#wasm;
   }
 
-  async initWasm (initOverride?: (wbg: WebAssembly.ModuleImports) => CreatePromise<C>): Promise<C> {
-    if (!this.#wasmPromise || initOverride) {
-      this.#wasmPromise = (initOverride || this.#defaultInit)(this.#wbg);
+  async init (override?: (wbg: WebAssembly.ModuleImports) => CreatePromise<C>): Promise<C> {
+    if (!this.#wasmPromise || override) {
+      this.#wasmPromise = (override || this.#defaultInit)(this.#wbg);
     }
 
     const { type, wasm } = await this.#wasmPromise;
