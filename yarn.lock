@@ -2032,6 +2032,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/wasm-bridge@6.0.2-12, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@polkadot/util": ^9.1.1
+    "@polkadot/x-randomvalues": ^9.1.1
+  peerDependencies:
+    "@polkadot/util": "*"
+    "@polkadot/x-randomvalues": "*"
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/wasm-crypto-asmjs@6.0.2-12, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
@@ -2073,6 +2086,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@polkadot/util": ^9.1.1
+    "@polkadot/wasm-bridge": 6.0.2-12
     "@polkadot/wasm-crypto-asmjs": 6.0.2-12
     "@polkadot/wasm-crypto-init": 6.0.2-12
     "@polkadot/wasm-crypto-wasm": 6.0.2-12

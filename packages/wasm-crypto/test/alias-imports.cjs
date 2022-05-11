@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 const rootIncl = [
+  '@polkadot/wasm-bridge',
   '@polkadot/wasm-crypto',
   '@polkadot/wasm-crypto-init',
   '@polkadot/wasm-crypto-asmjs',

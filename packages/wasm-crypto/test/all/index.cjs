@@ -26,9 +26,9 @@ const tests = {
 async function beforeAll (name) {
   const result = await wasm.waitReady();
 
-  console.log(`*** waitReady()=${result} for ${wasm.__bridge.type}`);
+  console.log(`*** waitReady()=${result} for ${wasm.bridge.type}`);
 
-  assert(name.toLowerCase() === wasm.__bridge.type, `Incorrect environment laucnhed, expected ${name.toLowerCase()}, found ${wasm.__bridge.type}`);
+  assert(name.toLowerCase() === wasm.bridge.type, `Incorrect environment laucnhed, expected ${name.toLowerCase()}, found ${wasm.bridge.type}`);
 
   return result;
 }

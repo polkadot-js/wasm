@@ -8,6 +8,6 @@ module.exports = {
   moduleNameMapper: {
     '@polkadot/wasm-crypto-(init|asmjs|wasm)(.*)$': '<rootDir>/packages/wasm-crypto-$1/build/$2',
     // eslint-disable-next-line sort-keys
-    '@polkadot/wasm-crypto(.*)$': '<rootDir>/packages/wasm-crypto/build/$1'
+    '@polkadot/wasm-(bridge|crypto)(.*)$': '<rootDir>/packages/wasm-$1/build/$2'
   }
 };
