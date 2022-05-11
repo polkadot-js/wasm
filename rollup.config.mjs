@@ -14,12 +14,10 @@ const external = [
 
 const overrides = {
   '@polkadot/wasm-crypto': {
-    entries: {
-      '@polkadot/wasm-bridge': '../../wasm-bridge/build/bundle.js',
-      '@polkadot/wasm-crypto-init': '../../wasm-crypto-init/build/wasm.js',
-      '@polkadot/wasm-crypto-asmjs': '../../wasm-crypto-asmjs/build/bundle.js',
-      '@polkadot/wasm-crypto-wasm': '../../wasm-crypto-wasm/build/bundle.js',
-    }
+    entries: ['bridge', 'crypto-init', 'crypto-asmjs', 'crypto-wasm'].reduce((all, p) => ({
+      ...all,
+      [`@polkadot/wasm-${p}`]: `../../wasm-${p}/build/bundle.js`
+    }), {}),
   }
 };
 
