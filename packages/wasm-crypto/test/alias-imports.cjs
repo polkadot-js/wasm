@@ -20,7 +20,9 @@ require('override-require')(
     detcIncl.some((p) => request.endsWith(p)),
   (request) =>
     rootIncl.some((p) => request.endsWith(p))
-      ? require(`${rootIncl.find((p) => request.endsWith(p))}/build/cjs`)
+      ? rootIncl.find((p) => request.endsWith(p)) === '@polkadot/wasm-crypto-init'
+        ? require('@polkadot/wasm-crypto-init/build/cjs/wasm')
+        : require(`${rootIncl.find((p) => request.endsWith(p))}/build/cjs`)
       : require(`${detcIncl.find((p) => request.endsWith(p))
         .replace('/initOnlyAsm', '/build/cjs/initOnlyAsm.js')
         .replace('/cjs/asm', '/build/cjs/asm.js')

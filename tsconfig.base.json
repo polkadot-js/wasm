@@ -13,7 +13,7 @@
       "@polkadot/wasm-crypto-init/wasm": ["wasm-crypto-init/src/wasm"],
       "@polkadot/wasm-crypto-init/types": ["wasm-crypto-init/src/types"],
       "@polkadot/wasm-crypto-init/packageInfo": ["wasm-crypto-init/src/packageInfo"],
-      "@polkadot/wasm-crypto-init": ["wasm-crypto-init/src"],
+      "@polkadot/wasm-crypto-init": ["wasm-crypto-init/src/wasm"],
       "@polkadot/wasm-crypto": ["wasm-crypto/src"]
     },
     "skipLibCheck": true

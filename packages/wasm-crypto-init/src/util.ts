@@ -1,11 +1,11 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto-init authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitResult } from './types';
+import type { InitFn, InitResult } from './types';
 
 import { assert } from '@polkadot/util';
 
-export function createInitFn (wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => unknown)): (wbg: WebAssembly.ModuleImports) => Promise<InitResult> {
+export function createInitFn (wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => unknown)): InitFn {
   return async (wbg: WebAssembly.ModuleImports): Promise<InitResult> => {
     const result: InitResult = {
       type: 'wasm',
