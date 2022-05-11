@@ -5,7 +5,5 @@
 
 set -e
 
-DEST=packages/wasm-crypto/build/esm
-
 ./scripts/clean-js.sh
 yarn polkadot-dev-build-ts

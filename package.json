@@ -24,15 +24,15 @@
     "clean": "./scripts/clean.sh",
     "lint": "polkadot-dev-run-lint",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "yarn test:wasm:rust",
-    "test:wasm:js": "yarn test:wasm:js:jest && yarn test:wasm:js:node",
-    "test:wasm:js:jest": "polkadot-dev-run-test ./test/jest.spec.js",
-    "test:wasm:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
-    "test:wasm:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
+    "test": "yarn test:wasm-crypto:rust",
+    "test:wasm-crypto:js": "yarn test:wasm-crypto:js:jest && yarn test:wasm-crypto:js:node",
+    "test:wasm-crypto:js:jest": "polkadot-dev-run-test ./test/jest.spec.js",
+    "test:wasm-crypto:js:node": "cd packages/wasm-crypto && node ./test/wasm.cjs && node ./test/asm.cjs",
+    "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
-    "@polkadot/dev": "^0.66.19",
+    "@polkadot/dev": "^0.66.20",
     "fflate": "^0.7.3",
     "override-require": "^1.1.1"
   },

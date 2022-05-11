@@ -7,13 +7,13 @@ set -e
 
 source ../scripts/rust-version.sh
 
-WSM=bytes/wasm_bg.wasm
-OPT=bytes/wasm_opt.wasm
-ASM=wasm-crypto-asmjs/build/cjs/data.js
+WSM=$PKG_NAME/build-wasm/wasm_bg.wasm
+OPT=$PKG_NAME/build-wasm/wasm_opt.wasm
+ASM=$PKG_NAME-asmjs/build/cjs/data.js
 
 # build new via wasm-pack
 echo "*** Building Rust sources"
-cd wasm-crypto
+cd $PKG_NAME
 if [ "$RUST_VER" == "stable" ]; then
   RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
 else
@@ -22,7 +22,7 @@ fi
 cd ..
 
 echo "*** Converting to WASM"
-../bindgen/wasm-bindgen wasm-crypto/target/wasm32-unknown-unknown/release/wasm.wasm --out-dir bytes --target web
+../bindgen/wasm-bindgen $PKG_NAME/target/wasm32-unknown-unknown/release/wasm.wasm --out-dir $PKG_NAME/build-wasm --target web
 
 # optimise
 echo "*** Optimising WASM output"
@@ -42,5 +42,5 @@ sed -i -e '1,/var retasmFunc = /!d' $ASM
 sed -i -e 's/var retasmFunc = .*/const asmJsInit = (wbg) => asmFunc(wbg);\n\nmodule.exports = { asmJsInit };/g' $ASM
 
 # cleanups
-rm -rf wasm-crypto-asmjs/build/cjs/*-e
-rm -rf wasm-crypto-wasm/build/cjs/*-e
+rm -rf $PKG_NAME-asmjs/build/cjs/*-e
+rm -rf $PKG_NAME-wasm/build/cjs/*-e

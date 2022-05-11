@@ -4,6 +4,7 @@ build/
 build-cjs/
 build-esm/
 build-docs/
+build-wasm/
 bytes/
 coverage/
 docs/.vuepress/dist/
