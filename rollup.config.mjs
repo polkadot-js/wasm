@@ -16,8 +16,8 @@ const overrides = {
   '@polkadot/wasm-crypto': {
     entries: {
       '@polkadot/wasm-crypto-init': '../../wasm-crypto-init/build',
-      '@polkadot/wasm-data-asmjs': '../../../wasm-data-asmjs/build',
-      '@polkadot/wasm-data-wasm': '../../../wasm-data-wasm/build',
+      '@polkadot/wasm-crypto-asmjs': '../../../wasm-crypto-asmjs/build',
+      '@polkadot/wasm-crypto-wasm': '../../../wasm-crypto-wasm/build',
     }
   }
 };

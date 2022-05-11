@@ -5,3 +5,5 @@ export declare interface InitResult {
   type: 'wasm' | 'asm';
   wasm: unknown;
 }
+
+export type InitFn = (wbg: WebAssembly.ModuleImports) => Promise<InitResult>;

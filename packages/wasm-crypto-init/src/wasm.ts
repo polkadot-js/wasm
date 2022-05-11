@@ -1,12 +1,12 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto-init authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitResult } from './types';
+import type { InitFn } from './types';
 
-import { wasmBytes } from '@polkadot/wasm-data-wasm';
+import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
-import { createPromise } from './create';
+import { createInitFn } from './util';
 
-export function init (wbg: WebAssembly.ModuleImports): Promise<InitResult> {
-  return createPromise(wbg, wasmBytes, null);
-}
+export { packageInfo } from './packageInfo';
+
+export const init: InitFn = createInitFn(wasmBytes, null);

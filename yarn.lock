@@ -2032,14 +2032,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/wasm-crypto-asmjs@6.0.2-9, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@polkadot/util": ^9.1.1
+  peerDependencies:
+    "@polkadot/util": "*"
+  languageName: unknown
+  linkType: soft
+
 "@polkadot/wasm-crypto-init@6.0.2-9, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
     "@babel/runtime": ^7.17.9
     "@polkadot/util": ^9.1.1
-    "@polkadot/wasm-data-asmjs": 6.0.2-9
-    "@polkadot/wasm-data-wasm": 6.0.2-9
+    "@polkadot/wasm-crypto-asmjs": 6.0.2-9
+    "@polkadot/wasm-crypto-wasm": 6.0.2-9
+  peerDependencies:
+    "@polkadot/util": "*"
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/wasm-crypto-wasm@6.0.2-9, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@polkadot/util": ^9.1.1
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -2051,33 +2073,13 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@polkadot/util": ^9.1.1
+    "@polkadot/wasm-crypto-asmjs": 6.0.2-9
     "@polkadot/wasm-crypto-init": 6.0.2-9
+    "@polkadot/wasm-crypto-wasm": 6.0.2-9
     "@polkadot/x-randomvalues": ^9.1.1
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
-  languageName: unknown
-  linkType: soft
-
-"@polkadot/wasm-data-asmjs@6.0.2-9, @polkadot/wasm-data-asmjs@workspace:packages/wasm-data-asmjs":
-  version: 0.0.0-use.local
-  resolution: "@polkadot/wasm-data-asmjs@workspace:packages/wasm-data-asmjs"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@polkadot/util": ^9.1.1
-  peerDependencies:
-    "@polkadot/util": "*"
-  languageName: unknown
-  linkType: soft
-
-"@polkadot/wasm-data-wasm@6.0.2-9, @polkadot/wasm-data-wasm@workspace:packages/wasm-data-wasm":
-  version: 0.0.0-use.local
-  resolution: "@polkadot/wasm-data-wasm@workspace:packages/wasm-data-wasm"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@polkadot/util": ^9.1.1
-  peerDependencies:
-    "@polkadot/util": "*"
   languageName: unknown
   linkType: soft
 

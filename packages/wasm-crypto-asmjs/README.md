@@ -1,0 +1,1 @@
+## @polkadot/wasm-crypto-asmjs
