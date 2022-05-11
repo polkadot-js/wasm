@@ -15,10 +15,10 @@ const external = [
 const overrides = {
   '@polkadot/wasm-crypto': {
     entries: {
-      '@polkadot/wasm-bridge': '../../wasm-bridge/build',
-      '@polkadot/wasm-crypto-init': '../../wasm-crypto-init/build',
-      '@polkadot/wasm-crypto-asmjs': '../../../wasm-crypto-asmjs/build',
-      '@polkadot/wasm-crypto-wasm': '../../../wasm-crypto-wasm/build',
+      '@polkadot/wasm-bridge': '../../wasm-bridge/build/bundle.js',
+      '@polkadot/wasm-crypto-init': '../../wasm-crypto-init/build/wasm.js',
+      '@polkadot/wasm-crypto-asmjs': '../../wasm-crypto-asmjs/build/bundle.js',
+      '@polkadot/wasm-crypto-wasm': '../../wasm-crypto-wasm/build/bundle.js',
     }
   }
 };
