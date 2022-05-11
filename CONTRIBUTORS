@@ -1,4 +1,4 @@
-     412	Jaco                          	Adjust wasm build process w/ wasm-crypto naming (#343)
+     413	Jaco                          	Add environment type check to tests (#344)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
