@@ -7,4 +7,4 @@ set -e
 
 # cleanup old
 echo "*** Cleaning old builds"
-rm -rf build packages/*/build packages/bytes
+rm -rf build packages/*/build*

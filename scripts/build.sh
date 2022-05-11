@@ -11,9 +11,9 @@ echo "*** Building JavaScript"
 echo "*** Building WASM"
 cd packages
 
-../scripts/build-wasm.sh
+PKG_NAME=wasm-crypto ../scripts/build-wasm.sh
 
-yarn test:wasm:js
+yarn test:wasm-crypto:js
 
 echo ""
 echo "*** wasm-crypto"

@@ -5,14 +5,12 @@ const fflate = require('fflate/node');
 const fs = require('fs');
 const { formatNumber } = require('@polkadot/util');
 
-const W_NAME = 'wasm-crypto-wasm';
-
-const data = fs.readFileSync('./bytes/wasm_opt.wasm');
+const data = fs.readFileSync(`./${process.env.PKG_NAME}/build-wasm/wasm_opt.wasm`);
 const compressed = Buffer.from(fflate.zlibSync(data, { level: 9 }));
 
 console.log(`*** Compressed WASM: ${formatNumber(data.length)} -> ${formatNumber(compressed.length)} (${(100 * compressed.length / data.length).toFixed(2)}%)`);
 
-fs.writeFileSync(`./${W_NAME}/build/cjs/bytes.js`, `// Copyright 2019-2022 @polkadot/${W_NAME} authors & contributors
+fs.writeFileSync(`./${process.env.PKG_NAME}-wasm/build/cjs/bytes.js`, `// Copyright 2019-${new Date().getFullYear()} @polkadot/${process.env.PKG_NAME}-wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Generated as part of the build, do not edit
