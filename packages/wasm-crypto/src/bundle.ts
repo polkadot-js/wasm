@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { WasmCryptoInstance } from './types';
+import type { WasmCryptoInstance } from '@polkadot/wasm-crypto-init/types';
 
 import { assert } from '@polkadot/util';
 

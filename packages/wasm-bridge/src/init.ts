@@ -1,13 +1,13 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto-init authors & contributors
+// Copyright 2019-2022 @polkadot/wasm-bundle authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitFn, InitResult } from './types';
+import type { InitFn, InitResult, WasmBaseInstance } from './types';
 
 import { assert } from '@polkadot/util';
 
-export function createInitFn (wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => unknown)): InitFn {
-  return async (wbg: WebAssembly.ModuleImports): Promise<InitResult> => {
-    const result: InitResult = {
+export function initWasm <C extends WasmBaseInstance> (root: string, wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => C)): InitFn<C> {
+  return async (wbg: WebAssembly.ModuleImports): Promise<InitResult<C>> => {
+    const result: InitResult<C> = {
       type: 'wasm',
       wasm: null
     };
@@ -17,14 +17,14 @@ export function createInitFn (wasmBytes: null | Uint8Array, asmFn: null | ((wbg:
 
       const source = await WebAssembly.instantiate(wasmBytes, { wbg });
 
-      result.wasm = source.instance.exports;
+      result.wasm = source.instance.exports as unknown as C;
     } catch (error) {
       // if we have a valid supplied asm.js, return that
       if (asmFn) {
         result.type = 'asm';
         result.wasm = asmFn(wbg);
       } else {
-        console.error(`FATAL: Unable to initialize @polkadot/wasm-crypto:: ${(error as Error).message}`);
+        console.error(`FATAL: Unable to initialize @polkadot/${root}:: ${(error as Error).message}`);
 
         result.wasm = null;
       }

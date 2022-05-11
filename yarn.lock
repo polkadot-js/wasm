@@ -2062,6 +2062,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@polkadot/util": ^9.1.1
+    "@polkadot/wasm-bridge": 6.0.2-12
     "@polkadot/wasm-crypto-asmjs": 6.0.2-12
     "@polkadot/wasm-crypto-wasm": 6.0.2-12
   peerDependencies:
