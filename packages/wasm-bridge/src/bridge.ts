@@ -12,7 +12,7 @@ import { Wbg } from './wbg';
 export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #cachegetInt32: Int32Array | null;
   #cachegetUint8: Uint8Array | null;
-  #createWasm: (wbg: WebAssembly.ModuleImports) => InitPromise<C>;
+  #createWasm: InitFn<C>;
   #heap: unknown[];
   #heapNext: number;
   #wasm: C | null;
