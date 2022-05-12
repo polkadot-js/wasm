@@ -14,6 +14,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #heap: unknown[];
   #heapNext: number;
   #wasm: C | null;
+  #wasmError: string | null;
   #wasmPromise: InitPromise<C> | null;
   #wbg: WebAssembly.ModuleImports;
   #type: 'asm' | 'wasm' | 'none';
@@ -26,10 +27,15 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
       .fill(undefined)
       .concat(undefined, null, true, false);
     this.#heapNext = this.#heap.length;
-    this.#type = 'wasm';
+    this.#type = 'none';
     this.#wasm = null;
+    this.#wasmError = null;
     this.#wasmPromise = null;
     this.#wbg = createWbg(this);
+  }
+
+  get error (): string | null {
+    return this.#wasmError;
   }
 
   get type (): 'asm' | 'wasm' | 'none' {
@@ -49,10 +55,11 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
       this.#wasmPromise = (override || this.#defaultInit)(this.#wbg);
     }
 
-    const { type, wasm } = await this.#wasmPromise;
+    const { error, type, wasm } = await this.#wasmPromise;
 
     this.#type = type;
     this.#wasm = wasm;
+    this.#wasmError = error;
 
     return this.#wasm;
   }
