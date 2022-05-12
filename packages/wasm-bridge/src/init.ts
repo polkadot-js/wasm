@@ -1,12 +1,12 @@
 // Copyright 2019-2022 @polkadot/wasm-bundle authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitFn, InitResult, WasmBaseInstance } from './types';
+import type { InitFn, InitPromise, InitResult, WasmBaseInstance } from './types';
 
 import { assert } from '@polkadot/util';
 
 export function initWasm <C extends WasmBaseInstance> (root: string, wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => C)): InitFn<C> {
-  return async (wbg: WebAssembly.ModuleImports): Promise<InitResult<C>> => {
+  return async (wbg: WebAssembly.ModuleImports): InitPromise<C> => {
     const result: InitResult<C> = {
       type: 'wasm',
       wasm: null
