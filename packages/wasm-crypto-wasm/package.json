@@ -17,11 +17,11 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "6.0.2-13",
+  "version": "6.0.2-14",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.9",
-    "@polkadot/wasm-util": "6.0.2-13"
+    "@polkadot/wasm-util": "6.0.2-14"
   },
   "devDependencies": {
     "@polkadot/util": "^9.1.1"
