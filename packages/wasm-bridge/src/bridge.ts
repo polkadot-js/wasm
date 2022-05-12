@@ -7,10 +7,12 @@ import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance } from './types'
 
 import { stringToU8a, u8aToString } from '@polkadot/util';
 
+import { Wbg } from './wbg';
+
 export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #cachegetInt32: Int32Array | null;
   #cachegetUint8: Uint8Array | null;
-  #defaultInit: (wbg: WebAssembly.ModuleImports) => InitPromise<C>;
+  #createWasm: (wbg: WebAssembly.ModuleImports) => InitPromise<C>;
   #heap: unknown[];
   #heapNext: number;
   #wasm: C | null;
@@ -19,8 +21,8 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #wbg: WebAssembly.ModuleImports;
   #type: 'asm' | 'wasm' | 'none';
 
-  constructor (createWbg: (bridge: Bridge<C>) => WebAssembly.ModuleImports, createWasm: InitFn<C>) {
-    this.#defaultInit = createWasm;
+  constructor (createWasm: InitFn<C>) {
+    this.#createWasm = createWasm;
     this.#cachegetInt32 = null;
     this.#cachegetUint8 = null;
     this.#heap = new Array(32)
@@ -31,7 +33,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     this.#wasm = null;
     this.#wasmError = null;
     this.#wasmPromise = null;
-    this.#wbg = createWbg(this);
+    this.#wbg = { ...new Wbg(this) };
   }
 
   get error (): string | null {
@@ -50,9 +52,9 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#wasm;
   }
 
-  async init (override?: InitFn<C>): Promise<C | null> {
-    if (!this.#wasmPromise || override) {
-      this.#wasmPromise = (override || this.#defaultInit)(this.#wbg);
+  async init (createWasm?: InitFn<C>): Promise<C | null> {
+    if (!this.#wasmPromise || createWasm) {
+      this.#wasmPromise = (createWasm || this.#createWasm)(this.#wbg);
     }
 
     const { error, type, wasm } = await this.#wasmPromise;
