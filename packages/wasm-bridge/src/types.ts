@@ -4,7 +4,7 @@
 /* eslint-disable camelcase */
 
 export declare interface InitResult<C extends WasmBaseInstance> {
-  type: 'asm' | 'wasm';
+  type: 'asm' | 'wasm' | 'none';
   wasm: C | null;
 }
 

@@ -8,7 +8,7 @@ import { assert } from '@polkadot/util';
 export function initWasm <C extends WasmBaseInstance> (root: string, wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => C)): InitFn<C> {
   return async (wbg: WebAssembly.ModuleImports): InitPromise<C> => {
     const result: InitResult<C> = {
-      type: 'wasm',
+      type: 'none',
       wasm: null
     };
 
@@ -18,15 +18,14 @@ export function initWasm <C extends WasmBaseInstance> (root: string, wasmBytes: 
       const source = await WebAssembly.instantiate(wasmBytes, { wbg });
 
       result.wasm = source.instance.exports as unknown as C;
+      result.type = 'wasm';
     } catch (error) {
       // if we have a valid supplied asm.js, return that
       if (asmFn) {
-        result.type = 'asm';
         result.wasm = asmFn(wbg);
+        result.type = 'asm';
       } else {
         console.error(`FATAL: Unable to initialize @polkadot/wasm-${root}:: ${(error as Error).message}`);
-
-        result.wasm = null;
       }
     }
 

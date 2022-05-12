@@ -16,7 +16,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #wasm: C | null;
   #wasmPromise: InitPromise<C> | null;
   #wbg: WebAssembly.ModuleImports;
-  #type: 'asm' | 'wasm';
+  #type: 'asm' | 'wasm' | 'none';
 
   constructor (createWbg: (bridge: Bridge<C>) => WebAssembly.ModuleImports, createWasm: InitFn<C>) {
     this.#defaultInit = createWasm;
@@ -32,7 +32,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     this.#wbg = createWbg(this);
   }
 
-  get type (): 'asm' | 'wasm' {
+  get type (): 'asm' | 'wasm' | 'none' {
     return this.#type;
   }
 
