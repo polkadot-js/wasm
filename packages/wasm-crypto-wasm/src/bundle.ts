@@ -1,9 +1,9 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto-wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { base64Decode, unzlibSync } from '@polkadot/wasm-util';
+
 import { bytes, sizeUncompressed } from './cjs/bytes';
-import { base64Decode } from './base64';
-import { unzlibSync } from './fflate';
 
 export { packageInfo } from './packageInfo';
 

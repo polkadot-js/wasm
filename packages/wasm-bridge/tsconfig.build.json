@@ -6,6 +6,5 @@
     "rootDir": "./src"
   },
   "references": [
-    { "path": "../wasm-util/tsconfig.build.json" }
   ]
 }

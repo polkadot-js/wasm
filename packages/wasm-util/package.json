@@ -2,16 +2,16 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "contributors": [],
-  "description": "Init handlers for wasm-crypto",
+  "description": "Utilities used exclusively inside Wasm decoding",
   "engines": {
     "node": ">=14.0.0"
   },
-  "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto-init#readme",
+  "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-util#readme",
   "license": "Apache-2.0",
   "maintainers": [],
-  "name": "@polkadot/wasm-crypto-init",
+  "name": "@polkadot/wasm-util",
   "repository": {
-    "directory": "packages/wasm-crypto-init",
+    "directory": "packages/wasm-util",
     "type": "git",
     "url": "https://github.com/polkadot-js/wasm.git"
   },
@@ -21,14 +21,9 @@
   ],
   "type": "module",
   "version": "6.0.2-12",
-  "browser": "wasm.js",
-  "main": "wasm.js",
-  "react-native": "asm.js",
+  "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.17.9",
-    "@polkadot/wasm-bridge": "6.0.2-12",
-    "@polkadot/wasm-crypto-asmjs": "6.0.2-12",
-    "@polkadot/wasm-crypto-wasm": "6.0.2-12"
+    "@babel/runtime": "^7.17.9"
   },
   "devDependencies": {
     "@polkadot/util": "^9.1.1"

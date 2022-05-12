@@ -3,18 +3,17 @@
   "compilerOptions": {
     "composite": true,
     "paths": {
-      "@polkadot/wasm-crypto-asmjs/packageInfo": ["wasm-crypto-asmjs/src/packageInfo"],
+      "@polkadot/wasm-bridge": ["wasm-bridge/src"],
+      "@polkadot/wasm-bridge/*": ["wasm-bridge/src/*"],
       "@polkadot/wasm-crypto-asmjs": ["wasm-crypto-asmjs/src"],
-      "@polkadot/wasm-crypto-wasm/packageInfo": ["wasm-crypto-wasm/src/packageInfo"],
+      "@polkadot/wasm-crypto-asmjs/*": ["wasm-crypto-asmjs/src/*"],
       "@polkadot/wasm-crypto-wasm": ["wasm-crypto-wasm/src"],
-      "@polkadot/wasm-crypto-init/asm": ["wasm-crypto-init/src/asm"],
-      "@polkadot/wasm-crypto-init/both": ["wasm-crypto-init/src/both"],
-      "@polkadot/wasm-crypto-init/none": ["wasm-crypto-init/src/none"],
-      "@polkadot/wasm-crypto-init/wasm": ["wasm-crypto-init/src/wasm"],
-      "@polkadot/wasm-crypto-init/types": ["wasm-crypto-init/src/types"],
-      "@polkadot/wasm-crypto-init/packageInfo": ["wasm-crypto-init/src/packageInfo"],
+      "@polkadot/wasm-crypto-wasm/*": ["wasm-crypto-wasm/src/*"],
       "@polkadot/wasm-crypto-init": ["wasm-crypto-init/src/wasm"],
-      "@polkadot/wasm-crypto": ["wasm-crypto/src"]
+      "@polkadot/wasm-crypto-init/*": ["wasm-crypto-init/src/*"],
+      "@polkadot/wasm-crypto": ["wasm-crypto/src"],
+      "@polkadot/wasm-util": ["wasm-util/src"],
+      "@polkadot/wasm-util/*": ["wasm-util/src/*"],
     },
     "skipLibCheck": true
   }

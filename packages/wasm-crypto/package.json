@@ -32,16 +32,16 @@
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.17.9",
+    "@polkadot/wasm-bridge": "6.0.2-12",
     "@polkadot/wasm-crypto-asmjs": "6.0.2-12",
     "@polkadot/wasm-crypto-init": "6.0.2-12",
-    "@polkadot/wasm-crypto-wasm": "6.0.2-12"
+    "@polkadot/wasm-crypto-wasm": "6.0.2-12",
+    "@polkadot/wasm-util": "6.0.2-12"
   },
   "devDependencies": {
-    "@polkadot/util": "^9.1.1",
-    "@polkadot/x-randomvalues": "^9.1.1"
+    "@polkadot/util": "^9.1.1"
   },
   "peerDependencies": {
-    "@polkadot/util": "*",
-    "@polkadot/x-randomvalues": "*"
+    "@polkadot/util": "*"
   }
 }

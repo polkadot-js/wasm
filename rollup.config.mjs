@@ -12,15 +12,21 @@ const external = [
   '@polkadot/util'
 ];
 
-const overrides = {
-  '@polkadot/wasm-crypto': {
-    entries: {
-      '@polkadot/wasm-crypto-init': '../../wasm-crypto-init/build',
-      '@polkadot/wasm-crypto-asmjs': '../../../wasm-crypto-asmjs/build',
-      '@polkadot/wasm-crypto-wasm': '../../../wasm-crypto-wasm/build',
+const overrides = pkgs
+  .map((n) => n.replace('@polkadot/wasm-', ''))
+  .reduce((map, n) => ({
+    ...map,
+    [`@polkadot/wasm-${n}`]: {
+      entries: [
+        'bridge',
+        'util',
+        ...['init', 'asmjs', 'wasm'].map((p) => `${n}-${p}`)
+      ].reduce((all, p) => ({
+        ...all,
+        [`@polkadot/wasm-${p}`]: `../../wasm-${p}/build/bundle.js`
+      }), {})
     }
-  }
-};
+  }), {});
 
 export default pkgs.map((pkg) =>
   createBundle({
