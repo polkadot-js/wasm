@@ -24,7 +24,7 @@ export function initWasm <C extends WasmBaseInstance> (root: string, wasmBytes: 
         result.type = 'asm';
         result.wasm = asmFn(wbg);
       } else {
-        console.error(`FATAL: Unable to initialize @polkadot/${root}:: ${(error as Error).message}`);
+        console.error(`FATAL: Unable to initialize @polkadot/wasm-${root}:: ${(error as Error).message}`);
 
         result.wasm = null;
       }

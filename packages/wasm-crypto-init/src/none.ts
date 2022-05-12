@@ -8,4 +8,4 @@ import { initWasm } from '@polkadot/wasm-bridge';
 
 export { packageInfo } from './packageInfo';
 
-export const init: InitFn<WasmCryptoInstance> = initWasm('wasm-crypto', null, null);
+export const init: InitFn<WasmCryptoInstance> = initWasm('crypto', null, null);

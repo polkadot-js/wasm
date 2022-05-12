@@ -9,6 +9,6 @@ import { init } from '@polkadot/wasm-crypto-init';
 
 export const bridge = new Bridge<WasmCryptoInstance>((b) => ({ ...new Wbg(b) }), init);
 
-export async function initWasm (override?: (wbg: WebAssembly.ModuleImports) => CreatePromise<WasmCryptoInstance>): Promise<WasmCryptoInstance> {
+export async function initBase (override?: (wbg: WebAssembly.ModuleImports) => CreatePromise<WasmCryptoInstance>): Promise<WasmCryptoInstance | null> {
   return bridge.init(override);
 }

@@ -3,6 +3,10 @@
 
 import { init } from '@polkadot/wasm-crypto-init/none';
 
-import { initWasm } from './init';
+import { initBase } from './init';
 
-initWasm(init).catch(undefined);
+export async function initWasm (): Promise<void> {
+  await initBase(init);
+}
+
+initWasm().catch(undefined);

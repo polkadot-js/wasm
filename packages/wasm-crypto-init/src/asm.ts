@@ -9,4 +9,4 @@ import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
 
 export { packageInfo } from './packageInfo';
 
-export const init: InitFn<WasmCryptoInstance> = initWasm('wasm-crypto', null, asmJsInit);
+export const init: InitFn<WasmCryptoInstance> = initWasm('crypto', null, asmJsInit);
