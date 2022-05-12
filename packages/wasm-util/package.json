@@ -15,7 +15,10 @@
     "type": "git",
     "url": "https://github.com/polkadot-js/wasm.git"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./detectPackage.js",
+    "./detectPackage.cjs"
+  ],
   "type": "module",
   "version": "6.0.2-12",
   "main": "index.js",

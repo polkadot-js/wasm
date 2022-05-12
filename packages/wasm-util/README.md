@@ -1,1 +1,1 @@
-## @polkadot/wasm-crypto-wasm
+## @polkadot/wasm-util
