@@ -5,7 +5,7 @@ import type { WasmCryptoInstance } from '@polkadot/wasm-crypto-init/types';
 
 import { assert } from '@polkadot/util';
 
-import { bridge, initBase } from './init';
+import { bridge, initBridge } from './init';
 
 export { packageInfo } from './packageInfo';
 export { bridge };
@@ -221,7 +221,7 @@ export function isReady (): boolean {
 
 export async function waitReady (): Promise<boolean> {
   try {
-    const wasm = await initBase();
+    const wasm = await initBridge();
 
     return !!wasm;
   } catch {

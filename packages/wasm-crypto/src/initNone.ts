@@ -1,12 +1,12 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { init } from '@polkadot/wasm-crypto-init/none';
+import { createWasm } from '@polkadot/wasm-crypto-init/none';
 
-import { initBase } from './init';
+import { initBridge } from './init';
 
 export async function initWasm (): Promise<void> {
-  await initBase(init);
+  await initBridge(createWasm);
 }
 
 initWasm().catch(undefined);

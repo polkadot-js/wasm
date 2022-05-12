@@ -11,12 +11,12 @@ export declare interface InitResult<C extends WasmBaseInstance> {
 
 export type InitPromise <C extends WasmBaseInstance> = Promise<InitResult<C>>;
 
-export type InitFn <C extends WasmBaseInstance> = (wgb: WebAssembly.ModuleImports) => InitPromise<C>;
+export type InitFn <C extends WasmBaseInstance> = (wbg: WebAssembly.ModuleImports) => InitPromise<C>;
 
 export interface BridgeBase<C extends WasmBaseInstance> extends InitResult<C> {
   wbg: WebAssembly.ModuleImports;
 
-  init (initOverride?: InitFn<C>): Promise<C | null>;
+  init (createWasm?: InitFn<C>): Promise<C | null>;
   getObject (idx: number): unknown;
   dropObject (idx: number): void;
   takeObject (idx: number): unknown;

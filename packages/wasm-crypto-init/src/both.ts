@@ -4,10 +4,10 @@
 import type { InitFn } from '@polkadot/wasm-bridge/types';
 import type { WasmCryptoInstance } from './types';
 
-import { initWasm } from '@polkadot/wasm-bridge';
+import { createWasmFn } from '@polkadot/wasm-bridge';
 import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
 import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
 export { packageInfo } from './packageInfo';
 
-export const init: InitFn<WasmCryptoInstance> = initWasm('crypto', wasmBytes, asmJsInit);
+export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', wasmBytes, asmJsInit);
