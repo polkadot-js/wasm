@@ -5,6 +5,7 @@
 Changes:
 
 - Adjust init, allow RN with default ASM.js-only fallback
+- Split `wasm-{bridge, util}` packages for internal re-use
 
 
 ## 6.0.1 Apr 9, 2022
