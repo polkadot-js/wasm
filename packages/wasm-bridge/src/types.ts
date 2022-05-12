@@ -3,23 +3,19 @@
 
 /* eslint-disable camelcase */
 
-export type CreatePromise <C extends WasmBaseInstance> = Promise<{ type: 'asm' | 'wasm'; wasm: C | null }>;
-
-export type CreatePromiseFn <C extends WasmBaseInstance> = (wgb: WebAssembly.ModuleImports) => CreatePromise<C>;
-
 export declare interface InitResult<C extends WasmBaseInstance> {
-  type: 'wasm' | 'asm';
+  type: 'asm' | 'wasm';
   wasm: C | null;
 }
 
-export type InitFn <C extends WasmBaseInstance> = (wbg: WebAssembly.ModuleImports) => Promise<InitResult<C>>;
+export type InitPromise <C extends WasmBaseInstance> = Promise<InitResult<C>>;
 
-export interface BridgeBase<C extends WasmBaseInstance> {
-  type: 'asm' | 'wasm';
+export type InitFn <C extends WasmBaseInstance> = (wgb: WebAssembly.ModuleImports) => InitPromise<C>;
+
+export interface BridgeBase<C extends WasmBaseInstance> extends InitResult<C> {
   wbg: WebAssembly.ModuleImports;
-  wasm: C | null;
 
-  init (initOverride?: CreatePromiseFn<C>): Promise<C | null>;
+  init (initOverride?: InitFn<C>): Promise<C | null>;
   getObject (idx: number): unknown;
   dropObject (idx: number): void;
   takeObject (idx: number): unknown;

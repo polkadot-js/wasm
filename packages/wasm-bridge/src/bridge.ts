@@ -3,22 +3,22 @@
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import type { BridgeBase, CreatePromise, WasmBaseInstance } from './types';
+import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance } from './types';
 
 import { stringToU8a, u8aToString } from '@polkadot/util';
 
 export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #cachegetInt32: Int32Array | null;
   #cachegetUint8: Uint8Array | null;
-  #defaultInit: (wbg: WebAssembly.ModuleImports) => CreatePromise<C>;
+  #defaultInit: (wbg: WebAssembly.ModuleImports) => InitPromise<C>;
   #heap: unknown[];
   #heapNext: number;
   #wasm: C | null;
-  #wasmPromise: CreatePromise<C> | null;
+  #wasmPromise: InitPromise<C> | null;
   #wbg: WebAssembly.ModuleImports;
   #type: 'asm' | 'wasm';
 
-  constructor (createWbg: (bridge: Bridge<C>) => WebAssembly.ModuleImports, createWasm: (wbg: WebAssembly.ModuleImports) => CreatePromise<C>) {
+  constructor (createWbg: (bridge: Bridge<C>) => WebAssembly.ModuleImports, createWasm: InitFn<C>) {
     this.#defaultInit = createWasm;
     this.#cachegetInt32 = null;
     this.#cachegetUint8 = null;
@@ -44,7 +44,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#wasm;
   }
 
-  async init (override?: (wbg: WebAssembly.ModuleImports) => CreatePromise<C>): Promise<C | null> {
+  async init (override?: InitFn<C>): Promise<C | null> {
     if (!this.#wasmPromise || override) {
       this.#wasmPromise = (override || this.#defaultInit)(this.#wbg);
     }
