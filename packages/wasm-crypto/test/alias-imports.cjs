@@ -6,7 +6,8 @@ const rootIncl = [
   '@polkadot/wasm-crypto',
   '@polkadot/wasm-crypto-init',
   '@polkadot/wasm-crypto-asmjs',
-  '@polkadot/wasm-crypto-wasm'
+  '@polkadot/wasm-crypto-wasm',
+  '@polkadot/wasm-util'
 ];
 
 const detcIncl = [

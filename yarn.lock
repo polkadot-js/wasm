@@ -2076,6 +2076,7 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.17.9
     "@polkadot/util": ^9.1.1
+    "@polkadot/wasm-util": 6.0.2-12
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -2091,6 +2092,18 @@ __metadata:
     "@polkadot/wasm-crypto-asmjs": 6.0.2-12
     "@polkadot/wasm-crypto-init": 6.0.2-12
     "@polkadot/wasm-crypto-wasm": 6.0.2-12
+    "@polkadot/wasm-util": 6.0.2-12
+  peerDependencies:
+    "@polkadot/util": "*"
+  languageName: unknown
+  linkType: soft
+
+"@polkadot/wasm-util@6.0.2-12, @polkadot/wasm-util@workspace:packages/wasm-util":
+  version: 0.0.0-use.local
+  resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
+  dependencies:
+    "@babel/runtime": ^7.17.9
+    "@polkadot/util": ^9.1.1
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
