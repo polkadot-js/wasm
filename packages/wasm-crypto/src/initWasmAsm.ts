@@ -9,4 +9,6 @@ export async function initWasm (): Promise<void> {
   await initBridge(createWasm);
 }
 
-initWasm().catch(undefined);
+initWasm().catch((): void => {
+  // cannot happen, initWasm doesn't throw
+});
