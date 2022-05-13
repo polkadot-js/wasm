@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 6.1.1 May 14, 2022
 
 Changes:
 
