@@ -20,10 +20,10 @@
   "version": "6.1.2-0",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.17.9"
+    "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
-    "@polkadot/util": "^9.2.1"
+    "@polkadot/util": "^9.3.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*"
