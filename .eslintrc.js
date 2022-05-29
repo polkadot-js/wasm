@@ -8,7 +8,7 @@ module.exports = {
   ignorePatterns: [
     ...base.ignorePatterns,
     '**/target/*',
-    'packages/bytes/*'
+    '**/build-wasm/*'
   ],
   parserOptions: {
     ...base.parserOptions,
