@@ -61,7 +61,3 @@ export class Wbg<C extends WasmBaseInstance> {
     this.#bridge.takeObject(idx);
   };
 }
-
-export function initWbg <C extends WasmBaseInstance> (bridge: BridgeBase<C>): Wbg<C> {
-  return new Wbg(bridge);
-}
