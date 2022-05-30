@@ -1,4 +1,4 @@
-     420	Jaco                          	Adjust eslint ignore (#354)
+     421	Jaco                          	Bump TS (#355)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
