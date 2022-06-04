@@ -26,8 +26,8 @@
     "@babel/runtime": "^7.18.3"
   },
   "devDependencies": {
-    "@polkadot/util": "^9.3.1",
-    "@polkadot/x-randomvalues": "^9.3.1"
+    "@polkadot/util": "^9.4.1",
+    "@polkadot/x-randomvalues": "^9.4.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*",

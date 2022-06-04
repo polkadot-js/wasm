@@ -31,7 +31,7 @@
     "@polkadot/wasm-crypto-wasm": "6.1.2-4"
   },
   "devDependencies": {
-    "@polkadot/util": "^9.3.1"
+    "@polkadot/util": "^9.4.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*"
