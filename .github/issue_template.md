@@ -9,7 +9,7 @@
 
   - [ ] Bug report
   - [ ] Feature request
-  - [ ] Support request (please bear the note above in mind)
+  - [ ] Support request (please bear the comments above in mind)
   - [ ] Other
 
 
