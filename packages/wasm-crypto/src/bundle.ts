@@ -10,11 +10,28 @@ import { bridge, initBridge } from './init';
 export { packageInfo } from './packageInfo';
 export { bridge };
 
+// Removes the first parameter (expected as WasmCryptoInstance) and leaves the
+// rest of the parameters in-tack. This allows us to dynamically create a function
+// return from the withWasm helper
 type PopFirst<T extends unknown[]> =
   T extends [WasmCryptoInstance, ...infer N]
     ? N
     : [];
 
+/**
+ * @internal
+ * @description
+ * This create an extenal interface function from the signature, all the while checking
+ * the actual bridge wasm interface to ensure it has been initialized.
+ *
+ * This means that we can call it
+ *
+ *   withWasm(wasm: WasmCryptoInstance, a: number, b: string) => Uint8Array
+ *
+ * and in this case it will create an interface function with the signarure
+ *
+ *   (a: number, b: string) => Uint8Array
+ */
 function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {
   return (...params: PopFirst<Parameters<F>>): ReturnType<F> => {
     assert(bridge.wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');

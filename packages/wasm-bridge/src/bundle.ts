@@ -3,4 +3,3 @@
 
 export * from './bridge';
 export * from './init';
-export * from './wbg';

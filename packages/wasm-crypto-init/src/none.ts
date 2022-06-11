@@ -8,4 +8,9 @@ import { createWasmFn } from '@polkadot/wasm-bridge';
 
 export { packageInfo } from './packageInfo';
 
+/**
+ * @name createWasm
+ * @description
+ * Creates an interface using no WASM and no ASM.js
+ */
 export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', null, null);
