@@ -9,4 +9,9 @@ import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
 
 export { packageInfo } from './packageInfo';
 
+/**
+ * @name createWasm
+ * @description
+ * Creates an interface using only ASM.js
+ */
 export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', null, asmJsInit);

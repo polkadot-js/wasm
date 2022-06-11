@@ -1,6 +1,10 @@
 // Copyright 2019-2022 @polkadot/wasm-bridge authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// A number of functions are "unsafe" and purposefully so - it is
+// assumed that where the bridge is used, it is correctly wrapped
+// in a safeguard (see withWasm in the wasm-crypto package) which
+// then ensures that the internal wasm instance here is available
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance } from './types';
@@ -9,6 +13,15 @@ import { stringToU8a, u8aToString } from '@polkadot/util';
 
 import { Wbg } from './wbg';
 
+/**
+ * @name Bridge
+ * @description
+ * Creates a bridge between the JS and WASM environments.
+ *
+ * For any bridge it is passed an function white is then called internally at the
+ * time of initialization. This affectively implements the layer between WASM and
+ * the native environment, providing all the plumbing needed for the Wbg classes.
+ */
 export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #cachegetInt32: Int32Array | null;
   #cachegetUint8: Uint8Array | null;
@@ -36,22 +49,27 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     this.#wbg = { ...new Wbg(this) };
   }
 
+  /** @description Returns the init error */
   get error (): string | null {
     return this.#wasmError;
   }
 
+  /** @description Returns the init type */
   get type (): 'asm' | 'wasm' | 'none' {
     return this.#type;
   }
 
+  /** @description Returns the created wbg interface */
   get wbg (): WebAssembly.ModuleImports {
     return this.#wbg;
   }
 
+  /** @description Returns the created wasm interface */
   get wasm (): C | null {
     return this.#wasm;
   }
 
+  /** @description Performs the wasm initialization */
   async init (createWasm?: InitFn<C>): Promise<C | null> {
     if (!this.#wasmPromise || createWasm) {
       this.#wasmPromise = (createWasm || this.#createWasm)(this.#wbg);
@@ -66,10 +84,12 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#wasm;
   }
 
+  /** @description Gets an object from the heap */
   getObject (idx: number): unknown {
     return this.#heap[idx];
   }
 
+  /** @description Removes an object from the heap */
   dropObject (idx: number) {
     if (idx < 36) {
       return;
@@ -79,6 +99,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     this.#heapNext = idx;
   }
 
+  /** @description Retrieves and removes an object to the heap */
   takeObject (idx: number): unknown {
     const ret = this.getObject(idx);
 
@@ -87,6 +108,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return ret;
   }
 
+  /** @description Adds an object to the heap */
   addObject (obj: unknown): number {
     if (this.#heapNext === this.#heap.length) {
       this.#heap.push(this.#heap.length + 1);
@@ -100,6 +122,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return idx;
   }
 
+  /** @description Retrieve an Int32 in the WASM interface */
   getInt32 (): Int32Array {
     if (this.#cachegetInt32 === null || this.#cachegetInt32.buffer !== this.#wasm!.memory.buffer) {
       this.#cachegetInt32 = new Int32Array(this.#wasm!.memory.buffer);
@@ -108,6 +131,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#cachegetInt32;
   }
 
+  /** @description Retrieve an Uint8Array in the WASM interface */
   getUint8 (): Uint8Array {
     if (this.#cachegetUint8 === null || this.#cachegetUint8.buffer !== this.#wasm!.memory.buffer) {
       this.#cachegetUint8 = new Uint8Array(this.#wasm!.memory.buffer);
@@ -116,14 +140,17 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#cachegetUint8;
   }
 
+  /** @description Retrieves an Uint8Array in the WASM interface */
   getU8a (ptr: number, len: number): Uint8Array {
     return this.getUint8().subarray(ptr / 1, ptr / 1 + len);
   }
 
+  /** @description Retrieves a string in the WASM interface */
   getString (ptr: number, len: number): string {
     return u8aToString(this.getU8a(ptr, len));
   }
 
+  /** @description Allocates an Uint8Array in the WASM interface */
   allocU8a (arg: Uint8Array): [number, number] {
     const ptr = this.#wasm!.__wbindgen_malloc(arg.length * 1);
 
@@ -132,10 +159,12 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return [ptr, arg.length];
   }
 
+  /** @description Allocates a string in the WASM interface */
   allocString (arg: string): [number, number] {
     return this.allocU8a(stringToU8a(arg));
   }
 
+  /** @description Retrieves an Uint8Array from the WASM interface */
   resultU8a (): Uint8Array {
     const r0 = this.getInt32()[8 / 4 + 0];
     const r1 = this.getInt32()[8 / 4 + 1];
@@ -146,6 +175,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return ret;
   }
 
+  /** @description Retrieve a string from the WASM interface */
   resultString (): string {
     return u8aToString(this.resultU8a());
   }

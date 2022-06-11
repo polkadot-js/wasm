@@ -10,4 +10,9 @@ import { wasmBytes } from '@polkadot/wasm-crypto-wasm';
 
 export { packageInfo } from './packageInfo';
 
+/**
+ * @name createWasm
+ * @description
+ * Creates an interface using WASM and a fallback ASM.js
+ */
 export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', wasmBytes, asmJsInit);
