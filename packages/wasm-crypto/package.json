@@ -28,15 +28,15 @@
     "./initWasmAsm.cjs"
   ],
   "type": "module",
-  "version": "6.1.2-10",
+  "version": "6.1.2-11",
   "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.18.3",
-    "@polkadot/wasm-bridge": "6.1.2-10",
-    "@polkadot/wasm-crypto-asmjs": "6.1.2-10",
-    "@polkadot/wasm-crypto-init": "6.1.2-10",
-    "@polkadot/wasm-crypto-wasm": "6.1.2-10",
-    "@polkadot/wasm-util": "6.1.2-10"
+    "@polkadot/wasm-bridge": "6.1.2-11",
+    "@polkadot/wasm-crypto-asmjs": "6.1.2-11",
+    "@polkadot/wasm-crypto-init": "6.1.2-11",
+    "@polkadot/wasm-crypto-wasm": "6.1.2-11",
+    "@polkadot/wasm-util": "6.1.2-11"
   },
   "devDependencies": {
     "@polkadot/util": "^9.4.1"
