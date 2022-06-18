@@ -3,8 +3,6 @@
 
 import type { WasmCryptoInstance } from '@polkadot/wasm-crypto-init/types';
 
-import { assert } from '@polkadot/util';
-
 import { bridge, initBridge } from './init';
 
 export { packageInfo } from './packageInfo';
@@ -34,7 +32,9 @@ type PopFirst<T extends unknown[]> =
  */
 function withWasm <T, F extends (wasm: WasmCryptoInstance, ...params: never[]) => T> (fn: F): (...params: PopFirst<Parameters<F>>) => ReturnType<F> {
   return (...params: PopFirst<Parameters<F>>): ReturnType<F> => {
-    assert(bridge.wasm, 'The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
+    if (!bridge.wasm) {
+      throw new Error('The WASM interface has not been initialized. Ensure that you wait for the initialization Promise with waitReady() from @polkadot/wasm-crypto (or cryptoWaitReady() from @polkadot/util-crypto) before attempting to use WASM-only interfaces.');
+    }
 
     return fn(bridge.wasm, ...params) as ReturnType<F>;
   };

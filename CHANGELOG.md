@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Adjust assert inside `withWasm`
+
+
 ## 6.1.1 May 13, 2022
 
 Changes:
