@@ -1,4 +1,4 @@
-     436	Jaco                          	6.1.3 (#371)
+     437	Jaco                          	Adjust cjs -> deno path rewrites (#372)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
