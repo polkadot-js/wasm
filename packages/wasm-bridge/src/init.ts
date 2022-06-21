@@ -20,7 +20,7 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
     };
 
     try {
-      if (!wasmBytes) {
+      if (!wasmBytes || !wasmBytes.length) {
         throw new Error('No WebAssembly provided for initialization');
       } else if (typeof WebAssembly !== 'object' || typeof WebAssembly.instantiate !== 'function') {
         throw new Error('WebAssembly is not available in your environment');
