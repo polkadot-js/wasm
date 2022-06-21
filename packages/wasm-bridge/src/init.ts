@@ -3,7 +3,7 @@
 
 import type { InitFn, InitPromise, InitResult, WasmBaseInstance } from './types';
 
-import { assert } from '@polkadot/util';
+import { isWasm } from '@polkadot/util';
 
 /**
  * @name createWasmFn
@@ -22,7 +22,11 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
     };
 
     try {
-      assert(typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function' && wasmBytes && wasmBytes.length, 'WebAssembly is not available in your environment');
+      if (!isWasm(wasmBytes)) {
+        throw new Error('No WebAssembly provided for initialization');
+      } else if (typeof WebAssembly !== 'object' || typeof WebAssembly.instantiate !== 'function') {
+        throw new Error('WebAssembly is not available in your environment');
+      }
 
       const source = await WebAssembly.instantiate(wasmBytes, { wbg });
 
@@ -30,7 +34,7 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
       result.type = 'wasm';
     } catch (error) {
       // if we have a valid supplied asm.js, return that
-      if (asmFn) {
+      if (typeof asmFn === 'function') {
         result.wasm = asmFn(wbg);
         result.type = 'asm';
       } else {
