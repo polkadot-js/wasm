@@ -9,6 +9,7 @@ const DEFAULT_CRYPTO = { getRandomValues };
 const DEFAULT_SELF = { crypto: DEFAULT_CRYPTO };
 
 /**
+ * @name Wbg
  * @description
  * This defines the internal interfaces that wasm-bindgen used to communicate
  * with the host layer. None of these functions are available to the user, rather

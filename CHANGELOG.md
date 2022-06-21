@@ -4,7 +4,8 @@
 
 Changes:
 
-- Adjust assert inside `withWasm`
+- Adjust assert usage in all internal non-test code
+- Additional comments where missing
 
 
 ## 6.1.1 May 13, 2022
