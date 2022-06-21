@@ -1,5 +1,4 @@
 // Copyright 2019-2022 @polkadot/wasm-crypto-asmjs authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export { asmJsInit } from './deno/data.js';
-export { packageInfo } from './packageInfo';
+export * from './index';
