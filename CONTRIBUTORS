@@ -1,4 +1,4 @@
-     432	Jaco                          	Bump dev (w/ stable deno publish) (#367)
+     433	Jaco                          	CHANGELOG & additional comments (#368)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
