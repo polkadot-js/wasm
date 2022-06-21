@@ -3,6 +3,7 @@ bindgen/
 build/
 build-cjs/
 build-esm/
+build-deno/
 build-docs/
 build-wasm/
 bytes/
