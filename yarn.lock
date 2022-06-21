@@ -1937,9 +1937,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.19":
-  version: 0.67.19
-  resolution: "@polkadot/dev@npm:0.67.19"
+"@polkadot/dev@npm:^0.67.20":
+  version: 0.67.20
+  resolution: "@polkadot/dev@npm:0.67.20"
   dependencies:
     "@babel/cli": ^7.17.10
     "@babel/core": ^7.18.5
@@ -2026,7 +2026,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: c2ed7057edc5c3f5fd8adf2bfdcd1ad14c91264c91a7d0befa1a5a80cb3e266c130358775005e72d50aa24a2dc5bcc606374c64e001fe54403871672ed73238d
+  checksum: 011e97c40c486dfff43e9d7630ec38094b090bb438bed01c8027fb05408a39d42bd969b5cf00c7a23cd2a40c6db020f57b58355aedb4bbec95e0637c6ae2a3a1
   languageName: node
   linkType: hard
 
@@ -2046,7 +2046,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-bridge@6.1.2, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
+"@polkadot/wasm-bridge@6.1.3, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
   dependencies:
@@ -2059,7 +2059,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@6.1.2, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@6.1.3, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
@@ -2070,27 +2070,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-init@6.1.2, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
+"@polkadot/wasm-crypto-init@6.1.3, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@polkadot/util": ^9.5.1
-    "@polkadot/wasm-bridge": 6.1.2
-    "@polkadot/wasm-crypto-asmjs": 6.1.2
-    "@polkadot/wasm-crypto-wasm": 6.1.2
+    "@polkadot/wasm-bridge": 6.1.3
+    "@polkadot/wasm-crypto-asmjs": 6.1.3
+    "@polkadot/wasm-crypto-wasm": 6.1.3
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@6.1.2, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@6.1.3, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@polkadot/util": ^9.5.1
-    "@polkadot/wasm-util": 6.1.2
+    "@polkadot/wasm-util": 6.1.3
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -2102,17 +2102,17 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.3
     "@polkadot/util": ^9.5.1
-    "@polkadot/wasm-bridge": 6.1.2
-    "@polkadot/wasm-crypto-asmjs": 6.1.2
-    "@polkadot/wasm-crypto-init": 6.1.2
-    "@polkadot/wasm-crypto-wasm": 6.1.2
-    "@polkadot/wasm-util": 6.1.2
+    "@polkadot/wasm-bridge": 6.1.3
+    "@polkadot/wasm-crypto-asmjs": 6.1.3
+    "@polkadot/wasm-crypto-init": 6.1.3
+    "@polkadot/wasm-crypto-wasm": 6.1.3
+    "@polkadot/wasm-util": 6.1.3
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-util@6.1.2, @polkadot/wasm-util@workspace:packages/wasm-util":
+"@polkadot/wasm-util@6.1.3, @polkadot/wasm-util@workspace:packages/wasm-util":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
   dependencies:
@@ -8587,7 +8587,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.5
-    "@polkadot/dev": ^0.67.19
+    "@polkadot/dev": ^0.67.20
     fflate: ^0.7.3
     override-require: ^1.1.1
   languageName: unknown

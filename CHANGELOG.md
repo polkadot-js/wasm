@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 6.1.3 Jun 21, 2022
+
+Changes:
+
+- Fix bundle publish (from dev bump)
+
+
 ## 6.1.2 Jun 21, 2022
 
 Changes:
