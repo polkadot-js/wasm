@@ -3,8 +3,6 @@
 
 import type { InitFn, InitPromise, InitResult, WasmBaseInstance } from './types';
 
-import { isWasm } from '@polkadot/util';
-
 /**
  * @name createWasmFn
  * @description
@@ -22,7 +20,7 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
     };
 
     try {
-      if (!isWasm(wasmBytes)) {
+      if (!wasmBytes) {
         throw new Error('No WebAssembly provided for initialization');
       } else if (typeof WebAssembly !== 'object' || typeof WebAssembly.instantiate !== 'function') {
         throw new Error('WebAssembly is not available in your environment');
