@@ -3,7 +3,7 @@
 
 import { base64Decode, unzlibSync } from '@polkadot/wasm-util';
 
-import { bytes, sizeUncompressed } from './cjs/bytes';
+import { bytes, sizeUncompressed } from './cjs/bytes.js';
 
 export { packageInfo } from './packageInfo';
 
