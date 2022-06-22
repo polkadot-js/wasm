@@ -1937,9 +1937,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.21":
-  version: 0.67.21
-  resolution: "@polkadot/dev@npm:0.67.21"
+"@polkadot/dev@npm:^0.67.23":
+  version: 0.67.23
+  resolution: "@polkadot/dev@npm:0.67.23"
   dependencies:
     "@babel/cli": ^7.17.10
     "@babel/core": ^7.18.5
@@ -2026,7 +2026,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 6226b698c19263e4c145d7a784b29bf877271706bb577f79f1f92a5e15e1c88ec6dda8c4d1878c8cf0343ea532a49683d343a0d5176c5a93e32f99718db10b5c
+  checksum: 4b74d9f43c2499828515de8976c7a2a9f05958e7e163a9567968e9a850abd7a4e781b8c1b03e28a1824ec3d0e52a2bd2ba121418a661d57ee32a14fa2dc5d03c
   languageName: node
   linkType: hard
 
@@ -2046,7 +2046,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-bridge@6.1.4-0, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
+"@polkadot/wasm-bridge@6.1.4, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
   dependencies:
@@ -2059,7 +2059,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@6.1.4-0, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@6.1.4, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
@@ -2070,27 +2070,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-init@6.1.4-0, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
+"@polkadot/wasm-crypto-init@6.1.4, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@polkadot/util": ^9.5.1
-    "@polkadot/wasm-bridge": 6.1.4-0
-    "@polkadot/wasm-crypto-asmjs": 6.1.4-0
-    "@polkadot/wasm-crypto-wasm": 6.1.4-0
+    "@polkadot/wasm-bridge": 6.1.4
+    "@polkadot/wasm-crypto-asmjs": 6.1.4
+    "@polkadot/wasm-crypto-wasm": 6.1.4
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@6.1.4-0, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@6.1.4, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
     "@babel/runtime": ^7.18.3
     "@polkadot/util": ^9.5.1
-    "@polkadot/wasm-util": 6.1.4-0
+    "@polkadot/wasm-util": 6.1.4
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -2102,17 +2102,17 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.3
     "@polkadot/util": ^9.5.1
-    "@polkadot/wasm-bridge": 6.1.4-0
-    "@polkadot/wasm-crypto-asmjs": 6.1.4-0
-    "@polkadot/wasm-crypto-init": 6.1.4-0
-    "@polkadot/wasm-crypto-wasm": 6.1.4-0
-    "@polkadot/wasm-util": 6.1.4-0
+    "@polkadot/wasm-bridge": 6.1.4
+    "@polkadot/wasm-crypto-asmjs": 6.1.4
+    "@polkadot/wasm-crypto-init": 6.1.4
+    "@polkadot/wasm-crypto-wasm": 6.1.4
+    "@polkadot/wasm-util": 6.1.4
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-util@6.1.4-0, @polkadot/wasm-util@workspace:packages/wasm-util":
+"@polkadot/wasm-util@6.1.4, @polkadot/wasm-util@workspace:packages/wasm-util":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
   dependencies:
@@ -8587,7 +8587,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.5
-    "@polkadot/dev": ^0.67.21
+    "@polkadot/dev": ^0.67.23
     fflate: ^0.7.3
     override-require: ^1.1.1
   languageName: unknown
