@@ -10,7 +10,7 @@
     "url": "https://github.com/polkadot-js/wasm.git"
   },
   "sideEffects": false,
-  "version": "6.1.4-0",
+  "version": "6.1.4",
   "workspaces": [
     "packages/*"
   ],
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
-    "@polkadot/dev": "^0.67.21",
+    "@polkadot/dev": "^0.67.23",
     "fflate": "^0.7.3",
     "override-require": "^1.1.1"
   },
