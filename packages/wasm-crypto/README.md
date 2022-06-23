@@ -11,21 +11,19 @@ Install the package (also requires `@polkadot/util` for `TextEncoder` polyfills 
 Use it -
 
 ```js
-const { u8aToHex } = require('@polkadot/util');
-const { bip39Generate, bip39ToSeed, waitReady } = require('@polkadot/wasm-crypto');
+import { u8aToHex } from '@polkadot/util';
+import { bip39Generate, bip39ToSeed, waitReady } from '@polkadot/wasm-crypto';
 
-async function main () {
-  // first wait until the WASM has been loaded (async init)
-  await waitReady();
+// first wait until the WASM has been loaded (async init)
+await waitReady();
 
-  // generate phrase
-  const phrase = bip39Generate(12);
+// generate phrase
+const phrase = bip39Generate(12);
 
-  // get ed25519 seed from phrase
-  const seed = bip39ToSeed(phrase, '');
+// get ed25519 seed from phrase
+const seed = bip39ToSeed(phrase, '');
 
-  // display
-  console.log('phrase:', phrase);
-  console.log('seed:', u8aToHex(seed));
-}
+// display
+console.log('phrase:', phrase);
+console.log('seed:', u8aToHex(seed));
 ```
