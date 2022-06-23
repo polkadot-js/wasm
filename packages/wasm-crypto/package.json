@@ -39,7 +39,7 @@
     "@polkadot/wasm-util": "6.1.5"
   },
   "devDependencies": {
-    "@polkadot/util": "^9.5.1"
+    "@polkadot/util": "^9.6.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*"
