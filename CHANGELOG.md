@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 6.1.5 Jun 23, 2022
+
+Changes:
+
+- Adjust build outputs for Deno targets
+
+
 ## 6.1.4 Jun 22, 2022
 
 Changes:
