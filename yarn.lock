@@ -2107,8 +2107,10 @@ __metadata:
     "@polkadot/wasm-crypto-init": 6.1.6-2-x
     "@polkadot/wasm-crypto-wasm": 6.1.6-2-x
     "@polkadot/wasm-util": 6.1.6-2-x
+    "@polkadot/x-randomvalues": ^9.6.2
   peerDependencies:
     "@polkadot/util": "*"
+    "@polkadot/x-randomvalues": "*"
   languageName: unknown
   linkType: soft
 

@@ -39,9 +39,11 @@
     "@polkadot/wasm-util": "6.1.6-2-x"
   },
   "devDependencies": {
-    "@polkadot/util": "^9.6.2"
+    "@polkadot/util": "^9.6.2",
+    "@polkadot/x-randomvalues": "^9.6.2"
   },
   "peerDependencies": {
-    "@polkadot/util": "*"
+    "@polkadot/util": "*",
+    "@polkadot/x-randomvalues": "*"
   }
 }
