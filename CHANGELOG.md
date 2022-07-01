@@ -5,6 +5,7 @@
 Changes:
 
 - Add missing `peerDependencies` to `wasm-crypto` (`bridge` requirement)
+- Adjust `WebAssembly.{Memory, ModuleImports}` usage to cater for non-dom TS
 
 
 ## 6.1.5 Jun 23, 2022

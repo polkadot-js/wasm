@@ -1,7 +1,7 @@
 // Copyright 2019-2022 @polkadot/wasm-bundle authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { InitFn, InitPromise, InitResult, WasmBaseInstance } from './types';
+import type { InitFn, InitPromise, InitResult, WasmBaseInstance, WasmImports } from './types';
 
 /**
  * @name createWasmFn
@@ -11,8 +11,8 @@ import type { InitFn, InitPromise, InitResult, WasmBaseInstance } from './types'
  * It will attempt to create a WASM interface first and if this fails or is not available in
  * the environment, will fallback to attempting to create an ASM.js interface.
  */
-export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WebAssembly.ModuleImports) => C)): InitFn<C> {
-  return async (wbg: WebAssembly.ModuleImports): InitPromise<C> => {
+export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmBytes: null | Uint8Array, asmFn: null | ((wbg: WasmImports) => C)): InitFn<C> {
+  return async (wbg: WasmImports): InitPromise<C> => {
     const result: InitResult<C> = {
       error: null,
       type: 'none',
@@ -26,7 +26,9 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
         throw new Error('WebAssembly is not available in your environment');
       }
 
-      const source = await WebAssembly.instantiate(wasmBytes, { wbg });
+      // See the reasoning behind this case in `./types`, we don't use the
+      // actual WebAssebly.ModuleImports types due to some TS oddities
+      const source = await WebAssembly.instantiate(wasmBytes, { wbg } as never);
 
       result.wasm = source.instance.exports as unknown as C;
       result.type = 'wasm';
