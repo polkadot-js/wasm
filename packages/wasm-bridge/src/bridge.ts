@@ -59,11 +59,6 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
     return this.#type;
   }
 
-  /** @description Returns the created wbg interface */
-  get wbg (): WasmImports {
-    return this.#wbg;
-  }
-
   /** @description Returns the created wasm interface */
   get wasm (): C | null {
     return this.#wasm;

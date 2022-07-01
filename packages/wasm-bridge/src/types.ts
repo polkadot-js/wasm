@@ -20,8 +20,6 @@ export type InitPromise <C extends WasmBaseInstance> = Promise<InitResult<C>>;
 export type InitFn <C extends WasmBaseInstance> = (wbg: WasmImports) => InitPromise<C>;
 
 export interface BridgeBase<C extends WasmBaseInstance> extends InitResult<C> {
-  wbg: WasmImports;
-
   init (createWasm?: InitFn<C>): Promise<C | null>;
   getObject (idx: number): unknown;
   dropObject (idx: number): void;
