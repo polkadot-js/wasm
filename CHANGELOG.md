@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 6.2.1 Jul 1, 2022
 
 Changes:
 
