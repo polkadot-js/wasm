@@ -2083,8 +2083,10 @@ __metadata:
     "@polkadot/wasm-bridge": 6.1.6-4-x
     "@polkadot/wasm-crypto-asmjs": 6.1.6-4-x
     "@polkadot/wasm-crypto-wasm": 6.1.6-4-x
+    "@polkadot/x-randomvalues": ^9.6.2
   peerDependencies:
     "@polkadot/util": "*"
+    "@polkadot/x-randomvalues": "*"
   languageName: unknown
   linkType: soft
 
