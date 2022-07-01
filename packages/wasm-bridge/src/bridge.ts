@@ -7,7 +7,7 @@
 // then ensures that the internal wasm instance here is available
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance } from './types';
+import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance, WasmImports } from './types';
 
 import { stringToU8a, u8aToString } from '@polkadot/util';
 
@@ -31,7 +31,7 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   #wasm: C | null;
   #wasmError: string | null;
   #wasmPromise: InitPromise<C> | null;
-  #wbg: WebAssembly.ModuleImports;
+  #wbg: WasmImports;
   #type: 'asm' | 'wasm' | 'none';
 
   constructor (createWasm: InitFn<C>) {
@@ -57,11 +57,6 @@ export class Bridge<C extends WasmBaseInstance> implements BridgeBase<C> {
   /** @description Returns the init type */
   get type (): 'asm' | 'wasm' | 'none' {
     return this.#type;
-  }
-
-  /** @description Returns the created wbg interface */
-  get wbg (): WebAssembly.ModuleImports {
-    return this.#wbg;
   }
 
   /** @description Returns the created wasm interface */
