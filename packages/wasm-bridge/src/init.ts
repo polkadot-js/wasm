@@ -26,9 +26,7 @@ export function createWasmFn <C extends WasmBaseInstance> (root: string, wasmByt
         throw new Error('WebAssembly is not available in your environment');
       }
 
-      // See the reasoning behind this case in `./types`, we don't use the
-      // actual WebAssebly.ModuleImports types due to some TS oddities
-      const source = await WebAssembly.instantiate(wasmBytes, { wbg } as never);
+      const source = await WebAssembly.instantiate(wasmBytes, { wbg });
 
       result.wasm = source.instance.exports as unknown as C;
       result.type = 'wasm';
