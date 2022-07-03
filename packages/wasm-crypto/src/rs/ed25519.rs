@@ -7,18 +7,11 @@ use wasm_bindgen::prelude::*;
 
 /// Keypair helper function
 fn new_from_seed(seed: &[u8]) -> Keypair {
-	match &SecretKey::from_bytes(seed) {
-		Ok(s) => {
-			let pubkey: PublicKey = s.into();
-			let mut pair = vec![];
+	match SecretKey::from_bytes(seed) {
+		Ok(secret) => {
+			let public: PublicKey = (&secret).into();
 
-			pair.extend_from_slice(seed);
-			pair.extend_from_slice(pubkey.as_bytes());
-
-			match Keypair::from_bytes(&pair) {
-				Ok(p) => p,
-				_ => panic!("Created pair is invalid.")
-			}
+			Keypair { secret: secret, public: public }
 		},
 		_ => panic!("Invalid seed provided.")
 	}
