@@ -6,15 +6,21 @@ use ed25519_dalek::{Keypair, PublicKey, SecretKey, Signature, Signer as _, Verif
 use wasm_bindgen::prelude::*;
 
 /// Keypair helper function
-fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
-	let mut pair = vec![];
+fn new_from_seed(seed: &[u8]) -> Keypair {
+	match &SecretKey::from_bytes(seed) {
+		Ok(s) => {
+			let pubkey: PublicKey = s.into();
+			let mut pair = vec![];
 
-	pair.extend_from_slice(seckey);
-	pair.extend_from_slice(pubkey);
+			pair.extend_from_slice(seed);
+			pair.extend_from_slice(pubkey.as_bytes());
 
-	match Keypair::from_bytes(&pair) {
-		Ok(p) => p,
-		_ => panic!("Provided pair is invalid.")
+			match Keypair::from_bytes(&pair) {
+				Ok(p) => p,
+				_ => panic!("Created pair is invalid.")
+			}
+		},
+		_ => panic!("Invalid seed provided.")
 	}
 }
 
@@ -26,16 +32,9 @@ fn new_from_parts(pubkey: &[u8], seckey: &[u8]) -> Keypair {
 /// followed by the public key (32) bytes, as the full secret keys.
 #[wasm_bindgen]
 pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
-	match &SecretKey::from_bytes(seed) {
-		Ok(s) => {
-			let pubkey: PublicKey = s.into();
-
-			new_from_parts(pubkey.as_bytes(), seed)
-				.to_bytes()
-				.to_vec()
-		},
-		_ => panic!("Invalid seed provided.")
-	}
+	new_from_seed(seed)
+		.to_bytes()
+		.to_vec()
 }
 
 /// Sign a message
@@ -43,14 +42,16 @@ pub fn ext_ed_from_seed(seed: &[u8]) -> Vec<u8> {
 /// The combination of both public and private key must be provided.
 /// This is effectively equivalent to a keypair.
 ///
-/// * pubkey: UIntArray with 32 element
+/// * _: UIntArray with 32 element (was pubkey, now ignored)
 /// * private: UIntArray with 64 element
 /// * message: Arbitrary length UIntArray
 ///
 /// * returned vector is the signature consisting of 64 bytes.
 #[wasm_bindgen]
-pub fn ext_ed_sign(pubkey: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
-	new_from_parts(pubkey, seckey)
+pub fn ext_ed_sign(_: &[u8], seckey: &[u8], message: &[u8]) -> Vec<u8> {
+	// https://github.com/MystenLabs/ed25519-unsafe-libs
+	// we never use the provided pubkey
+	new_from_seed(seckey)
 		.sign(message)
 		.to_bytes()
 		.to_vec()
