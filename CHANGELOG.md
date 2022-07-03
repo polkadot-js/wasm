@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Protect against double-sign leak in ed25519 (See https://github.com/MystenLabs/ed25519-unsafe-libs)
+
+
 ## 6.2.1 Jul 1, 2022
 
 Changes:
