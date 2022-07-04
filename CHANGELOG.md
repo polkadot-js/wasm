@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master
+## 6.2.2 Jul 4, 2022
 
 Changes:
 
-- Protect against double-sign leak in ed25519 (See https://github.com/MystenLabs/ed25519-unsafe-libs)
+- Protect against potential low-level double-sign leak in dalek-ed25519 (Don't use provided input pubKey, see https://github.com/MystenLabs/ed25519-unsafe-libs)
 
 
 ## 6.2.1 Jul 1, 2022
