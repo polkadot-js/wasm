@@ -5,11 +5,14 @@
  * @jest-environment jsdom
  */
 
-import { beforeAll as beforeAllFn, tests, wasm } from './all/index.cjs';
+import * as wasm from '../build';
+import { beforeAll as beforeAllFn, tests } from './all/index.js';
+
+globalThis.wasm = wasm;
 
 describe('wasm-crypto', () => {
   beforeAll(async () => {
-    await beforeAllFn('wasm');
+    await beforeAllFn('wasm', wasm);
   });
 
   Object.keys(tests).forEach((name) => {

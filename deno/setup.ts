@@ -6,7 +6,10 @@
 import { stringCamelCase } from 'https://deno.land/x/polkadot/util/mod.ts';
 
 const exports: string[] = [];
-const imports: Record<string, string> = {};
+const imports: Record<string, string> = {
+  '@polkadot/util': 'https://deno.land/x/polkadot/common/mod.ts',
+  crypto: 'https://deno.land/std/node/crypto.ts'
+};
 
 for await (const entry of Deno.readDir('packages')) {
   if (entry.isDirectory) {

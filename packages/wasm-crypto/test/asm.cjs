@@ -4,6 +4,7 @@
 require('./alias-imports.cjs');
 require('@polkadot/wasm-crypto/initOnlyAsm');
 
-const { runUnassisted } = require('./all/index.cjs');
+const wasm = require('../build');
+const { runUnassisted } = require('./all/index.js');
 
-runUnassisted('ASM');
+runUnassisted('ASM', wasm);
