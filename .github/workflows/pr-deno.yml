@@ -1,4 +1,4 @@
-name: PR / deno
+name: deno
 on: [pull_request]
 
 jobs:
