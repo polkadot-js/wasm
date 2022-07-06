@@ -19,11 +19,11 @@ fs.writeFileSync(`./${process.env.PKG_NAME}-wasm/build/cjs/bytes.js`, `// Copyri
 
 // Generated as part of the build, do not edit
 
-const sizeCompressed = ${compressed.length};
-const sizeUncompressed = ${data.length};
+const lenIn = ${compressed.length};
+const lenOut = ${data.length};
 const bytes = '${compressed.toString('base64')}';
 
-module.exports = { bytes, sizeCompressed, sizeUncompressed };
+module.exports = { bytes, lenIn, lenOut };
 `);
 
 fs.writeFileSync(`${denoDir}/bytes.js`, `// Copyright 2019-${new Date().getFullYear()} @polkadot/${process.env.PKG_NAME}-wasm authors & contributors
@@ -31,9 +31,9 @@ fs.writeFileSync(`${denoDir}/bytes.js`, `// Copyright 2019-${new Date().getFullY
 
 // Generated as part of the build, do not edit
 
-export const sizeCompressed = ${compressed.length};
+export const lenIn = ${compressed.length};
 
-export const sizeUncompressed = ${data.length};
+export const lenOut = ${data.length};
 
 export const bytes = '${compressed.toString('base64')}';
 `);

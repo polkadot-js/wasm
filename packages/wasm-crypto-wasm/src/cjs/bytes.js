@@ -3,6 +3,6 @@
 
 module.exports.bytes = '';
 
-module.exports.sizeCompressed = 0;
+module.exports.lenIn = 0;
 
-module.exports.sizeUncompressed = 0;
+module.exports.lenOut = 0;

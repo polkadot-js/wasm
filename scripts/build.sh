@@ -13,18 +13,24 @@ cd packages
 
 PKG_NAME=wasm-crypto ../scripts/build-wasm.sh
 
-yarn test:wasm-crypto:js
+if [ -z "$WITH_DENO" ]; then
+  yarn test:wasm-crypto:js
+else
+  yarn test:wasm-crypto:deno
+fi
 
-echo ""
-echo "*** wasm-crypto"
-ls -alR wasm-crypto/build
-echo ""
-echo "*** wasm-crypto-asmjs"
-ls -alR wasm-crypto-asmjs/build
-echo ""
-echo "*** wasm-crypto-wasm"
-ls -alR wasm-crypto-wasm/build
+# echo ""
+# echo "*** wasm-crypto"
+# ls -alR wasm-crypto/build
+# echo ""
+# echo "*** wasm-crypto-asmjs"
+# ls -alR wasm-crypto-asmjs/build
+# echo ""
+# echo "*** wasm-crypto-wasm"
+# ls -alR wasm-crypto-wasm/build
 
 cd ..
 
-yarn build:rollup
+if [ -z "$WITH_DENO" ]; then
+  yarn build:rollup
+fi

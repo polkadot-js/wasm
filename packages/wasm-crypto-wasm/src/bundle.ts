@@ -3,7 +3,7 @@
 
 import { base64Decode, unzlibSync } from '@polkadot/wasm-util';
 
-import { bytes, sizeUncompressed } from './cjs/bytes.js';
+import { bytes, lenIn, lenOut } from './cjs/bytes.js';
 
 export { packageInfo } from './packageInfo';
 
@@ -16,4 +16,4 @@ export { packageInfo } from './packageInfo';
  * Upon loading the exposed bytes will be decoded and decompressed form this
  * specific format and returned.
  */
-export const wasmBytes = unzlibSync(base64Decode(bytes), new Uint8Array(sizeUncompressed));
+export const wasmBytes = unzlibSync(base64Decode(bytes, new Uint8Array(lenIn)), new Uint8Array(lenOut));
