@@ -3,6 +3,7 @@
 
 require('./alias-imports.cjs');
 
-const { runUnassisted } = require('./all/index.cjs');
+const wasm = require('../build');
+const { runUnassisted } = require('./all/index.js');
 
-runUnassisted('WASM');
+runUnassisted('WASM', wasm);

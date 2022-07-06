@@ -3,6 +3,6 @@
 
 export const bytes = '';
 
-export const sizeCompressed = 0;
+export const lenIn = 0;
 
-export const sizeUncompressed = 0;
+export const lenOut = 0;

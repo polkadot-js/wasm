@@ -9,7 +9,8 @@ module.exports = {
     ...base.ignorePatterns,
     '**/target/*',
     '**/build-wasm/*',
-    '**/deno/*.ts'
+    '**/deno/*.ts',
+    '**/test/*.ts'
   ],
   parserOptions: {
     ...base.parserOptions,

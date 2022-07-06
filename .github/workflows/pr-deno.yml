@@ -1,20 +1,25 @@
-name: PR
+name: deno
 on: [pull_request]
 
 jobs:
   pr:
     strategy:
       matrix:
-        step: ['lint', 'test', 'build']
+        step: ['check', 'build']
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     env:
       YARN_ENABLE_SCRIPTS: false
+      WITH_DENO: true
     steps:
     - uses: actions/checkout@v2
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: vx.x.x
     - name: ${{ matrix.step }}
       if: always()
       run: |
         yarn install --immutable | grep -v 'YN0013'
         ./scripts/install-build-deps.sh
-        yarn ${{ matrix.step }}
+        yarn deno:setup
+        yarn deno:${{ matrix.step }}

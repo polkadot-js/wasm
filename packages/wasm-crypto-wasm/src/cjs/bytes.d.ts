@@ -3,6 +3,6 @@
 
 export declare const bytes: string;
 
-export declare const sizeCompressed: number;
+export declare const lenIn: number;
 
-export declare const sizeUncompressed: number;
+export declare const lenOut: number;

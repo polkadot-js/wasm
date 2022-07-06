@@ -48,12 +48,12 @@ if [ ! -d "binaryen" ]; then
   echo "*** Downloading binaryen"
   curl -L $BINARYEN_REPO/releases/download/$BINARYEN_VER/$BINARYEN_ZIP.tar.gz | tar xz
   mv binaryen-$BINARYEN_VER binaryen
-  ls -alR binaryen
+  # ls -alR binaryen
 fi
 
 if [ ! -d "bindgen" ]; then
   echo "*** Downloading bindgen"
   curl -L $BINDGEN_REPO/releases/download/$BINDGEN_VER/$BINDGEN_ZIP.tar.gz | tar xz
   mv $BINDGEN_ZIP bindgen
-  ls -alR bindgen
+  # ls -alR bindgen
 fi

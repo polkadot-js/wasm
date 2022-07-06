@@ -3,13 +3,12 @@
 
 const { assert } = require('@polkadot/util');
 
-const wasm = require('../../build');
-const bip39 = require('./bip39.cjs');
-const ed25519 = require('./ed25519.cjs');
-const hashing = require('./hashing.cjs');
-const secp256k1 = require('./secp256k1.cjs');
-const sr25519 = require('./sr25519.cjs');
-const vrf = require('./vrf.cjs');
+const bip39 = require('./bip39.js');
+const ed25519 = require('./ed25519.js');
+const hashing = require('./hashing.js');
+const secp256k1 = require('./secp256k1.js');
+const sr25519 = require('./sr25519.js');
+const vrf = require('./vrf.js');
 
 const tests = {
   // We place secp256k1 first, this allows the interaction with it in the
@@ -23,7 +22,7 @@ const tests = {
   ...hashing
 };
 
-async function beforeAll (name) {
+async function beforeAll (name, wasm) {
   const result = await wasm.waitReady();
 
   console.log(`*** waitReady()=${result} for ${wasm.bridge.type}`);
@@ -33,7 +32,7 @@ async function beforeAll (name) {
   return result;
 }
 
-function runAll (name) {
+function runAll (name, wasm) {
   const failed = [];
   let count = 0;
 
@@ -63,11 +62,11 @@ function runAll (name) {
   }
 }
 
-function runUnassisted (name) {
+function runUnassisted (name, wasm) {
   console.log(`\n*** ${name}: Running tests`);
 
-  beforeAll(name)
-    .then(() => runAll(name))
+  beforeAll(name, wasm)
+    .then(() => runAll(name, wasm))
     .then(() => {
       console.log(`\n*** ${name}: All passed`);
       process.exit(0);
@@ -82,6 +81,5 @@ module.exports = {
   beforeAll,
   runAll,
   runUnassisted,
-  tests,
-  wasm
+  tests
 };
