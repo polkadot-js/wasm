@@ -1941,9 +1941,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.67.55":
-  version: 0.67.55
-  resolution: "@polkadot/dev@npm:0.67.55"
+"@polkadot/dev@npm:^0.67.56":
+  version: 0.67.56
+  resolution: "@polkadot/dev@npm:0.67.56"
   dependencies:
     "@babel/cli": ^7.18.6
     "@babel/core": ^7.18.6
@@ -2031,7 +2031,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 695f7250519af45dd5ef22f8c383033ecf0aacd4c356ab87a5a47e51863f2d44c0283a8ff896e4999923489b8d043e8b36c5f6c53aa912f7c8e2576895ec6083
+  checksum: 188f7d7b53e3efdecb7a4720e0c2eab3bb5e93c05676051e6f8fdb745cfaa1fd2fb82af67a56b6b4d20446deaae47b7d42620d2b79e17d7782d3971985df3dd6
   languageName: node
   linkType: hard
 
@@ -2051,7 +2051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-bridge@6.2.3-4-x, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
+"@polkadot/wasm-bridge@6.2.3, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
   dependencies:
@@ -2064,7 +2064,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@6.2.3-4-x, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@6.2.3, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
@@ -2075,15 +2075,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-init@6.2.3-4-x, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
+"@polkadot/wasm-crypto-init@6.2.3, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
     "@babel/runtime": ^7.18.6
     "@polkadot/util": ^9.7.2
-    "@polkadot/wasm-bridge": 6.2.3-4-x
-    "@polkadot/wasm-crypto-asmjs": 6.2.3-4-x
-    "@polkadot/wasm-crypto-wasm": 6.2.3-4-x
+    "@polkadot/wasm-bridge": 6.2.3
+    "@polkadot/wasm-crypto-asmjs": 6.2.3
+    "@polkadot/wasm-crypto-wasm": 6.2.3
     "@polkadot/x-randomvalues": ^9.7.2
   peerDependencies:
     "@polkadot/util": "*"
@@ -2091,13 +2091,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@6.2.3-4-x, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@6.2.3, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
     "@babel/runtime": ^7.18.6
     "@polkadot/util": ^9.7.2
-    "@polkadot/wasm-util": 6.2.3-4-x
+    "@polkadot/wasm-util": 6.2.3
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -2109,11 +2109,11 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.18.6
     "@polkadot/util": ^9.7.2
-    "@polkadot/wasm-bridge": 6.2.3-4-x
-    "@polkadot/wasm-crypto-asmjs": 6.2.3-4-x
-    "@polkadot/wasm-crypto-init": 6.2.3-4-x
-    "@polkadot/wasm-crypto-wasm": 6.2.3-4-x
-    "@polkadot/wasm-util": 6.2.3-4-x
+    "@polkadot/wasm-bridge": 6.2.3
+    "@polkadot/wasm-crypto-asmjs": 6.2.3
+    "@polkadot/wasm-crypto-init": 6.2.3
+    "@polkadot/wasm-crypto-wasm": 6.2.3
+    "@polkadot/wasm-util": 6.2.3
     "@polkadot/x-randomvalues": ^9.7.2
   peerDependencies:
     "@polkadot/util": "*"
@@ -2121,7 +2121,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-util@6.2.3-4-x, @polkadot/wasm-util@workspace:packages/wasm-util":
+"@polkadot/wasm-util@6.2.3, @polkadot/wasm-util@workspace:packages/wasm-util":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
   dependencies:
@@ -8595,7 +8595,7 @@ resolve@^2.0.0-next.3:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.18.6
-    "@polkadot/dev": ^0.67.55
+    "@polkadot/dev": ^0.67.56
     fflate: ^0.7.3
     override-require: ^1.1.1
   languageName: unknown

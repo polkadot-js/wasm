@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master
+## 6.2.3 Jul 7, 2022
 
 Changes:
 
-- Adjust WASM init with pre-allocated buffers
+- Optimize WASM init with pre-allocated buffers
 - Additional platform-specific tests
 
 
