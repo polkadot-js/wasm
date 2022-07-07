@@ -20,6 +20,8 @@ jobs:
       if: always()
       run: |
         yarn install --immutable | grep -v 'YN0013'
-        ./scripts/install-build-deps.sh
+        if [ "${{ matrix.step }}" != "check" ]; then
+          ./scripts/install-build-deps.sh
+        fi
         yarn deno:setup
         yarn deno:${{ matrix.step }}
