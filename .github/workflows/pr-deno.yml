@@ -23,5 +23,5 @@ jobs:
         if [ "${{ matrix.step }}" != "check" ]; then
           ./scripts/install-build-deps.sh
         fi
-        yarn deno:setup
+        yarn polkadot-dev-deno-map
         yarn deno:${{ matrix.step }}
