@@ -9,9 +9,9 @@
     "type": "git",
     "url": "https://github.com/polkadot-js/wasm.git"
   },
-  "type": "module",
   "sideEffects": false,
-  "version": "6.2.4-1-x",
+  "type": "module",
+  "version": "6.2.4-2-x",
   "workspaces": [
     "packages/*"
   ],
