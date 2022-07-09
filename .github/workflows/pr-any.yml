@@ -5,13 +5,16 @@ jobs:
   pr:
     strategy:
       matrix:
-        step: ['lint', 'test', 'build']
+        step: ['lint', 'test', 'build', 'deno']
     name: ${{ matrix.step }}
     runs-on: ubuntu-latest
     env:
       YARN_ENABLE_SCRIPTS: false
     steps:
     - uses: actions/checkout@v2
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: vx.x.x
     - name: ${{ matrix.step }}
       if: always()
       run: |
@@ -19,4 +22,5 @@ jobs:
         if [ "${{ matrix.step }}" != "lint" ]; then
           ./scripts/install-build-deps.sh
         fi
+        yarn polkadot-dev-deno-map
         yarn ${{ matrix.step }}
