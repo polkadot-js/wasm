@@ -10,7 +10,8 @@ module.exports = {
     '**/target/*',
     '**/build-wasm/*',
     '**/deno/*.ts',
-    '**/test/*.ts'
+    '**/test/*.ts',
+    '/mod.ts'
   ],
   parserOptions: {
     ...base.parserOptions,
