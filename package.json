@@ -12,6 +12,7 @@
   "sideEffects": false,
   "type": "module",
   "version": "6.2.4-4-x",
+  "versionNpm": "6.2.3",
   "workspaces": [
     "packages/*"
   ],
@@ -37,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
-    "@polkadot/dev": "^0.67.65",
+    "@polkadot/dev": "^0.67.69",
     "fflate": "^0.7.3",
     "override-require": "^1.1.1"
   },
