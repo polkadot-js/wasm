@@ -1,14 +1,9 @@
 binaryen/
 bindgen/
 build/
-build-cjs/
-build-esm/
-build-deno/
-build-docs/
-build-wasm/
+build-*/
 bytes/
 coverage/
-docs/.vuepress/dist/
 node_modules/
 pkg/
 target/
