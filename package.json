@@ -11,7 +11,8 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "6.2.4-4-x",
+  "version": "6.2.4-5-x",
+  "versionGit": "6.2.4-5-x",
   "versionNpm": "6.2.3",
   "workspaces": [
     "packages/*"
