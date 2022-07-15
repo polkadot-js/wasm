@@ -27,7 +27,7 @@ async function beforeAll (name, wasm) {
 
   console.log(`*** waitReady()=${result} for ${wasm.bridge.type}`);
 
-  assert(name.toLowerCase() === wasm.bridge.type, `Incorrect environment laucnhed, expected ${name.toLowerCase()}, found ${wasm.bridge.type}`);
+  assert(name.toLowerCase() === wasm.bridge.type, `Incorrect environment launched, expected ${name.toLowerCase()}, found ${wasm.bridge.type}`);
 
   return result;
 }
