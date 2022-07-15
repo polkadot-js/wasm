@@ -36,26 +36,28 @@ function runAll (name, wasm) {
   const failed = [];
   let count = 0;
 
-  Object.keys(tests).forEach((name) => {
-    const timerId = `\t${name}`;
+  Object
+    .entries(tests)
+    .forEach(([name, test]) => {
+      const timerId = `\t${name}`;
 
-    count++;
+      count++;
 
-    try {
-      console.time(timerId);
-      console.log();
-      console.log(timerId);
+      try {
+        console.time(timerId);
+        console.log();
+        console.log(timerId);
 
-      tests[name](wasm);
+        test(wasm);
 
-      console.timeEnd(timerId);
-    } catch (error) {
-      console.error();
-      console.error(error);
+        console.timeEnd(timerId);
+      } catch (error) {
+        console.error();
+        console.error(error);
 
-      failed.push(name);
-    }
-  });
+        failed.push(name);
+      }
+    });
 
   if (failed.length) {
     throw new Error(`\n*** ${name}: FAILED: ${failed.length} of ${count}: ${failed.join(', ')}`);
