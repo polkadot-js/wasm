@@ -8,8 +8,6 @@
 import * as wasm from '../build';
 import { beforeAll as beforeAllFn, tests } from './all/index.js';
 
-globalThis.wasm = wasm;
-
 describe('wasm-crypto', () => {
   beforeAll(async () => {
     await beforeAllFn('wasm', wasm);

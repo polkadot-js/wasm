@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "crypto": "https://deno.land/std/node/crypto.ts",
-    "@polkadot/util": "https://deno.land/x/polkadot/util/mod.ts"
-  }
-}
