@@ -31,7 +31,7 @@
   "version": "6.2.4-8-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
+    "@babel/runtime": "^7.18.9",
     "@polkadot/wasm-bridge": "6.2.4-8-x",
     "@polkadot/wasm-crypto-asmjs": "6.2.4-8-x",
     "@polkadot/wasm-crypto-init": "6.2.4-8-x",
