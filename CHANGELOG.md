@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Optimize packed WASM base64 decoding loop
+
+
 ## 6.2.3 Jul 7, 2022
 
 Changes:
