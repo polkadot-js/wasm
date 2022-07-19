@@ -1,4 +1,4 @@
-     467	Jaco                          	Bump dev deps (#403)
+     468	Jaco                          	Optimize packed WASM base64 decoding loop (#404)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
