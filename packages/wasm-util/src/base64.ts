@@ -22,7 +22,7 @@ for (let i = 0; i < chr.length; i++) {
  *
  * For our usage, since we have access to the static final size (where used), we
  * decode to a specified output buffer. This also means we have applied a number
- * of optimizations based on this - checking out output position instead of chars.
+ * of optimizations based on this - checking output position instead of chars.
  */
 export function base64Decode (data: string, out: Uint8Array): Uint8Array {
   const len = out.length;

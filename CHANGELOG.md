@@ -1,10 +1,13 @@
 # CHANGELOG
 
-## master
+## 6.3.1 Jul 21, 2022
 
 Changes:
 
 - Optimize packed WASM base64 decoding loop
+- Adjust test environment (no duplication)
+- Adjust CI check steps, align with other org repos
+- Remove unneeded `import_map.in.json` for Deno tests
 
 
 ## 6.2.3 Jul 7, 2022
