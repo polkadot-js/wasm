@@ -20,15 +20,15 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "6.3.0",
+  "version": "6.3.1",
   "browser": "wasm.js",
   "main": "wasm.js",
   "react-native": "asm.js",
   "dependencies": {
     "@babel/runtime": "^7.18.9",
-    "@polkadot/wasm-bridge": "6.3.0",
-    "@polkadot/wasm-crypto-asmjs": "6.3.0",
-    "@polkadot/wasm-crypto-wasm": "6.3.0"
+    "@polkadot/wasm-bridge": "6.3.1",
+    "@polkadot/wasm-crypto-asmjs": "6.3.1",
+    "@polkadot/wasm-crypto-wasm": "6.3.1"
   },
   "devDependencies": {
     "@polkadot/util": "^10.0.2",
