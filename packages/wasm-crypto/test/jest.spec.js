@@ -13,7 +13,7 @@ describe('wasm-crypto', () => {
     await beforeAllFn('wasm', wasm);
   });
 
-  Object.keys(tests).forEach((name) => {
-    it(name, () => tests[name](wasm));
-  });
+  it.each(Object.keys(tests))('%s', (name) =>
+    tests[name](wasm)
+  );
 });

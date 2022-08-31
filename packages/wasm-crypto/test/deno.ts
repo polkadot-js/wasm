@@ -6,6 +6,9 @@ import { createRequire } from 'https://deno.land/std@0.107.0/node/module.ts';
 import * as wasm from '../build-deno/mod.ts';
 
 declare const globalThis: Record<string, unknown>;
+declare const Deno: {
+  test: (name: string, test: () => unknown) => unknown;
+}
 
 // ensure we set require on globalThis, it is used is all/*.js
 const require = globalThis.require = createRequire(import.meta.url);
