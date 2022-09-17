@@ -41,9 +41,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
-    "@polkadot/dev": "^0.67.126",
-    "@polkadot/util": "^10.1.7",
-    "@polkadot/x-randomvalues": "^10.1.7",
+    "@polkadot/dev": "^0.67.130",
+    "@polkadot/util": "^10.1.8",
+    "@polkadot/x-randomvalues": "^10.1.8",
     "fflate": "^0.7.3",
     "override-require": "^1.1.1"
   },
