@@ -23,7 +23,7 @@
     "@babel/runtime": "^7.19.4"
   },
   "devDependencies": {
-    "@polkadot/util": "^10.1.10"
+    "@polkadot/util": "^10.1.11"
   },
   "peerDependencies": {
     "@polkadot/util": "*"
