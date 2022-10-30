@@ -25,7 +25,7 @@
   "main": "wasm.js",
   "react-native": "asm.js",
   "dependencies": {
-    "@babel/runtime": "^7.19.4",
+    "@babel/runtime": "^7.20.0",
     "@polkadot/wasm-bridge": "6.3.2-31-x",
     "@polkadot/wasm-crypto-asmjs": "6.3.2-31-x",
     "@polkadot/wasm-crypto-wasm": "6.3.2-31-x"
