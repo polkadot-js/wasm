@@ -15,4 +15,4 @@ export { packageInfo } from './packageInfo';
  * @description
  * Creates an interface using WASM and a fallback ASM.js
  */
-export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', wasmBytes, asmJsInit);
+export const createWasm: InitFn<WasmCryptoInstance> = /*#__PURE__*/ createWasmFn('crypto', wasmBytes, asmJsInit);

@@ -13,4 +13,4 @@ export { packageInfo } from './packageInfo';
  * @description
  * Creates an interface using no WASM and no ASM.js
  */
-export const createWasm: InitFn<WasmCryptoInstance> = createWasmFn('crypto', null, null);
+export const createWasm: InitFn<WasmCryptoInstance> = /*#__PURE__*/ createWasmFn('crypto', null, null);
