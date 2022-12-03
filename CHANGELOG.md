@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master
+## 6.4.1 Dec 3, 2022
 
 Changes:
 
-- Add `/*#__PURE__*/` annotations for specific `export const something = someFunction(...)
+- Add `/*#__PURE__*/` annotations for specific `export const something = someFunction(...)`
 
 
 ## 6.3.1 Jul 21, 2022
