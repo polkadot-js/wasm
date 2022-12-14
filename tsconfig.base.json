@@ -16,6 +16,6 @@
       "@polkadot/wasm-util/*": ["wasm-util/src/*"],
     },
     "skipLibCheck": true,
-    "target": "es2015"
+    "target": "es2020"
   }
  }
