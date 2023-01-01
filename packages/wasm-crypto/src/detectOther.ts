@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/wasm-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { packageInfo as bridgeInfo } from '@polkadot/wasm-bridge/packageInfo';

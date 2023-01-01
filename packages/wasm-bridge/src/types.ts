@@ -1,4 +1,4 @@
-// Copyright 2019-2022 @polkadot/wasm-bridge authors & contributors
+// Copyright 2019-2023 @polkadot/wasm-bridge authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Use non-strong types instead of WasmImports which may not
