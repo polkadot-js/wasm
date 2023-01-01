@@ -1,4 +1,4 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
+// Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 use bip39::{Mnemonic, MnemonicType, Language, Seed};

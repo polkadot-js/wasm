@@ -1,4 +1,4 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
+// Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Copyright 2019 Paritytech via https://github.com/paritytech/schnorrkel-js/

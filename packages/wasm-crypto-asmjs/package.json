@@ -20,7 +20,7 @@
   "version": "6.4.2-6-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.6"
+    "@babel/runtime": "^7.20.7"
   },
   "devDependencies": {
     "@polkadot/util": "^10.2.1"

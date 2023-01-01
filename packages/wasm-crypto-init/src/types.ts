@@ -1,4 +1,4 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto-init authors & contributors
+// Copyright 2019-2023 @polkadot/wasm-crypto-init authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { WasmBaseInstance } from '@polkadot/wasm-bridge/types';

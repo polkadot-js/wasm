@@ -1,4 +1,4 @@
-// Copyright 2019-2022 @polkadot/wasm-bundle authors & contributors
+// Copyright 2019-2023 @polkadot/wasm-bundle authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { InitFn, InitPromise, InitResult, WasmBaseInstance, WasmImports } from './types';

@@ -1,4 +1,4 @@
-// Copyright 2019-2022 @polkadot/wasm-crypto authors & contributors
+// Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { createRequire } from 'https://deno.land/std@0.107.0/node/module.ts';
