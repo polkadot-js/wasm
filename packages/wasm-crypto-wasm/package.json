@@ -20,7 +20,7 @@
   "version": "6.4.2-12-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.20.7",
+    "@babel/runtime": "^7.20.13",
     "@polkadot/wasm-util": "6.4.2-12-x"
   },
   "devDependencies": {
