@@ -5,11 +5,8 @@
 
 set -e
 
-./scripts/clean-js.sh
+yarn polkadot-dev-clean-build
 
-echo "*** Cleaning wasm"
 cd packages/wasm-crypto
-
 cargo clean
-
 cd ../..
