@@ -5,7 +5,7 @@
 
 set -e
 
-yarn polkadot-dev-clean
+yarn polkadot-dev-clean-build
 
 cd packages/wasm-crypto
 cargo clean

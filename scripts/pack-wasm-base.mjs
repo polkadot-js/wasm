@@ -1,7 +1,7 @@
 // Copyright 2019-2023 @polkadot/wasm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import fflate from 'fflate/node';
+import { zlibSync } from 'fflate/node';
 import fs from 'fs';
 
 import { formatNumber } from '@polkadot/util';
@@ -11,7 +11,7 @@ const DIR_CJS = `./${process.env.PKG_NAME}-wasm/build/cjs`;
 const HDR = `// Copyright 2019-${new Date().getFullYear()} @polkadot/${process.env.PKG_NAME}-wasm authors & contributors\n// SPDX-License-Identifier: Apache-2.0\n\n// Generated as part of the build, do not edit\n`;
 
 const data = fs.readFileSync(`./${process.env.PKG_NAME}/build-wasm/wasm_opt.wasm`);
-const compressed = Buffer.from(fflate.zlibSync(data, { level: 9 }));
+const compressed = Buffer.from(zlibSync(data, { level: 9 }));
 const base64 = compressed.toString('base64');
 
 console.log(`*** Compressed WASM: in=${formatNumber(data.length)}, out=${formatNumber(compressed.length)}, opt=${(100 * compressed.length / data.length).toFixed(2)}%, base64=${formatNumber(base64.length)}`);
