@@ -5,5 +5,5 @@
 
 set -e
 
-./scripts/clean-js.sh
+yarn polkadot-dev-clean
 yarn polkadot-dev-build-ts
