@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@polkadot/dev": "^0.68.2",
+    "@polkadot/dev": "^0.68.4",
     "@polkadot/util": "^10.3.1",
     "@polkadot/x-randomvalues": "^10.3.1",
     "@types/jest": "^29.4.0",
@@ -49,6 +49,6 @@
     "override-require": "^1.1.1"
   },
   "resolutions": {
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   }
 }
