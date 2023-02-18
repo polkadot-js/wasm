@@ -1,16 +1,16 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const { assert } = require('@polkadot/util');
+import { assert } from '@polkadot/util';
 
-const bip39 = require('./bip39.js');
-const ed25519 = require('./ed25519.js');
-const hashing = require('./hashing.js');
-const secp256k1 = require('./secp256k1.js');
-const sr25519 = require('./sr25519.js');
-const vrf = require('./vrf.js');
+import * as bip39 from './bip39.js';
+import * as ed25519 from './ed25519.js';
+import * as hashing from './hashing.js';
+import * as secp256k1 from './secp256k1.js';
+import * as sr25519 from './sr25519.js';
+import * as vrf from './vrf.js';
 
-const tests = {
+export const tests = {
   // We place secp256k1 first, this allows the interaction with it in the
   // hashing (specifically scrypt) test not be an issue (ASM.js only)
   // https://github.com/polkadot-js/wasm/issues/307
@@ -22,7 +22,7 @@ const tests = {
   ...hashing
 };
 
-async function beforeAll (name, wasm) {
+export async function beforeAll (name, wasm) {
   const result = await wasm.waitReady();
 
   console.log(`*** waitReady()=${result} for ${wasm.bridge.type}`);
@@ -32,7 +32,7 @@ async function beforeAll (name, wasm) {
   return result;
 }
 
-function runAll (name, wasm) {
+export function runAll (name, wasm) {
   const failed = [];
   let count = 0;
 
@@ -64,7 +64,7 @@ function runAll (name, wasm) {
   }
 }
 
-function runUnassisted (name, wasm) {
+export function runUnassisted (name, wasm) {
   console.log(`\n*** ${name}: Running tests`);
 
   beforeAll(name, wasm)
@@ -78,10 +78,3 @@ function runUnassisted (name, wasm) {
       process.exit(-1);
     });
 }
-
-module.exports = {
-  beforeAll,
-  runAll,
-  runUnassisted,
-  tests
-};
