@@ -11,9 +11,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "6.4.2-22-x",
+  "version": "6.4.2-23-x",
   "versions": {
-    "git": "6.4.2-22-x",
+    "git": "6.4.2-23-x",
     "npm": "6.4.1"
   },
   "workspaces": [
@@ -31,14 +31,14 @@
     "deno:build": "WITH_DENO=1 yarn build",
     "deno:check": "deno check --import-map=import_map.json mod.ts",
     "lint": "polkadot-dev-run-lint",
+    "nodeWithBuildLoader": "node --loader ./packages/wasm-crypto/test/loader-build.js",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "yarn test:wasm-crypto:rust",
     "test:wasm-crypto:deno": "deno test --allow-read --import-map=import_map.json packages/wasm-crypto/test/deno.ts",
     "test:wasm-crypto:js": "yarn test:wasm-crypto:js:jest && yarn test:wasm-crypto:js:node",
     "test:wasm-crypto:js:jest": "yarn nodeWithBuildLoader node_modules/@polkadot/dev/scripts/polkadot-dev-run-test.mjs ./test/jest.spec.js",
     "test:wasm-crypto:js:node": "yarn nodeWithBuildLoader ./packages/wasm-crypto/test/wasm.js && yarn nodeWithBuildLoader ./packages/wasm-crypto/test/asm.js",
-    "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture",
-    "nodeWithBuildLoader": "node --loader ./packages/wasm-crypto/test/loader-build.js"
+    "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
