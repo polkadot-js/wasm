@@ -14,15 +14,16 @@ export const tests = {
   // We place secp256k1 first, this allows the interaction with it in the
   // hashing (specifically scrypt) test not be an issue (ASM.js only)
   // https://github.com/polkadot-js/wasm/issues/307
-  ...secp256k1,
-  ...ed25519,
-  ...sr25519,
-  ...vrf,
-  ...bip39,
-  ...hashing
+  secp256k1,
+  // eslint-disable-next-line sort-keys
+  bip39,
+  ed25519,
+  hashing,
+  sr25519,
+  vrf
 };
 
-export async function beforeAll (name, wasm) {
+export async function initRun (name, wasm) {
   const result = await wasm.waitReady();
 
   console.log(`*** waitReady()=${result} for ${wasm.bridge.type}`);
@@ -38,25 +39,31 @@ export function runAll (name, wasm) {
 
   Object
     .entries(tests)
-    .forEach(([name, test]) => {
-      const timerId = `\t${name}`;
+    .forEach(([describeName, tests]) => {
+      describe(describeName, () => {
+        Object
+          .entries(tests)
+          .forEach(([name, test]) => {
+            const timerId = `\t${name}`;
 
-      count++;
+            count++;
 
-      try {
-        console.time(timerId);
-        console.log();
-        console.log(timerId);
+            try {
+              console.time(timerId);
+              console.log();
+              // console.log(timerId);
 
-        test(wasm);
+              test(wasm);
 
-        console.timeEnd(timerId);
-      } catch (error) {
-        console.error();
-        console.error(error);
+              console.timeEnd(timerId);
+            } catch (error) {
+              console.error();
+              console.error(error);
 
-        failed.push(name);
-      }
+              failed.push(name);
+            }
+          });
+      });
     });
 
   if (failed.length) {
@@ -67,7 +74,22 @@ export function runAll (name, wasm) {
 export function runUnassisted (name, wasm) {
   console.log(`\n*** ${name}: Running tests`);
 
-  beforeAll(name, wasm)
+  // for these we are pass-through describe and it handlers
+  globalThis.describe = (name, fn) => {
+    console.log('\n', name);
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fn();
+  };
+
+  globalThis.it = (name, fn) => {
+    console.log(`\t${name}`);
+
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fn();
+  };
+
+  initRun(name, wasm)
     .then(() => runAll(name, wasm))
     .then(() => {
       console.log(`\n*** ${name}: All passed`);

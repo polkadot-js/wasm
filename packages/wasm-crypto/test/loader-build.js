@@ -21,9 +21,8 @@ export function resolve (specifier, context, nextResolve) {
             .replace(/\/wasm-crypto-init\/build$/, '/wasm-crypto-init/build/wasm.js')
             .replace(/\/wasm-crypto-init\/build\/asm$/, '/wasm-crypto-init/build/asm.js')
             .replace(/\/wasm-crypto\/build\/initOnlyAsm$/, '/wasm-crypto/build/initOnlyAsm.js')
-            .replace(/\/packageInfo$/, '/packageInfo.js')
+            .replace(/\/build\/packageInfo$/, '/build/packageInfo.js')
             .replace(/\/build$/, '/build/index.js')
-
         )
       ).href
     };
