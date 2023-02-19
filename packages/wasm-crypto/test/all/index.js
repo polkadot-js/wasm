@@ -71,8 +71,8 @@ export function runAll (name, wasm) {
   }
 }
 
-export function runUnassisted (name, wasm) {
-  console.log(`\n*** ${name}: Running tests`);
+export function runUnassisted (type, wasm) {
+  console.log(`\n*** ${type}: Running tests`);
 
   // for these we are pass-through describe and it handlers
   globalThis.describe = (name, fn) => {
@@ -89,14 +89,20 @@ export function runUnassisted (name, wasm) {
     fn();
   };
 
-  initRun(name, wasm)
-    .then(() => runAll(name, wasm))
+  console.time(type);
+
+  initRun(type, wasm)
     .then(() => {
-      console.log(`\n*** ${name}: All passed`);
+      runAll(type, wasm);
+      console.log(`\n*** ${type}: All passed`);
+      console.timeEnd(type);
+      console.log();
       process.exit(0);
     })
     .catch((error) => {
-      console.error(error.message, '\n');
+      console.error(`\n*** ${type}: FAILED:`, error.message, '\n');
+      console.timeEnd(type);
+      console.log();
       process.exit(-1);
     });
 }
