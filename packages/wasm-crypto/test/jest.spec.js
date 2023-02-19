@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import * as wasm from '../build';
-import { beforeAll as beforeAllFn, tests } from './all/index.js';
+import { initRun, tests } from './all/index.js';
 
 describe('wasm-crypto', () => {
-  beforeAll(async () => {
-    await beforeAllFn('wasm', wasm);
-  });
+  beforeAll(() => initRun('wasm', wasm));
 
-  it.each(Object.keys(tests))('%s', (name) =>
-    tests[name](wasm)
-  );
+  describe.each(Object.keys(tests))('%s', (name) => {
+    Object
+      .values(tests[name])
+      .forEach((fn) => fn(wasm));
+  });
 });

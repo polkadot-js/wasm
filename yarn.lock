@@ -2019,9 +2019,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.68.36":
-  version: 0.68.36
-  resolution: "@polkadot/dev@npm:0.68.36"
+"@polkadot/dev@npm:^0.68.37":
+  version: 0.68.37
+  resolution: "@polkadot/dev@npm:0.68.37"
   dependencies:
     "@babel/cli": ^7.20.7
     "@babel/core": ^7.20.12
@@ -2085,7 +2085,7 @@ __metadata:
     jsdom: ^21.1.0
     madge: ^6.0.0
     prettier: ^2.8.4
-    rollup: ^3.15.0
+    rollup: ^3.17.1
     rollup-plugin-cleanup: ^3.2.1
     typescript: ^4.9.5
     webpack: ^5.75.0
@@ -2124,7 +2124,7 @@ __metadata:
     polkadot-exec-swc: scripts/polkadot-exec-swc.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 90af4e228c910dc47d222e9166c46e2fcd0b74227763ffb06416d3669a689604b235adf64e22107617a26e8e1bd516b0fb73160dfb596a3d35fe229893016ca9
+  checksum: 8ac76e1e7513cd2b608cf6526e3c3005f56c081e9cd1b6db33a04bf59223e82fceb1081b9fb9b629d9f46bed712b05914dc962c8ebe97b3bc72b6369f9901c93
   languageName: node
   linkType: hard
 
@@ -10955,9 +10955,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^3.15.0":
-  version: 3.15.0
-  resolution: "rollup@npm:3.15.0"
+"rollup@npm:^3.17.1":
+  version: 3.17.1
+  resolution: "rollup@npm:3.17.1"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -10965,7 +10965,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 1a75b09503f705b594dcfebf65b9e1ca4536e3facdf5716e10d4272697b4bb7e6bd8ab35be1b3fe1271f864d4c4a75d012bd77cbe7a55579d5138258b9e85c23
+  checksum: 3c6076eba228a6623b886929154ebbb9ddfb6a044e567456eeb6257b5235f4fd740655836b539155b1b25697f38f5d189bf81b9ce0624ce5aafc6c8620bd80c0
   languageName: node
   linkType: hard
 
@@ -10974,7 +10974,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@babel/core": ^7.20.12
-    "@polkadot/dev": ^0.68.36
+    "@polkadot/dev": ^0.68.37
     "@polkadot/util": ^10.4.1
     "@polkadot/x-randomvalues": ^10.4.1
     "@types/jest": ^29.4.0
