@@ -35,13 +35,13 @@
     "test": "yarn test:wasm-crypto:rust",
     "test:wasm-crypto:deno": "deno test --allow-read --import-map=import_map.json packages/wasm-crypto/test/deno.ts",
     "test:wasm-crypto:js": "yarn test:wasm-crypto:js:jest && yarn test:wasm-crypto:js:node",
-    "test:wasm-crypto:js:jest": "polkadot-dev-run-test --env jest --loader ./packages/wasm-crypto/test/loader-build.js test/jest.spec.js",
+    "test:wasm-crypto:js:jest": "polkadot-dev-run-test --env node --loader ./packages/wasm-crypto/test/loader-build.js test/jest.spec.ts",
     "test:wasm-crypto:js:node": "node --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/wasm.js && node --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/asm.js",
     "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@polkadot/dev": "^0.68.38",
+    "@polkadot/dev": "^0.68.41",
     "@polkadot/util": "^10.4.2",
     "@polkadot/x-randomvalues": "^10.4.2",
     "@types/jest": "^29.4.0",
