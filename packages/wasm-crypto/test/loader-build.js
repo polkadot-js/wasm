@@ -1,9 +1,9 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import path from 'path';
-import process from 'process';
-import { pathToFileURL } from 'url';
+import path from 'node:path';
+import process from 'node:process';
+import { pathToFileURL } from 'node:url';
 
 // Adjusts the resolver to point to the build output
 export function resolve (specifier, context, nextResolve) {
