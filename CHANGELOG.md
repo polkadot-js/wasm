@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Swap TS -> JS compiler to use swc
+- Adjust all tests to use `node:test` runner
+
+
 ## 6.4.1 Dec 3, 2022
 
 Changes:
