@@ -20,7 +20,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "6.4.2-34-x",
+  "version": "6.4.2-35-x",
   "main": "index.js",
   "dependencies": {
     "@swc/helpers": "^0.4.14"

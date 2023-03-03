@@ -17,10 +17,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "6.4.2-34-x",
+  "version": "6.4.2-35-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-util": "6.4.2-34-x",
+    "@polkadot/wasm-util": "6.4.2-35-x",
     "@swc/helpers": "^0.4.14"
   },
   "devDependencies": {
