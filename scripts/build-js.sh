@@ -6,4 +6,4 @@
 set -e
 
 yarn polkadot-dev-clean-build
-yarn polkadot-dev-build-ts
+yarn polkadot-dev-build-ts --compiler swc

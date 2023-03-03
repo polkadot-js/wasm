@@ -1867,9 +1867,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
   dependencies:
-    "@babel/runtime": ^7.21.0
     "@polkadot/util": ^10.4.2
     "@polkadot/x-randomvalues": ^10.4.2
+    "@swc/helpers": ^0.4.14
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
@@ -1880,8 +1880,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
-    "@babel/runtime": ^7.21.0
     "@polkadot/util": ^10.4.2
+    "@swc/helpers": ^0.4.14
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -1891,12 +1891,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
-    "@babel/runtime": ^7.21.0
     "@polkadot/util": ^10.4.2
     "@polkadot/wasm-bridge": 6.4.2-34-x
     "@polkadot/wasm-crypto-asmjs": 6.4.2-34-x
     "@polkadot/wasm-crypto-wasm": 6.4.2-34-x
     "@polkadot/x-randomvalues": ^10.4.2
+    "@swc/helpers": ^0.4.14
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
@@ -1907,9 +1907,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
-    "@babel/runtime": ^7.21.0
     "@polkadot/util": ^10.4.2
     "@polkadot/wasm-util": 6.4.2-34-x
+    "@swc/helpers": ^0.4.14
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown
@@ -1919,7 +1919,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
-    "@babel/runtime": ^7.21.0
     "@polkadot/util": ^10.4.2
     "@polkadot/wasm-bridge": 6.4.2-34-x
     "@polkadot/wasm-crypto-asmjs": 6.4.2-34-x
@@ -1927,6 +1926,7 @@ __metadata:
     "@polkadot/wasm-crypto-wasm": 6.4.2-34-x
     "@polkadot/wasm-util": 6.4.2-34-x
     "@polkadot/x-randomvalues": ^10.4.2
+    "@swc/helpers": ^0.4.14
   peerDependencies:
     "@polkadot/util": "*"
     "@polkadot/x-randomvalues": "*"
@@ -1937,8 +1937,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
   dependencies:
-    "@babel/runtime": ^7.21.0
     "@polkadot/util": ^10.4.2
+    "@swc/helpers": ^0.4.14
   peerDependencies:
     "@polkadot/util": "*"
   languageName: unknown

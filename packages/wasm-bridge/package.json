@@ -23,7 +23,7 @@
   "version": "6.4.2-34-x",
   "main": "index.js",
   "dependencies": {
-    "@babel/runtime": "^7.21.0"
+    "@swc/helpers": "^0.4.14"
   },
   "devDependencies": {
     "@polkadot/util": "^10.4.2",
