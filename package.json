@@ -11,7 +11,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "versions": {
     "git": "7.0.1",
     "npm": "7.0.1"
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
-    "@polkadot/dev": "^0.69.26",
+    "@polkadot/dev": "^0.69.27",
     "@polkadot/util": "^10.4.2",
     "@polkadot/x-randomvalues": "^10.4.2",
     "@types/node": "^18.14.6",
