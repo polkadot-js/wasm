@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 7.0.2 Mar 4, 2023
+
+Changes:
+
+- Update to latest `@polkadot/dev` (w/ tsc jsx detection output changes)
+
+
 ## 7.0.1 Mar 4, 2023
 
 Changes:
