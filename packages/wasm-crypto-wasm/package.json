@@ -24,7 +24,7 @@
     "tslib": "^2.5.0"
   },
   "devDependencies": {
-    "@polkadot/util": "^10.4.2"
+    "@polkadot/util": "^11.0.1"
   },
   "peerDependencies": {
     "@polkadot/util": "*"
