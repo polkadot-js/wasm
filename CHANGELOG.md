@@ -4,7 +4,7 @@
 
 Changes:
 
-- Swap TS -> JS compiler to use swc
+- Swap TS -> JS compiler to use tsc (from babel)
 - Adjust all tests to use `node:test` runner
 
 

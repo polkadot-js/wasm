@@ -21,7 +21,7 @@
   "main": "index.js",
   "dependencies": {
     "@polkadot/wasm-util": "6.4.2-35-x",
-    "@swc/helpers": "^0.4.14"
+    "tslib": "^2.5.0"
   },
   "devDependencies": {
     "@polkadot/util": "^10.4.2"
