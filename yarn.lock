@@ -1864,7 +1864,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-bridge@6.4.2-36-x, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
+"@polkadot/wasm-bridge@7.0.0, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
   dependencies:
@@ -1877,7 +1877,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@6.4.2-36-x, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@7.0.0, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
@@ -1888,14 +1888,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-init@6.4.2-36-x, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
+"@polkadot/wasm-crypto-init@7.0.0, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
     "@polkadot/util": ^10.4.2
-    "@polkadot/wasm-bridge": 6.4.2-36-x
-    "@polkadot/wasm-crypto-asmjs": 6.4.2-36-x
-    "@polkadot/wasm-crypto-wasm": 6.4.2-36-x
+    "@polkadot/wasm-bridge": 7.0.0
+    "@polkadot/wasm-crypto-asmjs": 7.0.0
+    "@polkadot/wasm-crypto-wasm": 7.0.0
     "@polkadot/x-randomvalues": ^10.4.2
     tslib: ^2.5.0
   peerDependencies:
@@ -1904,12 +1904,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@6.4.2-36-x, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@7.0.0, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
     "@polkadot/util": ^10.4.2
-    "@polkadot/wasm-util": 6.4.2-36-x
+    "@polkadot/wasm-util": 7.0.0
     tslib: ^2.5.0
   peerDependencies:
     "@polkadot/util": "*"
@@ -1921,11 +1921,11 @@ __metadata:
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
     "@polkadot/util": ^10.4.2
-    "@polkadot/wasm-bridge": 6.4.2-36-x
-    "@polkadot/wasm-crypto-asmjs": 6.4.2-36-x
-    "@polkadot/wasm-crypto-init": 6.4.2-36-x
-    "@polkadot/wasm-crypto-wasm": 6.4.2-36-x
-    "@polkadot/wasm-util": 6.4.2-36-x
+    "@polkadot/wasm-bridge": 7.0.0
+    "@polkadot/wasm-crypto-asmjs": 7.0.0
+    "@polkadot/wasm-crypto-init": 7.0.0
+    "@polkadot/wasm-crypto-wasm": 7.0.0
+    "@polkadot/wasm-util": 7.0.0
     "@polkadot/x-randomvalues": ^10.4.2
     tslib: ^2.5.0
   peerDependencies:
@@ -1934,7 +1934,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-util@6.4.2-36-x, @polkadot/wasm-util@workspace:packages/wasm-util":
+"@polkadot/wasm-util@7.0.0, @polkadot/wasm-util@workspace:packages/wasm-util":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
   dependencies:
