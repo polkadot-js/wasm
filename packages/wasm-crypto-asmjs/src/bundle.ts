@@ -2,4 +2,4 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export { asmJsInit } from './cjs/data.js';
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';

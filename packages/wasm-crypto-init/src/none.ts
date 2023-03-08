@@ -2,11 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { InitFn } from '@polkadot/wasm-bridge/types';
-import type { WasmCryptoInstance } from './types';
+import type { WasmCryptoInstance } from './types.js';
 
 import { createWasmFn } from '@polkadot/wasm-bridge';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 /**
  * @name createWasm

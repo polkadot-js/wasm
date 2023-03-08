@@ -5,7 +5,7 @@ import { base64Decode, unzlibSync } from '@polkadot/wasm-util';
 
 import { bytes, lenIn, lenOut } from './cjs/bytes.js';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
 /**
  * @name wasmBytes
