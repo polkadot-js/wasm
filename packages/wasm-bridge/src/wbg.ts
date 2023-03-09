@@ -1,7 +1,7 @@
 // Copyright 2019-2023 @polkadot/wasm-bridge authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BridgeBase, WasmBaseInstance } from './types';
+import type { BridgeBase, WasmBaseInstance } from './types.js';
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 

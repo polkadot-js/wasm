@@ -7,11 +7,11 @@
 // then ensures that the internal wasm instance here is available
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance, WasmImports } from './types';
+import type { BridgeBase, InitFn, InitPromise, WasmBaseInstance, WasmImports } from './types.js';
 
 import { stringToU8a, u8aToString } from '@polkadot/util';
 
-import { Wbg } from './wbg';
+import { Wbg } from './wbg.js';
 
 /**
  * @name Bridge

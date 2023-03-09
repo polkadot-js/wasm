@@ -3,7 +3,7 @@
 
 import { createWasm } from '@polkadot/wasm-crypto-init/asm';
 
-import { initBridge } from './init';
+import { initBridge } from './init.js';
 
 /**
  * @name initWasm

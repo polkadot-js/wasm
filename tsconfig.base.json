@@ -4,18 +4,18 @@
     "composite": true,
     "paths": {
       "@polkadot/wasm-bridge": ["wasm-bridge/src"],
-      "@polkadot/wasm-bridge/*": ["wasm-bridge/src/*"],
+      "@polkadot/wasm-bridge/*": ["wasm-bridge/src/*.ts"],
       "@polkadot/wasm-crypto-asmjs": ["wasm-crypto-asmjs/src"],
-      "@polkadot/wasm-crypto-asmjs/*": ["wasm-crypto-asmjs/src/*"],
+      "@polkadot/wasm-crypto-asmjs/*": ["wasm-crypto-asmjs/src/*.ts"],
       "@polkadot/wasm-crypto-wasm": ["wasm-crypto-wasm/src"],
-      "@polkadot/wasm-crypto-wasm/*": ["wasm-crypto-wasm/src/*"],
+      "@polkadot/wasm-crypto-wasm/*": ["wasm-crypto-wasm/src/*.ts"],
       "@polkadot/wasm-crypto-init": ["wasm-crypto-init/src/wasm"],
-      "@polkadot/wasm-crypto-init/*": ["wasm-crypto-init/src/*"],
+      "@polkadot/wasm-crypto-init/*": ["wasm-crypto-init/src/*.ts"],
       "@polkadot/wasm-crypto": ["wasm-crypto/src"],
+      "@polkadot/wasm-crypto/*": ["wasm-crypto/src/*.ts"],
       "@polkadot/wasm-util": ["wasm-util/src"],
-      "@polkadot/wasm-util/*": ["wasm-util/src/*"],
+      "@polkadot/wasm-util/*": ["wasm-util/src/*.ts"],
     },
-    "skipLibCheck": true,
-    "target": "es2020"
+    "skipLibCheck": true
   }
  }
