@@ -1,4 +1,4 @@
-     555	Jaco                          	Align tsconfig to allow moduleResolution: nodenext (#493)
+     556	Jaco                          	Update GH actions (#494)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
