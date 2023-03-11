@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 7.0.3 Mar 11, 2023
+
+Changes:
+
+- Use consistent `.js` imports in source files (TS moduleResolution)
+
+
 ## 7.0.2 Mar 4, 2023
 
 Changes:
