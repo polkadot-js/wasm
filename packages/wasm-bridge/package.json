@@ -1,14 +1,12 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
-  "contributors": [],
   "description": "A bridge layer between JS and Wasm",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-bridge#readme",
   "license": "Apache-2.0",
-  "maintainers": [],
   "name": "@polkadot/wasm-bridge",
   "repository": {
     "directory": "packages/wasm-bridge",
@@ -20,7 +18,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.0.4-2-x",
+  "version": "7.0.4-3-x",
   "main": "index.js",
   "dependencies": {
     "tslib": "^2.5.0"

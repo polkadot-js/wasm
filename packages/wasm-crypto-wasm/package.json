@@ -1,14 +1,12 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
-  "contributors": [],
   "description": "Wasm content for wasm-crypto",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto-wasm#readme",
   "license": "Apache-2.0",
-  "maintainers": [],
   "name": "@polkadot/wasm-crypto-wasm",
   "repository": {
     "directory": "packages/wasm-crypto-wasm",
@@ -17,10 +15,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.0.4-2-x",
+  "version": "7.0.4-3-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-util": "7.0.4-2-x",
+    "@polkadot/wasm-util": "7.0.4-3-x",
     "tslib": "^2.5.0"
   },
   "devDependencies": {

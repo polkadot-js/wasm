@@ -1,14 +1,12 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
-  "contributors": [],
   "description": "Init handlers for wasm-crypto",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto-init#readme",
   "license": "Apache-2.0",
-  "maintainers": [],
   "name": "@polkadot/wasm-crypto-init",
   "repository": {
     "directory": "packages/wasm-crypto-init",
@@ -20,14 +18,14 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.0.4-2-x",
+  "version": "7.0.4-3-x",
   "browser": "wasm.js",
   "main": "wasm.js",
   "react-native": "asm.js",
   "dependencies": {
-    "@polkadot/wasm-bridge": "7.0.4-2-x",
-    "@polkadot/wasm-crypto-asmjs": "7.0.4-2-x",
-    "@polkadot/wasm-crypto-wasm": "7.0.4-2-x",
+    "@polkadot/wasm-bridge": "7.0.4-3-x",
+    "@polkadot/wasm-crypto-asmjs": "7.0.4-3-x",
+    "@polkadot/wasm-crypto-wasm": "7.0.4-3-x",
     "tslib": "^2.5.0"
   },
   "devDependencies": {

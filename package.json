@@ -1,6 +1,9 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
+  "engines": {
+    "node": ">=14"
+  },
   "homepage": "https://github.com/polkadot-js/wasm#readme",
   "license": "Apache-2.0",
   "packageManager": "yarn@3.2.0",
@@ -11,9 +14,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.0.4-2-x",
+  "version": "7.0.4-3-x",
   "versions": {
-    "git": "7.0.4-2-x",
+    "git": "7.0.4-3-x",
     "npm": "7.0.3"
   },
   "workspaces": [
