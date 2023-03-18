@@ -15,7 +15,6 @@
       "@polkadot/wasm-crypto/*": ["wasm-crypto/src/*.ts"],
       "@polkadot/wasm-util": ["wasm-util/src/index.ts"],
       "@polkadot/wasm-util/*": ["wasm-util/src/*.ts"]
-    },
-    "skipLibCheck": true
+    }
   }
  }
