@@ -1,4 +1,4 @@
-     566	Jaco                          	Bump deps (& remove unused overrides) (#504)
+     567	Jaco                          	Bump common deps (#505)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
