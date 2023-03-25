@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { zlibSync } from 'fflate/node';
-import fs from 'fs';
+import fs from 'node:fs';
 
 import { formatNumber } from '@polkadot/util';
 

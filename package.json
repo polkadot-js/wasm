@@ -1,8 +1,9 @@
 {
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/wasm/issues",
+  "engine-strict": true,
   "engines": {
-    "node": ">=14"
+    "node": ">=18.14"
   },
   "homepage": "https://github.com/polkadot-js/wasm#readme",
   "license": "Apache-2.0",
@@ -44,7 +45,7 @@
     "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.72.24",
+    "@polkadot/dev": "^0.72.25",
     "@polkadot/util": "^11.1.2",
     "@polkadot/x-randomvalues": "^11.1.2",
     "@types/node": "^18.15.9",
