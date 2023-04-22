@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "description": "Asm.js content for wasm-crypto",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto-asmjs#readme",
   "license": "Apache-2.0",
@@ -15,7 +15,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.0.4-15-x",
+  "version": "7.1.0",
   "main": "index.js",
   "dependencies": {
     "tslib": "^2.5.0"
