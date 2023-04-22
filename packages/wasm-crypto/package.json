@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "description": "A wasm interface layer for use by @polkadot/util-crypto",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto#readme",
   "license": "Apache-2.0",
@@ -26,14 +26,14 @@
     "./initWasmAsm.cjs"
   ],
   "type": "module",
-  "version": "7.0.4-15-x",
+  "version": "7.1.0",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-bridge": "7.0.4-15-x",
-    "@polkadot/wasm-crypto-asmjs": "7.0.4-15-x",
-    "@polkadot/wasm-crypto-init": "7.0.4-15-x",
-    "@polkadot/wasm-crypto-wasm": "7.0.4-15-x",
-    "@polkadot/wasm-util": "7.0.4-15-x",
+    "@polkadot/wasm-bridge": "7.1.0",
+    "@polkadot/wasm-crypto-asmjs": "7.1.0",
+    "@polkadot/wasm-crypto-init": "7.1.0",
+    "@polkadot/wasm-crypto-wasm": "7.1.0",
+    "@polkadot/wasm-util": "7.1.0",
     "tslib": "^2.5.0"
   },
   "devDependencies": {

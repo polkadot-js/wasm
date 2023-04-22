@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "description": "Utilities used exclusively inside Wasm decoding",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-util#readme",
   "license": "Apache-2.0",
@@ -18,7 +18,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.0.4-15-x",
+  "version": "7.1.0",
   "main": "index.js",
   "dependencies": {
     "tslib": "^2.5.0"

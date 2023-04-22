@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 7.1.1 Apr 22, 2023
+
+Changes:
+
+- Add `wasm-util` as dependency where `x-randowmvalues` is a peer
+- Drop support for Node 14 (EOL 30 Apr 2023)
+
+
 ## 7.0.3 Mar 11, 2023
 
 Changes:
