@@ -18,7 +18,7 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "main": "index.js",
   "dependencies": {
     "tslib": "^2.5.0"
