@@ -20,7 +20,7 @@ const DEFAULT_SELF = { crypto: DEFAULT_CRYPTO };
  * Internally the implementation does a thin layer into the supplied bridge.
  */
 export class Wbg<C extends WasmBaseInstance> {
-  #bridge: BridgeBase<C>;
+  readonly #bridge: BridgeBase<C>;
 
   constructor (bridge: BridgeBase<C>) {
     this.#bridge = bridge;

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 7.1.2 Apr 28, 2023
+
+Changes:
+
+- Apply `readonly` specifiers to private class fields where applicable
+- Adjust compilation output for `__internal__` class fields
+
+
 ## 7.1.1 Apr 22, 2023
 
 Changes:

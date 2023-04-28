@@ -14,7 +14,7 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.1.2-0-x",
+  "version": "7.1.2",
   "versions": {
     "git": "7.1.2-0-x",
     "npm": "7.1.1"
@@ -44,10 +44,10 @@
     "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.73.2",
+    "@polkadot/dev": "^0.73.6",
     "@polkadot/util": "^12.0.1",
     "@polkadot/x-randomvalues": "^12.0.1",
-    "@types/node": "^18.15.13",
+    "@types/node": "^18.16.2",
     "fflate": "^0.7.4"
   },
   "resolutions": {
