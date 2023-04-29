@@ -9,7 +9,7 @@ const map = new Array<number>(256);
 // We use charCodeAt for access here and in the decoder loop - this is faster
 // on lookups (array + numbers) and also faster than accessing the specific
 // character via data[i]
-for (let i = 0; i < chr.length; i++) {
+for (let i = 0; i < 64; i++) {
   map[chr.charCodeAt(i)] = i;
 }
 
