@@ -45,8 +45,8 @@
   },
   "devDependencies": {
     "@polkadot/dev": "^0.73.6",
-    "@polkadot/util": "^12.0.1",
-    "@polkadot/x-randomvalues": "^12.0.1",
+    "@polkadot/util": "^12.1.1",
+    "@polkadot/x-randomvalues": "^12.1.1",
     "@types/node": "^18.16.2",
     "fflate": "^0.7.4"
   },

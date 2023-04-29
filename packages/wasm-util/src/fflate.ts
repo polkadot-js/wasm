@@ -170,7 +170,7 @@ const slc = <T extends Uint8Array | Uint16Array | Uint32Array>(v: T, s: number, 
 // find max of array
 const max = (a: Uint8Array | number[]) => {
   let m = a[0];
-  for (let i = 1; i < a.length; ++i) {
+  for (let i = 1, count = a.length; i < count; ++i) {
     if (a[i] > m) m = a[i];
   }
   return m;
