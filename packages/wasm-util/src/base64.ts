@@ -9,7 +9,7 @@ const map = new Array<number>(256);
 // We use charCodeAt for access here and in the decoder loop - this is faster
 // on lookups (array + numbers) and also faster than accessing the specific
 // character via data[i]
-for (let i = 0; i < 64; i++) {
+for (let i = 0, count = chr.length; i < count; i++) {
   map[chr.charCodeAt(i)] = i;
 }
 
@@ -25,12 +25,11 @@ for (let i = 0; i < 64; i++) {
  * of optimizations based on this - checking output position instead of chars.
  */
 export function base64Decode (data: string, out: Uint8Array): Uint8Array {
-  const len = out.length;
   let byte = 0;
   let bits = 0;
   let pos = -1;
 
-  for (let i = 0; pos < len; i++) {
+  for (let i = 0, count = out.length; pos < count; i++) {
     // each character represents 6 bits
     byte = (byte << 6) | map[data.charCodeAt(i)];
 
