@@ -78,14 +78,12 @@ export function runUnassisted (type, wasm) {
   globalThis.describe = (name, fn) => {
     console.log('\n', name);
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fn();
   };
 
   globalThis.it = (name, fn) => {
     console.log(`\t${name}`);
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fn();
   };
 
