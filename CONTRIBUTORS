@@ -1,4 +1,4 @@
-     581	Jaco                          	Bump dev (#519)
+     582	Jaco                          	cjs/bytes.js generation adjustment (#520)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
