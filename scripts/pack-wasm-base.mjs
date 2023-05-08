@@ -19,11 +19,11 @@ console.log(`*** Compressed WASM: in=${formatNumber(data.length)}, out=${formatN
 fs.mkdirSync(DIR_DENO, { recursive: true });
 
 fs.writeFileSync(`${DIR_CJS}/bytes.js`, `${HDR}
-const lenIn = ${compressed.length};
-const lenOut = ${data.length};
-const bytes = '${base64}';
+exports.lenIn = ${compressed.length};
 
-module.exports = { bytes, lenIn, lenOut };
+exports.lenOut = ${data.length};
+
+exports.bytes = '${base64}';
 `);
 
 fs.writeFileSync(`${DIR_DENO}/bytes.js`, `${HDR}
