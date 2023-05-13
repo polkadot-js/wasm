@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## master
+## 7.2.1 May 13, 2023
 
 Changes:
 
-- Adjust `cs/bytes.js` generation to follow `export.<var> = ...` form
+- Adjust `cjs/bytes.js` generation to follow `export.<var> = ...` form
 - Add `module` to `package.json` export map (ESM-only)
 
 
