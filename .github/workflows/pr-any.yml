@@ -22,7 +22,7 @@ jobs:
       if: always()
       continue-on-error: true
       run: |
-        yarn install --immutable | grep -v 'YN0013'
+        yarn install --immutable
         if [ "${{ matrix.step }}" != "lint" ]; then
           ./scripts/install-build-deps.sh
         fi
