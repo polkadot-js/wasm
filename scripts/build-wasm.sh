@@ -45,7 +45,7 @@ cp $ASM $DENO_ASM
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
 sed -i -e '1,/var retasmFunc = /!d' $ASM
-sed -i -e 's/var retasmFunc = .*/const asmJsInit = (wbg) => asmFunc(wbg);\n\nmodule.exports = { asmJsInit };/g' $ASM
+sed -i -e 's/var retasmFunc = .*/exports.asmJsInit = (wbg) => asmFunc(wbg);/g' $ASM
 
 # same as the cjs version, this time for deno
 sed -i -e '/import {/d' $DENO_ASM
