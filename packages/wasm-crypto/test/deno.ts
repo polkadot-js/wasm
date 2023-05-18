@@ -1,9 +1,15 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// NOTE We don't use ts-expect-error here since the build folder may or may
+// not exist (so the error may or may not be there)
+//
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore This should only run against the compiled ouput, where this should exist
 import * as wasm from '../build-deno/mod.ts';
 import { initRun, tests } from './all/index.js';
 
+// @ts-expect-error We do a quick-and-dirty, hence "any"
 declare const globalThis;
 declare const Deno: {
   test: (name: string, test: () => unknown) => unknown;

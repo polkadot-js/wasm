@@ -5,9 +5,11 @@
   "files": [],
   "references": [
     { "path": "./packages/wasm-crypto/tsconfig.build.json" },
+    { "path": "./packages/wasm-crypto/tsconfig.spec.json" },
     { "path": "./packages/wasm-crypto-init/tsconfig.build.json" },
     { "path": "./packages/wasm-crypto-asmjs/tsconfig.build.json" },
     { "path": "./packages/wasm-crypto-wasm/tsconfig.build.json" },
-    { "path": "./packages/wasm-util/tsconfig.build.json" }
+    { "path": "./packages/wasm-util/tsconfig.build.json" },
+    { "path": "./packages/wasm-util/tsconfig.spec.json" }
   ]
 }
