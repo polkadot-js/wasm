@@ -23,6 +23,10 @@ export const tests = {
   vrf
 };
 
+/**
+ * @param {string} name
+ * @param {*} wasm
+ */
 export async function initRun (name, wasm) {
   const result = await wasm.waitReady();
 
@@ -33,7 +37,12 @@ export async function initRun (name, wasm) {
   return result;
 }
 
+/**
+ * @param {string} name
+ * @param {*} wasm
+ */
 export function runAll (name, wasm) {
+  /** @type {string[]} */
   const failed = [];
   let count = 0;
 
@@ -71,16 +80,22 @@ export function runAll (name, wasm) {
   }
 }
 
+/**
+ * @param {string} type
+ * @param {*} wasm
+ */
 export function runUnassisted (type, wasm) {
   console.log(`\n*** ${type}: Running tests`);
 
   // for these we are pass-through describe and it handlers
+  // @ts-expect-error We are hacking this, so expect TS to be unhappy...
   globalThis.describe = (name, fn) => {
     console.log('\n', name);
 
     fn();
   };
 
+  // @ts-expect-error We are hacking this, so expect TS to be unhappy...
   globalThis.it = (name, fn) => {
     console.log(`\t${name}`);
 

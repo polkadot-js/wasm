@@ -5,14 +5,25 @@ import crypto from 'crypto';
 
 import { assert, stringToU8a, u8aToHex } from '@polkadot/util';
 
+/**
+ * @internal
+ * @param {*} pair
+ */
 function extractKeys (pair) {
   return [pair, pair.slice(64), pair.slice(0, 64)];
 }
 
+/**
+ * @internal
+ * @param {*} wasm
+ */
 function randomPair (wasm) {
   return extractKeys(wasm.sr25519KeypairFromSeed(crypto.randomBytes(32)));
 }
 
+/**
+ * @param {*} wasm
+ */
 export function vrfSignAndVerifyCompat (wasm) {
   it('can sign and verify (1)', () => {
     const [, pk, sk] = randomPair(wasm);
@@ -26,6 +37,9 @@ export function vrfSignAndVerifyCompat (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function vrfSignAndVerify (wasm) {
   it('can sign and verify (2)', () => {
     const [, pk, sk] = randomPair(wasm);
@@ -39,6 +53,9 @@ export function vrfSignAndVerify (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function vrfSignAndVerifyDeterministic (wasm) {
   it('has non-deterministic outputs', () => {
     const [,, sk] = randomPair(wasm);

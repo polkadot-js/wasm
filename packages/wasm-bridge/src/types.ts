@@ -35,13 +35,13 @@ export interface BridgeBase<C extends WasmBaseInstance> extends InitResult<C> {
   resultString (): string;
 }
 
-export interface WasmBaseInstance {
-  memory: WasmMemory;
-
-  // wbindgen functions (required and used internally)
-
+export interface WasmBindGen {
   __wbindgen_exn_store (a: number): void;
   __wbindgen_free (a: number, b: number): void;
   __wbindgen_malloc (a: number): number;
   __wbindgen_realloc (a: number, b: number, c: number): number;
+}
+
+export interface WasmBaseInstance extends WasmBindGen {
+  memory: WasmMemory;
 }

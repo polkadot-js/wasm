@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "outDir": "./build",
+    "rootDir": "./test",
+    "emitDeclarationOnly": false,
+    "noEmit": true
+  },
+  "include": [
+    "**/test/**/*"
+  ],
+  "references": [
+    { "path": "../wasm-crypto/tsconfig.build.json" }
+  ]
+}

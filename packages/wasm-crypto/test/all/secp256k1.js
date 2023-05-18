@@ -3,6 +3,9 @@
 
 import { assert, hexToU8a, u8aToHex } from '@polkadot/util';
 
+/**
+ * @param {*} wasm
+ */
 export function secp256k1Compress (wasm) {
   it('compresses a known publicKey', () => {
     const pubkey = '0x04b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb1307763fe926c273235fd979a134076d00fd1683cbd35868cb485d4a3a640e52184af';
@@ -14,6 +17,9 @@ export function secp256k1Compress (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function secp256k1Expand (wasm) {
   it('expands a known compressed key', () => {
     const pubkey = '0x03b9dc646dd71118e5f7fda681ad9eca36eb3ee96f344f582fbe7b5bcdebb13077';
@@ -25,6 +31,9 @@ export function secp256k1Expand (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function secp256k1FromSeed1 (wasm) {
   it('creates a known pair from seed (1)', () => {
     const seckey = '0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae';
@@ -36,6 +45,9 @@ export function secp256k1FromSeed1 (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function secp256k1FromSeed2 (wasm) {
   it('creates a known pair from seed (2)', () => {
     // https://github.com/polkadot-js/wasm/issues/307
@@ -60,6 +72,9 @@ export function secp256k1FromSeed2 (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function secp256k1Recover (wasm) {
   it('recovers a publicKey from signature', () => {
     const sig = '0x7505f2880114da51b3f5d535f8687953c0ab9af4ab81e592eaebebf53b728d2b6dfd9b5bcd70fee412b1f31360e7c2774009305cb84fc50c1d0ff8034dfa5fff';
@@ -72,6 +87,9 @@ export function secp256k1Recover (wasm) {
   });
 }
 
+/**
+ * @param {*} wasm
+ */
 export function secp256k1Sign (wasm) {
   it('creates a known signature', () => {
     const sec = '0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae';

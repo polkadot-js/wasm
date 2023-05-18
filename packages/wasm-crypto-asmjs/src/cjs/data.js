@@ -1,4 +1,6 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto-asmjs authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-exports.asmJsInit = null;
+const asmJsInit = null;
+
+exports.asmJsInit = asmJsInit;

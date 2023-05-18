@@ -18,7 +18,7 @@ import { Wbg } from './wbg.js';
  * @description
  * Creates a bridge between the JS and WASM environments.
  *
- * For any bridge it is passed an function white is then called internally at the
+ * For any bridge it is passed an function which is then called internally at the
  * time of initialization. This affectively implements the layer between WASM and
  * the native environment, providing all the plumbing needed for the Wbg classes.
  */

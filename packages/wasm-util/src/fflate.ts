@@ -12,8 +12,9 @@
 //   - https://github.com/polkadot-js/api/issues/2963
 //   - https://github.com/101arrowz/fflate/issues/17
 //
-// Only tweaks make here are some TS adjustments (we use strict null checks), the code is otherwise as-is with
-// only the single required function provided (compression is still being done in the build with fflate)
+// Only tweaks made here are some TS adjustments (we use strict null checks),
+// the code is otherwise as-is with only the single required function provided
+// (compression is still being done in the build with fflate)
 
 /* eslint-disable */
 

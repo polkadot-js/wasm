@@ -27,7 +27,7 @@
     "@polkadot/wasm-crypto-asmjs": "7.2.2-1-x",
     "@polkadot/wasm-crypto-wasm": "7.2.2-1-x",
     "@polkadot/wasm-util": "7.2.2-1-x",
-    "tslib": "^2.5.0"
+    "tslib": "^2.5.1"
   },
   "devDependencies": {
     "@polkadot/util": "^12.2.1",

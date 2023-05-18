@@ -6,7 +6,7 @@
     "rootDir": "./src"
   },
   "exclude": [
-    "**/test/*.ts"
+    "**/test/**/*"
   ],
   "references": [
     { "path": "../wasm-bridge/tsconfig.build.json" },
