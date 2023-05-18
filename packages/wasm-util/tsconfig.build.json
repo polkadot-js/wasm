@@ -6,6 +6,7 @@
     "rootDir": "./src"
   },
   "exclude": [
+    "**/mod.ts",
     "**/*.spec.ts",
   ],
   "references": []
