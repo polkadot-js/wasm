@@ -6,7 +6,8 @@
   },
   "include": [
     "packages/**/src/**/*",
-    "packages/**/test/**/*"
+    "packages/**/test/**/*",
+    "scripts/**/*"
   ],
   "exclude": [
     "**/node_modules/**/*"

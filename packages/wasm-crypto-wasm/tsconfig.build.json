@@ -5,6 +5,9 @@
     "outDir": "./build",
     "rootDir": "./src"
   },
+  "exclude": [
+    "**/mod.ts"
+  ],
   "references": [
     { "path": "../wasm-util/tsconfig.build.json" }
   ]
