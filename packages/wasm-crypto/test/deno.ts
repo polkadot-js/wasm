@@ -1,6 +1,9 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+// This is a Deno file, so we can allow .ts imports
+/* eslint-disable import/extensions */
+
 // NOTE We don't use ts-expect-error here since the build folder may or may
 // not exist (so the error may or may not be there)
 //
@@ -9,11 +12,16 @@
 import * as wasm from '../build-deno/mod.ts';
 import { initRun, tests } from './all/index.js';
 
-// @ts-expect-error We do a quick-and-dirty, hence "any"
-declare const globalThis;
+interface Tests {
+  [key: string]: (wasm: unknown) => void;
+}
+
+declare const globalThis: {
+  it: (name: string, fn: () => void) => unknown;
+};
 declare const Deno: {
   test: (name: string, test: () => unknown) => unknown;
-}
+};
 
 await initRun('wasm', wasm);
 
@@ -21,7 +29,7 @@ await initRun('wasm', wasm);
 globalThis.it = (name: string, fn: () => void) => Deno.test(name, () => fn());
 
 Object
-  .entries<{ [key: string]: (wasm: unknown) => void }>(tests)
+  .entries<Tests>(tests)
   .forEach(([describeName, tests]) => {
     console.log('***', describeName);
 
