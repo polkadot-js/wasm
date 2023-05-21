@@ -1,6 +1,8 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* global it */
+
 import { assert, hexToU8a, u8aToHex } from '@polkadot/util';
 
 /**

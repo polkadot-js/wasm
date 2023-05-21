@@ -1,6 +1,8 @@
 // Copyright 2019-2023 @polkadot/wasm-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* global describe */
+
 import { assert } from '@polkadot/util';
 
 import * as bip39 from './bip39.js';
@@ -105,6 +107,7 @@ export function runUnassisted (type, wasm) {
   console.time(type);
 
   initRun(type, wasm)
+    // eslint-disable-next-line promise/always-return
     .then(() => {
       runAll(type, wasm);
       console.log(`\n*** ${type}: All passed`);

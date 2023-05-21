@@ -15,7 +15,7 @@ describe('wasm-crypto', (): void => {
   beforeAll(() => initRun('wasm', wasm));
 
   for (const name of Object.keys(tests)) {
-    describe(name, (): void => {
+    describe(`${name}`, (): void => {
       Object
         .values<(wasm: unknown) => void>(tests[name as keyof typeof tests])
         .forEach((fn) => fn(wasm));
