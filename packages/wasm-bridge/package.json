@@ -18,10 +18,10 @@
     "./detectPackage.cjs"
   ],
   "type": "module",
-  "version": "7.2.2-11-x",
+  "version": "7.2.2-12-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-util": "7.2.2-11-x",
+    "@polkadot/wasm-util": "7.2.2-12-x",
     "tslib": "^2.6.1"
   },
   "devDependencies": {
