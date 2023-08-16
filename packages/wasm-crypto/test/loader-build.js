@@ -14,7 +14,7 @@ import { pathToFileURL } from 'node:url';
  * @returns {*}
  */
 export function resolve (specifier, context, nextResolve) {
-  if (/^@polkadot\/wasm-/.test(specifier)) {
+  if (specifier.startsWith('@polkadot/wasm-')) {
     const parts = specifier.split(/[\\/]/);
 
     return {

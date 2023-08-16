@@ -12,9 +12,7 @@
 import * as wasm from '../build-deno/mod.ts';
 import { initRun, tests } from './all/index.js';
 
-interface Tests {
-  [key: string]: (wasm: unknown) => void;
-}
+type Tests = Record<string, (wasm: unknown) => void>;
 
 declare const globalThis: {
   it: (name: string, fn: () => void) => unknown;
