@@ -26,14 +26,14 @@
     "./initWasmAsm.cjs"
   ],
   "type": "module",
-  "version": "7.2.2-10-x",
+  "version": "7.2.2-11-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-bridge": "7.2.2-10-x",
-    "@polkadot/wasm-crypto-asmjs": "7.2.2-10-x",
-    "@polkadot/wasm-crypto-init": "7.2.2-10-x",
-    "@polkadot/wasm-crypto-wasm": "7.2.2-10-x",
-    "@polkadot/wasm-util": "7.2.2-10-x",
+    "@polkadot/wasm-bridge": "7.2.2-11-x",
+    "@polkadot/wasm-crypto-asmjs": "7.2.2-11-x",
+    "@polkadot/wasm-crypto-init": "7.2.2-11-x",
+    "@polkadot/wasm-crypto-wasm": "7.2.2-11-x",
+    "@polkadot/wasm-util": "7.2.2-11-x",
     "tslib": "^2.6.1"
   },
   "devDependencies": {
