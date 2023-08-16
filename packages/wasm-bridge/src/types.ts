@@ -7,7 +7,7 @@ export type WasmImports = Record<string, (...args: never[]) => unknown>;
 
 // Use non-strong types instead of WebAssembly.Memory which may not
 // be available as part of the TS environment types (it needs dom)
-export type WasmMemory = { buffer: ArrayBuffer };
+export interface WasmMemory { buffer: ArrayBuffer }
 
 export declare interface InitResult<C extends WasmBaseInstance> {
   error: string | null;

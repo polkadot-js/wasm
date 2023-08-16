@@ -62,7 +62,6 @@ export function runAll (name, wasm) {
             try {
               console.time(timerId);
               console.log();
-              // console.log(timerId);
 
               test(wasm);
 
@@ -89,11 +88,13 @@ export function runAll (name, wasm) {
 export function runUnassisted (type, wasm) {
   console.log(`\n*** ${type}: Running tests`);
 
-  // for these we are pass-through describe and it handlers
+  // For these we are pass-through describe and it handlers
   // @ts-expect-error We are hacking this, so expect TS to be unhappy...
   globalThis.describe = (name, fn) => {
     console.log('\n', name);
 
+    // We expect this to be handled top-level, in the test itself
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fn();
   };
 
@@ -101,13 +102,14 @@ export function runUnassisted (type, wasm) {
   globalThis.it = (name, fn) => {
     console.log(`\t${name}`);
 
+    // We expect this to be handled top-level, in the test itself
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fn();
   };
 
   console.time(type);
 
   initRun(type, wasm)
-    // eslint-disable-next-line promise/always-return
     .then(() => {
       runAll(type, wasm);
       console.log(`\n*** ${type}: All passed`);
