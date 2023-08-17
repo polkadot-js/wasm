@@ -357,34 +357,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/dev-test@npm:^0.76.14":
-  version: 0.76.14
-  resolution: "@polkadot/dev-test@npm:0.76.14"
+"@polkadot/dev-test@npm:^0.76.15":
+  version: 0.76.15
+  resolution: "@polkadot/dev-test@npm:0.76.15"
   dependencies:
     jsdom: ^22.1.0
     tslib: ^2.6.1
-  checksum: 90865d39f1076ed857f15a5b1d30d69cf405cf3656e0ec536b24c23764f9e8b155efb6f694bf682942614c5cd3234ed3c7a5e8bf05c7bba3b415c558b366dc8c
+  checksum: a19177c0811f0a992f23639d49d5cc4fa7d4971a2232d951829d5ce13ba914a0ac08ea3a351cddd6895bdfeedca3fbeee222e1529cf287918e676f62725c4902
   languageName: node
   linkType: hard
 
-"@polkadot/dev-ts@npm:^0.76.14":
-  version: 0.76.14
-  resolution: "@polkadot/dev-ts@npm:0.76.14"
+"@polkadot/dev-ts@npm:^0.76.15":
+  version: 0.76.15
+  resolution: "@polkadot/dev-ts@npm:0.76.15"
   dependencies:
     json5: ^2.2.3
     tslib: ^2.6.1
     typescript: ^5.1.6
-  checksum: e22db62808ccda3d002ff2c1b798982309900304ae7aee1547f27fc80ab0cf807ecc63782e2a20ed17937365a418da71f22ca784d1909929d8509a9d79a7fddd
+  checksum: 939f80bb9e215adf32f221a9f9069f497690374bfbdf0a59aa3b95d2042f4c304b2cb054f6204411f4bcb88e1781a12c426d29a11b488b529414f37030429680
   languageName: node
   linkType: hard
 
-"@polkadot/dev@npm:^0.76.14":
-  version: 0.76.14
-  resolution: "@polkadot/dev@npm:0.76.14"
+"@polkadot/dev@npm:^0.76.15":
+  version: 0.76.15
+  resolution: "@polkadot/dev@npm:0.76.15"
   dependencies:
     "@eslint/js": ^8.47.0
-    "@polkadot/dev-test": ^0.76.14
-    "@polkadot/dev-ts": ^0.76.14
+    "@polkadot/dev-test": ^0.76.15
+    "@polkadot/dev-ts": ^0.76.15
     "@rollup/plugin-alias": ^5.0.0
     "@rollup/plugin-commonjs": ^25.0.4
     "@rollup/plugin-dynamic-import-vars": ^2.0.5
@@ -405,7 +405,7 @@ __metadata:
     eslint-plugin-jest: ^27.2.3
     eslint-plugin-n: ^16.0.1
     eslint-plugin-promise: ^6.1.1
-    eslint-plugin-react: ^7.33.1
+    eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-simple-import-sort: ^10.0.0
     eslint-plugin-sort-destructure-keys: ^1.5.0
@@ -449,7 +449,7 @@ __metadata:
     polkadot-exec-rollup: scripts/polkadot-exec-rollup.mjs
     polkadot-exec-tsc: scripts/polkadot-exec-tsc.mjs
     polkadot-exec-webpack: scripts/polkadot-exec-webpack.mjs
-  checksum: 05d8f61a8c7e855061f2849fdbc512b3caad4ba455f7e692656b572d39ef824724131c909856924409f46fde2f9db136763ec030c7cd076ea5cee341d086c07c
+  checksum: 0901aee6fab181968cdb3b60dee47c69de3c3832651a7388cb632f58acf28716105b8e57c8e2ade258930c3ae6e01376f7063f7b69c9ef74702f180c0f9eb3eb
   languageName: node
   linkType: hard
 
@@ -468,12 +468,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/wasm-bridge@7.2.2-12-x, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
+"@polkadot/wasm-bridge@7.2.2, @polkadot/wasm-bridge@workspace:packages/wasm-bridge":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-bridge@workspace:packages/wasm-bridge"
   dependencies:
     "@polkadot/util": ^12.3.2
-    "@polkadot/wasm-util": 7.2.2-12-x
+    "@polkadot/wasm-util": 7.2.2
     "@polkadot/x-randomvalues": ^12.3.2
     tslib: ^2.6.1
   peerDependencies:
@@ -482,7 +482,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-asmjs@7.2.2-12-x, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
+"@polkadot/wasm-crypto-asmjs@7.2.2, @polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-asmjs@workspace:packages/wasm-crypto-asmjs"
   dependencies:
@@ -493,15 +493,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-init@7.2.2-12-x, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
+"@polkadot/wasm-crypto-init@7.2.2, @polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-init@workspace:packages/wasm-crypto-init"
   dependencies:
     "@polkadot/util": ^12.3.2
-    "@polkadot/wasm-bridge": 7.2.2-12-x
-    "@polkadot/wasm-crypto-asmjs": 7.2.2-12-x
-    "@polkadot/wasm-crypto-wasm": 7.2.2-12-x
-    "@polkadot/wasm-util": 7.2.2-12-x
+    "@polkadot/wasm-bridge": 7.2.2
+    "@polkadot/wasm-crypto-asmjs": 7.2.2
+    "@polkadot/wasm-crypto-wasm": 7.2.2
+    "@polkadot/wasm-util": 7.2.2
     "@polkadot/x-randomvalues": ^12.3.2
     tslib: ^2.6.1
   peerDependencies:
@@ -510,12 +510,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-crypto-wasm@7.2.2-12-x, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
+"@polkadot/wasm-crypto-wasm@7.2.2, @polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-crypto-wasm@workspace:packages/wasm-crypto-wasm"
   dependencies:
     "@polkadot/util": ^12.3.2
-    "@polkadot/wasm-util": 7.2.2-12-x
+    "@polkadot/wasm-util": 7.2.2
     tslib: ^2.6.1
   peerDependencies:
     "@polkadot/util": "*"
@@ -527,11 +527,11 @@ __metadata:
   resolution: "@polkadot/wasm-crypto@workspace:packages/wasm-crypto"
   dependencies:
     "@polkadot/util": ^12.3.2
-    "@polkadot/wasm-bridge": 7.2.2-12-x
-    "@polkadot/wasm-crypto-asmjs": 7.2.2-12-x
-    "@polkadot/wasm-crypto-init": 7.2.2-12-x
-    "@polkadot/wasm-crypto-wasm": 7.2.2-12-x
-    "@polkadot/wasm-util": 7.2.2-12-x
+    "@polkadot/wasm-bridge": 7.2.2
+    "@polkadot/wasm-crypto-asmjs": 7.2.2
+    "@polkadot/wasm-crypto-init": 7.2.2
+    "@polkadot/wasm-crypto-wasm": 7.2.2
+    "@polkadot/wasm-util": 7.2.2
     "@polkadot/x-randomvalues": ^12.3.2
     tslib: ^2.6.1
   peerDependencies:
@@ -540,7 +540,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@polkadot/wasm-util@7.2.2-12-x, @polkadot/wasm-util@workspace:packages/wasm-util":
+"@polkadot/wasm-util@7.2.2, @polkadot/wasm-util@workspace:packages/wasm-util":
   version: 0.0.0-use.local
   resolution: "@polkadot/wasm-util@workspace:packages/wasm-util"
   dependencies:
@@ -3404,7 +3404,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.33.1":
+"eslint-plugin-react@npm:^7.33.2":
   version: 7.33.2
   resolution: "eslint-plugin-react@npm:7.33.2"
   dependencies:
@@ -7210,7 +7210,7 @@ fsevents@~2.3.2:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@polkadot/dev": ^0.76.14
+    "@polkadot/dev": ^0.76.15
     "@polkadot/util": ^12.3.2
     "@polkadot/x-randomvalues": ^12.3.2
     "@types/node": ^20.5.0
