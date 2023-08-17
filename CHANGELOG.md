@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 7.2.2 Aug 17, 2023
+
+Changes:
+
+- Adjust cjs exports for consistency
+- Adjust usage of `?.` as per (latest) linting rules
+
+
 ## 7.2.1 May 13, 2023
 
 Changes:
@@ -20,7 +28,7 @@ Changes:
 
 Changes:
 
-- Add `wasm-util` as dependency where `x-randowmvalues` is a peer
+- Add `wasm-util` as dependency where `x-randomvalues` is a peer
 - Drop support for Node 14 (EOL 30 Apr 2023)
 
 
