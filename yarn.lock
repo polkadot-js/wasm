@@ -7212,7 +7212,6 @@ fsevents@~2.3.2:
   dependencies:
     "@polkadot/dev": ^0.76.15
     "@polkadot/util": ^12.3.2
-    "@polkadot/x-randomvalues": ^12.3.2
     "@types/node": ^20.5.0
     fflate: ^0.8.0
   languageName: unknown
