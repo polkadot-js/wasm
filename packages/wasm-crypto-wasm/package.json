@@ -15,10 +15,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "7.2.3-0-x",
+  "version": "7.2.3-1-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-util": "7.2.3-0-x",
+    "@polkadot/wasm-util": "7.2.3-1-x",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
