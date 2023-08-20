@@ -34,7 +34,7 @@
     "@polkadot/wasm-crypto-init": "7.2.3-0-x",
     "@polkadot/wasm-crypto-wasm": "7.2.3-0-x",
     "@polkadot/wasm-util": "7.2.3-0-x",
-    "tslib": "^2.6.1"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@polkadot/util": "^12.4.1",
