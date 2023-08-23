@@ -30,8 +30,8 @@
     "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "@polkadot/util": "^12.4.1",
-    "@polkadot/x-randomvalues": "^12.4.1"
+    "@polkadot/util": "^12.4.2",
+    "@polkadot/x-randomvalues": "^12.4.2"
   },
   "peerDependencies": {
     "@polkadot/util": "*",
