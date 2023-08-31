@@ -25,7 +25,6 @@
   "scripts": {
     "build": "yarn build:wasm",
     "build:js": "./scripts/build-js.sh",
-    "build:mac": "PATH=\"/opt/homebrew/opt/llvm/bin:$PATH\" CC=/opt/homebrew/opt/llvm/bin/clang AR=/opt/homebrew/opt/llvm/bin/llvm-ar yarn build",
     "build:release": "polkadot-ci-ghact-build",
     "build:rollup": "polkadot-exec-rollup --config",
     "build:wasm": "./scripts/build.sh",
