@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "description": "Init handlers for wasm-crypto",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-crypto-init#readme",
   "license": "Apache-2.0",

@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "description": "Utilities used exclusively inside Wasm decoding",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-util#readme",
   "license": "Apache-2.0",

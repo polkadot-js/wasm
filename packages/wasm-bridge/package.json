@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/wasm/issues",
   "description": "A bridge layer between JS and Wasm",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "homepage": "https://github.com/polkadot-js/wasm/tree/master/packages/wasm-bridge#readme",
   "license": "Apache-2.0",
