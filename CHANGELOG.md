@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## master
+
+Changes:
+
+- Drop support for Node 16 (EOL 11 Sep 2023)
+
+
 ## 7.2.2 Aug 17, 2023
 
 Changes:
