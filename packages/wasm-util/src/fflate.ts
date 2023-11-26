@@ -92,10 +92,12 @@ const hMap = ((cd: Uint8Array, mb: number, r: 0 | 1) => {
   // u16 "map": index -> # of codes with bit length = index
   const l = new u16(mb);
   // length of cd must be 288 (total # of codes)
-  for (; i < s; ++i) ++l[cd[i] - 1];
+  for (; i < s; ++i) {
+    if (cd[i]) ++l[cd[i] - 1];
+  }
   // u16 "map": index -> minimum code for bit length = index
   const le = new u16(mb);
-  for (i = 0; i < mb; ++i) {
+  for (i = 1; i < mb; ++i) {
     le[i] = (le[i - 1] + l[i - 1]) << 1;
   }
   let co: Uint16Array;
@@ -116,13 +118,17 @@ const hMap = ((cd: Uint8Array, mb: number, r: 0 | 1) => {
         // m is end value
         for (const m = v | ((1 << r) - 1); v <= m; ++v) {
           // every 16 bit value starting with the code yields the same result
-          co[rev[v] >>> rvb] = sv;
+          co[rev[v] >> rvb] = sv;
         }
       }
     }
   } else {
     co = new u16(s);
-    for (i = 0; i < s; ++i) co[i] = rev[le[cd[i] - 1]++] >>> (15 - cd[i]);
+    for (i = 0; i < s; ++i) {
+      if (cd[i]) {
+        co[i] = rev[le[cd[i] - 1]++] >> (15 - cd[i]);
+      }
+    }
   }
   return co;
 });
