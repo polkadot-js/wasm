@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 7.3.2 Dec 6, 2023
+
+Changes:
+
+- Apply fixes for OOB array access
+
+
 ## 7.3.1 Nov 17, 2023
 
 Changes:
