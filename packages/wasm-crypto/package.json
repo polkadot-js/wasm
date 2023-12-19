@@ -14,8 +14,6 @@
     "url": "https://github.com/polkadot-js/wasm.git"
   },
   "sideEffects": [
-    "./packageDetect.js",
-    "./packageDetect.cjs",
     "./initNone.js",
     "./initNone.cjs",
     "./initOnlyAsm.js",
@@ -23,7 +21,9 @@
     "./initOnlyWasm.js",
     "./initOnlyWasm.cjs",
     "./initWasmAsm.js",
-    "./initWasmAsm.cjs"
+    "./initWasmAsm.cjs",
+    "./packageDetect.js",
+    "./packageDetect.cjs"
   ],
   "type": "module",
   "version": "7.3.3-3-x",
