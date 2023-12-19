@@ -14,8 +14,8 @@
     "url": "https://github.com/polkadot-js/wasm.git"
   },
   "sideEffects": [
-    "./detectPackage.js",
-    "./detectPackage.cjs",
+    "./packageDetect.js",
+    "./packageDetect.cjs",
     "./initNone.js",
     "./initNone.cjs",
     "./initOnlyAsm.js",
