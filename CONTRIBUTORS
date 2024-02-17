@@ -1,6 +1,6 @@
      618	Jaco                          	2024 (#559)
+       2	Tarik Gul                     	chore(yarn): update yarn to 4.1.0 (#560)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
-       1	Tarik Gul                     	ci: add user (TarikGul) to auto-approve (#561)
        1	Zhongpeng Zhou                	Update package.json to include the repository (#220)
