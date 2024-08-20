@@ -27,11 +27,11 @@
     "@polkadot/wasm-crypto-asmjs": "7.3.3-11-x",
     "@polkadot/wasm-crypto-wasm": "7.3.3-11-x",
     "@polkadot/wasm-util": "7.3.3-11-x",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.3"
   },
   "devDependencies": {
-    "@polkadot/util": "^12.6.2",
-    "@polkadot/x-randomvalues": "^12.6.2"
+    "@polkadot/util": "^13.0.2",
+    "@polkadot/x-randomvalues": "^13.0.2"
   },
   "peerDependencies": {
     "@polkadot/util": "*",
