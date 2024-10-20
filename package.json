@@ -43,8 +43,8 @@
     "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.80.1",
-    "@polkadot/util": "^13.0.2",
+    "@polkadot/dev": "^0.81.1",
+    "@polkadot/util": "^13.1.1",
     "@types/node": "^20.16.1",
     "fflate": "^0.8.2"
   },
