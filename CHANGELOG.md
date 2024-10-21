@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 7.4.1 Oct 20, 2024
+
+- Bump dev deps to 0.81.2
+    - Bump TS
+    - Ensure CJS is exported correctly
+- Bump yarn
+- Add missing sideEffect declarations
+- Set Deno build in CI to 1.42.x
+
 ## 7.3.2 Dec 6, 2023
 
 Changes:
