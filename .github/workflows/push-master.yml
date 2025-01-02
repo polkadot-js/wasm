@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: 'lts/*'
     - name: Set Execute Permissions
-      run: chmod +x ./scripts/install-build-deps.sh
+      run: chmod +x ./scripts/*
     - name: Run Install Build Deps
       run: bash ./scripts/install-build-deps.sh
     - name: build
