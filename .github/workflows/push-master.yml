@@ -25,8 +25,11 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 'lts/*'
+    - name: Set Execute Permissions
+      run: chmod +x ./scripts/install-build-deps.sh
+    - name: Run Install Build Deps
+      run: bash ./scripts/install-build-deps.sh
     - name: build
       run: |
         yarn install --immutable
-        ./scripts/install-build-deps.sh
         yarn ${{ matrix.step }}
