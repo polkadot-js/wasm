@@ -26,14 +26,7 @@ jobs:
       with:
         node-version: 'lts/*'
     - name: Set Execute Permissions
-      run: |
-        chmod +x ./scripts/install-build-deps.sh
-        chmod +x ./scripts/build.sh
-        chmod +x ./scripts/build-wasm.sh
-        chmod +x ./scripts/build-js.sh
-        chmod +x ./scripts/rust-version.sh
-        chmod +x ./scripts/clean.sh
-        chmod +x ./scripts/pack-wasm-base.mjs
+      run: chmod +x ./scripts/*
     - name: Run Install Build Deps
       run: bash ./scripts/install-build-deps.sh
     - name: build
