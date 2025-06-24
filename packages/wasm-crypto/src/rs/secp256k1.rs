@@ -44,11 +44,20 @@ pub fn ext_secp_from_seed(seed: &[u8]) -> Vec<u8> {
 pub fn ext_secp_recover(hash: &[u8], sig: &[u8], rec: i32) -> Vec<u8> {
 	match RecoveryId::from_i32(rec) {
 		Ok(r) => match (Message::from_slice(hash), RecoverableSignature::from_compact(&sig, r)) {
-			(Ok(m), Ok(s)) => match s.recover(&m) {
-				Ok(k) => k
-					.serialize()
-					.to_vec(),
-				_ => panic!("Unable to recover.")
+			(Ok(m), Ok(s)) => {
+				let standard = s.to_standard();
+				let mut normalized = standard;
+				normalized.normalize_s();
+
+				// check if the signature is normalized
+				if normalized.ne(&standard) {
+					panic!("Non-normalized signature provided.");
+				}
+				
+				match s.recover(&m) {
+					Ok(k) => k.serialize().to_vec(),
+					_ => panic!("Unable to recover.")
+				}
 			},
 			_ => panic!("Invalid signature provided.")
 		},
