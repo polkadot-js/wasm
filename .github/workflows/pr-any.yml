@@ -22,7 +22,6 @@ jobs:
         override: true
     - name: ${{ matrix.step }}
       if: always()
-      continue-on-error: false
       run: |
         yarn install --immutable
         if [ "${{ matrix.step }}" != "lint" ]; then
