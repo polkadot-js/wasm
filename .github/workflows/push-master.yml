@@ -25,6 +25,13 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 'lts/*'
+
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+
     - name: Set Execute Permissions
       run: chmod +x ./scripts/*
     - name: Run Install Build Deps
