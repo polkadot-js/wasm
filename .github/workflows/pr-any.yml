@@ -18,11 +18,6 @@ jobs:
     - uses: denoland/setup-deno@v1
       with:
         deno-version: v1.42.x
-    - uses: actions-rs/toolchain@v1 
-      with:
-        profile: minimal
-        toolchain: stable
-        override: true
     - name: ${{ matrix.step }}
       if: always()
       run: |
