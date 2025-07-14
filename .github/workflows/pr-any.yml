@@ -1,3 +1,6 @@
+name: PR
+on: [pull_request]
+
 jobs:
   pr:
     continue-on-error: true
