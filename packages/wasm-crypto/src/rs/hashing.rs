@@ -100,6 +100,11 @@ pub fn ext_keccak512(data: &[u8]) -> Vec<u8> {
 /// Returns a vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
+	// As per RFC 2898, the number of rounds must be greater than 0
+	if rounds == 0 {
+		panic!("PBKDF2 rounds must be greater than 0");
+	}
+
 	let mut res = [0u8; 64];
 
 	// we cast to usize here - due to the WASM, we'd rather have u32 inputs
@@ -119,6 +124,11 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 /// Returns vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
+	// As per RFC 7914, the cost parameter N (2 ^ log2_n) must be larger than 1
+	if log2_n == 0 {
+		panic!("Scrypt cost parameter N must be larger than 1, log2_n must be at least 1");
+	}
+
 	match ScryptParams::new(log2_n, r, p) {
 		Ok(p) => {
 			let mut res = [0u8; 64];
@@ -255,6 +265,14 @@ pub mod tests {
 	}
 
 	#[test]
+	#[should_panic(expected = "PBKDF2 rounds must be greater than 0")]
+	fn pbkdf2_zero_rounds_panics() {
+		let salt = b"this is a salt";
+		let data = b"hello world";
+		ext_pbkdf2(data, salt, 0);
+	}
+
+	#[test]
 	fn can_scrypt() {
 		let password = b"password";
 		let salt = b"salt";
@@ -262,6 +280,14 @@ pub mod tests {
 		let hash = ext_scrypt(password, salt, 14, 8, 1);
 
 		assert_eq!(hash[..], expected[..]);
+	}
+
+	#[test]
+	#[should_panic(expected = "Scrypt cost parameter N must be larger than 1, log2_n must be at least 1")]
+	fn scrypt_zero_log2_n_panics() {
+		let password = b"password";
+		let salt = b"salt";
+		ext_scrypt(password, salt, 0, 8, 1);
 	}
 
 	#[test]
