@@ -1,6 +1,3 @@
-name: PR
-on: [pull_request]
-
 jobs:
   pr:
     continue-on-error: true
@@ -18,9 +15,13 @@ jobs:
     - uses: denoland/setup-deno@v1
       with:
         deno-version: v1.42.x
+    - uses: actions-rs/toolchain@v1 
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
     - name: ${{ matrix.step }}
       if: always()
-      continue-on-error: true
       run: |
         yarn install --immutable
         if [ "${{ matrix.step }}" != "lint" ]; then
