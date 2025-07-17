@@ -8,8 +8,7 @@
 //
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore This should only run against the compiled ouput, where this should exist
-import * as wasm from '@polkadot/wasm-crypto';
-
+import * as wasm from '../build/index.js';
 import { initRun, tests } from './all/index.js';
 
 describe('wasm-crypto', (): void => {
