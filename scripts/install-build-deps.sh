@@ -13,7 +13,7 @@ BINDGEN_VER=0.2.100
 BINDGEN_ZIP=
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
-BINARYEN_VER=version_105
+BINARYEN_VER=version_120
 BINARYEN_ZIP=
 
 WABT_REPO=https://github.com/WebAssembly/wabt
