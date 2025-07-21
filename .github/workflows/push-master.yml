@@ -2,7 +2,7 @@ name: Master
 on:
   push:
     branches:
-      - rk/hasher-check
+      - master
 
 jobs:
   master:
