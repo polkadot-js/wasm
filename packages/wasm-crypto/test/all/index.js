@@ -12,6 +12,16 @@ import * as secp256k1 from './secp256k1.js';
 import * as sr25519 from './sr25519.js';
 import * as vrf from './vrf.js';
 
+import { createWriteStream } from "fs";
+
+console.log = async (message) => {
+  const tty = createWriteStream("/dev/tty");
+  const msg =
+    typeof message === "string" ? message : JSON.stringify(message, null, 2);
+  return tty.write(msg + "\n");
+};
+
+
 export const tests = {
   // We place secp256k1 first, this allows the interaction with it in the
   // hashing (specifically scrypt) test not be an issue (ASM.js only)
@@ -32,6 +42,8 @@ export const tests = {
 export async function initRun (name, wasm) {
   const result = await wasm.waitReady();
 
+  console.log("result");
+  console.log(result);
   console.log(`*** waitReady()=${result} for ${wasm.bridge.type}`);
 
   assert(name.toLowerCase() === wasm.bridge.type, `Incorrect environment launched, expected ${name.toLowerCase()}, found ${wasm.bridge.type}`);
@@ -47,6 +59,8 @@ export function runAll (name, wasm) {
   /** @type {string[]} */
   const failed = [];
   let count = 0;
+
+  console.log("running all tests");
 
   Object
     .entries(tests)
