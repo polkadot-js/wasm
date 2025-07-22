@@ -100,7 +100,7 @@ pub fn ext_keccak512(data: &[u8]) -> Vec<u8> {
 /// Returns a vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
-	// As per RFC 2898, the number of rounds must be greater than 0
+	// As per RFC 2898 [https://datatracker.ietf.org/doc/html/rfc2898], the number of rounds must be greater than 0
 	if rounds == 0 {
 		panic!("PBKDF2 rounds must be greater than 0");
 	}
@@ -124,7 +124,7 @@ pub fn ext_pbkdf2(data: &[u8], salt: &[u8], rounds: u32) -> Vec<u8> {
 /// Returns vector with the hashed result
 #[wasm_bindgen]
 pub fn ext_scrypt(password: &[u8], salt: &[u8], log2_n: u8, r: u32, p: u32) -> Vec<u8> {
-	// As per RFC 7914, the cost parameter N (2 ^ log2_n) must be larger than 1
+	// As per RFC 7914 [https://datatracker.ietf.org/doc/html/rfc7914.html], the cost parameter N (2 ^ log2_n) must be larger than 1
 	if log2_n == 0 {
 		panic!("Scrypt cost parameter N must be larger than 1, log2_n must be at least 1");
 	}
