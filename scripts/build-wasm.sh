@@ -38,13 +38,9 @@ node ../scripts/pack-wasm-base.mjs
 echo "*** Building asm.js version"
 ../binaryen/bin/wasm2js -Oz --output $ASM $OPT
 
-echo "Completed building WASM"
-
 # copy the deno version
 mkdir -p $DENO_DIR
 cp $ASM $DENO_ASM
-
-echo "Copying asm.js to deno"
 
 # cleanup the generated asm, converting to cjs
 sed -i -e '/import {/d' $ASM
@@ -61,5 +57,3 @@ rm -rf $PKG_NAME-asmjs/build/cjs/*-e
 rm -rf $PKG_NAME-asmjs/build-deno/deno/*-e
 rm -rf $PKG_NAME-wasm/build/cjs/*-e
 rm -rf $PKG_NAME-wasm/build-deno/deno/*-e
-
-echo "Script completed"
