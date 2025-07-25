@@ -20,7 +20,6 @@ jobs:
         deno-version: v1.42.x
     - name: ${{ matrix.step }}
       if: always()
-      continue-on-error: true
       run: |
         yarn install --immutable
         if [ "${{ matrix.step }}" != "lint" ]; then
