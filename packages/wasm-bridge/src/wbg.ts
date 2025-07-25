@@ -47,12 +47,27 @@ export class Wbg<C extends WasmBaseInstance> {
   };
 
   /** @internal */
+  __wbg_self_3be0060ee67b0073 = (): number => {
+    return this.#bridge.addObject(DEFAULT_SELF);
+  };
+
+  /** @internal */
   __wbg_require_604837428532a733 = (ptr: number, len: number): never => {
     throw new Error(`Unable to require ${this.#bridge.getString(ptr, len)}`);
   };
 
   /** @internal */
+  __wbg_require_62b34c9aa7eee5c0 = (ptr: number, len: number): never => {
+    throw new Error(`Unable to require ${this.#bridge.getString(ptr, len)}`);
+  };
+
+  /** @internal */
   __wbg_crypto_968f1772287e2df0 = (_idx: number): number => {
+    return this.#bridge.addObject(DEFAULT_CRYPTO);
+  };
+
+  /** @internal */
+  __wbg_crypto_e1edba75c269bb52 = (_idx: number): number => {
     return this.#bridge.addObject(DEFAULT_CRYPTO);
   };
 
@@ -67,7 +82,24 @@ export class Wbg<C extends WasmBaseInstance> {
   };
 
   /** @internal */
+  __wbg_getRandomValues_ab848069a8f78a33 = (_idx: number): number => {
+    return this.#bridge.addObject(DEFAULT_CRYPTO.getRandomValues);
+  };
+
+  /** @internal */
+  __wbg_getRandomValues_2e09c95e7227d117 = (_arg0: number, ptr: number, len: number): void => {
+    DEFAULT_CRYPTO.getRandomValues(this.#bridge.getU8a(ptr, len));
+  };
+
+  /** @internal */
   __wbg_randomFillSync_d5bd2d655fdf256a = (_idx: number, _ptr: number, _len: number): never => {
+    throw new Error('randomFillsync is not available');
+
+    // getObject(idx).randomFillSync(getU8a(ptr, len));
+  };
+
+  /** @internal */
+  __wbg_randomFillSync_97f3930c7993a7dc = (_idx: number, _ptr: number, _len: number): never => {
     throw new Error('randomFillsync is not available');
 
     // getObject(idx).randomFillSync(getU8a(ptr, len));
@@ -76,5 +108,10 @@ export class Wbg<C extends WasmBaseInstance> {
   /** @internal */
   __wbindgen_object_drop_ref = (idx: number): void => {
     this.#bridge.takeObject(idx);
+  };
+
+  /** @internal */
+  __wbg_static_accessor_MODULE_ef3aa2eb251158a5 = (): never => {
+    throw new Error('MODULE accessor not supported in this environment');
   };
 }
