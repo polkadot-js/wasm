@@ -16,8 +16,9 @@ DENO_ASM=$DENO_DIR/data.js
 # build new via wasm-pack
 echo "*** Building Rust sources"
 cd $PKG_NAME
-  rustup default nightly-$NIGHTLY_VER
-  RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
+
+RUSTC_BOOTSTRAP=1 rustup run nightly-$NIGHTLY_VER cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
+
 cd ..
 
 echo "*** Converting to WASM"
