@@ -2,6 +2,7 @@ name: Master
 on:
   push:
     branches:
+      - master
       - vf/build-test
 
 jobs:
