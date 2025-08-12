@@ -16,9 +16,11 @@ DENO_ASM=$DENO_DIR/data.js
 # build new via wasm-pack
 echo "*** Building Rust sources"
 cd $PKG_NAME
-
-rustup run nightly-$NIGHTLY_VER cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
-
+if [ "$RUST_VER" == "stable" ]; then
+  RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
+else
+  rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
+fi
 cd ..
 
 echo "*** Converting to WASM"
@@ -33,8 +35,8 @@ echo "*** Packing WASM into baseX"
 node ../scripts/pack-wasm-base.mjs
 
 # build asmjs version from the input (optimised) WASM
-echo "*** Building asm.js version"
-../binaryen/bin/wasm2js -Oz --output $ASM $OPT
+# echo "*** Building asm.js version"
+# ../binaryen/bin/wasm2js -Oz --output $ASM $OPT
 
 # copy the deno version
 mkdir -p $DENO_DIR

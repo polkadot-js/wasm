@@ -8,12 +8,11 @@ set -e
 echo "*** Building JavaScript"
 ./scripts/build-js.sh
 
-echo "*** Building WASM adf"
+echo "*** Building WASM"
 cd packages
 
 unamestr=`uname`
 
-echo "build.sh"
 # For Mac we set extra paths for clang
 if [[ "$unamestr" == "Darwin" ]]; then
   if [ ! -f "/opt/homebrew/opt/llvm/bin/clang" ]; then
