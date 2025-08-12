@@ -5,6 +5,8 @@
 
 set -e
 
+echo "Running on vf-build-test"
+
 source ./scripts/rust-version.sh
 
 # NOTE If this is bumped, bump the version in Cargo.toml as well
@@ -22,9 +24,13 @@ WABT_ZIP=
 
 unamestr=`uname`
 
+# Always install base toolchain first
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-rustup default $RUST_VER
+
+echo "*** Installing nightly-$NIGHTLY_VER (sysroot build requires nightly)"
+rustup toolchain install nightly-$NIGHTLY_VER -c rust-src -t wasm32-unknown-unknown
+rustup default nightly-$NIGHTLY_VER
 
 if [ "$RUST_VER" != "stable" ]; then
   cargo install xargo
