@@ -14,11 +14,12 @@ DENO_DIR=$PKG_NAME-asmjs/build-deno/deno
 DENO_ASM=$DENO_DIR/data.js
 
 # build new via wasm-pack
+echo "running build"
 echo "*** Building Rust sources"
 cd $PKG_NAME
 
 
-echo "running build"
+
 RUSTC_BOOTSTRAP=1 rustup run nightly-$NIGHTLY_VER cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
 
 cd ..
