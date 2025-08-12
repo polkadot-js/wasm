@@ -22,6 +22,7 @@ if [[ "$unamestr" == "Darwin" ]]; then
 
   PATH="/opt/homebrew/opt/llvm/bin:$PATH" CC=/opt/homebrew/opt/llvm/bin/clang AR=/opt/homebrew/opt/llvm/bin/llvm-ar PKG_NAME=wasm-crypto ../scripts/build-wasm.sh
 else
+  rustup default nightly-$NIGHTLY_VER
   PKG_NAME=wasm-crypto ../scripts/build-wasm.sh
 fi
 
