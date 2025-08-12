@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - vf/build-test
 
 jobs:
   master:
@@ -22,6 +23,7 @@ jobs:
       with:
         fetch-depth: 0
         token: ${{ secrets.GH_PAT_BOT }}
+        ref: ${{ github.ref }}
     - uses: actions/setup-node@v4
       with:
         node-version: 'lts/*'

@@ -35,8 +35,8 @@ echo "*** Packing WASM into baseX"
 node ../scripts/pack-wasm-base.mjs
 
 # build asmjs version from the input (optimised) WASM
-echo "*** Building asm.js version"
-../binaryen/bin/wasm2js -Oz --output $ASM $OPT
+# echo "*** Building asm.js version"
+# ../binaryen/bin/wasm2js -Oz --output $ASM $OPT
 
 # copy the deno version
 mkdir -p $DENO_DIR

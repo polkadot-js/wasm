@@ -9,11 +9,11 @@ source ./scripts/rust-version.sh
 
 # NOTE If this is bumped, bump the version in Cargo.toml as well
 BINDGEN_REPO=https://github.com/rustwasm/wasm-bindgen
-BINDGEN_VER=0.2.79
+BINDGEN_VER=0.2.100
 BINDGEN_ZIP=
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
-BINARYEN_VER=version_120
+BINARYEN_VER=version_123
 BINARYEN_ZIP=
 
 WABT_REPO=https://github.com/WebAssembly/wabt
@@ -22,13 +22,9 @@ WABT_ZIP=
 
 unamestr=`uname`
 
-# Always install base toolchain first
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-
-echo "*** Installing nightly-$NIGHTLY_VER (sysroot build requires nightly)"
-rustup toolchain install nightly-$NIGHTLY_VER -c rust-src -t wasm32-unknown-unknown
-rustup default nightly-$NIGHTLY_VER
+rustup default $RUST_VER
 
 if [ "$RUST_VER" != "stable" ]; then
   cargo install xargo
