@@ -13,6 +13,7 @@ cd packages
 
 unamestr=`uname`
 
+echo "build.sh"
 # For Mac we set extra paths for clang
 if [[ "$unamestr" == "Darwin" ]]; then
   if [ ! -f "/opt/homebrew/opt/llvm/bin/clang" ]; then
@@ -22,7 +23,6 @@ if [[ "$unamestr" == "Darwin" ]]; then
 
   PATH="/opt/homebrew/opt/llvm/bin:$PATH" CC=/opt/homebrew/opt/llvm/bin/clang AR=/opt/homebrew/opt/llvm/bin/llvm-ar PKG_NAME=wasm-crypto ../scripts/build-wasm.sh
 else
-echo "installing"
   rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
   rustup toolchain install nightly-$NIGHTLY_VER -c rust-src -t wasm32-unknown-unknown
   rustup default nightly-$NIGHTLY_VER
