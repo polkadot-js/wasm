@@ -22,17 +22,9 @@ WABT_ZIP=
 
 unamestr=`uname`
 
-# Always install base toolchain first
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-
-echo "*** Installing nightly-$NIGHTLY_VER (sysroot build requires nightly)"
-rustup toolchain install nightly-$NIGHTLY_VER -c rust-src -t wasm32-unknown-unknown
-rustup default nightly-$NIGHTLY_VER
-
-
-rustup show
-rustup show nightly
+rustup default $RUST_VER
 
 if [ "$RUST_VER" != "stable" ]; then
   cargo install xargo

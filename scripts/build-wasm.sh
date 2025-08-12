@@ -16,11 +16,7 @@ DENO_ASM=$DENO_DIR/data.js
 # build new via wasm-pack
 echo "*** Building Rust sources"
 cd $PKG_NAME
-if [ "$RUST_VER" == "stable" ]; then
-  RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
-else
-  rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
-fi
+rustup run nightly xargo build --target wasm32-unknown-unknown --release
 cd ..
 
 echo "*** Converting to WASM"
