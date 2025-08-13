@@ -30,6 +30,8 @@ rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
 rustup toolchain install $NIGHTLY_VER
 rustup default $NIGHTLY_VER
 
+rustup show
+
 if [ "$RUST_VER" != "stable" ]; then
   cargo install xargo
 fi
