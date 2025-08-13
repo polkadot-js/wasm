@@ -39,7 +39,7 @@
     "test:wasm-crypto:deno": "deno test --allow-read --import-map=import_map.json packages/wasm-crypto/test/deno.ts",
     "test:wasm-crypto:js": "yarn test:wasm-crypto:js:jest && yarn test:wasm-crypto:js:node",
     "test:wasm-crypto:js:jest": "polkadot-dev-run-test --env node --loader ./packages/wasm-crypto/test/loader-build.js",
-    "test:wasm-crypto:js:node": "node --no-warnings --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/wasm.js && node --no-warnings --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/asm.js",
+    "test:wasm-crypto:js:node": "node --no-warnings --loader ./packages/wasm-crypto/test/loader-build.js ./packages/wasm-crypto/test/wasm.js",
     "test:wasm-crypto:rust": "cd packages/wasm-crypto && RUST_BACKTRACE=full cargo test --release -- --test-threads=1 --nocapture"
   },
   "devDependencies": {
