@@ -27,6 +27,8 @@ unamestr=`uname`
 
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
+rustup toolchain install $NIGHTLY_VER
+rustup default $NIGHTLY_VER
 
 if [ "$RUST_VER" != "stable" ]; then
   cargo install xargo

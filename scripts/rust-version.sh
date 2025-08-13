@@ -5,3 +5,5 @@
 
 RUST_VER=stable
 # RUST_VER=stable
+
+NIGHTLY_VER=nightly-2024-10-12
