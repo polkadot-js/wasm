@@ -5,7 +5,9 @@ import type { InitFn } from '@polkadot/wasm-bridge/types';
 import type { WasmCryptoInstance } from './types.js';
 
 import { createWasmFn } from '@polkadot/wasm-bridge';
-import { asmJsInit } from '@polkadot/wasm-crypto-asmjs';
+import * as mod from '@polkadot/wasm-crypto-asmjs';
+
+const { asmJsInit } = mod;
 
 export { packageInfo } from './packageInfo.js';
 
