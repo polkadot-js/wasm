@@ -9,7 +9,7 @@ source ./scripts/rust-version.sh
 
 # NOTE If this is bumped, bump the version in Cargo.toml as well
 BINDGEN_REPO=https://github.com/rustwasm/wasm-bindgen
-BINDGEN_VER=0.2.79
+BINDGEN_VER=0.2.80
 BINDGEN_ZIP=
 
 
@@ -27,14 +27,9 @@ unamestr=`uname`
 
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-rustup toolchain install $NIGHTLY_VER -c rust-src -t wasm32-unknown-unknown
-rustup default $NIGHTLY_VER
+rustup default $RUST_VER
 
 rustup show
-
-if [ "$RUST_VER" != "stable" ]; then
-  cargo install xargo
-fi
 
 if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"

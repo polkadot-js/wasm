@@ -3,7 +3,7 @@
 # This software may be modified and distributed under the terms
 # of the Apache-2.0 license. See the LICENSE file for details.
 
-set -e
+set -ex
 
 source ../scripts/rust-version.sh
 
@@ -16,11 +16,7 @@ DENO_ASM=$DENO_DIR/data.js
 # build new via wasm-pack
 echo "*** Building Rust sources"
 cd $PKG_NAME
-if [ "$RUST_VER" == "stable" ]; then
-  RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
-else
-  rustup run $RUST_VER xargo build --target wasm32-unknown-unknown --release
-fi
+RUSTC_BOOTSTRAP=1 cargo build --target wasm32-unknown-unknown --release -Z build-std=std,panic_abort
 cd ..
 
 echo "*** Converting to WASM"
