@@ -12,6 +12,9 @@ BINDGEN_REPO=https://github.com/rustwasm/wasm-bindgen
 BINDGEN_VER=0.2.100
 BINDGEN_ZIP=
 
+
+
+
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
 BINARYEN_VER=version_123
 BINARYEN_ZIP=
@@ -24,7 +27,10 @@ unamestr=`uname`
 
 # toolchain with rust-src (for panic overrdides) and the right wasm32 toolchain
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
-rustup default $RUST_VER
+rustup toolchain install $NIGHTLY_VER
+rustup default $NIGHTLY_VER
+
+rustup show
 
 if [ "$RUST_VER" != "stable" ]; then
   cargo install xargo
