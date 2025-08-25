@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 7.5.1 aug 25, 2025
+
+Changes:
+
+- Bump yarn to 4.5.1 ([#573](https://github.com/polkadot-js/wasm/pull/573))
+- Update comments and labels from 2024 to 2025 ([#574](https://github.com/polkadot-js/wasm/pull/574))
+- Bump yarn to 4.6.0 ([#575](https://github.com/polkadot-js/wasm/pull/575))
+- Set execute for build script in CI ([#576](https://github.com/polkadot-js/wasm/pull/576))
+- Set permissions on all scripts ([#577](https://github.com/polkadot-js/wasm/pull/577))
+- Bump dev to 0.83.2 ([#578](https://github.com/polkadot-js/wasm/pull/578))
+- chore: added check in ext_secp_recover for signature normalization ([#579](https://github.com/polkadot-js/wasm/pull/579))
+- chore: Improve CI ([#580](https://github.com/polkadot-js/wasm/pull/580))
+- Revert CI improvements and wasm-bindgen version ([#583](https://github.com/polkadot-js/wasm/pull/583))
+- Added validation checks in PBKDF2 and Scrypt hashing functions ([#584](https://github.com/polkadot-js/wasm/pull/584))
+- Rollback wasm-bindgen version change ([#586](https://github.com/polkadot-js/wasm/pull/586))
+- Fix rust version to 1.84 ([#587](https://github.com/polkadot-js/wasm/pull/587))
+- Default to installed rust version ([#588](https://github.com/polkadot-js/wasm/pull/588))
+- Default to nightly rust version ([#589](https://github.com/polkadot-js/wasm/pull/589))
+- Ci Fix ([#590](https://github.com/polkadot-js/wasm/pull/590))
+- Read lock file ([#591](https://github.com/polkadot-js/wasm/pull/591))
+- Setup nightly as default ([#592](https://github.com/polkadot-js/wasm/pull/592))
+- Tweak install-build-deps.sh script ([#593](https://github.com/polkadot-js/wasm/pull/593))
+- Remove ASM build ([#594](https://github.com/polkadot-js/wasm/pull/594))
+- Bump @polkadot deps ([#595](https://github.com/polkadot-js/wasm/pull/595))
+
+
 ## 7.4.1 Oct 20, 2024
 
 - Bump dev deps to 0.81.2
