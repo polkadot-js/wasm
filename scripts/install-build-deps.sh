@@ -9,7 +9,7 @@ source ./scripts/rust-version.sh
 
 # NOTE If this is bumped, bump the version in Cargo.toml as well
 BINDGEN_REPO=https://github.com/rustwasm/wasm-bindgen
-BINDGEN_VER=0.2.80
+BINDGEN_VER=0.2.79
 BINDGEN_ZIP=
 
 
