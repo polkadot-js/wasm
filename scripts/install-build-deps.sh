@@ -16,7 +16,7 @@ BINDGEN_ZIP=
 
 
 BINARYEN_REPO=https://github.com/WebAssembly/binaryen
-BINARYEN_VER=version_120
+BINARYEN_VER=version_105
 BINARYEN_ZIP=
 
 WABT_REPO=https://github.com/WebAssembly/wabt
@@ -29,7 +29,9 @@ unamestr=`uname`
 rustup toolchain install $RUST_VER -c rust-src -t wasm32-unknown-unknown
 rustup default $RUST_VER
 
-rustup show
+if [ "$RUST_VER" != "stable" ]; then
+  cargo install xargo
+fi
 
 if [[ "$unamestr" == 'Linux' ]]; then
   echo "*** Detected Linux"
