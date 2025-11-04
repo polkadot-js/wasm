@@ -1,2 +1,5 @@
 [dependencies]
 std = { default-features = false, features = ["panic_immediate_abort"] }
+
+[patch.crates-io]
+libc = { version = "=0.2.108" }
