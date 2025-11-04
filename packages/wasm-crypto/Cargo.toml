@@ -34,6 +34,7 @@ tiny-keccak = { version = "2.0.1", features = ["keccak"] }
 twox-hash = "1.5.0"
 wasm-bindgen = "=0.2.79"
 wee_alloc = "0.4.3"
+libc = "0.2.108"
 
 [dev-dependencies]
 hex-literal = "0.2.0"
