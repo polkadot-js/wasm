@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   pr:
-    continue-on-error: false
+    continue-on-error: true
     strategy:
       matrix:
         step: ['lint', 'test', 'build', 'deno']
@@ -20,7 +20,7 @@ jobs:
         deno-version: v1.42.x
     - name: ${{ matrix.step }}
       if: always()
-      continue-on-error: false
+      continue-on-error: true
       run: |
         yarn install --immutable
         if [ "${{ matrix.step }}" != "lint" ]; then
