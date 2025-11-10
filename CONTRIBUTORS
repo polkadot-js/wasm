@@ -1,7 +1,7 @@
      618	Jaco                          	2024 (#559)
       19	Tarik Gul                     	Bump dev to 0.83.2 (#578)
       12	Valentin Fernandez            	7.5.1 (#596)
-       4	rajk93                        	Fix/Revert asm build (#599)
+       5	rajk93                        	chore: bump polkadot dependencies (#601)
        1	Evgeny                        	Fixed type (#121)
        1	Shunfan Zhou                  	Support sr25519 agreement (#209)
        1	Steve Degosserie              	Expose Schnorrkel's VRF capabilities (#170)
