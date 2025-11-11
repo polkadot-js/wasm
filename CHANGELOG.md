@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 7.5.2 Nov 10, 2025
+
+Changes:
+
+- Fix/Revert asm build ([#599](https://github.com/polkadot-js/wasm/pull/599))
+- Bump @polkadot dependencies ([#601](https://github.com/polkadot-js/wasm/pull/601))
+
+
 ## 7.5.1 aug 25, 2025
 
 Changes:
