@@ -26,14 +26,14 @@
     "./packageDetect.cjs"
   ],
   "type": "module",
-  "version": "7.5.2",
+  "version": "7.5.3-0-x",
   "main": "index.js",
   "dependencies": {
-    "@polkadot/wasm-bridge": "7.5.2",
-    "@polkadot/wasm-crypto-asmjs": "7.5.2",
-    "@polkadot/wasm-crypto-init": "7.5.2",
-    "@polkadot/wasm-crypto-wasm": "7.5.2",
-    "@polkadot/wasm-util": "7.5.2",
+    "@polkadot/wasm-bridge": "7.5.3-0-x",
+    "@polkadot/wasm-crypto-asmjs": "7.5.3-0-x",
+    "@polkadot/wasm-crypto-init": "7.5.3-0-x",
+    "@polkadot/wasm-crypto-wasm": "7.5.3-0-x",
+    "@polkadot/wasm-util": "7.5.3-0-x",
     "tslib": "^2.7.0"
   },
   "devDependencies": {
