@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 7.5.4 Dec 9, 2025
+
+Changes:
+
+- Bump polkadot-js dependencies ([#605](https://github.com/polkadot-js/wasm/pull/605))
+
+
 ## 7.5.3 Nov 24, 2025
 
 Changes:
